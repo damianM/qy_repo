@@ -1,0 +1,18 @@
+<div class="partial latest_items graphite">
+  <%=insert_corners%>
+  <div class="header">
+    Top 10 filmów
+  </div>
+  <div class='body'>
+    <% top_videos.each_with_index do |movie,i| %>
+      <span style="color:#666"> <%= i+1%>.</span> <%= link_ trunc(movie.description), "video", "show",movie.id   %><br/>
+    <% end %>
+    <div style="clear:both">
+    </div>
+      <div class="gray_link" style="float:right">
+    <%= link_to "Zobacz więcej", :controller => :video, :action => :dfind %>
+  </div>
+  <div class="clear"></div>
+  </div>
+  
+</div>

@@ -1,0 +1,25 @@
+<div class="partial">
+  <div class="header p_team_find"></div>
+
+  <div class="body">
+    <% form_tag do%>
+      <div class="form_row">
+        <%= label_tag :query, "Wpisz zapytanie" %>
+        <%= text_field_tag :query %>
+      </div>
+      <div class="form_row">
+        <%= submit_tag "Szukaj!"%>
+      </div>
+
+    <% end %>
+    <br/><br/>
+    <% unless @teams.empty? %>
+      <% for team in @teams %>
+        <%= render :partial => "team", :locals => {:team => team} %>
+      <% end %>
+    <% else %>
+      Nie znaleziono żadnej grupy<br/>
+    <% end %>
+    <br/><br/>
+  </div>
+</div>

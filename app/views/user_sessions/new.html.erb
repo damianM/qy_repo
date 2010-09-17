@@ -1,0 +1,31 @@
+<div class="partial">
+  <div class="header p_user_var">
+    Zaloguj się!
+  </div>
+  <div class="body">
+    <% form_for @user_session, :url => {:action => "create"} do |f| %>
+
+      <div class="form_row">
+        <%= f.label :login %><br />
+        <%= f.text_field :login %>
+      </div>
+      <div class="form_row">
+        <%= f.label :password, "Hasło" %><br />
+        <%= f.password_field :password %>
+      </div>
+      <div class="form_row">
+        <%= f.label :remember_me, "Zapamiętaj mnie" %>
+        <%= f.check_box :remember_me, :class => "remember_me" %>
+      </div>
+      <div class="form_row">
+        <%= f.submit "Zaloguj!" %>
+      </div>
+
+    <% end %>
+    <hr style="width:75%;margin-top:15px;"/>
+    Nie masz jeszcze konta? <%= link_ "Zarejestruj się", "user", "register"%><br/>
+    Nie pamiętasz hasła? <%= link_ "Kliknij!", "user", "ulogin" %>
+    
+  </div>
+
+</div>

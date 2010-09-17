@@ -1,0 +1,4 @@
+<%= link_ "Pomoc", "site", "help"  %> |
+<%= link_ "O nas", "site", "about"  %> |
+<%= link_ "Polityka prywatności", "site", "ppolicy"  %> |
+<%= link_ "Regulamin", "site", "terms"  %>

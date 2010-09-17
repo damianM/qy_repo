@@ -1,0 +1,38 @@
+class SiteController < ApplicationController
+  def index
+    @latest_photos=Photo.find(:all,:limit => 5, :order => "created_at desc").reject{|x| x.gallery.user.nil?}
+    @latest_videos=Video.find(:all,:limit => 5, :order => "created_at desc").reject{|x| x.gallery.user.nil?}
+    @latest_users=User.find(:all,:limit => 5, :order => "created_at desc")
+    @top_video = Video.find(:first, :order => "counter desc")
+
+    @clatest_photos=Photo.find(:all,:limit => 4, :conditions =>
+        "gallery_id in
+(select id from galleries where user_id in
+  (select friend_id from relationships where status='accepted' and user_id=#{curuser.id})
+)",
+      :order => "created_at desc").reject{|x| x.gallery.user.nil?}
+    @clatest_videos=Video.find(:all,:limit => 4, :conditions =>
+        "gallery_id in
+(select id from galleries where user_id in
+  (select friend_id from relationships where status='accepted' and user_id=#{curuser.id})
+)",
+      :order => "created_at desc").reject{|x| x.gallery.user.nil?}
+    @top_videos = Video.find(:all, :order => "counter desc",:conditions => "description IS NOT NULL ", :limit => 10).reject{|x| x.gallery.user.nil?}
+    @latest_event = Event.find(:first, :order => "relationdate desc")
+    @latest_event = nil if @latest_event.relationdate.nil?
+  end
+
+  def help
+  end
+
+  def about
+  end
+
+  def ppolicy
+  end
+
+  def terms
+    
+  end
+
+end

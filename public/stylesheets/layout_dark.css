@@ -1,0 +1,101 @@
+body{
+    background: #212121;
+    margin: 0;
+    padding: 0;
+    padding-bottom:30px;
+}
+
+#logo{
+    position: relative;
+    top: 160px;
+    left: 580px;
+}
+
+#menu{
+    position: relative;
+    top: 203px;
+    left: 118px;
+    width:500px;
+    height:26px;
+    
+}
+
+#menu > div{
+    float:left;
+    margin-left:7px;
+}
+
+#menu div a{
+    font-weight: bold;
+    font-size:10pt;
+}
+#page{
+    width: 1140px;
+    border: dotted 1px #212121;
+    margin: 0px auto 0 auto;
+    font-family: Arial;
+    background-image: url("../background.png");
+    background-repeat: no-repeat;
+    background-position: -150px 0px;
+    
+}
+
+
+
+#main{
+    width: 942px;
+    margin: 162px 99px 0px 99px;
+    background-color: #181818;
+    padding: 0 6px 0 6px;
+    height: 100%;
+    overflow: hidden;
+}
+
+#lcol{
+    width: 230px;
+    float: left;
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#ccol{
+    width: 450px;
+    float:left;
+    display: block;
+}
+
+#rcol{
+    width: 208px;
+    float:right;
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#top{
+    height:25px;
+}
+
+.clr{
+    clear: both;
+}
+
+#footer{
+    margin-top:15px;
+    clear:both;
+    width:940px;
+    margin-left:99px;
+    font-size: 7pt;
+    color:#fff;
+}
+
+#footer a{
+    font-size: 7pt;
+    color:#fff;
+}
+
+#footer_links{
+    float:right;
+    
+}

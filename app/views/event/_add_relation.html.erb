@@ -1,0 +1,16 @@
+<div class="partial" id="obj">
+  <div class="header">Dodaj relację!</div>
+  <div class="body">
+    <% form_for :event,:url => {:controller => "event", :action => "modify", :id => event} do |f| %>
+      <div class="form_row">
+        <%= f.label :file, "Relacja z imprezy" %>
+        <%= f.text_area :relation, :style => "width:80%; height: 180px" %>
+      </div>
+      <div class="form_row">
+        <%= f.submit "Dodaj",:class=>"submit" %>
+      </div>
+
+    <%end%>
+    <%= link_to_remote "Zamknij", :url => {:action => "fold"}, :html => {:class => "remote_close"} %>
+  </div>
+</div>

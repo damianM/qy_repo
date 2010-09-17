@@ -1,0 +1,26 @@
+#progress-bar {
+  width:400px;
+  height:25px;
+  margin-top:15px;
+  margin-bottom:15px;
+  border:solid 1px #aaa;
+  position:relative;
+}
+
+#progress-bar #status-bar {
+  display:block;
+  height:25px;
+  width:0;
+  background-color:#FFe3af;
+  border-right:solid 1px #FFe3af;
+  position:absolute;
+  top:0; left:0;
+}
+
+#progress-bar #status-text {
+  display:block;
+  padding: 0 15px;
+  line-height:25px;
+  position:absolute;
+  top:0; left:0;
+}

@@ -1,0 +1,21 @@
+
+<%# if !curuser %>
+  <%#= render :partial => "site/greeting"%>
+  
+  <%= render :partial => "site/top_video", :locals => {:video => @top_video } unless @top_video.nil?%>
+  <%= render :partial => "site/latest_videos", :locals => {:videos => @latest_videos }%>
+  <%= render :partial => "site/relation", :locals => {:events => @latest_events} unless @latest_events.empty?%>
+  <%= image_tag(params['black'] ? "../helmet_d.png" : "../helmet.png") %>
+  <%#= render :partial => "site/latest_users", :locals => {:users => @latest_users }%>
+  <%#= render :partial => "site/latest_photos", :locals => {:photos => @latest_photos }%>
+  
+  
+<%# else %>
+  <%#= render :partial => "site/info", :locals => {:photos => @latest_photos }%>
+  <%#= render :partial => "site/top_video", :locals => {:video => @top_video } unless @top_video.nil?%>
+  <%#= render :partial => "site/c_latest_photos", :locals => {:photos => @clatest_photos }%>
+  <%#= render :partial => "site/c_latest_videos", :locals => {:videos => @clatest_videos }%>
+  <%#= render :partial => "site/relation", :locals => {:event => @latest_event} unless @latest_event.nil?%>
+  <%#= render :partial => "site/latest_users", :locals => {:users => @latest_users[0...4] }%>
+  
+<%# end %>

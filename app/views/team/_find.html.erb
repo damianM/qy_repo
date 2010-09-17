@@ -1,0 +1,16 @@
+<div class="partial">
+  <div class="header p_team_find"></div>
+
+  <div class="body">
+    <% form_tag :action => :find do%>
+      <div class="form_row">
+        <%= label_tag :query, "Wpisz zapytanie" %>
+        <%= text_field_tag :query %>
+      </div>
+      <div class="form_row">
+        <%= submit_tag "Szukaj!"%>
+      </div>
+
+    <% end %>
+  </div>
+</div>

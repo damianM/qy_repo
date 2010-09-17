@@ -1,0 +1,43 @@
+<div class="partial">
+  <div class="header p_tforum">Forum grupy: <%= @forum.team.name%> </div>
+  <div class="body">
+
+    <br/>
+    <div class="topic_header">
+      <div class="topich topich_name">Nazwa tematu</div>
+      <div class="topich topich_author">Autor</div>
+      <div class="topich topich_postcount">Ilość postów</div>
+      <div class="topich topich_last">Ostatni post</div>
+      <div class="clr"></div>
+    </div>
+    <% for topic in @topics %>
+      <div class="topic">
+        <div class="topic_name">
+          <%=link_ topic.name, "topic", "show", topic.id %>
+        </div>
+        <div class="author">
+          <%=link_ topic.posts[0].user.login, "user", "show", topic.posts[0].user.id %> <br/><%=lt topic.created_at %>
+        </div>
+        <div class="postcount">
+          Postów: <%= topic.posts.length %><br/>
+          <%=link_ "Usuń", "topic", "delete", topic,"Czy jesteś pewien, że chcesz usunąć temat?" if topic.rights?(curuser)%>
+        </div>
+        <div class="last_post">
+          <%=link_ topic.posts.last.user.login, "fpost", "show", topic.posts.last  %><br/> <%=lt topic.updated_at %>
+        </div>
+
+      </div>
+    <% end %>
+    <br/>
+    <br/>
+    <div id="add_t">
+         <div class="button_silver_75"  style="text-align:left;display:block;float:left">
+             <%= link_ "Powrót", "team", "show", @forum.team.id %>
+      </div>
+      <div class="button_gold_100" style="text-align:right;display:block;float:right">
+        <%= link_to_remote "Nowy temat", :url => {:controller => "topic",:action => "t_add",:id =>  @forum.id} %>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>

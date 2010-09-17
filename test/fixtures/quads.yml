@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  company: MyString
+  qtype: MyString
+  description: MyText
+  gallery_id: 1
+  user_id: 1
+
+two:
+  company: MyString
+  qtype: MyString
+  description: MyText
+  gallery_id: 1
+  user_id: 1

@@ -1,0 +1,23 @@
+<div class="partial">
+  <div class="header p_team_forum"></div>
+
+  <div class="body">
+
+    Ostatnie tematy:
+    <ul>
+      <%@latest_topics.each do |x|%>
+        <li> <%= link_ (x.name),"topic","show",x.id %>  (autor: <%=x.posts[0].user.login%>, data: <%=ltd x.posts[0].user.created_at%>)  </li>
+      <%end%>
+    </ul>
+
+    Najpopularniejsze tematy:
+    <ul>
+      <%@top_topics.each do |x|%>
+        <li> <%= link_ (x.name),"topic","show",x.id %>  (autor: <%=x.posts[0].user.login%>, data: <%=ltd x.posts[0].user.created_at%>) </li>
+      <%end%>
+    </ul>
+
+
+  </div>
+
+</div>

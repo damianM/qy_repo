@@ -1,0 +1,14 @@
+development:
+  :address: localhost
+  :port: 25
+  :domain: localhost
+  :authentication: login
+  :user_name: telpeloth
+  :password: em3ralD
+production:
+  :address: localhost
+  :port: 25
+  :domain: quadomaniacy.pl
+  :authentication: login
+  :user_name: telpeloth
+  :password: em3ralD

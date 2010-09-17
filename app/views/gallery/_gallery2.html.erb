@@ -1,0 +1,23 @@
+<div class="lcol_user">
+  <%= link_ (gallery.thumb ? image_tag(gallery.thumb.gsub(/\./,"t.")) : "123"), "gallery", "index", gallery.id %>
+</div>
+<div class="rcol_user">
+  <div class="about_links">
+    <div>
+      <%= link_ gallery.name, "gallery", "index", gallery.id %>
+    </div>
+    <div>
+    Zdjęć:
+    <div>
+      <%= gallery.photos.nil? ? 0 : gallery.photos.length %>
+    </div>
+    </div>
+    <div>
+    Filmów:
+    <div>
+      <%= gallery.videos.nil? ? 0 : gallery.videos.length %>
+    </div>
+    </div>
+  </div>
+</div>
+<div class="clr"></div>

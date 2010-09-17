@@ -1,0 +1,28 @@
+<div class="partial" id="obj">
+  <div class="header">Dodaj zdjęcie!</div>
+  <%= insert_corners %>
+  <div class="body">
+    <% form_for :photo,:url => {:controller => "gallery", :action => "index", :id => gallery}, :html => {:multipart => true} do |f|%>
+
+      <div class="form_row">
+        <%= f.label :file, "Zdjęcie" %>
+        <%= f.file_field :file %>
+      </div>
+      <div class="form_row">
+        <%= f.label :description, "Opis" %>
+        <%= f.text_field :description %>
+      </div>
+    <% unless disable_mamp %>
+      <div class="form_row">
+        <%= label_tag :mark_as_main_photo, "Ustaw jako główne"%>
+        <%= check_box_tag :mark_as_main_photo %>
+      </div>
+    <% end %>
+      <div class="form_row">
+        <%= f.submit "Dodaj",:class=>"submit", :disable_with => "Twoje zdjęcie jest właśnie ładowane, proszę, czekaj..." %>
+      </div>
+
+    <%end%>
+    <%= link_to_remote "Zamknij", :url => {:action => "fold"}, :html => {:class => "remote_close"} %>
+  </div>
+</div>

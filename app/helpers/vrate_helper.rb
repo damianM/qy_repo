@@ -1,0 +1,2 @@
+module VrateHelper
+end

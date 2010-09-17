@@ -1,0 +1,99 @@
+<div class="partial">
+  <div class="header p_event_f"></div>
+  
+  <div class="body">
+    <div class="find_event">
+      <% form_tag "/event/list" do%>
+        <br/>
+        <div class="bolder" style="text-align:left;padding-left:40px;"> Data:</div>
+        <br/>
+        <div class="form_row">
+          <%= label :query, :since, "od: " %>
+          <%= date_select :since, :since , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10},  :class => "date_select" %>
+          <div class="clear"></div>
+        </div>
+
+        <div class="form_row">
+          <%= label :query, :to, "do: " %>
+          <%= date_select :to, :to , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10},  :class => "date_select" %>
+          <div class="clear"></div>
+        </div>
+        <div class="form_row bolder">
+          <%= label_tag :category, "Kategoria:" %>
+          <% opts = []
+          @categories.each_pair{|key,value| opts << [key,value]}
+          opts.unshift(["Wszystkie",""])
+
+        %>
+          <%= select_tag :category,options_for_select(opts)  %>
+        </div>
+
+        <div class="form_row">
+
+          <%= submit_tag "Szukaj!"%>
+        </div>
+      <% end %>
+    </div>
+    <% for event in @events %>
+      <div class="event">
+        <% if event.rights?(curuser) and event.event_start >= (Date.today) %>
+          <div class="event_edit">
+            <%= link_to (image_tag "/edit.png"), {:controller => "event", :action => "modify", :id => event.id}, {:title => "Edytuj"} %>
+          </div>
+          <div class="event_delete">
+
+            <%= link_to (image_tag "/delete.png"), {:controller => "event", :action => "delete", :id => event.id}, {:title => "Usuń", :confirm => "Czy na pewno chcesz usunąć tę imprezę?"} %>
+          </div>
+        <% end %>
+        <div class="event_header">
+
+          <span>
+
+            <span style="font-weight:normal;border:none;color:#777">Kategoria:</span>
+            <%=  event.category%>
+          </span>
+        </div>
+        <div class="event_body">
+          <div>
+            <span style="font-size:10pt;"><%= link_ event.title, "event", "show", event.id %></span>
+          </div>
+          <div class="clr"></div>
+          <div class="col1_event">
+            <div class="event_body_left">
+              <br/>
+              <div class="event_body_info">
+                Początek: <%= ltd event.event_start %><br/>
+                Koniec: <%=ltd event.event_end%><br/>
+                Miejsce: <%= event.place %><br/>
+                <br/>
+
+              </div>
+
+            </div>
+          </div>
+          <div class="col2_event">
+            <p class="event_description"><%=ntobr (cut event.description, 200) %></p>
+          </div>
+          <div class="clr"></div>
+        </div>
+
+      </div>
+    <% end %>
+
+
+    <div class="col1">
+
+      <div class="button_gold_100" style="font-size:10pt; font-weight: bold;float:left;margin-top:7px;">
+<%= link_ "Dodaj nową" , "event", "new" %>
+      </div>
+    </div>
+    
+    <div class="col2">
+      <div class="button_silver_75" style="font-size:10pt; font-weight: bold;float:right;margin-top:7px;">
+      
+        <%= link_ "Wszystkie" , "event", "list",0 %>
+      </div>
+    </div>
+    <div class="clr"></div>
+  </div>
+</div>

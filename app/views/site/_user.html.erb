@@ -1,0 +1,31 @@
+<div class="partial_login">
+  <div class="header p_user"></div>
+  <div class="body" style="padding-top:20px;">
+    <% unless request.request_uri == "/user/show" or request.request_uri == "/user/show/#{curuser.id}" %>
+    <div  style="text-align:center;font-size:10pt">
+      <div class="photo">
+        <%= link_ (img user.photo), "user", "show", user.id %>
+      </div>
+      <div style="font-weight: bold;">
+        <%= link_ user.login, "user", "show", user.id %>
+      </div>
+
+      <div class="userinfo_sub1 bolder">
+        <%=  (user.quads[0].company.nil? ? "" : user.quads[0].company ) + " "+ (user.quads[0].qtype.nil? ? "" :user.quads[0].qtype ) if !user.quads.empty?%>
+      </div>
+      <div class="userinfo_sub01 " style="color:#000">
+        <%=  user.city if user.city%>
+      </div>
+    </div>
+    <% end %>
+    <div class="user_links" style="float:left">
+    <%= link_to "Edytuj profil", :controller => "user", :action => "modify", :id => user.id%>
+    <%= link_to "Zobacz galerię", :controller =>  "gallery", :action => "list", :id =>  user.id%>
+    <%= link_to "Przejdź do forum", :controller =>  "forum", :action => "login", :id =>  user.id%>
+    </div>
+     <div class="button_silver_67" style="font-size:10pt; font-weight: bold;float:right;margin-top:27px;">
+        <a style="color: #888;" href="/user/logout">Wyloguj</a>
+      </div>
+      <div class="clr"></div>
+  </div>
+</div>

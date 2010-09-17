@@ -1,0 +1,14 @@
+<div class="partial" id="obj">
+  <div class="header">Edytuj film</div>
+  <%= insert_corners%>
+  <% form_for :video, :url => {:controller => "video", :action => "edit", :id => video} do |f|%>
+    <p>
+      <%= f.label :name, "Opis" %>
+      <%= f.text_field :description, :value => cname %>
+    </p>
+    <p>
+      <%= f.submit "Zapisz zmiany!" %>
+    </p>
+  <%end%>
+  <%= link_to_remote "Zamknij", :url => {:action => "fold"}, :html => {:class => "remote_close"} %>
+</div>

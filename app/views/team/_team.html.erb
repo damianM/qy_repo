@@ -1,0 +1,34 @@
+<div class="event">
+  <% if team.rights?(curuser) %>
+    <div class="event_edit">
+      <%= link_to (image_tag "/edit.png"), {:controller => "team", :action => "modify", :id => team.id}, {:title => "Edytuj grupę"} %>
+    </div>
+    <div class="event_delete">
+
+      <%= link_to (image_tag "/delete.png"), {:controller => "team", :action => "delete", :id => team.id}, {:title => "Usuń grupę", :confirm => "Czy na pewno chcesz usunąć tę grupę?"} %>
+    </div>
+  <% end %>
+  <div class="event_header">
+
+  </div>
+  <div class="event_body">
+    <div>
+      <span style="font-size:10pt;"><%= link_ team.name, "team", "show", team.id%></span>
+    </div>
+    <div class="clr"></div>
+    <div class="col1_event">
+      <div class="event_body_left" style="height:70px;">
+        <br/>
+        <div class="event_body_info">
+          Użytkowników: <%= team.users.length %><br/>
+          Grupa założona: <br/> <%=lt team.created_at %><br/>
+
+        </div>
+      </div>
+    </div>
+    <div class="col2_event">
+      <p class="event_description"><%= cut(team.description,100) %></p>
+    </div>
+    <div class="clr"></div>
+  </div>
+</div>

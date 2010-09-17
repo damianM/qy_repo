@@ -1,0 +1,23 @@
+<div class="partial latest_items">
+  <%= insert_bcorners %>
+  <div class="mheader">Odpowiedz</div>
+  <div class="body">
+    <p> Adresat: <%= @receiver.login %>
+
+      <% form_for :message do |f| %>
+      <div class="form_row">
+        <%= f.label :title, "Tytuł" %>
+        <%= f.text_field :title %>
+      </div>
+      <div class="form_row">
+
+        <%= f.label :content, "Treść" %>
+        <%= f.text_area :content, :rows => 10 %>
+      </div>
+      <div class="form_row">
+        <%= f.submit "Wyślij", :class=>"submit" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

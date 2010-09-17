@@ -1,0 +1,16 @@
+<div class="partial" id="obj">
+  <div class="header p_post_new"></div>
+  <div class="body">
+    <% form_for :post, :url => {:controller => "fpost", :action => "new", :id => topic} do |f|  %>
+      <div class="form_row">
+        <%= f.label :content, "Treść posta"%>
+        <%= f.text_area :content, :rows => 8, :cols => 35 %>
+      </div>
+      <div class="form_row">
+        <%= f.submit "Dodaj post",:class => "submit" %>
+      </div>
+
+    <% end %>
+    <%= link_to_remote "Zamknij", :url => {:action => "p_fold"}, :html => {:class => "remote_close"} %>
+  </div>
+</div>

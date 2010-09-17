@@ -1,0 +1,25 @@
+<div class="partial latest_items">
+  <%=insert_corners%>
+  <div class="header">
+    Ostatnio dodane zdjęcia Twoich znajomych
+  </div>
+  <div class='body'>
+
+    <% if photos.length > 0%>
+
+      <%  for photo in photos  %>
+        <div class="latest_item">
+          <div>
+            <%= link_ image_tag(photo.thumb), "photo", "show", photo.id %><br/>
+          </div>
+          <%= link_ photo.gallery.user.login, "user", "show", photo.gallery.user.id%>
+        </div>
+
+      <% end %>
+    <% else %>
+      Nikt z Twoich znajomych nie dodał jeszcze zdjęcia
+    <% end %>
+    <div style="clear:both">
+    </div>
+  </div>
+</div>

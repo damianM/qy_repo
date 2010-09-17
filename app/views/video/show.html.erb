@@ -1,0 +1,126 @@
+<div class="partial gallery">
+  <%= insert_bcorners %>
+  <div class="mheader"> Film: </div>
+
+  <div class="body">
+    <%= render :partial => "photo/nav", :locals => {:photo => @video, :gallery => @gallery, :user => @gallery.user } %>
+    <div class="video_int">
+      <a
+        href="<%= "/images/" +  @video.link %>"
+        style="display:block;width:464px;height:348px;"
+        id="player">
+      </a>
+    </div>
+    <br/><br/>
+
+    <br/><br/>
+    <script type="text/javascript">
+      flowplayer("player", "/flowplayer-3.1.1.swf",{
+
+        plugins: {
+          pseudo: { url: 'flowplayer.pseudostreaming-3.1.2.swf' },
+          controls:  {
+            backgroundColor: '#000',
+            backgroundGradient: 'none',
+
+            scrubber: true,
+            height: 20,
+            sliderColor: '#222',
+            progressColor: '#FFe3af',
+            bufferColor: '#666666'
+
+          }
+        },
+
+        // clip properties
+        clip: {
+          autoPlay: false,
+          autoBuffering: false,
+          // our clip uses pseudostreaming
+          provider: 'pseudo'
+
+          // provide MP4 file for Flash version 9.0.115 and above. otherwise use FLV
+<%#*url: flashembed.isSupported([9, 115]) ?%>
+<%#*'http://e1p2.simplecdn.net/flowplayer/eye-pseudo.mp4' :%>
+<%#*'http://e1p1.simplecdn.net/flowplayer/flowplayer-700.flv'%>
+
+    }
+  });
+    </script>
+    <div class="grey_text" style="font-size:7.5pt">
+      <div style="float:left">Średnia ocena: <%= @video.vrate.votes==0 ? 0 : (@video.vrate.sum.to_f / @video.vrate.votes).round(2)%></div>
+      <div style="float:right">Ilość wyświetleń: <%= @video.counter %> razy</div>
+      <div style="clear:both"></div>
+    </div>
+    <br/>
+    <% if @video.description != "" %>
+      <div class="partial" style="padding-left:20px;text-align:left;padding-top:20px;padding-bottom:20px;margin:0px;">
+        <div class="body">
+          <%= @video.description %>
+        </div>
+      </div>
+    <% end %>
+
+
+
+    <br/>
+    <%= render :partial => "photo/nav2", :locals => {:photo => @video, :prev => @prev, :nxt => @nxt , :v=>true} %>
+    <br/><br/>
+    <% begin %>
+      <% form_for :vrate, :url => {:controller => "vrate", :action => "vote", :id => @video.id}do |f|%>
+        <p>
+          <%= f.select :vote , (1..5).collect{|x| [x,x]}%>
+          <%= f.submit "Głosuj!" %>
+        </p>
+
+      <% end %>
+      <br/><br/>
+    <% end unless @video.vrate.users.include? curuser %>
+
+    <%  if @video.gallery.user.nil? or @video.gallery.user.friends.include? curuser or @video.gallery.user == curuser %>
+      <div class="new_comment">
+        <%  form_for :comment, :url => {:controller => "vcomment", :action => "new", :id => @video.id}do |f|%>
+
+          <div class="form_row">
+            <%= f.label :content, "Dodaj komentarz" %>
+            <%= f.text_area :content ,:style => "height: 100px; width:99%; border:1px solid #aaa" %>
+          </div>
+          <div class="form_row">
+            <%= f.submit "Dodaj",:class => "submit" %>
+          </div>
+
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="comment_info">
+      <% if @video.vcomments.empty? %>
+
+        Ten film nie ma jeszcze komentarzy...
+      <% else %>
+        <hr class="dotted" style="width:75%"/>
+        <br/>
+        Komentarze:
+      <% end %>
+    </div>
+
+    <% for comment in @video.vcomments %>
+      <div class="comment">
+        <div class="comment_user">
+          <%= img comment.user.photo %>
+          <%= link_ comment.user.login, "user", "show", comment.user.id%>
+        </div>
+        <div class="comment_content">
+          <%= comment.content %>
+        </div>
+        <div class="clr"></div>
+        <div class="comment_other">
+          <%= lt comment.created_at %>
+          <%= link_ "Usuń komentarz", "vcomment", "delete", comment.id, "Czy na pewno chcesz usunąć komentarz?" if @video.rights?(curuser)%>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>

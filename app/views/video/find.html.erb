@@ -1,0 +1,41 @@
+<div class="partial latest_items">
+  <div class="header p_user_var">Znalezione filmy</div>
+  <div class="body">
+<% if @line %>
+  <div class="find_line">
+    <%= @line %>
+  </div>
+<% end %>
+<% if @videos and @videos.length > 0 %>
+  <%  @videos.each do |video| %>
+  <div class="event">
+    <div class="event_body">
+
+      <div class="col1_dif">
+        <div class="event_body_left">
+          <br/>
+          <div class="event_body_info">
+            Dodał: <%= video.gallery.user ? video.gallery.user.login : video.gallery.event.user.login %><br/>
+            Dnia: <%=ltd video.created_at%><br/>
+            Ocena: <%=  video.vrate.votes==0 ? 0 : (video.vrate.sum.to_f / video.vrate.votes).round(2) %><br/>
+            Ilość wyświetleń: <%= video.counter %><br/>
+            <%= link_to "Zobacz", {:controller => "video", :action => "show", :id => video.id}, {:target => "_parent"} %>
+            <br/>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="col2_dif">
+        <p class="event_description"><%=ntobr (cut video.description, 200) %></p>
+      </div>
+      <div class="clear"></div>
+    </div>
+
+  </div>
+<% end %>
+<%  else%>
+  Niestety, nie znaleziono filmów...
+<% end %>
+  </div>
+</div>

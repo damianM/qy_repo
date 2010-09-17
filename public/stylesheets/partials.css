@@ -1,0 +1,334 @@
+.partial .body{
+    border: solid 1px #b8b8b8;
+    background: #F9FCF9;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 10pt;
+}
+
+.header{
+    
+    z-index: 10;
+    background-repeat: no-repeat;
+}
+.partial_login .body{
+    border: solid 1px #b8b8b8;
+    background: #000;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-image: url("../gradient_login.png");
+    background-repeat: repeat-x;
+}
+
+.partial_login .body, .partial_login .body a{
+    color: #fff;
+}
+
+
+.partial_left .body{
+    background-image: url("../gradient_left.png");
+    background-repeat: repeat-y;
+}
+
+.partial_right .body{
+    background-image: url("../gradient_right.png");
+    background-repeat: repeat-y;
+}
+
+.partial a{
+    font-size:9pt;
+    font-weight: bold;
+    color: #000;
+}
+
+.partial span{
+        font-size:10pt;
+    font-weight: 900;
+    color: #000;
+}
+
+.partial h2{
+    font-size: 13.5pt;
+    font-weight: bold;
+}
+.partial p{
+    font-size: 10pt;
+    line-height: 1.5;
+}
+
+.p_movies td img{
+    margin-right:10px
+}
+.p_photos td img{
+    margin-right:10px
+}
+.login_form_row{
+    margin-top:5px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.login_form_row label{
+    color: #fff;
+    width: 46px;
+    font-size: 10pt;
+    display:block;
+    float:left;
+}
+
+.login_form_row input{
+    border: none;
+    width:136px;
+    height:22px;
+    float:right;
+}
+
+.login_form_row_rem{
+    margin-top:7px;
+}
+.login_form_row_rem label {
+    color: #fff;
+    width: 72px;
+    font-size: 7pt;
+    padding-top:3px;
+    display:block;
+    float:left;
+}
+
+.login_links a{
+    font-size:7pt;color:#fff;text-decoration:underline
+}
+
+
+.p_quad{
+    background-image: url('../headers/marka.png');position: relative; top: 9px;height:48px;
+}
+
+.p_marka{
+     background-image: url('../headers/quadomaniacy.png');position: relative; top: 6px;height:44px;
+}
+
+.p_calendar{
+    background-image: url('../headers/calendar.png');position: relative; top: 6px;height:44px;
+}
+
+.p_l_videos{
+     background-image: url('../headers/l_videos.png');position: relative; top: 6px;height:44px;
+}
+
+.p_l_users{
+     background-image: url('../headers/l_users.png');position: relative; top: 6px;height:42px;
+}
+
+.p_l_photos{
+     background-image: url('../headers/l_photos.png');position: relative; top: 6px;left: -1px;height:43px;
+}
+
+.p_t_video{
+     background-image: url('../headers/top_video.png');position: relative; top: 6px;height:46px;
+}
+
+.p_t_videos{
+     background-image: url('../headers/top10.png');position: relative; top: 6px;height:46px;
+}
+
+.p_relation{
+     background-image: url('../headers/relations.png');position: relative; top: 6px;height:45px;
+}
+
+.p_login{
+     background-image: url('../headers/login.png');position: relative; top: 6px;height:50px;
+}
+
+.p_about{
+    background-image: url('../headers/user/name.png');position: relative; top: 6px;height:48px;
+}
+
+.p_myquad{
+    background-image: url('../headers/user/mequad.png');position: relative; top: 6px;height:42px;
+}
+
+.p_myfriends{
+    background-image: url('../headers/user/friends.png');position: relative; top: 6px;height:47px;
+}
+
+.p_mygalleries{
+    background-image: url('../headers/user/gallery.png');position: relative; top: 6px;height:45px;
+}
+
+.p_mygroups{
+    background-image: url('../headers/user/mygroups.png');position: relative; top: 6px;height:45px;
+}
+
+.p_comments{
+    background-image: url('../headers/user/comments.png');position: relative; top: 6px;height:41px;
+}
+
+.p_mail{
+    background-image: url('../headers/mail.png');position: relative; top:14px;height:45px;
+}
+
+.p_findv{
+    background-image: url('../headers/findv.png');position: relative; top: 6px;height:40px;
+}
+
+.p_findq{
+    background-image: url('../headers/findq.png');position: relative; top: 6px;height:38px;
+}
+
+.p_user{
+    background-image: url('../headers/user.png');position: relative; top: 6px;height:50px;
+}
+
+.p_gal_index{
+    background-image: url('../headers/gallery/index.png');position: relative; top: 6px;height:48px;
+}
+
+.p_gal{
+    background-image: url('../headers/gallery/my_gal.png');position: relative; top: 6px;height:47px;
+}
+
+.p_photo{
+    background-image: url('../headers/gallery/photo.png');position: relative; top: 6px;height:47px;
+}
+
+.p_friends_m{
+    background-image: url('../headers/user/friends_m.png');position: relative; top: 6px;height:46px;
+}
+
+.p_team_members{
+    background-image: url('../headers/team/members.png');position: relative; top: 6px;height:42px;
+}
+
+.p_team_index{
+    background-image: url('../headers/team/index_top.png');position: relative; top: 6px;height:41px;
+}
+
+.p_team_forum{
+    background-image: url('../headers/team/forum.png');position: relative; top: 6px;height:41px;
+}
+
+.p_team_latest{
+    background-image: url('../headers/team/latest.png');position: relative; top: 6px;height:42px;
+}
+
+.p_msg_new{
+    background-image: url('../headers/messages/new.png');position: relative; top: 6px;height:42px;
+}
+
+
+.p_message{
+    background-image: url('../headers/messages/message.png');position: relative; top: 6px;height:41px;
+}
+
+.p_msg_rcvd{
+    background-image: url('../headers/messages/rcvd.png');position: relative; top: 6px;height:42px;
+}
+
+.p_msg_sent{
+    background-image: url('../headers/messages/sent.png');position: relative; top: 2px;height:50px;
+}
+
+.p_pending{
+    background-image: url('../headers/friends/pending.png');position: relative; top: 6px;height:45px;
+}
+
+.p_requested{
+    background-image: url('../headers/friends/requested.png');position: relative; top: 6px;height:44px;
+}
+
+.p_user_edit_mydata{
+    background-image: url('../headers/user/edit_p_mydata.png');position: relative; top: 6px;height:40px;
+}
+
+.p_user_edit_qdata{
+    background-image: url('../headers/user/edit_p_qdata.png');position: relative; top: 6px;height:43px;
+}
+
+.p_user_edit{
+    background-image: url('../headers/user/edit_p.png');position: relative; top: 6px;height:44px;
+}
+
+
+.p_user_find, .p_event_edit, .p_team_appr, .p_event_add, .p_user_var{
+    background-image: url('../headers/plain.png');position: relative; top: 3px;height:28px;
+            color: #fff;
+    padding-top: 15px;
+    font-weight: bold;
+    padding-left:20px;
+}
+.p_event_f{
+    background-image: url('../headers/event/f_event.png');position: relative; top: 6px;height:42px;
+}
+
+.p_event{
+    background-image: url('../headers/event/event.png');position: relative; top: 6px;height:30px;
+        color: #fff;
+    padding-top: 12px;
+    font-weight: bold;
+    padding-left:90px;
+}
+
+.p_event_d{
+    background-image: url('../headers/event/event_d.png');position: relative; top: 6px;height:32px;
+        color: #fff;
+    padding-top: 12px;
+    font-weight: bold;
+    padding-left:60px;
+}
+
+
+.p_event_rel{
+    background-image: url('../headers/event/event_rel.png');position: relative; top: 6px;height:32px;
+        color: #fff;
+    padding-top: 15px;
+    font-weight: bold;
+    padding-left:70px;
+}
+
+.p_team_all{
+    background-image: url('../headers/team/allteams.png');position: relative; top: 9px;height:46px;
+}
+
+.p_team_new{
+    background-image: url('../headers/team/addteam.png');position: relative; top: 6px;height:46px;
+}
+
+.p_team_myteams{
+    background-image: url('../headers/team/myteams.png');position: relative; top: 9px;height:45px;
+}
+
+.p_team_find{
+    background-image: url('../headers/team/findteam.png');position: relative; top: 9px;height:44px;
+}
+
+
+.p_topic_new{
+    background-image: url('../headers/forum/ntopic.png');position: relative; top: 9px;height:49px;
+}
+
+.p_post_new{
+    background-image: url('../headers/forum/npost.png');position: relative; top: 9px;height:50px;
+}
+
+.p_topic{
+    background-image: url('../headers/forum/topic.png');position: relative; top: 9px;height:35px;
+    color: #fff;
+    padding-top: 14px;
+    font-weight: bold;
+    padding-left:65px;
+}
+
+.p_tforum{
+    background-image: url('../headers/forum/forum.png');position: relative; top: 9px;height:35px;
+    color: #fff;
+    padding-top: 14px;
+    font-weight: bold;
+    padding-left:65px;
+}
+
+.p_forum{
+    background-image: url('../headers/forum.png');position: relative; top: 9px;height:49px;
+
+}
+

@@ -1,0 +1,31 @@
+<div class="partial">
+  <div class="header  p_team_appr">Prośby o dołączenie</div>
+  <div class="body">
+
+    <% if !@pending_users.empty? %>
+      <form action="/team/ipending_list/<%= @team.id%> " target="_top" method="post">
+        <table class="friend_list">
+          <% for user_row in @pending_users %>
+            <tr>
+              <% for user in user_row %>
+                <td>
+                  <div class="friend">
+                    <%= render :partial => "/userinfo", :locals => {:user => user, :target => "_parent", :special => "pending_list"} %>
+                  </div>
+                </td>
+              <% end %>
+            </tr>
+          <%end%>
+        </table>
+        <div class="form_row">
+          <%= submit_tag "Akceptuj", :class => "submit" %>
+        </div>
+      </form>
+    <% elsif @rights %>
+      Nie możesz zobaczyć pełnej listy oczekujących
+    <% else %>
+      Nie ma próśb o dołączenie
+    <% end %>
+
+  </div>
+</div>

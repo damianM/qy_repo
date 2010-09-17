@@ -1,0 +1,14 @@
+<div class="partial">
+  <%= insert_bcorners %>
+  <div class="mheader">
+    Aktywuj konto
+  </div>
+  <div class="body">
+    <% form_for @user, :url => {:action => "create", :id => (@user.id)} do |f| %>
+      <%= f.error_messages %>
+      <%= f.submit "Aktywuj!" %>
+    <% end %>
+
+  </div>
+
+</div>

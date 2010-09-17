@@ -1,0 +1,10 @@
+<div class="partial partial_left">
+  
+  <div class="header p_quad">
+  </div>
+  <div class="body">
+    <% quads.sort.each do |x|%>
+      <%= link_find "#{x[0]} (#{x[1]})",x[0],"quad" %><br/>
+    <% end %>
+  </div>
+</div>

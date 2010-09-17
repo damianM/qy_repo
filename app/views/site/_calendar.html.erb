@@ -1,0 +1,21 @@
+<div class="partial partial_right">
+  <div class="header p_calendar">
+  </div>
+  
+  <div class="body calendar">
+    <%= show_calendar calendar_options %>
+
+    <div class="calendar_links" style="margin-bottom: 15px;">
+      <p>Ostatnio dodane imprezy:</p>
+    
+    <% events.reverse[0...5].each do |event| %>
+      <%= link_ (cut event.title,20),"event","show",event.id %><br/>
+    <% end %>
+    </div>
+
+    
+      <div class="button_silver_75" style="float:left"><%= link_ "Dodaj nową", "event","new"  %></div>
+      <div class="button_gold_100" style="float:right"><%= link_ "Pokaż wszystkie", "event","list",0  %></div>
+      <div class="clr"></div>
+  </div>
+</div>

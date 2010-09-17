@@ -1,0 +1,58 @@
+
+
+.button_silver_67{
+    height: 26px;
+    width: 67px;
+    text-align: center;
+    color: #E3E3E3;
+    background-image: url("../btn_dark_67.png");
+    background-repeat: no-repeat;    
+}
+
+.button_silver_67 a{
+    color: #E3E3E3;
+    font-size: 8pt;
+    display: block;
+    text-align: center;
+    height: 21px;
+    width: 67px;
+    padding-top: 6px;
+}
+
+.button_silver_75{
+    height: 26px;
+    width: 75px;
+    text-align: center;
+    color: #000;
+    background-image: url("../btn_silver_75.png");
+    background-repeat: no-repeat;
+}
+
+.button_silver_75 a{
+    color:#000;
+    font-size: 8pt;
+    display: block;
+    text-align: center;
+    height: 21px;
+    width: 75px;
+    padding-top: 6px;
+}
+
+.button_gold_100{
+    height: 26px;
+    width: 100px;
+    text-align: center;
+    color: #000;
+    background-image: url("../btn_gold_100.png");
+    background-repeat: no-repeat;
+}
+
+.button_gold_100 a{
+    color:#000;
+    font-size: 8pt;
+    display: block;
+    text-align: center;
+    height: 21px;
+    width: 100px;
+    padding-top: 6px;
+}

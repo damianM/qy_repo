@@ -1,0 +1,16 @@
+<div class="partial partial_right">
+  <div class="header p_findv"></div>
+  <div class="body find">
+    <% form_tag '/video/find', :method => "get" do %>
+      <%=  text_field_tag 'id' %>
+    <div>
+      <%= link_to "Szczegółowe wyszukiwanie", {:controller => "video", :action => "dfind"}, :style => "font-weight: normal; font-size: 8pt" %>
+    </div>
+      <div class="button_silver_67" style="font-size:10pt; font-weight: bold;float:right;margin-top:7px;">
+        <a style="" href="#" onclick="parentNode.parentNode.submit(); return false">Szukaj</a>
+      </div>
+    <div class="clr"></div>
+    <% end %>
+
+  </div>
+</div>

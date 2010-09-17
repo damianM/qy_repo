@@ -1,0 +1,48 @@
+<div class="partial">
+  <div class="header p_msg_sent"></div>
+  <div class="body">
+    <% unless @sent.reject{|x| x.title=="Zaproszenie do listy znajomych"}.length==0 %>
+      <% form_tag do%>
+        <div class="messages">
+          <div class="messages_header">
+            <div class="messages_sender">Nadawca/Data</div>
+            <div class="messages_topic">Temat</div>
+            <div class="clr"></div>
+          </div>
+          <% for msg in @sent.reverse %>
+            <%  if msg.title=="Zaproszenie do listy znajomych"
+              next
+            elsif msg.send_trash?
+              next
+            end%>
+            <div class="message" >
+              <div class="message_check">
+                <%= check_box_tag "#{msg.id}m","",@marks == 1 %>
+              </div>
+              <div class="login">
+
+                <%= link_ msg.receiver.login, "user", "show", msg.receiver.id %><br/>
+                <%= lt msg.created_at %>
+              </div>
+              <div class="title">
+                <%= link_ msg.title, "message", "show", msg.id %>
+              </div>
+              <div class="msg_delete">
+
+                <%= link_to (image_tag "/delete.png"), {:action => "sdel", :id =>  msg.id},{:class => "picture_link", :title => "Usuń wiadomość", :confirm => "Czy na pewno chcesz usunąć tę wiadomość?"} %>
+              </div>
+            </div>
+          <% end %>
+          <br/><br/>
+          <div class="message_options form_row">
+
+            <%= submit_tag (@marks==1 ? "Odznacz wszystkie" : "Zaznacz wszystkie"), :style => "float:left" %>
+            <%= submit_tag "Usuń" %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>Nie masz żadnych wiadomości</p>
+    <% end %>
+  </div>
+</div>

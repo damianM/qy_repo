@@ -1,0 +1,21 @@
+<div class="partial">
+  <div class="header p_myquad"></div>
+  <div class='body'>
+    <%if user.quads.empty? %>
+      Ten użytkownik nie ma jeszcze quada.
+    <%else%>
+      <% for quad in user.quads %>
+        <div class="quad">
+          <% if quad %>
+            <div class="quad">
+              <div class="quad_title"><%= quad.company %>  <%= quad.qtype %></div>
+              <div class="quad_description">
+                <%= quad.description %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <%  end %>
+    <%end%>
+  </div>
+</div>

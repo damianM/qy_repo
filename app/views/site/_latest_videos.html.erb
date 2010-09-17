@@ -1,0 +1,33 @@
+<div class="partial">
+  <div class="header p_l_videos">
+  </div>
+  <div class='body'>
+    <table class="p_movies">
+      <tr>
+        <% for video in videos[0...4]  %>
+          <td>
+            <%= link_ image_tag(video.link[0...-3] + "jpg"), "video", "show", video.id %><br/>
+          </td>
+
+        <% end %>
+      </tr>
+      <tr>
+        <%if videos.length > 4
+          for video in videos[4...7]  %>
+            <td>
+              <%= link_ image_tag(video.link[0...-3] + "jpg"), "video", "show", video.id %><br/>
+            </td>
+
+          <%end
+        end %>
+        <td>
+          <div class="button_silver_67" style="margin-top:45px;margin-left:28px">
+            <%= link_to "Wszystkie", :controller => "video", :action => "dfind" %>
+          </div>
+        </td>
+      </tr>
+
+    </table>
+
+  </div>
+</div>

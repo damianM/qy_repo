@@ -1,0 +1,7 @@
+<div class="nav_gal">
+  <%= link_ "Galeria", "gallery", gallery.user.nil? ? "elist" : "list", gallery.user.nil? ? @gallery.event : gallery.user%>
+  <% if !gallery.nil? %>
+    <%= ">" %>
+    <%= link_ gallery.name, "gallery", "index", gallery.id %>
+  <% end %>
+</div>

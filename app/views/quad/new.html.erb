@@ -1,0 +1,23 @@
+<div class="partial">
+  <div class="mheader">Nowy quad</div>
+
+  <% form_for :quad do |f| %>
+<% quads=["Bombardier/Can-am","Cectek","CF Moto", "Honda", "Kawasaki","KTM","Kymco", "Linhai", "Lucky Star", "Polaris", "Suzuki", "Yamaha", "Side by Side","Inne"] %>
+    <div class="form_row">
+      <%= f.label :company, "Producent" %>
+      <%= f.select :company,quads.collect{|x|[x,x]} %>
+    </div>
+    <div class="form_row">
+      <%= f.label :qtype, "Typ/szczegóły" %>
+      <%= f.text_field :qtype %>
+    </div>
+    <div class="form_row">
+      <%= f.label :description, "opis" %>
+      <%= f.text_area :description, :rows => 10  %>
+    </div>
+    <div class="form_row">
+      <%= f.submit "Dodaj quada",:class => "submit" %>
+    </div>
+
+  <% end %>
+</div>

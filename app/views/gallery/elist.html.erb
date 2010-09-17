@@ -1,0 +1,41 @@
+<div class="partial">
+  <div class="header p_gal_index"></div>
+  <div class="body">
+
+    <% if @galleries.empty? %>
+      <br/><br/><br/>
+      <%= "Ta impreza nie ma jeszcze galerii" %>
+      <br/><br/><br/>
+    <% else %>
+
+      <table class="gallery_list">
+        <% for gal_row in @galleries %>
+          <tr>
+            <% for gallery in gal_row %>
+              <td>
+                <%= render :partial => "gallery", :locals => {:gallery => gallery[0], :index =>  gallery[1]+1} %>
+              </td>
+            <% end %>
+          </tr>
+        <%end%>
+      </table>
+
+    <% end %>
+
+    <br/><br/>
+
+    <div id="add_g">
+      <div class="button_gold_100" style="text-align:left;display:block;float:left">
+        <%= link_ "Impreza", "event", "show", @event %>
+      </div>
+      <% if @event.rights?(curuser) %>
+        <div class="button_silver_75" style="text-align:left;display:block;float:right">
+          <%= link_to_remote "Dodaj album",:url => {:action=>"e_add", :id => @event.id}%>
+        </div>
+      <% end %>
+      <div class="clr"></div>
+    </div>
+
+
+  </div>
+</div>

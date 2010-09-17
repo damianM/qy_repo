@@ -1,0 +1,72 @@
+<% time = Time.parse("#{year}/#{month}/1") %>
+<% prev_month = time.months_ago(1) %>
+<% next_month = time.months_since(1) %>
+<% first_day = time.beginning_of_month %>
+<% n = Time.days_in_month(time.month,time.year)%>
+
+<div id="calendar">
+  <div id="calendar_wrap">
+    <table summary="Calendar">
+      <caption>
+        
+        <%= link_to (localize(time, :format => "%B") + " " + year.to_s), :controller => "event", :action => "list", :month => time.month, :year => time.year%>
+        
+      </caption>
+      <thead>
+        <tr>
+          <th abbr="Poniedziałek" scope="col" title="Poniedziałek">Pn</th>
+          <th abbr="Wtorek" scope="col" title="Wtorek">Wt</th>
+          <th abbr="Środa" scope="col" title="Środa">Śr</th>
+          <th abbr="Czwartek" scope="col" title="Czwartek">Cz</th>
+          <th abbr="Piątek" scope="col" title="Piątek">Pt</th>
+          <th abbr="Sobota" scope="col" title="Sobota">So</th>
+          <th abbr="Niedziela" scope="col" title="niedziela">Nd</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <%padding = (first_day.wday+6)%7%>
+          <%count = padding + 1 %>
+          <%if padding != 0%>
+            <td colspan="<%= padding %>" class="pad">&nbsp;</td>
+          <%end%>
+          <%1.upto(n) do |i|-%>
+            <%if highlight_today and today?(i)-%>
+              <%url = dates[i] -%>
+              <%if url-%>
+                <td id="date_<%=i%>" class="today"><%=url%></td>
+              <%else%>
+                <td id="date_<%=i%>" class="today"><%=i%></td>
+              <%end-%>
+            <%else-%>
+              <%url = dates[i] -%>
+              <%if url-%>
+                <%if highlight_dates.include?(i)-%>
+                  <td class="highlight" id="date_<%=i%>" ><%=url%></td>
+                <%else-%>
+                  <td id="date_<%=i%>" ><%=url%></td>
+                <%end-%>
+              <%else-%>
+                <%if highlight_dates.include?(i)-%>
+                  <td class="highlight" id="date_<%=i%>" ><%=i%></td>
+                <%else-%>
+                  <td id="date_<%=i%>" ><%=i%></td>
+                <%end-%>
+              <%end-%>
+            <%end-%>
+            <%if count%7 ==0-%>
+            </tr><tr>
+          <%end-%>
+          <%count = count + 1-%>
+        <%end-%>
+        <%if count%7 !=0-%>
+          </tr>
+        <%end-%>
+      </tbody>
+
+    </table>
+    <span id="cal_left"><%=  link_to_remote "<<",:url => {:controller => "event", :action => "gcal", :m => prev_month.month, :y => prev_month.year}, :html => {:title => "Poprzedni miesiąc"}%></span>
+    <span id="cal_right"><%=  link_to_remote ">>",:url => {:controller => "event", :action => "gcal", :m => next_month.month, :y => next_month.year}, :html => {:title => "Następny miesiąc"}%></span>
+  </div>
+</div>

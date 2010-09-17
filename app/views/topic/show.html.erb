@@ -1,0 +1,53 @@
+<div class="partial">
+  <div class="header p_topic">Temat: <%=cut @topic.name,20 %> </div>
+  <div class="body">
+    <div class="topic_topic">
+      <%=@topic.name%>
+    </div>
+    <% for post in @topic.posts %>
+      <div class="post" style="position:relative">
+
+
+        <a href="#"name="<%=post.id%>"></a>
+        <div class="post_author">
+          <div class="post_userinfo">
+            <%= img post.user.photo%><br/>
+            <%= link_ post.user.login, "user", "show", post.user.id %>
+          </div>
+          <div class="post_date">
+            <%=lt post.created_at %>
+          </div>
+          <% if post.rights?(curuser) %>
+            <div>
+              
+              <div  style="text-align:right;display:block;float:rgiht">
+
+                <%= link_to (image_tag "/delete.png"), {:controller => "post", :action => "delete", :id => post.id}, {:title => "Usuń posta", :class => "picture_link post_delete",:confirm => "Czy na pewno chcesz usunąć tego posta?"} %>
+              </div>
+              <div class="clr"></div>
+            </div>
+          <%end%>
+        </div>
+
+
+        <div class="post_body">
+          <%=h post.content %>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    <% end %>
+
+    <br/><br/>
+    <div id="add_p">
+      <div class="button_silver_75" style="text-align:left;display:block;float:left">
+        <%= link_ "Powrót", "forum", "list", @topic.forum %>
+      </div>
+
+      <div class="button_gold_100" style="text-align:right;display:block;float:right">
+        <%= link_to_remote "Odpowiedz",:url => {:action=>"p_add", :id => @topic.id}%>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>

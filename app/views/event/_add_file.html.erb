@@ -1,0 +1,17 @@
+<div class="partial" id="obj">
+  <div class="header">Dodaj załącznik!</div>
+  <%= insert_corners %>
+  <div class="body">
+    <% form_for :efile,:url => {:controller => "efile", :action => "new", :id => event}, :html => {:multipart => true} do |f|%>
+      <div class="form_row">
+        <%= f.label :file, "Plik do przesłania" %>
+        <%= f.file_field :file %>
+      </div>
+      <div class="form_row">
+        <%= f.submit "Dodaj",:class=>"submit" %>
+      </div>
+
+    <%end%>
+    <%= link_to_remote "Zamknij", :url => {:action => "fold"}, :html => {:class => "remote_close"} %>
+  </div>
+</div>

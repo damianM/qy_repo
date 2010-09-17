@@ -1,0 +1,22 @@
+.userinfo_photo {
+    float:left;
+    margin-right: 18px;
+}
+
+.userinfo_right {
+    float:right;
+    width:80px;
+}
+
+.userinfo_login a{
+    color: #7C4E04;
+}
+
+.userinfo_right .userinfo_joined{
+    font-size: 7pt;
+}
+
+.userinfo_icons{
+    font-size: 6pt;
+    margin-top:10px;
+}

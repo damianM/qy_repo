@@ -1,0 +1,15 @@
+div.photo_m{
+    width:150px;
+    text-align: center;
+}
+
+td.gal_opt_left{
+    width:50%;
+    text-align: left;
+    font-size: 8pt;
+}
+td.gal_opt_right{
+    width:50%;
+    text-align: right;
+    font-size: 8pt;
+}

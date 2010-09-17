@@ -1,0 +1,18 @@
+<div class="partial partial_left">
+
+<div class="header p_t_videos">
+
+  </div>
+  <div class='body'>
+    
+    <% top_videos.each_with_index do |movie,i| %>
+      <span> <%= i+1%>.</span> <%= link_ trunc(movie.description), "video", "show",movie.id   %><br/>
+    <% end %>
+
+    <div class="button_silver_67" style="float:right">
+      <%= link_to "Wszystkie", :controller => :video, :action => :dfind %>
+    </div>
+      <div class="clr"></div>
+  </div>
+
+</div>

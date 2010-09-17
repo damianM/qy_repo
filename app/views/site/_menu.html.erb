@@ -1,0 +1,45 @@
+
+
+<div class="button_menu"><%= link_to "START", {:controller => "site", :action => "index"}, {:style => "color: orange"}  %>
+
+</div>
+
+<div class="button_menu"><%= link_ "PROFIL", "user", "show" %>
+  <div>
+    <div><%= curuser ? (link_ "Mój profil", "user", "show", curuser.id) : (link_ "Mój profil", "user", "show")%></div>
+    <div><%= link_ "Edytuj profil", "user", "modify"  %></div>
+    <div><%= link_ "Galeria", "gallery", "list"  %></div>
+    <div><%= link_ "Moje imprezy", "event", "list",(curuser ? curuser.id : 0) %></div>
+  </div>
+</div>
+
+<div class="button_menu"><%= link_ "POCZTA", "message", "index"  %>
+  <div>
+    <div><%= link_ "Napisz wiadomość", "message", "newr"  %></div>
+    <div><%= link_ "Odebrane (#{curuser.nil? ? 0 : curuser.unread})", "message", "received"  %></div>
+    <div><%= link_ "Wysłane", "message", "sent"  %></div>
+  </div>
+</div>
+
+<div class="button_menu"><%= link_ "ZNAJOMI", "user", "friends_index"  %>
+  <div>
+    <div><%= link_ "Znajomi", "user", "friends"  %></div>
+    <div><%= link_ "Wysłane zaproszenia", "user", "pending"  %></div>
+    <div><%= link_ "Otrzymane zaproszenia", "user", "requested"  %></div>
+  </div>
+</div>
+
+<div class="button_menu"><%= link_ "GRUPY", "team", "index"  %>
+  <div>
+    <div><%= link_ "Moje grupy", "user", "myteams"  %></div>
+    <div><%= link_ "Wszystkie grupy", "team", "list"  %></div>
+    <div><%= link_ "Utwórz grupę", "team", "new"  %></div>
+    <div><%= link_ "Znajdź grupę", "team", "find"  %></div>
+  </div>
+</div>
+
+<div class="button_menu"><%= link_ "FORUM","forum", "login"  %></div>
+
+<div class="clr">
+
+</div>

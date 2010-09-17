@@ -1,0 +1,43 @@
+<ul>
+  <li><%= link_ "Start", "site", "index"  %></li>
+
+  <li><%= link_ "Profil", "user", "show" %>
+    <ul>
+      <li><%= curuser ? (link_ "Mój profil", "user", "show", curuser.id) : (link_ "Mój profil", "user", "show")%></li>
+      <li><%= link_ "Edytuj profil", "user", "modify"  %></li>
+      <li><%= link_ "Galeria", "gallery", "list"  %></li>
+      <li><%= link_ "Moje imprezy", "event", "list",(curuser ? curuser.id : 0) %></li>
+    </ul>
+  </li>
+    <li><%= link_ "Poczta", "message", "received"  %>
+    <ul>
+      <li><%= link_ "Napisz wiadomość", "message", "newr"  %></li>
+      <li><%= link_ "Odebrane (#{curuser.nil? ? 0 : curuser.unread})", "message", "received"  %></li>
+      <li><%= link_ "Wysłane", "message", "sent"  %></li>
+    </ul>
+  </li>
+  <li><%= link_ "Znajomi", "user", "friends"  %>
+    <ul>
+      <li><%= link_ "Znajomi", "user", "friends"  %></li>
+      <li><%= link_ "Wysłane zaproszenia", "user", "pending"  %></li>
+      <li><%= link_ "Otrzymane zaproszenia", "user", "requested"  %></li>
+      
+    </ul>
+  </li>
+  <li><%= link_ "Grupy", "user", "myteams"  %>
+    <ul>
+      <li><%= link_ "Moje grupy", "user", "myteams"  %></li>
+      <li><%= link_ "Wszystkie grupy", "team", "list"  %></li>
+      <li><%= link_ "Utwórz grupę", "team", "new"  %></li>
+      <li><%= link_ "Znajdź grupę", "team", "find"  %></li>
+    </ul>
+  </li>
+  <li><%= link_ "Forum","forum", "login"  %></li>
+  <li class="login">
+    <%= logged_in? ? link_("Wyloguj (#{curuser.login})", "user", "logout") : link_("Zaloguj", "user", "login")  %>
+  </li>
+  
+</ul>
+
+<div style="clear:both"></div>
+

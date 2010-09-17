@@ -1,0 +1,24 @@
+<%= iframe_styles %>
+
+<% if @line %>
+<div class="find_line">
+  <%= @line %>
+</div>
+<% end %>
+<%  if @users.length > 0%>
+<table class="friend_list">
+  <% for user_row in @users %>
+    <tr>
+      <% for user in user_row %>
+        <td>
+          <div class="friend">
+            <%= render :partial => "/userinfo", :locals => {:user => user, :target => "_parent", :protect => @protect} %>
+          </div>
+        </td>
+      <% end %>
+    </tr>
+  <%end%>
+</table>
+<%else%>
+  Niestety, nikogo nie znaleziono...
+<% end %>

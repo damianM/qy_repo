@@ -1,0 +1,35 @@
+
+
+div.comment{
+    margin-bottom: 10px;
+    border: solid 1px #CB880B;
+}
+
+div.comment_user{
+
+    width: 100px;
+    float: left;
+    display: block;
+    text-align:center;
+}
+
+div.comment_content {
+    margin: 4px;
+    float:left;
+    display:block;
+    padding:6px;
+    color: #555;
+}
+div.comment_other, div.event_other {
+    color: #777;
+    font-size: 8pt;
+}
+
+div.comment_other{
+    font-size:6.5pt;
+}
+
+div.comment_other a{
+    color:#666;
+    font-size:6.5pt;
+}

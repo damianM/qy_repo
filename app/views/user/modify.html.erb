@@ -1,0 +1,109 @@
+<div class="partial">
+  <div class="header p_user_edit"></div>
+  <div class="body">
+    <div style="text-align:center;">
+      <%= @user.photo.nil? ? image_tag("/anon.png") + "<br/><span class=\"nophoto\">           Nie masz jeszcze zdjęcia głównego.      #{link_ "Dodaj", "gallery", "list"}</span>" : image_tag(@user.photo.thumb)%>
+      <div class="mod_userinfo">
+        <p><%= @user.login %></p>
+        <%= @user.email %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% form_for(:user) do |f| %>
+  <div class="partial">
+    <%= insert_corners %>
+    <div class="header p_user_edit_mydata"></div>
+    <div class="body">
+      <div class="form_row">
+        <%= f.label :name, "Imię"%>
+        <%= f.text_field :name %>
+      </div>
+      <div class="form_row">
+        <%= f.label :surname ,"Nazwisko"%>
+        <%= f.text_field :surname %>
+      </div>
+      <div class="form_row">
+        <%= f.label :sex , "Kobieta" %>
+        <%= f.radio_button :sex, "k"%>
+
+      </div>
+      <div class="form_row">
+        <%= f.label :sex , "Mężczyzna" %>
+        <%= f.radio_button :sex, "m"%>
+
+      </div>
+      <div class="form_row">
+        <%= f.label :birth , "Data urodzenia" %>
+        <%= f.date_select :birth , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 90, :end_year => Time.now.year},  :class => "date_select" %>
+        <div class="clear"></div>
+      </div>
+      <div class="form_row">
+        <%= f.label :region ,"Województwo"%>
+        <%= f.select :region, {
+          "dolnośląskie" => "dolnośląskie",
+          "małopolskie" => "małopolskie",
+          "mazowieckie" => "mazowieckie",
+          "kujawsko-pomorskie" => "kujawsko-pomorskie",
+          "lubelskie" => "lubelskie",
+          "lubuskie" => "lubuskie",
+          "łódzkie" => "łódzkie",
+          "opolskie" => "opolskie",
+          "podkarpackie" => "podkarpackie",
+          "podlaskie" => "podlaskie",
+          "pomorskie" => "pomorskie",
+          "śląskie" => "śląskie",
+          "świętokrzyskie" => "świętokrzyskie",
+          "warmińsko-mazurskie" => "warmińsko-mazurskie",
+          "wielkopolskie" => "wielkopolskie",
+          "zachodniopomorskie"=> "zachodniopomorskie"
+        }, {:include_blank => true} %>
+      </div>
+      <div class="form_row">
+        <%= f.label :city , "Miejscowość"%>
+        <%= f.text_field :city %>
+      </div>
+      <div class="form_row">
+        <%= f.label :gg , "Numer GG"%>
+        <%= f.text_field :gg %>
+      </div>
+      <div class="form_row">
+        <%= f.label :skype,"Login Skype" %>
+        <%= f.text_field :skype %>
+      </div>
+      <div class="form_row">
+        <%= f.label :phone, "Telefon" %>
+        <%= f.text_field :phone %>
+      </div>
+      <div class="form_row">
+        <%= f.label :about, "O mnie" %>
+        <%= f.text_area :about %>
+      </div>
+    </div>
+  </div>
+  <div class="partial">
+    <div class="header p_user_edit_qdata"></div>
+    <div class="body">
+      <% quads=["","Bombardier/Can-am","Cectek","CF Moto", "Honda", "Kawasaki","KTM","Kymco", "Linhai", "Lucky Star", "Polaris", "Suzuki", "Yamaha", "Side by Side","Inne"] %>
+      <div class="form_row">
+        <%= label_tag :company, "Marka" %>
+        <%= select_tag :company,options_for_select(quads.collect{|x|[x,x]},@quad.company) %>
+      </div>
+      <div class="form_row">
+        <%= label_tag :qtype, "Typ" %>
+        <%= text_field_tag :qtype, @quad.qtype %>
+      </div>
+      <div class="form_row">
+        <%= label_tag :description, "Opis" %>
+        <%= text_area_tag :description, @quad.description, :rows => 5, :cols => 40 %>
+      </div>
+      <div class="button_silver_67" style="font-size:10pt; font-weight: bold;float:right;margin-top:7px;">
+        <a style="color: #222;" href="#" onclick="parentNode.parentNode.parentNode.parentNode.submit(); return false">Zapisz</a>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+
+
+<% end %>

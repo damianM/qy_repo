@@ -1,0 +1,148 @@
+body{
+    background: #212121;
+    margin: 0;
+    padding: 0;
+    padding-bottom:30px;
+}
+
+#logo{
+    margin-left:580px;
+    margin-top:138px;
+}
+
+#menu{
+    position: relative;
+    top: 179px;
+    left: 118px;
+    width:500px;
+    height:26px;
+
+}
+
+#menu > div{
+    float:left;
+    margin-left:7px;
+}
+
+#menu div a{
+    font-weight: bold;
+    font-size:10pt;
+}
+#page{
+    width: 1140px;
+    border: dotted 1px #212121;
+    margin: 0px auto 0 auto;
+    font-family: Arial, sans-serif;
+    background-image: url("../background.png");
+    background-repeat: no-repeat;
+    background-position: -150px 0px;
+
+}
+
+#main{
+    width: 942px;
+    margin: 0px 99px 0px 99px;
+    background-color: #E3E0D5;
+    padding: 0 6px 0 6px;
+    height: 100%;
+    overflow: hidden;
+}
+
+#lcol{
+    width: 210px;
+    float: left;
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#ccol{
+    float:left;
+    display: block;
+}
+
+#rcol{
+    width: 208px;
+    float:right;
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#top{
+    height:25px;
+}
+
+.clr{
+    clear: both;
+}
+
+#footer{
+    margin-top:15px;
+    clear:both;
+    width:940px;
+    margin-left:99px;
+    font-size: 7pt;
+    color:#fff;
+}
+
+#footer a{
+    font-size: 7pt;
+    color:#fff;
+}
+
+#footer_links{
+    float:right;
+
+}
+
+
+
+div.nav2 a{
+    color:#888;
+}
+
+div.nav2 div{
+    width:143px;
+    float:left;
+    text-align: center;
+}
+
+div.team_nav a{
+    padding:5px;
+}
+
+div.team_edit{
+    float:left;
+}
+
+
+
+div.team_del{
+    float:right;
+}
+span.team_opt a{
+    font-weight:normal;
+    font-size:9pt;
+}
+
+
+div#error{
+    font-family:Arial, sans-serif;
+    border: solid 1px red;
+    background: #f55;
+    margin: 10px 100px 10px 100px;
+    padding: 10px 10px 10px 10px;
+    font-weight:bold;
+    font-size:9pt;
+}
+
+div#notice{
+    font-family:Arial, sans-serif;
+    border: solid 1px green;
+    background: #9f8;
+    margin: 10px 100px 10px 100px;
+    padding: 10px 10px 10px 10px;
+    font-weight:bold;
+    font-size:9pt;
+}

@@ -1,0 +1,35 @@
+<div class="partial_login">
+
+  <div class="header p_login">
+  </div>
+  <div class="body">
+    <% form_for :user_session, :url => {:controller => :user_sessions, :action => "create"} do |f| %>
+      <div class="login_form_row">
+        <%= f.label :login %>
+        <%= f.text_field :login %>
+      </div>
+      <div class="login_form_row">
+        <%= f.label :password, "Hasło" %>
+        <%= f.password_field :password %>
+      </div>
+      <div class="login_form_row_rem">
+        <%= f.label :remember_me, "Zapamiętaj mnie" %>
+        <%= f.check_box :remember_me, :class => "remember_me" %>
+      </div>
+      <div class="login_links" style="float:left">
+        <%= link_ "Zarejestruj się", "user", "register"%><br/>
+        <%= link_ "Nie pamiętasz hasła?", "user", "ulogin" %>
+      </div>
+    <div style="display:none">
+      <%= f.submit "Zaloguj" %>
+    </div>
+      <div class="button_silver_67" style="font-size:10pt; font-weight: bold;float:right;margin-top:7px;">
+        <a style="color: #888;" href="#" onclick="parentNode.parentNode.submit(); return false">Zaloguj</a>
+      </div>
+      <div class="clr"></div>
+
+
+    <% end %>
+
+  </div>
+</div>

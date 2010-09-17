@@ -1,0 +1,78 @@
+<div class="partial latest_items">
+  <div class="header p_user_var">Szukanie filmów</div>
+  <div class="body">
+    <div class="find_event">
+      <% form_tag "/video/dfind", :method=>:get do%>
+        <br/>
+        <div class="bolder" style="text-align:left;padding-left:40px;"> Data:</div>
+        <br/>
+        <div class="form_row">
+          <%= label :query, :since, "od: " %>
+          <%= date_select :since, :since , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10},  :class => "date_select" %>
+          <div class="clear"></div>
+        </div>
+        <div class="form_row">
+          <%= label :query, :to, "do: " %>
+          <%= date_select :to, :to , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10},  :class => "date_select" %>
+          <div class="clear"></div>
+        </div>
+        <div class="form_row">
+          <%= label :query, :user, "Użytkownik: " %>
+          <%= text_field :user,:user %>
+        </div>
+        <div class="form_row">
+
+          <%= submit_tag "Szukaj!"%>
+        </div>
+      <% end %>
+    </div>
+    <div class="sorters">
+      Oceny
+      <%= link_to "&darr;",params.merge({:marks => "asc"})%>
+      <%= link_to "&uarr;",params.merge({:marks => "desc"}) %>
+      Ilość wyświetleń
+      <%= link_to "&darr;",params.merge({:views => "asc"} )%>
+      <%= link_to "&uarr;",params.merge({:views => "desc"} )%>
+    </div>
+<% if @line %>
+  <div class="find_line">
+    <%= @line %>
+  </div>
+<% end %>
+<% if @videos and @videos.length > 0 %>
+  <%  @videos.each do |video| %>
+    <div class="event">
+      <div class="event_body">
+        <div style="float:left;width:100px">
+          <%= link_to (image_tag video.link[0...-3]+"jpg"),{:controller => "video", :action => "show", :id => video.id}, {:target => "_parent"} %>
+        </div>
+        <div style="float:left;width:200px">
+          <div class="event_body_left">
+            <br/>
+            <div class="event_body_info">
+              Dodał: <%= video.gallery.user ? video.gallery.user.login : video.gallery.event.user.login %><br/>
+              Dnia: <%=ltd video.created_at%><br/>
+              Ocena: <%=  video.vrate.votes==0 ? 0 : (video.vrate.sum.to_f / video.vrate.votes).round(2) %><br/>
+              Ilość wyświetleń: <%= video.counter %><br/>
+
+              <br/>
+
+            </div>
+
+          </div>
+        </div>
+        <div style="float:left">
+          <p class="event_description"><%=ntobr (cut video.description, 200) %></p>
+        </div>
+        <div class="clr"></div>
+      </div>
+
+    </div>
+  <% end %>
+<%  else%>
+  <% if params[:since] %>
+    Niestety, nie znaleziono filmów...
+  <% end %>
+<% end %>
+  </div>
+</div>

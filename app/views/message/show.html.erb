@@ -1,0 +1,40 @@
+<div class="partial">
+  <div class="header p_message"></div>
+  <div class="body">
+
+    <div class="message_show">
+      <div class="msg_topic">Temat: <%=@message.title%></div>
+      <div class="msg_body">
+        <div class="col1_msg" style="text-align:center; padding-top: 5px;">
+          <div>
+            <% user =  (@message.sender==curuser ? @message.receiver : @message.sender)%>
+            <%= link_ (img user.photo), "user", "show", user.id %><br/>
+            <%= link_ user.login, "user", "show", user.id %>
+          </div>
+        </div>
+        <div class="col2_msg">
+          <div class="message_content"><%= @message.content%>  </div>
+        </div>
+        <div class="clr"></div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="message_other">Wiadomość <%=@message.sender==curuser ? "wysłana" : "otrzymana"%>: <%=lt @message.created_at%></div>
+    <div style="margin-top:20px;">
+      <div class="button_link2 col1" style="text-align:left;">
+        <%= link_ "Usuń", "message", "del", @message.id if @message.sender!=@user%>
+        <%= link_ "Powrót do #{@message.sender==curuser ? "wysłanych" : "otrzymanych"}", "message", "#{@message.sender==curuser ? "sent" : "received"}"%>
+      </div>
+      <div class="button_link_msg col2">
+        <%= link_ "Odpowiedz", "message", "reply", @message.id if @message.sender!=@user%>
+      </div>
+      <div class="clr">
+        
+      </div>
+    </div>
+  </div>
+</div>

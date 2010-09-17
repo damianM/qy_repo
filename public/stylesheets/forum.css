@@ -1,0 +1,121 @@
+div.topic_header{
+    padding:10px;
+    font-weight:bold;
+}
+
+div.topic_header > div.topich {
+    float:left;
+    display:block;
+    color:#777;
+    font-size:7pt;
+
+}
+
+.topich_name{
+    width:220px;
+}
+
+.topich_author{
+    width:85px;
+}
+
+.topich_postcount{
+    width:65px;
+}
+
+.topich_last{
+    width:65px;
+}
+
+div.topic {
+    border: solid 1px #97650D;
+    margin-bottom: 3px;
+    height: 30px;
+}
+
+div.topic div{
+    float: left;
+    display: block;
+
+
+}
+
+div.topic div.topic_name{
+    margin-left:15px;
+    width: 210px;
+    font-size: 12pt;
+    text-align: left;
+    font-size:8pt;
+    color:#777;
+    padding-top:6px;
+}
+
+div.topic div.topic_name a{
+    color:#555;
+}
+div.topic div.author {
+    width: 90px;
+    font-size: 6pt;
+    color:#777;
+
+}
+
+div.topic div.author a{
+    font-size:9pt;
+}
+div.topic div.postcount{
+    font-size: 7pt;
+    color:#666;
+    width:50px;
+}
+div.topic div.postcount a{
+    color:#777;
+}
+div.topic div.last_post{
+    width: 75px;
+    font-size: 6pt;
+    color:#777;
+    padding-top:3px;
+    float:right;
+}
+
+div.topic div.last_post a{
+    color:#555;
+    font-size: 7.5pt;
+}
+
+div.post{
+    border: solid 1px #CB880B;
+    margin-bottom:5px;
+}
+
+div.post div.post_author {
+    border-right: dotted 1px #FFA600;
+    display: block;
+    float:left;
+    font-size: 8pt;
+    color:#777;
+    padding:2px;
+    text-align:center;
+}
+
+div.post div.post_body{
+    float:left;
+    display:block;
+    padding: 10px;
+    width:300px;
+}
+
+.post_delete{
+    position:absolute;
+    top:0px;
+    right:0px;
+}
+
+
+div.topic_topic{
+    font-size:10pt;
+    font-weight: bold;
+    color:#666;
+    margin-bottom:20px;
+}

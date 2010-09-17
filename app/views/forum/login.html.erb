@@ -1,0 +1,23 @@
+<div class="partial">
+  <div class="header p_forum"></div>
+  <div class="body">
+    <form action="http://forum.quadomaniacy.pl/ucp.php?mode=login" method="post">
+      <div style="text-align:left; padding:10px;">
+        W celu potwierdzenia tożsamości proszę podać hasło
+      </div>
+
+      
+      <input type="hidden" name="username" id="username" value="<%= @user.login%>"/>
+      
+      <input type="hidden" name="autologin" id="autologin" value="checked"/>
+      <div class="form_row">
+        <label for="password">Hasło:</label>
+        <input type="password" name="password" id="password" title="Password" />
+      </div>
+      <div class="form_row">
+        <input type="submit" name="login" value="Zaloguj" />
+      </div>
+    </form>
+    
+  </div>
+</div>

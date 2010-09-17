@@ -1,0 +1,16 @@
+.form_row label{
+    float: left;
+    font-size: 9pt;
+}
+
+.form_row input, .form_row select, .form_row textarea{
+    float:right;
+    border: 1px solid #aaa;
+}
+
+
+.form_row{
+    overflow: hidden;
+    width:100%;
+    margin: 1px;
+}

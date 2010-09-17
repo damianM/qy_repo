@@ -1,0 +1,81 @@
+<div class="partial">
+  <%= insert_bcorners %>
+  <div class="header p_event_edit">Edytuj imprezę</div>
+  <div class="body">
+    <% form_for :event do |f| %>
+      <%= f.error_messages %>
+      <div class="form_row">
+        <span class="required_field">*</span>
+        <%= f.label :title, "Nazwa imprezy"%>
+        <%= f.text_field :title %>
+      </div>
+      <div class="form_row">
+        <span class="required_field">*</span>
+        <%= f.label :description,"Opis" %>
+        <%= f.text_area :description %>
+      </div>
+      <div class="form_row">
+        <span class="required_field"> </span>
+        <%= f.label :event_date, "Data rozpoczęcia" %>
+        <%= f.date_select :event_start,{}, :class => "date_select"%>
+        <div class="clear"></div>
+      </div>
+      <div class="form_row">
+        <span class="required_field"> </span>
+        <%= f.label :event_end, "Data zakończenia" %>
+        <%= f.date_select :event_end,{}, :class => "date_select"%>
+        <div class="clear"></div>
+      </div>
+
+      <div class="form_row">
+        <span class="required_field">*</span>
+        <%= f.label :place,"Miejsce" %>
+        <%= f.text_field :place %>
+      </div>
+
+      <div class="form_row">
+        <span class="required_field">*</span>
+        <%= f.label :organiser_name,"Organizator" %>
+        <%= f.text_field :organiser_name %>
+      </div>
+
+      <div class="form_row">
+        <span class="required_field">*</span>
+        <%= f.label :organiser_address,"Adres organizatora" %>
+        <%= f.text_field :organiser_address %>
+      </div>
+
+      <div class="form_row">
+        <span class="required_field"> </span>
+        <%= f.label :organiser_www,"Strona WWW" %>
+        <%= f.text_field :organiser_www %>
+      </div>
+      <div class="form_row">
+        <span class="required_field"> </span>
+        <%= f.label :organiser_email,"Adres email" %>
+        <%= f.text_field :organiser_email %>
+      </div>
+      <div class="form_row">
+        <span class="required_field">*</span>
+        <%= f.label :organiser_phone,"Telefon" %>
+        <%= f.text_field :organiser_phone %>
+      </div>
+      <div class="form_row">
+        <span class="required_field"> </span>
+        <%= f.label :category, "Kategoria" %>
+        <%= f.select :category, @categories %>
+      </div>
+      <div class="form_row">
+        <%= f.submit "Zapisz zmiany",:class => "submit" %>
+
+      </div>
+      <span class="required_field">* - pole wymagane</span>
+    <% end %>
+    <div id="add_obj">
+      <div class="button_gold_100" style="text-align:right;display:block;float:right">
+        <%= link_to_remote "Dodaj załącznik!", :url => {:action=>"f_unfold", :id => @event.id} %>
+      </div>
+    </div>
+      <div class="clr"></div>
+  </div>
+</div>

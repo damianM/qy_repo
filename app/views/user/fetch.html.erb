@@ -1,0 +1,62 @@
+<%%>
+<%
+def wrap(user,type)
+  if type == "friends"
+    <<TXT
+    <div class="friend_actions">
+    <div class="delete_action">
+    #{link_to( "Usuń", {:controller => "relationship", :action => "delete", :id => user.id } , {:target => "_parent", :title => "Usuń z listy", :class => "picture_link"})}
+    </div>
+<div class="clear"></div>
+    </div>
+TXT
+  elsif type == "pending"
+    <<TXT
+    <div class="friend_actions">
+    <div class="delete_action">
+    #{link_to("Usuń", {:controller => "relationship", :action => "delete", :id => user.id},{:target => "_parent", :title => "Usuń z listy", :class => "picture_link"})}
+    </div>
+<div class="clear"></div>
+    </div>
+TXT
+  elsif type == "requested"
+    <<TXT
+    <div class="friend_actions">
+    <div class="accept_action">
+    #{link_to("Akceptuj", {:controller => "relationship", :action => "accept", :id => user.id},{:target => "_parent", :title => "Akceptuj", :class => "picture_link"})}
+    </div>
+    <div class="delete_action">
+    #{link_to("Odrzuć", {:controller => "relationship", :action => "delete", :id => user.id},{:target => "_parent", :title => "Usuń z listy", :class => "picture_link"})}
+    </div>
+    <div class="clear"></div>
+    </div>
+TXT
+
+    end
+
+
+  end
+
+
+
+
+%>
+  <% if !@users.nil? %>
+    <table class="friend_list">
+      <% for user_row in @users %>
+        <tr>
+          <% for user in user_row %>
+            <td>
+              <div class="friend">
+                <%= render :partial => "/userinfo", :locals => {:user => user, :target => "_parent", :inject => wrap(user,@inject)} %>
+              </div>
+            </td>
+          <% end %>
+        </tr>
+      <%end%>
+    </table>
+  <% else %>
+
+    Niestety, nie znaleziono nikogo:(
+
+  <% end %>

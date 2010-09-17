@@ -1,0 +1,19 @@
+<div class="partial">
+  <div class="header p_team_members"><%#Członkowie grupy <%= @team.name %> </div>
+  <div class="body">
+    <%  if @users.length > 0%>
+    <% for user in @users %>
+      <table>
+        <tr>
+          <td>
+            <%= render :partial => "/userinfo", :locals =>
+              {:user => user, :protect=> false, :special => "joined"} %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+    <%else%>
+      Niestety, nikogo nie znaleziono...
+    <% end %>
+  </div>
+</div>

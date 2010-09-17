@@ -1,0 +1,111 @@
+<% unless defined?(target)
+  target = nil
+end
+unless defined?(protect)
+  protect = nil
+end
+unless defined?(special)
+  special = nil
+end
+unless defined?(gray)
+  gray = nil
+end
+unless defined?(narrow)
+  narrow = nil
+end
+
+%>
+
+
+<div class="userinfo userinfo_<%= protect ? "small" : "big"%> userinfo_<%= narrow ? "narrow" : "wide"%> <%= gray ? "userinfo_gray" : ""%>">
+  <div class="userinfo_photo">
+    <div>
+      <% unless gray %>
+        <%= link_to img80(user.photo, :class=>"about_photo"), {:controller =>"user", :action => "show", :id => user.id}, {:target => target} %>
+      <% else %>
+        <%= link_to user.photo ? image_tag(user.photo.thumb.gsub(/\/t/,"/g"), :class=>"about_photo") : image_tag("/80_anon.png", :class=>"about_photo"), {:controller =>"user", :action => "show", :id => user.id}, {:target => target} %>
+      <% end %>
+    </div>
+  </div>
+  <div class="userinfo_right">
+    <div class="userinfo_login">
+      <%=  link_to user.login, {:controller => "user", :action => "show", :id => user.id}, {:target => target} %>
+    </div>
+
+    <% if special %>
+      <% if special == "friend"%>
+        <div class="userinfo_joined">
+          <div class="delete_action">
+            <%=link_to( "Usuń", {:controller => "relationship", :action => "delete", :id => user.id } , {:target => "_parent", :title => "Usuń z listy", :class => "picture_link"})%>
+          </div>
+          <div class="clr"></div>
+        </div>
+      <% elsif special == "pending"%>
+        <div class="userinfo_joined">
+          <%  if [curuser.pending_friends].flatten.include? user %>
+            Wysłałeś zaproszenie do użytkownika<br/>
+            <%=lt Relationship.find_by_user_id_and_friend_id(curuser.id,user.id).updated_at %>
+          <% else %>
+            Jesteście znajomymi od
+            <%=lt Relationship.find_by_user_id_and_friend_id(curuser.id,user.id).updated_at %>
+          <%  end %>
+          <div class="friend_actions">
+            <div class="delete_action">
+              <%=link_to( "Usuń", {:controller => "relationship", :action => "delete", :id => user.id } , {:target => "_parent", :title => "Usuń z listy", :class => "picture_link"})%>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+      <% elsif special == "requested"%>
+        <div class="userinfo_joined">
+          <%  if [curuser.requested_friends].flatten.include? user %>
+            Użytkownik poprosił o dołączenie do grona znajomych<br/> <%=lt Relationship.find_by_user_id_and_friend_id(curuser,user).updated_at %>
+          <% else %>
+            Jesteście znajomymi od <%=lt Relationship.find_by_user_id_and_friend_id(curuser.id,user.id).updated_at %>
+          <% end %>
+          <%  if [curuser.requested_friends].flatten.include? user %>
+            <div class="accept_action">
+              <%=  link_to("Akceptuj", {:controller => "relationship", :action => "accept", :id => user.id},{:target => "_parent", :title => "Akceptuj", :class => "picture_link"})%>
+            </div>
+          <% end %>
+          <div class="delete_action">
+            <%=link_to( "Usuń", {:controller => "relationship", :action => "delete", :id => user.id } , {:target => "_parent", :title => "Usuń z listy", :class => "picture_link"})%>
+          </div>
+          <div class="clr"></div>
+        </div>
+      <% elsif special == "team_since"%>
+        <div class="userinfo_joined">W grupie od:<br/> <%= ltd team_since %> </div>
+      <% elsif special == "pending_list"%>
+        <%= label_tag "users[u#{user.id}]",(link_ user.login,"user","show",user.id) %>
+        <%= check_box_tag "users[u#{user.id}]" %>
+      <% elsif special == "joined"%>
+        <div class="userinfo_joined">
+          Dołączył<%=(user.sex=="k" ? "a" : "")%> dnia <%=lt user.created_at%>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="userinfo_icons">
+      <% if user.friend?(curuser) or (curuser ? curuser.pending?(user) : false) or user==curuser%>
+        <%= link_to image_tag("/friends.png", :class => "icon"), {:controller => "user", :action => "friends",
+          :id => user.id}, (target.nil? ? {:title => "Zobacz znajomych"} : {:title => "Zobacz znajomych", :target => target}) %>
+      <% else %>
+        <%= link_to image_tag("/friends.png", :class => "icon"), {:controller => "relationship", :action => "req",
+          :id => user.id}, (target.nil? ? {:title => "Zaproś do znajomych"} : {:title => "Zaproś do znajomych", :target => target}) %>
+      <% end %>
+
+
+
+      <%= (link_to image_tag("/envelope.png", :class => "icon"), {:controller => "message", :action => "new",
+          :id => user.id}, (target.nil? ? {:title => "Napisz wiadomość"} : {:title => "Napisz wiadomość", :target => target })) %>
+      <%= (link_to image_tag("/fav.png", :class => "icon"), {:controller => "user", :action => "show",
+          :id => user.id}, (target.nil? ? {:title => "Zobacz profil"} : {:title => "Zobacz profil", :target => target })) %>
+
+
+    </div>
+
+  </div>
+
+
+</div>
+

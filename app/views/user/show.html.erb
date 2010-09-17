@@ -1,0 +1,20 @@
+<div id="user_show">
+  <div class="col_left">
+    <%= render :partial => "user/about", :locals => {:user => @user, :quad => (@user.quads.empty? ? nil : @user.quads[0]) } %>
+    <%= render :partial => "user/quad", :locals => {:user => @user } %>
+  </div>
+  <div class="col_right">
+    <%= render :partial => "user/friends", :locals => {:user => @user } %>
+    <%= render :partial => "user/galleries", :locals => {:user => @user } %>
+    <%= render :partial => "user/groups", :locals => {:user => @user } %>
+
+  </div>
+  <div class="clr"></div>
+  
+<%#= render :partial => "user/links", :locals => {:user => @user } %>
+<%#= render :partial => "user/quad", :locals => {:user => @user } %>
+
+
+
+  <%= render :partial => "user/comments", :locals => {:user => @user } if @user.friends.include? curuser or @user == curuser %>
+</div>

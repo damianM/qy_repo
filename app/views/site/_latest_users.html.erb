@@ -1,0 +1,20 @@
+<div class="partial partial_right">
+<div class="header p_l_users">
+  </div>
+  <div class='body'>
+    <table>
+
+      <% for user in users  %>
+        <tr>
+          <td>
+            <%= render :partial => "/userinfo", :locals =>
+              {:user => user, :protect=> true, :special => "joined"} %>
+          </td>
+        </tr>
+      <% end %>
+
+    </table>
+    <div style="clear:both"></div>
+  </div>
+  <div style="clear:both"></div>
+</div>

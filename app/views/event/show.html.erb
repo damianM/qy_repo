@@ -1,0 +1,129 @@
+<div>
+  <div class="col_left">
+    <div class="partial">
+      <div class="header p_event"><%=cut(@event.title,20) %></div>
+      <div class="body">
+        <dl class="event_dl">
+          <dt>Organizator:</dt><dd> <%= @event.organiser_name %></dd>
+
+          <dt>Miejsce:</dt><dd><%= @event.place %></dd>
+          <dt>Data rozpoczęcia:</dt><dd><%= ltd @event.event_start %></dd>
+          <dt>Data zakończenia:</dt><dd><%= ltd @event.event_start %></dd>
+          <dt>Kategoria:</dt><dd><%= @event.category %></dd>
+          <dt>Adres organizatora:</dt><dd><%= @event.organiser_address %></dd>
+          <dt>Telefon organizatora:</dt><dd><%= @event.organiser_phone %></dd>
+
+
+
+          <% unless @event.organiser_www == "" %>
+            <dt>Strona WWW:</dt><dd><%= @event.organiser_www %></dd>
+          <% end %>
+          <% unless @event.organiser_email == "" %>
+            <dt>Adres email:</dt><dd><%= @event.organiser_email %></dd>
+          <% end %>
+        </dl>
+        <p>
+          Imprezę dodał użytkownik <%=link_ @event.user.login,"user","show",@event.user %>
+        </p>
+        <% begin %>
+          <div>
+            <div class="grey_link" style="text-align:right;display:block;float:left">
+              <%= link_to "Edytuj", {:controller => "event", :action => "modify", :id => @event.id}, {:title => "Edytuj"} %>
+            </div>
+            <div class="grey_link" style="text-align:right;display:block;float:right">
+              <%=link_to "Usuń", {:controller => "event", :action => "delete", :id => @event.id}, {:title => "Usuń", :confirm => "Czy na pewno chcesz usunąć tę imprezę?"}%>
+            </div>
+            <div class="clr"></div>
+          </div>
+        <% end if @event.rights?(curuser) and @event.event_start >= (Date.today) %>
+      </div>
+    </div>
+    <div class="partial">
+      <div class="header p_mygalleries"></div>
+      <div class='body'>
+        <% if @event.galleries.length>0 %>
+
+          <% format_galleries(@event).reverse[0...2].each do |gallery| %>
+            <div class="latest_item">
+              <%= render :partial => "gallery/gallery2", :locals => {:gallery => gallery[0], :index => (gallery[1] +1)} %>
+            </div>
+          <% end %>
+          <div class="clr"></div>
+
+        <% else %>
+          Impreza nie ma jeszcze galerii
+        <% end %>
+
+        <div style="text-align:center">
+
+          <% if @event.galleries.length>0%>
+            <%= link_to "Pokaż wszystkie albumy", {:controller => "gallery", :action => "elist", :id => @event.id}, :class => "opt_link" %>
+          <% elsif @event.rights?(curuser) %>
+            <%= link_to "Dodaj album", {:controller => "gallery", :action => "elist", :id => @event.id}, :class => "opt_link" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col_right">
+    <div class="partial">
+
+      <div class="header p_event_d">Opis </div>
+      <div class="body">
+        <div style="text-align:left;padding-bottom:7px;">
+          <%= ntobr @event.description  %>
+        </div>
+      </div>
+      <% unless @event.files.empty? %>
+        <div class="partial">
+          <div class="header">Pliki </div>
+          <div class="body">
+            <% for file in @event.files %>
+
+              <%= link_file file.name,file.link %> <br/>
+
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+
+  </div>
+  <div class="clr"></div>
+
+  <% unless @event.relation.nil? or @event.relation == "" %>
+    <div class="partial">
+      <div class="header p_event_rel">Relacja z imprezy</div>
+      <div class="body">
+        <%= ntobr @event.relation  %>
+      </div>
+    </div>
+  <% end %>
+
+
+  <%= link_to "Lista imprez", {:controller => "event", :action => "list", :id => 0}, :class => "event_back_link" %>
+
+  <div id="add_obj">
+    <br/>
+
+    <% if @event.rights?(curuser) and !@event.relation %>
+      <div>
+        <div class="button_silver_75<%=(Time.now < @event.event_start) ? "\" onMouseOver=\"Effect.Appear('v_msg')" : ""%>" style="text-align:right;display:block;float:left">
+          <%= (Time.now >= @event.event_start) ? (link_to_remote "Dodaj relację!", :url => {:action=>"r_unfold", :id => @event.id}) : "<a href=\"#\"> Dodaj relację</a>" %>
+        </div>
+        <%  if (Time.now < @event.event_start)%>
+          <div class="clr"></div>
+          <div id="v_msg" style="border:red;background:#faa;padding:5px;margin:10px;">
+            Relację można dodać najwcześniej w dniu rozpoczęcia imprezy!
+          </div>
+        <% end %>
+        <div class="clr"></div>
+      </div>
+    <%end%>
+    <div class="clr"></div>
+  </div>
+
+</div>

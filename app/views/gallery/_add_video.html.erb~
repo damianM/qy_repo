@@ -1,0 +1,35 @@
+<% @upid = Time.now.to_i.to_s %>
+
+
+<div class="partial" id="obj">
+  <div class="header">Dodaj film!</div>
+  <%= insert_corners %>
+  <div class="body">
+
+
+    <div class="video_info">
+      Proces ładowania filmu na serwer może potrwać kilka-kilkanaście minut, w zależności od rozmiaru pliku.<br/>
+      Po zakończeniu ładowania poczekaj na odświeżenie strony. W tym czasie zajmujemy się przekodowaniem Twojego filmu i może to potrwać kolejne kilka minut<br/>
+      Zarówno pole 'Film', jak i 'Opis' muszą być uzupełnione
+    </div>
+<%= form_tag({:controller=> 'files',:action => 'upload', :gid => gallery,:upload_id => @upid}, {:multipart => true,
+      :onsubmit => "return validate(this,#{escape_javascript @upid}); return false;"}) %>
+  <div class="form_row">
+      <%= label_tag "video[file]" , "Film"%>
+      <%= file_field_tag "video[file]" %>
+    </div>
+    <div class="form_row">
+      <%= label_tag "video[description]", "Opis" %>
+      <%= text_field_tag "video[description]" %>
+    </div>
+    <div class="form_row">
+      <%= submit_tag "Dodaj",{:class=>"submit", :id => "vup_submit"} %>
+    </div>
+</form>
+<div class="button_link" style="display:none" id="vup_stop"><a href="#" onClick="location.reload(true);">Zatrzymaj</a></div>
+<div id="results"></div>
+<div id="progress-bar"></div>
+
+  <%= link_to_remote "Zamknij", :url => {:action => "fold"}, :html => {:class => "remote_close"} %>
+  </div>
+</div>

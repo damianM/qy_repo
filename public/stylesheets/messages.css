@@ -1,0 +1,108 @@
+div.messages{
+    margin: 5px;
+}
+
+div.message{
+    border: solid 1px #E4E0D6;
+    margin-bottom: 3px;
+    height: 30px;
+}
+div.message:hover{
+    background:#E4E0D6;
+}
+
+div.messages_sender{
+    display: block;
+    float: left;
+    width: 120px;
+    font-size:8pt;
+    margin-right:25px;
+    margin-left:25px;
+    color:#777;
+}
+
+div.messages_topic{
+    display: block;
+    float: left;
+    font-size:8pt;
+    margin-left:15px;
+    color:#777;
+}
+
+div.messages_header{
+    padding-bottom:10px;
+    font-weight:bold;
+}
+
+div.message div.message_check{
+    display:block;
+    float:left;
+    width:25px;
+}
+
+div.message div.login{
+    display: block;
+    float: left;
+    color:#777;
+    width: 120px;
+    font-size:6.5pt;
+    margin-right:30px;
+}
+div.message div.login a{
+    color: black;
+    font-size:10pt;
+    font-weight:bold;
+}
+div.message div.title {
+
+    float:left;
+}
+div.message div.title a{
+    display: block;
+    height: 25px;
+    margin-top: 5px;
+    text-align:left;
+    padding-left:10px;
+    font-size:9pt;
+}
+div.message div.msg_delete {
+    display:block;
+    float:right;
+}
+div.message div.msg_delete a{
+    display: block;
+    text-align:left;
+    padding-left:10px;
+    font-size:11pt;
+    width: 40px;
+}
+
+
+div.col1_msg{
+    float:left;
+    display:block;
+    width: 25%;
+}
+
+div.col2_msg{
+    float:right;
+    display:block;
+    width: 75%;
+}
+
+div.msg_topic{
+    text-align:center;
+    font-size:10pt;
+    font-weight:bold;
+    color:#555;
+
+}
+
+div.msg_body{
+    margin:20px 5px 15px 5px;
+    border: solid 1px #E4E0D6;
+}
+
+div.unread {
+    background-color:#cca;
+}

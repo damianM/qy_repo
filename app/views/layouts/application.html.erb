@@ -1,0 +1,141 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
+
+
+  <head>
+
+    <title>quadomaniacy.pl</title>
+    <% unless params['black'] %>
+      <%= stylesheet_link_tag "main" %>
+      <%= stylesheet_link_tag "calendar" %>
+    <% else %>
+      <%= stylesheet_link_tag "main_dark" %>
+      <%= stylesheet_link_tag "calendar_dark" %>
+    <% end %>
+    <%= stylesheet_link_tag "progressBar" %>
+    <%= javascript_include_tag :defaults, "flowplayer-3.1.1.min.js"  %>
+    <%= javascript_include_tag 'upload_progress_javascript' %>
+
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
+  </head>
+
+  <body onload="
+    if($('n_quad') != null){
+      Element.hide('n_quad');
+    }
+    if($('notice')!= null){
+      Effect.Fade('notice',{duration: 4.0});
+    }
+    if($('v_msg')!=null){
+      $('v_msg').hide();
+    }
+        if(screen.width==1024){
+
+          
+          $('page').style.width='1000px';
+          $('main').style.marginLeft='25px';
+          $('menu').style.left='25px';
+          $('logo').style.marginLeft='500px';
+          $('footer').style.marginLeft='25px';
+          $('page').style.backgroundPosition= '-200px 0px';
+        }">
+    <a name="top"></a>
+    <div id="page">
+
+<%#*<div id="logo">%>
+<%#*<a href="/">%>
+<%#*<img src="/logo.png" alt="logo"/>%>
+<%#*</a>%>
+<%#*</div>%>
+      <div id="menu">
+        <%= render :partial => "site/menu", :controller => "site" %>
+      </div>
+      <% @TODO %>
+      <div id="logo">
+        <%= image_tag("../logo_top.png"); %>
+      </div>
+      <div id="main">
+        <div id="top">
+
+        </div>
+        <% if !(request.request_uri =~ /\/user\/show/ or (request.request_uri =~ /\/event\/show/)) %>
+        <div id="lcol">
+          <%= render :partial => "site/find_by_region", :controller => "site" %>
+          <% if curuser %>
+            <%= render :partial => "site/find", :controller => "site" %>
+          <% end %>
+          <%= render :partial => "site/find_by_quad", :controller => "site" %>
+
+          <% if !curuser %>
+            <div style="margin-top:10px;">
+              <%= link_to image_tag(params['black'] ? "../services_d.png" : "../services.png"),"bogus" %>
+            </div>
+            <div style="margin-top:10px;">
+              <%= link_to image_tag(params['black'] ? "../shops_d.png" : "../shops.png"),"bogus" %>
+            </div>
+
+            <%= render :partial => "site/top_10_videos", :locals => {:top_videos => s_top_videos }%>
+          <% end %>
+<%#= render :partial => "site/user", :controller => "site", :locals => {:user => curuser} unless request.request_uri == "/user/show" or request.request_uri == "/user/show/#{curuser.id}"%>
+<%#= render :partial => "site/messages", :controller => "site", :locals => {:user => curuser} %>
+          <% @TODO %>
+<%#= render :partial => "site/find_video", :controller => "site", :locals => {:user => curuser} %>
+        </div>
+        <% end %>
+        <div id="ccol" <%= ((request.request_uri =~ /\/user\/show/) or (request.request_uri =~ /\/event\/show/)) ? "class='ccol_wider'": "class='ccol_narrower'" %> >
+
+          <% if flash[:notice] -%>
+            <div id="notice"><%=flash[:notice]%></div>
+          <% end %>
+
+          <% if flash[:error] -%>
+            <div id="error"><%=flash[:error]%></div>
+          <% end %>
+
+          <%= yield %>
+
+
+        </div>
+
+
+        <div id="rcol">
+          <%= render :partial => "site/login", :controller => "site" if (!curuser and request.request_uri!="/user/login" and request.request_uri!="/user/register" and request.request_uri!="/user_sessions/create")%>
+
+          <% if curuser %>
+            <%= render :partial => "site/user", :controller => "site", :locals => {:user => curuser} %>
+          <%= render :partial => "site/messages", :controller => "site", :locals => {:user => curuser} %>
+          <%= render :partial => "site/find_video", :controller => "site", :locals => {:user => curuser} %>
+          <% else %>
+            <%= render :partial => "site/latest_users", :locals => {:users => s_latest_users }%>
+            <%= render :partial => "site/latest_photos", :locals => {:photos => s_latest_photos }%>
+          <% end %>
+          <%= render :partial => "site/calendar", :controller => "site", :locals => {:events => incoming_events, :calendar_options => calendar_options} %>
+
+        </div>
+
+      </div>
+      <div id="footer">
+        <div style="float:left">
+          <%= image_tag("../logo_footer.png") %>
+        </div>
+        <div style="float:left; margin-left: 10px;">
+          Copyright &copy; 2010 QUADOMANIACY.PL | DESIGNED BY CODEINK.PL
+        </div>
+        <div id="footer_links">
+          <%= render :partial => "site/footer", :controller => "site" %>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+
+</html>

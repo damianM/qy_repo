@@ -1,0 +1,24 @@
+<div class="partial">
+  
+  <div class="header p_team_new"></div>
+
+  <div class="body">
+    <% form_for :team, :url => {:action => :new} do |f| %>
+      <%= f.error_messages %>
+
+      <div class="form_row">
+        <%= f.label :name, "Nazwa"%>
+        <%= f.text_field :name %>
+      </div>
+      <div class="form_row">
+        <%= f.label :description, "Opis"%>
+        <%= f.text_area :description, :rows => 10 %>
+      </div>
+      <div class="form_row">
+        <%= f.submit "Utwórz", :class => "submit" %>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>

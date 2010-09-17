@@ -1,0 +1,26 @@
+@import 'layout_dark.css';
+@import 'partials_dark.css';
+@import 'buttons_dark.css';
+@import 'userinfo_dark.css';
+/* 
+    Document   : main.css
+    Created on : 2010-05-23, 19:14:12
+    Author     : telpeloth
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+a > img {
+    border: none;
+}
+
+a {
+    text-decoration: none;
+    
+}

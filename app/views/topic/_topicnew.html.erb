@@ -1,0 +1,22 @@
+<div class="partial" id="obj">
+  <div class="header p_topic_new"></div>
+  <div class="body">
+    <% form_tag "/topic/new/#{forum}" do %>
+      <div class="form_row">
+        <%=  label_tag "topic[name]", "Temat:" %>
+        <%=  text_field_tag "topic[name]" %>
+      </div>
+      <div class="form_row">
+        <%=  label_tag "fpost[content]", "Treść posta:" %>
+        <%=  text_area_tag "fpost[content]", "",:cols => 35,:rows => 15 %>
+      </div>
+      <div class="form_row">
+        <%= submit_tag "Utwórz temat", :class => "submit" %>
+      </div>
+
+    <% end %>
+
+    <br/>
+    <%= link_to_remote "Zamknij", :url => {:action => "t_fold"}, :html => {:class => "remote_close"} %>
+  </div>
+</div>
