@@ -2,4 +2,4 @@
 /config/*.yml
 [a-zA-Z0-9\.-_]*~
 tmp
-public/data/*
+public/images/data/*

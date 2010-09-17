@@ -1,0 +1,23 @@
+development:
+  adapter: mysql
+  database: quadomaniacy_development
+  pool: 5
+  username: root
+  password: 
+
+
+test:
+  adapter: mysql
+  database: quadomaniacy_test
+  pool: 5
+  username: root
+  password: 
+
+
+production:
+  adapter: mysql
+  database: quadomaniacy_production
+  pool: 5
+  username: root
+  password: 
+
