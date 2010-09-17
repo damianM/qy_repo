@@ -13,7 +13,7 @@ class AddStuffToEvent < ActiveRecord::Migration
 
   def self.down
 
-    _column :events,:event_start
+    remove_column :events,:event_start
     remove_column :events,:event_end
     remove_column :events,:place
     remove_column :events,:organiser_name

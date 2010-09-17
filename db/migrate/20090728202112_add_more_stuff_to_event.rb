@@ -5,7 +5,7 @@ class AddMoreStuffToEvent < ActiveRecord::Migration
   end
 
   def self.down
-    add_column :events,:organiser_email
-    add_column :events,:organiser_phone
+    remove_column :events,:organiser_email
+    remove_column :events,:organiser_phone
   end
 end
