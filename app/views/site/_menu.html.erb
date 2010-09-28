@@ -21,11 +21,11 @@
   </div>
 </div>
 
-<div class="button_menu"><%= link_ "ZNAJOMI", "user", "friends_index"  %>
+<div class="button_menu"><%= link_to "ZNAJOMI", friends_index_user_path(curuser)  %>
   <div>
-    <div><%= link_ "Znajomi", "usesr", "friends"  %></div>
-    <div><%= link_ "Wysłane zaproszenia", "users", "pending"  %></div>
-    <div><%= link_ "Otrzymane zaproszenia", "users", "requested"  %></div>
+    <div><%= link_to "Znajomi", friends_user_path(curuser)  %></div>
+    <div><%= link_to "Wysłane zaproszenia", pending_user_path(curuser)  %></div>
+    <div><%= link_to "Otrzymane zaproszenia", requested_user_path(curuser)  %></div>
   </div>
 </div>
 
