@@ -1,5 +1,4 @@
 class Event < ActiveRecord::Base
-  acts_as_ferret :remote => true
   belongs_to :user
   has_many :files, :class_name => "Efile"
   has_many :galleries

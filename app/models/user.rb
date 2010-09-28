@@ -1,6 +1,6 @@
+# -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
 
-  acts_as_ferret(:fields => [:login,:skype,:gg,:email,:name,:surname,:about,:city,:region,:phone], :remote => true)
   acts_as_authentic
 
   has_many :relationships

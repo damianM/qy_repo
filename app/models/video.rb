@@ -1,6 +1,6 @@
 class Video < ActiveRecord::Base
-  acts_as_ferret(:fields => [:description], :remote => true)
   require "rvideo.rb"
+
   belongs_to :gallery
   has_many :vcomments
   has_one :vrate
