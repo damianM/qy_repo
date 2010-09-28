@@ -76,7 +76,7 @@ end
       <% elsif special == "team_since"%>
         <div class="userinfo_joined">W grupie od:<br/> <%= ltd team_since %> </div>
       <% elsif special == "pending_list"%>
-        <%= label_tag "users[u#{user.id}]",(link_ user.login,"user","show",user.id) %>
+        <%= label_tag "users[u#{user.id}]",(link_to user.login, user_path(user)) %>
         <%= check_box_tag "users[u#{user.id}]" %>
       <% elsif special == "joined"%>
         <div class="userinfo_joined">
@@ -98,8 +98,7 @@ end
 
       <%= (link_to image_tag("/envelope.png", :class => "icon"), {:controller => "message", :action => "new",
           :id => user.id}, (target.nil? ? {:title => "Napisz wiadomość"} : {:title => "Napisz wiadomość", :target => target })) %>
-      <%= (link_to image_tag("/fav.png", :class => "icon"), {:controller => "user", :action => "show",
-          :id => user.id}, (target.nil? ? {:title => "Zobacz profil"} : {:title => "Zobacz profil", :target => target })) %>
+      <%= (link_to image_tag("/fav.png", :class => "icon"), user_path(user), (target.nil? ? {:title => "Zobacz profil"} : {:title => "Zobacz profil", :target => target })) %>
 
 
     </div>

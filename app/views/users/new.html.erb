@@ -93,15 +93,15 @@
 
 <script type="text/javascript">
   function f(sel){
-  var have_quad = sel.options[sel.selectedIndex].value;
+   var have_quad = sel.options[sel.selectedIndex].value;
 
-  if(have_quad.toString() == '2'){
-    $('n_quad').show();
-  } else if((have_quad.toString() == '1') || (have_quad.toString == '0')){
-    $('n_quad').hide();
-  }
-  return false;
+    if(have_quad.toString() == '2'){
+      $('n_quad').show();
+    } else if((have_quad.toString() == '1') || (have_quad.toString() == '0')){
+      $('n_quad').hide();
+    }
+    return false;
   }
 
- f($('register_select'));
+  f($('register_select'));
 </script>
