@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class TeamController < ApplicationController
   before_filter :protect
   layout "application", :except => [:iusers, :ipending_list]
@@ -126,7 +127,7 @@ class TeamController < ApplicationController
     @teams = []
 
     if request.post? and params[:query]
-      @teams = Team.find_with_ferret(params[:query])
+      @teams = [] #Team.find_with_ferret(params[:query])
     end
   end
 

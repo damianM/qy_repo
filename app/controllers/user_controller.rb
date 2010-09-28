@@ -131,7 +131,7 @@ class UserController < ApplicationController
         @users = User.find_all_by_region(params[:id])
         @line = "Quadomaniacy zamieszkujący województwo "+params[:id]
       when "aaf"
-        @users = User.find_with_ferret(params[:id])
+        @users = [] #User.find_with_ferret(params[:id])
         
       end
     end

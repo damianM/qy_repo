@@ -1,7 +1,4 @@
 class Team < ActiveRecord::Base
-
-  acts_as_ferret :remote => true
-
   validates_presence_of :name
   validates_presence_of :description
   validates_uniqueness_of :name
