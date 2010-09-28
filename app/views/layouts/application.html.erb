@@ -1,8 +1,3 @@
-<%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
-
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -66,7 +61,7 @@
         <div id="top">
 
         </div>
-        <% if !(request.request_uri =~ /\/user\/show/ or (request.request_uri =~ /\/event\/show/)) %>
+        <% if !(request.request_uri =~ /\/users\/[0-9]+/) or !(request.request_uri =~ /\/event\/show/) or (request.request_uri =~ /\/users\/[0-9]+\/edit/)%>
         <div id="lcol">
           <%= render :partial => "site/find_by_region", :controller => "site" %>
           <% if curuser %>
@@ -84,13 +79,9 @@
 
             <%= render :partial => "site/top_10_videos", :locals => {:top_videos => s_top_videos }%>
           <% end %>
-<%#= render :partial => "site/user", :controller => "site", :locals => {:user => curuser} unless request.request_uri == "/user/show" or request.request_uri == "/user/show/#{curuser.id}"%>
-<%#= render :partial => "site/messages", :controller => "site", :locals => {:user => curuser} %>
-          <% @TODO %>
-<%#= render :partial => "site/find_video", :controller => "site", :locals => {:user => curuser} %>
         </div>
         <% end %>
-        <div id="ccol" <%= ((request.request_uri =~ /\/user\/show/) or (request.request_uri =~ /\/event\/show/)) ? "class='ccol_wider'": "class='ccol_narrower'" %> >
+        <div id="ccol" <%= ((request.request_uri =~ /\/users\/[0-9]+/) and !(request.request_uri =~ /\/users\/[0-9]+\/edit/)) or (request.request_uri =~ /\/event\/show/) ? "class='ccol_wider'": "class='ccol_narrower'" %> >
 
           <% if flash[:notice] -%>
             <div id="notice"><%=flash[:notice]%></div>
@@ -100,19 +91,19 @@
             <div id="error"><%=flash[:error]%></div>
           <% end %>
 
-          <%= yield %>
+          <%= yield :layout %>
 
 
         </div>
 
 
         <div id="rcol">
-          <%= render :partial => "site/login", :controller => "site" if (!curuser and request.request_uri!="/user/login" and request.request_uri!="/user/register" and request.request_uri!="/user_sessions/create")%>
+          <%= render :partial => "site/login", :controller => "site" if (!curuser and request.request_uri!="/users/login" and request.request_uri!="/users/register" and request.request_uri!="/user_sessions/create")%>
 
           <% if curuser %>
             <%= render :partial => "site/user", :controller => "site", :locals => {:user => curuser} %>
-          <%= render :partial => "site/messages", :controller => "site", :locals => {:user => curuser} %>
-          <%= render :partial => "site/find_video", :controller => "site", :locals => {:user => curuser} %>
+            <%= render :partial => "site/messages", :controller => "site", :locals => {:user => curuser} %>
+            <%= render :partial => "site/find_video", :controller => "site", :locals => {:user => curuser} %>
           <% else %>
             <%= render :partial => "site/latest_users", :locals => {:users => s_latest_users }%>
             <%= render :partial => "site/latest_photos", :locals => {:photos => s_latest_photos }%>

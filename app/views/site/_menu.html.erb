@@ -4,10 +4,10 @@
 
 </div>
 
-<div class="button_menu"><%= link_ "PROFIL", "user", "show" %>
+<div class="button_menu"><%= link_ "PROFIL", "users", "show" %>
   <div>
-    <div><%= curuser ? (link_ "Mój profil", "user", "show", curuser.id) : (link_ "Mój profil", "user", "show")%></div>
-    <div><%= link_ "Edytuj profil", "user", "modify"  %></div>
+    <div><%= link_to "Mój profil", curuser ? user_path(curuser) : '#' -%></div>
+    <div><%= link_to "Edytuj profil", curuser ? edit_user_path(curuser) : '#'  %></div>
     <div><%= link_ "Galeria", "gallery", "list"  %></div>
     <div><%= link_ "Moje imprezy", "event", "list",(curuser ? curuser.id : 0) %></div>
   </div>
@@ -23,15 +23,15 @@
 
 <div class="button_menu"><%= link_ "ZNAJOMI", "user", "friends_index"  %>
   <div>
-    <div><%= link_ "Znajomi", "user", "friends"  %></div>
-    <div><%= link_ "Wysłane zaproszenia", "user", "pending"  %></div>
-    <div><%= link_ "Otrzymane zaproszenia", "user", "requested"  %></div>
+    <div><%= link_ "Znajomi", "usesr", "friends"  %></div>
+    <div><%= link_ "Wysłane zaproszenia", "users", "pending"  %></div>
+    <div><%= link_ "Otrzymane zaproszenia", "users", "requested"  %></div>
   </div>
 </div>
 
 <div class="button_menu"><%= link_ "GRUPY", "team", "index"  %>
   <div>
-    <div><%= link_ "Moje grupy", "user", "myteams"  %></div>
+    <div><%= link_ "Moje grupy", "users", "myteams"  %></div>
     <div><%= link_ "Wszystkie grupy", "team", "list"  %></div>
     <div><%= link_ "Utwórz grupę", "team", "new"  %></div>
     <div><%= link_ "Znajdź grupę", "team", "find"  %></div>

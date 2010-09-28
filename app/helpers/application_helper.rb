@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def link_ (text, controller, action, id=nil, confirm=nil)
@@ -33,7 +34,7 @@ module ApplicationHelper
   end
 
   def link_find(text,id, by)
-    link_to text, :controller => "user", :action => "find",:id => id.gsub("/","--"), :by => by
+    link_to text, :controller => "users", :action => "find",:id => id.gsub("/","--"), :by => by
   end
 
   def link_file(name,link)

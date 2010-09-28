@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-class UserController < ApplicationController
+class UsersController < ApplicationController
   before_filter :protect, :except => [:register, :login, :find, :ulogin, :fetch, :reset]
 
   def register
@@ -82,37 +82,19 @@ class UserController < ApplicationController
 
   end
 
-  def modify
+  def edit
     @user = curuser
-    @quad = @user.quad
-    @quad ||= @user.build_quad
-    if request.post? and params[:user]
-      @user.update_attributes(params[:user])
-      
-      if @user.save
-        if params[:company]
-          @quad.company=params[:company]
-          @quad.qtype=params[:qtype]
-          @quad.description=params[:description]
-        end
-        if @user.quads[0]!=nil and @quad.company.nil?
-          @quad.delete!
-        elsif @user.quads[0].nil? and @quad.company!=nil
-          @quad.user = curuser
-          @quad.save
-        elsif @user.quads[0]!=nil and @quad.company!=nil
-          @quad.save
-        end
-        
+  end
 
-        flash[:notice]="Pomyślnie zmodyfikowano profil"
-        redirect_to :controller => "site" ,:action => "index"
-      else
+  def update
+    @user = curuser
 
-        flash[:error]="Nie udało się zmodyfikować profilu, sprawdź poprawność danych i spróbuj ponownie. Jeśli ten błąd będzie się powtarzał, daj nam znać" 
-      end
+    if @user.update_attributes(params[:user])
+      flash[:notice]="Pomyślnie zmodyfikowano profil"
+      redirect_to :controller => "site" ,:action => "index"
     else
-      
+      flash[:error]="Nie udało się zmodyfikować profilu, sprawdź poprawność danych i spróbuj ponownie. Jeśli ten błąd będzie się powtarzał, daj nam znać" 
+      render :action => 'edit'
     end
   end
 
@@ -220,6 +202,5 @@ class UserController < ApplicationController
 
 
 
+
 end
-
-

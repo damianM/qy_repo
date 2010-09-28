@@ -7,11 +7,13 @@
         <span class="required_field">*</span>
         <%= f.label :login, "Login" %>
         <%= f.text_field :login %>
+        <%= f.error_message_on :login %>
       </div>
       <div class="form_row">
         <span class="required_field">*</span>
         <%= f.label :password,"Hasło" %>
         <%= f.password_field :password %>
+        <%= f.error_message_on :password %>
 
       </div>
       <div class="form_row">
@@ -41,6 +43,7 @@
         <span class="required_field">*</span>
         <%= f.label :email, "Email" %>
         <%= f.text_field :email %>
+        <%= f.error_message_on :email %>
       </div>
 
       <div class="form_row">

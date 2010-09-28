@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
 
   acts_as_ferret(:fields => [:login,:skype,:gg,:email,:name,:surname,:about,:city,:region,:phone], :remote => true)
@@ -23,17 +24,20 @@ class User < ActiveRecord::Base
   has_many :events
   has_many :userletters
   has_many :sletters, :through => :userletters, :source => :letter
-  has_many :quads
+  has_one :quad
   has_many :prates, :through => :userprates, :source => :prate
   has_many :vrates, :through => :uservrates, :source => :vrate
   belongs_to :photo
+
+  accepts_nested_attributes_for :quad, :allow_destroy => true
+
+
   validates_uniqueness_of :login, :email
-  validates_uniqueness_of :skype, :allow_nil => true, :allow_blank => true
-  validates_uniqueness_of :gg, :allow_nil => true, :allow_blank => true
-  
   validates_format_of :login, :with => /^[A-Za-z0-9_]+$/, :message => "W nazwie użytkownika dozwolone są wyłącznie duże i małe litery, cyfry oraz podkreślniki"
   validates_format_of :email, :with => /^[A-Z0-9._%-]+@[A-Z0-9._%-]+$/i, :message => "Podany adres nie jest poprawnym adresem email"
-  validates_confirmation_of :password
+  validates_confirmation_of :password    
+  validates_uniqueness_of :skype, :allow_nil => true, :allow_blank => true
+  validates_uniqueness_of :gg, :allow_nil => true, :allow_blank => true
 
   def friend?(user)
     self.friends.include?(user)

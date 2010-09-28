@@ -21,15 +21,15 @@ end
   <div class="userinfo_photo">
     <div>
       <% unless gray %>
-        <%= link_to img80(user.photo, :class=>"about_photo"), {:controller =>"user", :action => "show", :id => user.id}, {:target => target} %>
+        <%= link_to img80(user.photo, :class=>"about_photo"), user_path(user), {:target => target} %>
       <% else %>
-        <%= link_to user.photo ? image_tag(user.photo.thumb.gsub(/\/t/,"/g"), :class=>"about_photo") : image_tag("/80_anon.png", :class=>"about_photo"), {:controller =>"user", :action => "show", :id => user.id}, {:target => target} %>
+        <%= link_to user.photo ? image_tag(user.photo.thumb.gsub(/\/t/,"/g"), :class=>"about_photo") : image_tag("/80_anon.png", :class=>"about_photo"), user_path(user), {:target => target} %>
       <% end %>
     </div>
   </div>
   <div class="userinfo_right">
     <div class="userinfo_login">
-      <%=  link_to user.login, {:controller => "user", :action => "show", :id => user.id}, {:target => target} %>
+      <%=  link_to user.login, user_path(user), {:target => target} %>
     </div>
 
     <% if special %>
@@ -87,7 +87,7 @@ end
 
     <div class="userinfo_icons">
       <% if user.friend?(curuser) or (curuser ? curuser.pending?(user) : false) or user==curuser%>
-        <%= link_to image_tag("/friends.png", :class => "icon"), {:controller => "user", :action => "friends",
+        <%= link_to image_tag("/friends.png", :class => "icon"), {:controller => "users", :action => "friends",
           :id => user.id}, (target.nil? ? {:title => "Zobacz znajomych"} : {:title => "Zobacz znajomych", :target => target}) %>
       <% else %>
         <%= link_to image_tag("/friends.png", :class => "icon"), {:controller => "relationship", :action => "req",
