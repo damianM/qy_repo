@@ -96,6 +96,10 @@ body{
 
 }
 
+#footer #copyright {
+  float:left;
+  margin-left: 10px;
+}
 
 
 div.nav2 a{
