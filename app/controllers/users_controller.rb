@@ -1,53 +1,35 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
-  before_filter :protect, :except => [:register, :login, :find, :ulogin, :fetch, :reset]
+  before_filter :protect, :except => [:new, :create, :login, :find, :ulogin, :fetch, :reset]
 
-  def register
-    if request.post? and params[:user]
-      qq={}
-      qq[:company]=params[:user][:company].clone
-      qq[:qtype]=params[:user][:qtype].clone
-      qq[:description]=params[:user][:description].clone
-      params[:user].delete :company
-      params[:user].delete :qtype
-      params[:user].delete :description
-      @user = User.new(params[:user])
-      if params[:reg]
-        if simple_captcha_valid?
-          if(!qq[:company].nil? and qq[:company]!="")
-            @quad = Quad.new(qq)
-            @quad.user=@user
-            @quad.save!
-          end
-          if @user.save_without_session_maintenance
-             @user.deliver_activation_instructions!
-             phpbb = `php ../../http/forum/reg.php #{params[:user][:login]} #{params[:user][:password]} #{params[:user][:email]}`
-            
-            flash[:notice]="Twoje konto zostało utworzone. Na Twój adres przesłaliśmy email z kodem potwierdzającym."
-            redirect_to :controller => "site" ,:action => "index"
-          else
-            flash[:error]="Nie udało się zarejestrować użytkownika, sprawdź poprawność danych i spróbuj ponownie"
-          end
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(params[:user])
+    if params[:reg]
+      if simple_captcha_valid?
+        if @user.save_without_session_maintenance         
+          # @user.deliver_activation_instructions!
+          # phpbb = `php ../../http/forum/reg.php #{params[:user][:login]} #{params[:user][:password]} #{params[:user][:email]}`
+          
+          flash[:notice] = "Twoje konto zostało utworzone. Na Twój adres przesłaliśmy email z kodem potwierdzającym."
+          redirect_to :controller => "site" ,:action => "index"
         else
-          flash[:error]="Nieprawidłowy kod z obrazka"
+          flash[:error] = "Nie udało się zarejestrować użytkownika, sprawdź poprawność danych i spróbuj ponownie"
+          render :action => 'new'
         end
-
-        
       else
-        flash[:error]="Musisz zaakceptować regulamin by korzystać z serwisu"
-      end
-      @user.password=nil
-      @user.password_confirmation=nil
-      class <<@user
-        attr_accessor :company,:qtype,:description
-      end
-      @user.company=qq[:company]
-      @user.qtype=qq[:qtype]
-      @user.description=qq[:description]
+        flash[:error] = "Nieprawidłowy kod z obrazka"
+        render :action => 'new'
+      end                
     else
-      
+      flash[:error] = "Musisz zaakceptować regulamin by korzystać z serwisu"
+      render :action => 'new'
     end
   end
+
 
   def fetch
     if(params[:id])
@@ -67,8 +49,6 @@ class UsersController < ApplicationController
     end
   end
 
- 
-
   def delete
     @user = curuser
     if @user.delete
@@ -79,9 +59,8 @@ class UsersController < ApplicationController
       flash[:error]="Błąd podczas usuwania, skontaktuj się z administratorem celem usunięcia konta"
       redirect_to session[:prevpage]
     end
-
   end
-
+  
   def edit
     @user = curuser
   end
@@ -97,10 +76,9 @@ class UsersController < ApplicationController
       render :action => 'edit'
     end
   end
-
-
-  def find
-    
+  
+  
+  def find    
     unless(params[:id].nil?)
 
       case params[:by]
@@ -196,11 +174,6 @@ class UsersController < ApplicationController
 
       end
     end
-      
-      
   end
-
-
-
-
+  
 end

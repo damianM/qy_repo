@@ -180,23 +180,18 @@ module ApplicationHelper
 
 
 
-  def insert_corners a=false
 
-  end
   def insert_bcorners
-
   end
-
-
-
+  
   def s_top_videos
     Video.find(:all, :order => "counter desc",:conditions => "description IS NOT NULL ", :limit => 10).reject{|x| x.gallery.user.nil?}
   end
-
+  
   def s_latest_users
     User.find(:all,:limit => 4, :order => "created_at desc")
   end
-
+  
   def s_latest_photos
     Photo.find(:all,:limit => 10, :order => "created_at desc").reject{|x| x.gallery.user.nil?}[0...6]
   end

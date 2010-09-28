@@ -1,0 +1,107 @@
+<div class="partial">
+  <div class="header p_user_var">Rejestracja</div>
+  <div class="body">
+    <% form_for(setup_user(@user)) do |f| %>
+
+      <div class="form_row">
+        <span class="required_field">*</span>
+        <%= f.label :login, "Login" %>
+        <%= f.text_field :login %>
+        <%= f.error_message_on :login %>
+      </div>
+      <div class="form_row">
+        <span class="required_field">*</span>
+        <%= f.label :password,"Hasło" %>
+        <%= f.password_field :password %>
+        <%= f.error_message_on :password %>
+
+      </div>
+      <div class="form_row">
+        <span class="required_field">*</span>
+        <%= f.label :password_confirmation, "Potwierdź hasło" %>
+        <%= f.password_field :password_confirmation %>
+
+      </div>
+      <div class="form_row">
+        <span class="required_field"> </span>
+        <%= f.label :region, "Województwo" %>
+        <% regions = ["dolnośląskie", "kujawsko-pomorskie", "lubelskie", "lubuskie", "łódzkie", "małopolskie", "mazowieckie",
+          "opolskie", "podkarpackie", "podlaskie", "pomorskie","śląskie", "świętokrzyskie", "warmińsko-mazurskie", "wielkopolskie",
+          "zachodniopomorskie"]
+        regions.collect!{ |x| [x,x]}
+        regions.unshift ["wybierz",""]
+
+      %>
+        <%= f.select :region, regions %>
+      </div>
+      <div class="form_row">
+        <span class="required_field"> </span>
+        <%= f.label :city , "Miejscowość"%>
+        <%= f.text_field :city %>
+      </div>
+      <div class="form_row">
+        <span class="required_field">*</span>
+        <%= f.label :email, "Email" %>
+        <%= f.text_field :email %>
+        <%= f.error_message_on :email %>
+      </div>
+
+      <div class="form_row">
+        <span class="required_field"> </span>
+        <label>Quad</label>
+
+        <%= select_tag :register_select, options_for_select([['wybierz',0],['nie posiadam',1],['posiadam',2]],params[:register_select].to_i), :onChange => "f(this)" -%>
+      </div>
+      <div class="partial" id="n_quad">
+        <div class="header">Quad</div>
+        <div class="body">
+
+          <%- f.fields_for :quad do |qf| -%>
+            <div class="form_row">
+              <%= qf.label :company, "Marka" %>
+              <%= qf.select :company, quads_for_select  %>
+            </div>
+            <div class="form_row">
+              <%= qf.label :qtype, "Typ" %>
+              <%= qf.text_field :qtype %>
+            </div>
+            <div class="form_row">
+              <%= qf.label :description, "Opis" %>
+              <%= qf.text_area :description, :rows => 10 %>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+      <div class="form_row">
+        <%= show_simple_captcha :distorion => "high", :image_style => "simply_red", :label => "Proszę przepisać kod z obrazka" %>
+      </div>
+      <div class="form_row">
+        <span class="required_field">*</span>
+        <%= label_tag :reg, "Akceptuję #{ link_ "regulamin", "site", "terms"}" %><br/>
+        <%= check_box_tag :reg, params[:reg], params[:reg] %>
+      </div>
+      <div class="form_row">
+        <%= f.submit "Rejestruj!", :class => "submit" %>
+      </div>
+      <span class="required_field">* - pole wymagane</span>
+    <% end %>
+
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  function f(sel){
+  var have_quad = sel.options[sel.selectedIndex].value;
+
+  if(have_quad.toString() == '2'){
+    $('n_quad').show();
+  } else if((have_quad.toString() == '1') || (have_quad.toString == '0')){
+    $('n_quad').hide();
+  }
+  return false;
+  }
+
+ f($('register_select'));
+</script>

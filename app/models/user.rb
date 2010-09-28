@@ -23,13 +23,12 @@ class User < ActiveRecord::Base
   has_many :events
   has_many :userletters
   has_many :sletters, :through => :userletters, :source => :letter
-  has_one :quad
+  has_one :quad, :dependent => :destroy
   has_many :prates, :through => :userprates, :source => :prate
   has_many :vrates, :through => :uservrates, :source => :vrate
   belongs_to :photo
 
-  accepts_nested_attributes_for :quad, :allow_destroy => true
-
+  accepts_nested_attributes_for :quad, :reject_if => proc { |attributes| attributes['company'].blank? }
 
   validates_uniqueness_of :login, :email
   validates_format_of :login, :with => /^[A-Za-z0-9_]+$/, :message => "W nazwie użytkownika dozwolone są wyłącznie duże i małe litery, cyfry oraz podkreślniki"
