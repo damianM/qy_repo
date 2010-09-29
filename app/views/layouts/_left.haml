@@ -1,0 +1,12 @@
+#lcol
+  = render :partial => "site/find_by_region"
+  = render :partial => "site/find" if logged_in?
+  = render :partial => "site/find_by_quad"
+
+  - unless logged_in?
+    %div{:style => 'margin-top:10px'}
+      = link_to image_tag(params['black'] ? "../services_d.png" : "../services.png"), "bogus"
+    %div{:style => 'margin-top:10px'}
+      = link_to image_tag(params['black'] ? "../shops_d.png" : "../shops.png"), "bogus"
+
+    = render :partial => "site/top_10_videos", :locals => {:top_videos => s_top_videos }

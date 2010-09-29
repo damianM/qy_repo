@@ -43,7 +43,7 @@ body{
     width: 942px;
     margin: 0px 99px 0px 99px;
     background-color: #E3E0D5;
-    padding: 0 6px 0 6px;
+    padding: 25px 6px 0 6px;
     height: 100%;
     overflow: hidden;
 }
@@ -69,10 +69,6 @@ body{
     margin-right: 10px;
 }
 
-#top{
-    height:25px;
-}
-
 .clr{
     clear: both;
 }
@@ -84,6 +80,10 @@ body{
     margin-left:99px;
     font-size: 7pt;
     color:#fff;
+}
+
+#image {
+  float: left;
 }
 
 #footer a{
