@@ -46,16 +46,11 @@
         <% end %>
         <div id="ccol" <%= ((request.request_uri =~ /\/users\/[0-9]+/) and !(request.request_uri =~ /\/users\/[0-9]+\/edit/)) or (request.request_uri =~ /\/event\/show/) ? "class='ccol_wider'": "class='ccol_narrower'" %> >
 
-          <% if flash[:notice] -%>
-            <div id="notice"><%=flash[:notice]%></div>
-          <% end %>
-
-          <% if flash[:error] -%>
-            <div id="error"><%=flash[:error]%></div>
-          <% end %>
-
+	  <div id="flash">
+            <%= render(:partial => "site/flash", :locals => { :flash => flash }) -%>
+	  </div>
+          
           <%= yield :layout %>
-
 
         </div>
 
