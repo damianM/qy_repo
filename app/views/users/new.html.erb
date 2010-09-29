@@ -2,7 +2,6 @@
   <div class="header p_user_var">Rejestracja</div>
   <div class="body">
     <% form_for(setup_user(@user)) do |f| %>
-
       <div class="form_row">
         <span class="required_field">*</span>
         <%= f.label :login, "Login" %>
@@ -24,15 +23,8 @@
       </div>
       <div class="form_row">
         <span class="required_field"> </span>
-        <%= f.label :region, "Województwo" %>
-        <% regions = ["dolnośląskie", "kujawsko-pomorskie", "lubelskie", "lubuskie", "łódzkie", "małopolskie", "mazowieckie",
-          "opolskie", "podkarpackie", "podlaskie", "pomorskie","śląskie", "świętokrzyskie", "warmińsko-mazurskie", "wielkopolskie",
-          "zachodniopomorskie"]
-        regions.collect!{ |x| [x,x]}
-        regions.unshift ["wybierz",""]
-
-      %>
-        <%= f.select :region, regions %>
+        <%= f.label :state_id, "Województwo" %>
+        <%= f.collection_select :state_id, State.all, :id, :name, { :include_blank => true } %>
       </div>
       <div class="form_row">
         <span class="required_field"> </span>
@@ -49,7 +41,6 @@
       <div class="form_row">
         <span class="required_field"> </span>
         <label>Quad</label>
-
         <%= select_tag :register_select, options_for_select([['wybierz',0],['nie posiadam',1],['posiadam',2]],params[:register_select].to_i), :onChange => "f(this)" -%>
       </div>
       <div class="partial" id="n_quad">
@@ -58,8 +49,8 @@
 
           <%- f.fields_for :quad do |qf| -%>
             <div class="form_row">
-              <%= qf.label :company, "Marka" %>
-              <%= qf.select :company, quads_for_select  %>
+              <%= qf.label :company_id, "Marka" %>
+              <%= qf.collection_select :company_id, Company.all, :id, :name, { :include_blank => true } %>
             </div>
             <div class="form_row">
               <%= qf.label :qtype, "Typ" %>

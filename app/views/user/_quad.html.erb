@@ -5,13 +5,9 @@
       Ten użytkownik nie ma jeszcze quada.
     <% else %>
       <div class="quad">
-        <div class="quad">
-          <div class="quad_title"><%= user.quad.company %>  <%= user.quad.qtype %></div>
-            <div class="quad_description">
-              <%= user.quad.description %>
-            </div>
-          </div>
-        </div>
+        <div class="quad_title"><%= user.quad.company.name unless user.quad.company.nil?%>  <%= user.quad.qtype %></div>
+        <div class="quad_description"><%= user.quad.description %></div>
+      </div>
     <% end %>
   </div>
 </div>

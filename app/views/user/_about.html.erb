@@ -53,7 +53,7 @@
       <div>Nazwisko: <%= user.surname if agree(user) %></div>
       <div>Wiek: <%=ltdiff user.birth if agree(user)%></div>
       <div>Płeć:<%= user.sex == "m" ? "Mężczyzna" : user.sex == "k" ? "Kobieta" : ""%></div>
-      <div>Województwo: <%= user.region  if agree(user)%></div>
+      <div>Województwo: <%= user.state.name  if agree(user) && user.state %></div>
       <div>Miejscowość: <%= user.city  if agree(user)%></div>
       <div>GG: <%= user.gg  if agree(user)%></div>
       <div>Login Skype: <%= user.skype  if agree(user)%></div>

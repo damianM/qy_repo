@@ -2,10 +2,9 @@
   <div class="mheader">Edytuj quada</div>
 
   <% form_for :quad do |f| %>
-<% quads=["Bombardier/Can-am","Cectek","CF Moto", "Honda", "Kawasaki","KTM","Kymco", "Linhai", "Lucky Star", "Polaris", "Suzuki", "Yamaha", "Side by Side","Inne"] %>
     <div class="form_row">
-      <%= f.label :company, "Producent" %>
-      <%= f.select :company,quads.collect{|x|[x,x]} %>
+      <%= f.label :company_id, "Producent" %>
+      <%= f.collection_select :company_id, Company.all. :id, :name, { :include_blank => true } %>
     </div>
     <div class="form_row">
       <%= f.label :qtype, "Typ/szczegóły" %>

@@ -1,0 +1,6 @@
+%div{:class => "partial partial_left"}
+  %div{ :class => "header p_quad"}
+  .body
+    %ul.states
+      - Company.find(:all, :order => 'name').each do |company|
+        %li= link_to "#{company.name} (#{User.find_all_by_company_id(company.id).count})", find_users_path(:id => company.id, :by => 'company_id')

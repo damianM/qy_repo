@@ -6,6 +6,16 @@
     font-size: 10pt;
 }
 
+.partial .body ul.states {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.partial .body ul.states li {
+  margin: 1px 0;
+}
+
 .header{
     
     z-index: 10;

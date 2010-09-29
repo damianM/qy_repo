@@ -11,7 +11,7 @@
       </div>
 
       <div class="userinfo_sub1 bolder">
-        <%=  (user.quad.company.nil? ? "" : user.quad.company ) + " "+ (user.quad.qtype.nil? ? "" :user.quad.qtype ) unless user.quad.nil? %>
+        <%=  (user.quad.company.nil? ? "" : user.quad.company.name ) + " " + (user.quad.qtype.nil? ? "" :user.quad.qtype ) unless user.quad.nil? %>
       </div>
       <div class="userinfo_sub01 " style="color:#000">
         <%=  user.city if user.city%>

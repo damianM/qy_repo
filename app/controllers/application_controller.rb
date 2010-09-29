@@ -27,10 +27,6 @@ class ApplicationController < ActionController::Base
     l time, :format=> "%d.%m.%Y"
   end
 
-  def curuser
-    current_user
-  end
-
   def protect
     login_required
   end

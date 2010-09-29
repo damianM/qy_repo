@@ -41,14 +41,6 @@ module ApplicationHelper
     "<a href='#{link}' class='link' title='Pobierz'>#{name}</a>"
   end
 
-  def logged_in?
-    curuser
-  end
-
-  def curuser
-    current_user
-  end
-
   def received_messages
     user = curuser
     user.sent
@@ -58,19 +50,20 @@ module ApplicationHelper
     return "" if time.nil?
     l time, :format=> "%d.%m.%Y, %H:%M"
   end
+
   def ltd(time)
     return "" if time.nil?
     l time, :format=> "%d.%m.%Y"
   end
-  def ltdiff(time)
 
+  def ltdiff(time)
     return "" if time.nil?
     years = ((Time.now - time.to_datetime).year - Time.at(0).year).to_i
     years.to_s + ((years%10 >= 2 and years%10 <= 4 ) ? " lata" :  " lat")
     #time.to_datetime.class
   end
-  def img(photo,options=nil)
-    
+
+  def img(photo,options=nil)    
     if options
       photo.nil? ? image_tag("/anon.png",options) : image_tag(photo.thumb,options)
     else
@@ -79,38 +72,12 @@ module ApplicationHelper
   end
 
   def img80(photo,options=nil)
-
     if options
       photo.nil? ? image_tag("/80_anon.png",options) : image_tag(photo.thumb80,options)
     else
       photo.nil? ? image_tag("/80_anon.png") : image_tag(photo.thumb80)
     end
   end
-
-  def regions
-    regions={}
-    regs=["dolnośląskie", "małopolskie", "mazowieckie", "kujawsko-pomorskie","lubelskie","lubuskie","łódzkie","opolskie","podkarpackie",
-      "podlaskie","pomorskie","śląskie","świętokrzyskie","warmińsko-mazurskie","wielkopolskie","zachodniopomorskie"]
-    regs.each do |x|
-      usrs = User.find_all_by_region(x)
-      regions[x]= usrs.length
-    end
-    
-    regions
-  end
-
-  def quads
-    quads={}
-    qs=["Bombardier/Can-am","Cectek","CF Moto", "Honda", "Kawasaki","KTM","Kymco", "Linhai", "Lucky Star", "Polaris", "Suzuki", "Yamaha", "Side by Side","Inne"]
-    qs.each do |x|
-      q = Quad.find_all_by_company(x)
-      q.collect! {|y| y.user}
-      quads[x]= q.uniq.length
-    end
-    
-    quads
-  end
-
 
   def incoming_events
     Event.find(:all, :conditions => "event_start < #{Time.now.to_i}", :limit => 10)

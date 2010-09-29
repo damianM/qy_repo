@@ -19,16 +19,16 @@ class User < ActiveRecord::Base
   has_many :userqueries
   has_many :cqueries, :through => :userqueries, :source => :query
   has_many :queries
-  has_many :letters
   has_many :events
-  has_many :userletters
-  has_many :sletters, :through => :userletters, :source => :letter
-  has_one :quad, :dependent => :destroy
   has_many :prates, :through => :userprates, :source => :prate
   has_many :vrates, :through => :uservrates, :source => :vrate
-  belongs_to :photo
 
-  accepts_nested_attributes_for :quad, :reject_if => proc { |attributes| attributes['company'].blank? }
+  has_one :quad, :dependent => :destroy
+
+  belongs_to :photo
+  belongs_to :state
+
+  accepts_nested_attributes_for :quad, :reject_if => proc { |attributes| attributes['company_id'].blank? }
 
   validates_uniqueness_of :login, :email
   validates_format_of :login, :with => /^[A-Za-z0-9_]+$/, :message => "W nazwie użytkownika dozwolone są wyłącznie duże i małe litery, cyfry oraz podkreślniki"
@@ -36,11 +36,14 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password    
   validates_uniqueness_of :skype, :allow_nil => true, :allow_blank => true
   validates_uniqueness_of :gg, :allow_nil => true, :allow_blank => true
+  
+  def self.find_all_by_company_id company_id
+    User.find(:all, :joins => :quad, :conditions => [ "quads.company_id = ?", company_id])
+  end
 
   def friend?(user)
     self.friends.include?(user)
   end
-
 
   def initiator
     r=Relationship.find_all_by_initiator_id(self.id)

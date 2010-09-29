@@ -14,7 +14,7 @@
             <% for user in user_row %>
               <td>
                 <div class="friend" style="margin-right:40px;">
-                  <%= render :partial => "/userinfo", :locals => {:user => user, :protect => @protect} %>
+                  <%= render :partial => "/userinfo", :locals => {:user => user, :protect => !logged_in?} %>
                 </div>
               </td>
             <% end %>

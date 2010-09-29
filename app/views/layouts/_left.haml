@@ -1,7 +1,7 @@
 #lcol
-  = render :partial => "site/find_by_region"
+  = render :partial => "layouts/states"
   = render :partial => "site/find" if logged_in?
-  = render :partial => "site/find_by_quad"
+  = render :partial => "layouts/quads"
 
   - unless logged_in?
     %div{:style => 'margin-top:10px'}

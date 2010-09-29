@@ -11,6 +11,10 @@ module AuthenticatedSystem
     @current_user ||= current_user_session && current_user_session.record
   end
 
+  def curuser
+    current_user
+  end
+
   def logged_in?
     !!current_user
   end
@@ -46,7 +50,7 @@ module AuthenticatedSystem
   end
   
   def self.included(base)
-    base.send :helper_method, :current_user, :current_user_session if base.respond_to? :helper_method
+    base.send :helper_method, :current_user, :current_user_session, :logged_in?, :curuser if base.respond_to? :helper_method
   end
 
 end

@@ -4,8 +4,8 @@ ActionController::Routing::Routes.draw do |map|
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action
-  map.connetct '/user/login', :controller => 'user_sessions', :action => "new"
-  map.connetct '/user/logout', :controller => 'user_sessions', :action => "destroy"
+  map.login '/user/login', :controller => 'user_sessions', :action => "new"
+  map.logout '/user/logout', :controller => 'user_sessions', :action => "destroy"
   # Sample of named route:
   #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
   # This route can be invoked with purchase_url(:id => product.id)
@@ -19,7 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
 
-  map.resources :users, :member => {:friends_index => :get, :friends => :get, :pending => :get, :requested => :get}
+  map.resources :users, :member => {:friends_index => :get, :friends => :get, :pending => :get, :requested => :get}, :collection => { :find => :get }
   
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|

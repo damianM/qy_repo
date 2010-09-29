@@ -1,7 +1,7 @@
 <%- form.fields_for :quad do |f| -%>
       <div class="form_row">
-        <%= f.label :company, "Marka" %>
-        <%= f.select :company, quads_for_select  %>
+        <%= f.label :company_id, "Marka" %>
+        <%= f.collection_select :company_id, Company.all, :id, :name, { :include_blank => true }  %>
       </div>
       <div class="form_row">
         <%= f.label :qtype, "Typ" %>

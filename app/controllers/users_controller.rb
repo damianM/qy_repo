@@ -77,25 +77,20 @@ class UsersController < ApplicationController
     end
   end
   
-  
   def find    
-    unless(params[:id].nil?)
-
-      case params[:by]
-      when "quad"
-        quads = Quad.find_all_by_company params[:id].gsub("--", "/")
-        usrs = quads.collect{|x| x.user}
-        @users = usrs.uniq
-        @line = "Quadomaniacy posiadający quada marki "+params[:id].gsub("--", "/")
-      when "region"
-        @users = User.find_all_by_region(params[:id])
-        @line = "Quadomaniacy zamieszkujący województwo "+params[:id]
-      when "aaf"
-        @users = User.find_with_ferret(params[:id])
-        
-      end
+    case params[:by]
+    when "company_id"
+      @company = Company.find(params[:id])
+      @users = User.find_all_by_company_id(@company.id)
+      @line = "Quadomaniacy posiadający quada marki " + @company.name
+    when "state_id"
+      @state = State.find(params[:id])
+      @users = User.find_all_by_state_id(@state.id)
+      @line = "Quadomaniacy zamieszkujący województwo " + @state.name
+    when "aaf"
+      @users = [] #User.find_with_ferret(params[:id])
     end
-    @protect = curuser ? false : true
+    
     @users = format_users @users
   end
 

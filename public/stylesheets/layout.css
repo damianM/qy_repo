@@ -61,6 +61,10 @@ body{
     display: block;
 }
 
+#flash {
+  width: 480px;
+}
+
 #rcol{
     width: 208px;
     float:right;
@@ -135,7 +139,7 @@ div#error{
     font-family:Arial, sans-serif;
     border: solid 1px red;
     background: #f55;
-    margin: 10px 100px 10px 100px;
+    margin: 10px 100px 10px 30px;
     padding: 10px 10px 10px 10px;
     font-weight:bold;
     font-size:9pt;
@@ -145,7 +149,7 @@ div#notice{
     font-family:Arial, sans-serif;
     border: solid 1px green;
     background: #9f8;
-    margin: 10px 100px 10px 100px;
+    margin: 10px 100px 10px 50px;
     padding: 10px 10px 10px 10px;
     font-weight:bold;
     font-size:9pt;
