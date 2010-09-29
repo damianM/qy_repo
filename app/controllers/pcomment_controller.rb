@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
 class PcommentController < ApplicationController
-  before_filter :protect
+  before_filter :login_required
+
   def new
     if request.post? and params[:id]
       @pcomment = Pcomment.new(params[:comment])

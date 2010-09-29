@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 class PhotoController < ApplicationController
-  before_filter :protect
+  before_filter :login_required
 
   def new
   end

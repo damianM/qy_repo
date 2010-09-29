@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
 class FpostController < ApplicationController
-  before_filter :protect
+  before_filter :login_required
+
   def new
     if request.post? and params[:post] and params[:id]
       @post = Fpost.new(params[:post])

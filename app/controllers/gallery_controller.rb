@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 class GalleryController < ApplicationController
-  before_filter :protect
+  before_filter :login_required
   IMAGE_PATH="public/images/data"
+
   def list
     @curuser = curuser
     @user = params[:id].nil? ? @curuser : User.find(params[:id])

@@ -1,6 +1,5 @@
-class EfileController < ApplicationController
-
-  
+# -*- coding: utf-8 -*-
+class EfileController < ApplicationController  
 
   def new
     if request.post? and params[:efile]

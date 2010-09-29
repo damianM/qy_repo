@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class UserController < ApplicationController
-  before_filter :protect, :except => [:register, :login, :find, :ulogin, :fetch, :reset]
+  before_filter :login_required, :except => [:register, :login, :find, :ulogin, :fetch, :reset]
 
   def register
     if request.post? and params[:user]

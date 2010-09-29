@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
-  before_filter :protect, :except => [:new, :create, :login, :find, :ulogin, :fetch, :reset]
+  before_filter :login_required, :except => [:new, :create, :login, :find, :ulogin, :fetch, :reset]
 
   def new
     @user = User.new

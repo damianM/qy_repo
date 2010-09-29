@@ -1,6 +1,6 @@
+# -*- coding: utf-8 -*-
 class EventController < ApplicationController
-  before_filter :protect, :except => [:show, :list, :gcal]
-
+  before_filter :login_required, :except => [:show, :list, :gcal]
 
   def new
     @event=Event.new

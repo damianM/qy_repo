@@ -1,5 +1,5 @@
 class ForumController < ApplicationController
-  before_filter :protect
+  before_filter :login_required
   def list
     if(params[:id])
       @forum = Forum.find(params[:id])

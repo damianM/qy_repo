@@ -14,13 +14,8 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password").
   filter_parameter_logging :password, :password_confirmation
 
+  include AuthenticatedSystem
   include SimpleCaptcha::ControllerHelpers
-
-  helper_method :current_user_session, :current_user
-
-  def curuser
-    current_user
-  end
 
   def lt(time)
     return "" if time.nil?
@@ -32,13 +27,12 @@ class ApplicationController < ActionController::Base
     l time, :format=> "%d.%m.%Y"
   end
 
+  def curuser
+    current_user
+  end
+
   def protect
-    unless curuser
-      session[:ppage]=request.request_uri
-      flash[:error]="Dostęp do tej części strony wymaga zalogowania"
-      redirect_to :controller => "user_sessions", :action => "new"
-      return false
-    end
+    login_required
   end
 
   def format_galleries user
@@ -49,16 +43,6 @@ class ApplicationController < ActionController::Base
   end
  
   private
-
-  def current_user_session
-    return @current_user_session if defined?(@current_user_session)
-    @current_user_session = UserSession.find
-  end
-
-  def current_user
-    return @current_user if defined?(@current_user)
-    @current_user = current_user_session && current_user_session.user
-  end
 
   def format_users(users)
     tmp=[]

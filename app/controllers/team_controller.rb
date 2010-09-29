@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class TeamController < ApplicationController
-  before_filter :protect
+  before_filter :login_required
   layout "application", :except => [:iusers, :ipending_list]
 
   def new

@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
 class CommentController < ApplicationController
-  before_filter :protect
+  before_filter :login_required
+
   def new
     if request.post? and params[:id]
       @comment = Comment.new(params[:comment])

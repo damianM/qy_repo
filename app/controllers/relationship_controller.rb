@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
 class RelationshipController < ApplicationController
-  before_filter :protect
+  before_filter :login_required
+
   def req
     
     if(params[:id])
