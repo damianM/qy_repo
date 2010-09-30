@@ -5,7 +5,7 @@
     = render :partial => "site/find_video", :controller => "site", :locals => {:user => curuser}
   - else
     = render :partial => "site/login" unless ["/users/login", "/users/register", "/user_sessions/create"].include?(request.request_uri)
-    = render :partial => "site/latest_users", :locals => {:users => s_latest_users }
+    = render :partial => "layouts/latest_users"
     = render :partial => "site/latest_photos", :locals => {:photos => s_latest_photos }
 
   = render :partial => "site/calendar", :controller => "site", :locals => {:events => incoming_events, :calendar_options => calendar_options}

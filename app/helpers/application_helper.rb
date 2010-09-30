@@ -33,10 +33,6 @@ module ApplicationHelper
     end
   end
 
-  def link_find(text,id, by)
-    link_to text, :controller => "users", :action => "find",:id => id.gsub("/","--"), :by => by
-  end
-
   def link_file(name,link)
     "<a href='#{link}' class='link' title='Pobierz'>#{name}</a>"
   end
@@ -153,10 +149,6 @@ module ApplicationHelper
   
   def s_top_videos
     Video.find(:all, :order => "counter desc",:conditions => "description IS NOT NULL ", :limit => 10).reject{|x| x.gallery.user.nil?}
-  end
-  
-  def s_latest_users
-    User.find(:all,:limit => 4, :order => "created_at desc")
   end
   
   def s_latest_photos

@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :gg, :allow_nil => true, :allow_blank => true
   
   def self.find_all_by_company_id company_id
-    User.find(:all, :joins => :quad, :conditions => [ "quads.company_id = ?", company_id])
+    User.find(:all, :joins => :quad, :conditions => [ "users.active = ? AND quads.company_id = ?", true, company_id])
   end
 
   def friend?(user)
