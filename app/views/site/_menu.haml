@@ -29,5 +29,5 @@
     %div= link_ "Znajdź grupę", "team", "find"
 .button_menu= link_ "FORUM","forum", "login"
 - if current_user and current_user.is_admin?
-  .button_menu= link_to 'Admin', admin_path 
+  .button_menu= link_to 'Admin', admin_panel_path 
 .clr

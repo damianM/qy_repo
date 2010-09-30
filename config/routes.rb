@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action
-  map.admin '/admin', :controller => 'home'
+  map.admin_panel '/admin_panel', :controller => 'home'
   map.login '/user/login', :controller => 'user_sessions', :action => "new"
   map.logout '/user/logout', :controller => 'user_sessions', :action => "destroy"
   # Sample of named route:
