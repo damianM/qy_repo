@@ -93,8 +93,8 @@ class UsersController < ApplicationController
       @state = State.find(params[:id])
       @users = User.find_all_by_state_id(@state.id)
       @line = "Quadomaniacy zamieszkujący województwo " + @state.name
-    when "aaf"
-      @users = [] #User.find_with_ferret(params[:id])
+    when "user_login"
+      @users = User.active.find(:all, :conditions => "login LIKE '%#{params[:id]}%'")
     end
     
     @users = format_users @users

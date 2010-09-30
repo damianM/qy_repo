@@ -37,6 +37,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :skype, :allow_nil => true, :allow_blank => true
   validates_uniqueness_of :gg, :allow_nil => true, :allow_blank => true
   
+  named_scope :active, :conditions => [ "users.active = ?", true]
+
   def self.find_all_by_company_id company_id
     User.find(:all, :joins => :quad, :conditions => [ "users.active = ? AND quads.company_id = ?", true, company_id])
   end
