@@ -7,13 +7,15 @@ class User < ActiveRecord::Base
   has_many :friends, :through => :relationships, :conditions => "status = 'accepted'"
   has_many :pending_friends, :through => :relationships, :source => "friend", :conditions => "status = 'pending'"
   has_many :requested_friends, :through => :relationships, :source => "friend", :conditions => "status = 'requested'"
+
   has_many :galleries
+
   has_many :sent, :class_name => "Message", :foreign_key => "sender_id"
   has_many :received, :class_name => "Message", :foreign_key => "receiver_id"
-  has_many :pcomments
-  has_many :vcomments
-  has_many :received_comments, :class_name => "Comment", :foreign_key => "receiver_id"
-  has_many :comments, :class_name => "Comment", :foreign_key => "sender_id"
+
+  has_many :comments, :as => :commentable, :dependent => :destroy
+  has_many :post_comments, :class_name => "Comment", :foreign_key => "user_id"
+
   has_many :teamusers
   has_many :teams, :through => :teamusers, :foreign_key => "user_id"
   has_many :userqueries

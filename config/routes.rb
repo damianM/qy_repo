@@ -20,6 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
 
   map.resources :users, :member => {:friends_index => :get, :friends => :get, :pending => :get, :requested => :get}, :collection => { :find => :get }
+  map.resources :comments
   
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|

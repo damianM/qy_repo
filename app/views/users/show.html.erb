@@ -2,6 +2,11 @@
   &nbsp;
 <% end -%>
 
+<% content_for :ccol_style do -%>
+  ccol_wider
+<% end -%>
+
+
 <div id="user_show">
   <div class="col_left">
     <%= render :partial => "user/about", :locals => {:user => @user, :quad => @user.quad } %>
@@ -20,5 +25,5 @@
 
 
 
-  <%= render :partial => "user/comments", :locals => {:user => @user } if @user.friends.include? curuser or @user == curuser %>
+  <%= render :partial => "comments" if @user.friends.include?(curuser) or @user == curuser %>
 </div>

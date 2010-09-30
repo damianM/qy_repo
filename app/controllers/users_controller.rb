@@ -95,11 +95,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if params[:id] and params[:id] != "0"
-      @user = User.find(params[:id])
-    else
-      @user = curuser
-    end
+    @user = params[:id] ? User.find(params[:id]) : current_user
   end
 
 

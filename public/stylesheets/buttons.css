@@ -1,4 +1,16 @@
-
+.submit {
+  background: none;
+  border: 0 none;
+  background-image: url("../btn_silver_67.png");
+  height: 26px;
+  width: 67px;
+  text-align: center;
+  color: #000;
+  font-size: 7pt;
+  font-weight: bold;
+  float: right;
+  margin-top: 77px;
+}
 
 .button_silver_67{
     height: 26px;

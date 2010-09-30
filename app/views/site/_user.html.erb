@@ -1,13 +1,13 @@
 <div class="partial_login">
   <div class="header p_user"></div>
   <div class="body" style="padding-top:20px;">
-    <% unless request.request_uri == "/user/show" or request.request_uri == "/user/show/#{curuser.id}" %>
+    <% unless request.request_uri == "/users/show" or request.request_uri == "/users/show/#{current_user.id}" %>
     <div  style="text-align:center;font-size:10pt">
       <div class="photo">
-        <%= link_ (img user.photo), "user", "show", user.id %>
+        <%= link_ (img user.photo), "users", "show", user.id %>
       </div>
       <div style="font-weight: bold;">
-        <%= link_ user.login, "user", "show", user.id %>
+        <%= link_ user.login, "users", "show", user.id %>
       </div>
 
       <div class="userinfo_sub1 bolder">

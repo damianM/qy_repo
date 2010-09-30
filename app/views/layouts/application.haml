@@ -19,7 +19,7 @@
       #main
         = content_given?(:left) ? yield(:left) : render("layouts/left")
         
-        #ccol
+        #ccol{ :class => ( content_given?(:ccol_style) ? yield(:ccol_style) : 'ccol_narrow' )}
           = render :partial => "layouts/flash", :object => flash
 
           = yield :layout

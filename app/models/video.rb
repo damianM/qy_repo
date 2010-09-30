@@ -2,8 +2,10 @@ class Video < ActiveRecord::Base
   require "rvideo.rb"
 
   belongs_to :gallery
-  has_many :vcomments
   has_one :vrate
+
+  has_many :comments, :as => :commentable, :dependent => :destroy
+
   validates_presence_of :description
 
   IMAGE_PATH="public/images/data"
