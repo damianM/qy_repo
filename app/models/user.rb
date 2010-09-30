@@ -97,6 +97,10 @@ class User < ActiveRecord::Base
     save
   end
 
+  def role_symbols
+    self ? [self.class.to_s.underscore.to_sym] : [:guest]
+  end
+   
   def deliver_activation_instructions!
     reset_perishable_token!
     UserMailer.deliver_activation_instructions(self)

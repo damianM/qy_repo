@@ -3,23 +3,23 @@
 .button_menu
   = link_ "PROFIL", "users", "show"
   %div
-    %div= link_to "Mój profil", curuser ? user_path(curuser) : '#'
-    %div= link_to "Edytuj profil", curuser ? edit_user_path(curuser) : '#'
+    %div= link_to "Mój profil", curuser ? user_path(current_user) : '#'
+    %div= link_to "Edytuj profil", curuser ? edit_user_path(current_user) : '#'
     %div= link_ "Galeria", "gallery", "list"
-    %div= link_ "Moje imprezy", "event", "list",(curuser ? curuser.id : 0)
+    %div= link_ "Moje imprezy", "event", "list",(current_user ? current_user.id : 0)
 .button_menu
   = link_ "POCZTA", "message", "index"
   %div
     %div= link_ "Napisz wiadomość", "message", "newr"
-    %div= link_ "Odebrane (#{curuser.nil? ? 0 : curuser.unread})", "message", "received"
+    %div= link_ "Odebrane (#{current_user.nil? ? 0 : current_user.unread})", "message", "received"
     %div= link_ "Wysłane", "message", "sent"
 - if logged_in?
   .button_menu
     = link_to "ZNAJOMI", friends_index_user_path(curuser)
     %div
-      %div= link_to "Znajomi", friends_user_path(curuser)
-      %div= link_to "Wysłane zaproszenia", pending_user_path(curuser)
-      %div= link_to "Otrzymane zaproszenia", requested_user_path(curuser)
+      %div= link_to "Znajomi", friends_user_path(current_user)
+      %div= link_to "Wysłane zaproszenia", pending_user_path(current_user)
+      %div= link_to "Otrzymane zaproszenia", requested_user_path(current_user)
 .button_menu
   = link_ "GRUPY", "team", "index"
   %div
@@ -28,4 +28,6 @@
     %div= link_ "Utwórz grupę", "team", "new"
     %div= link_ "Znajdź grupę", "team", "find"
 .button_menu= link_ "FORUM","forum", "login"
+- if current_user and current_user.is_admin?
+  .button_menu= link_to 'Admin', admin_path 
 .clr

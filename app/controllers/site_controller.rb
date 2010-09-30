@@ -1,4 +1,7 @@
 class SiteController < ApplicationController
+
+  filter_access_to :all
+  
   def index
     
     @latest_videos=Video.find(:all,:limit => 7, :order => "created_at desc").reject{|x| x.gallery.user.nil?}
