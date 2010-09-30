@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100929215230) do
+ActiveRecord::Schema.define(:version => 20100930073835) do
 
   create_table "comments", :force => true do |t|
     t.integer  "receiver_id"
@@ -194,24 +194,25 @@ ActiveRecord::Schema.define(:version => 20100929215230) do
   create_table "users", :force => true do |t|
     t.string   "login"
     t.string   "email"
+    t.string   "name"
+    t.string   "surname"
+    t.string   "city"
+    t.string   "skype"
+    t.string   "gg"
     t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "birth"
     t.integer  "photo_id"
+    t.text     "about"
+    t.string   "sex",               :limit => 1
     t.string   "crypted_password",                                  :null => false
     t.string   "persistence_token",                                 :null => false
     t.string   "perishable_token",                                  :null => false
     t.boolean  "active",                         :default => false
     t.string   "password_salt"
-    t.string   "name"
-    t.string   "surname"
-    t.string   "skype"
-    t.string   "gg"
-    t.string   "city"
-    t.date     "birth"
-    t.text     "about"
-    t.string   "sex",               :limit => 1
     t.integer  "state_id"
+    t.string   "type"
   end
 
   create_table "uservrates", :force => true do |t|
