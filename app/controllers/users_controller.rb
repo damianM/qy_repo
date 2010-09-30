@@ -2,6 +2,12 @@
 class UsersController < ApplicationController
   before_filter :login_required, :except => [:new, :create, :login, :find, :ulogin, :fetch, :reset]
 
+  def index
+    @users = User.all   
+    
+    render :action => 'index', :layout => 'admin'
+  end
+
   def new
     @user = User.new
   end

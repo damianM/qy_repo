@@ -110,9 +110,13 @@ class User < ActiveRecord::Base
     reset_perishable_token!
     UserMailer.deliver_activation_confirmation(self)
   end
-  def deliver_greeting!
 
+  def deliver_greeting!
     UserMailer.deliver_greeting(self)
+  end
+
+  def is_admin?
+    instance_of?(Admin)
   end
 
 end

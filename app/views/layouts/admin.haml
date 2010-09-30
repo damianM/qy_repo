@@ -15,15 +15,11 @@
 
     #page
       = render "layouts/head"
-    
+
       #main
+        = render :partial => "layouts/flash", :object => flash    
         = render("layouts/admin_left_menu")
-
-      #main
-        #ccol
-          = render :partial => "layouts/flash", :object => flash
-
-          = yield :layout
+        = yield :layout
 
 
       = render "layouts/footer"

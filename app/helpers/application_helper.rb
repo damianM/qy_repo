@@ -141,9 +141,6 @@ module ApplicationHelper
 </style>"
   end
 
-
-
-
   def insert_bcorners
   end
   
@@ -154,5 +151,11 @@ module ApplicationHelper
   def s_latest_photos
     Photo.find(:all,:limit => 10, :order => "created_at desc").reject{|x| x.gallery.user.nil?}[0...6]
   end
+
+  def tf_in_pl value
+    return 'Tak' if value
+    return 'Nie'
+  end
+  
 end
 
