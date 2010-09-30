@@ -157,4 +157,10 @@ class TeamsController < ApplicationController
     @users = @team.users
   end
 
+  def admin_list
+    @teams = Team.all   
+   
+    render :action => 'admin_list', :layout => 'admin'
+  end
+
 end

@@ -3,7 +3,7 @@
   
   <div class="body">
     <div class="find_event">
-      <% form_tag "/event/list" do%>
+      <% form_tag list_events_path do%>
         <br/>
         <div class="bolder" style="text-align:left;padding-left:40px;"> Data:</div>
         <br/>
@@ -38,11 +38,11 @@
       <div class="event">
         <% if event.rights?(curuser) and event.event_start >= (Date.today) %>
           <div class="event_edit">
-            <%= link_to (image_tag "/edit.png"), {:controller => "event", :action => "modify", :id => event.id}, {:title => "Edytuj"} %>
+            <%= link_to (image_tag "/edit.png"), edit_event_path(event), {:title => "Edytuj"} %>
           </div>
           <div class="event_delete">
 
-            <%= link_to (image_tag "/delete.png"), {:controller => "event", :action => "delete", :id => event.id}, {:title => "Usuń", :confirm => "Czy na pewno chcesz usunąć tę imprezę?"} %>
+            <%= link_to (image_tag "/delete.png"), event_path(event), {:method => :delete, :title => "Usuń", :confirm => "Czy na pewno chcesz usunąć tę imprezę?"} %>
           </div>
         <% end %>
         <div class="event_header">
@@ -84,14 +84,14 @@
     <div class="col1">
 
       <div class="button_gold_100" style="font-size:10pt; font-weight: bold;float:left;margin-top:7px;">
-<%= link_ "Dodaj nową" , "event", "new" %>
+        <%= link_to "Dodaj nową", new_event_path %>
       </div>
     </div>
     
     <div class="col2">
       <div class="button_silver_75" style="font-size:10pt; font-weight: bold;float:right;margin-top:7px;">
       
-        <%= link_ "Wszystkie" , "event", "list",0 %>
+        <%= link_to "Wszystkie" , list_events_path({:id => 0}) %>
       </div>
     </div>
     <div class="clr"></div>

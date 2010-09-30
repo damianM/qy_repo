@@ -2,7 +2,7 @@
   <%= insert_bcorners %>
   <div class="header p_event_edit">Edytuj imprezę</div>
   <div class="body">
-    <% form_for :event do |f| %>
+    <% form_for @event do |f| %>
       <%= f.error_messages %>
       <div class="form_row">
         <span class="required_field">*</span>

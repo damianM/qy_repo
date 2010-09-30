@@ -1,0 +1,5 @@
+%tr{:id => "team_#{team.id}", :class=> 'team'}
+  %td= team.name
+  %td= team.description
+  %td= link_to 'Edycja', edit_team_path(team)
+  %td= link_to 'Usuń', team_path(team), :method => :delete

@@ -1,0 +1,13 @@
+//= will_paginate @users, :renderer => 'RemoteLinkRenderer', :remote => remote_pagination_params, :previous_label => "&laquo;", :next_label => "&raquo;"
+
+%table{:class => 'events tablesorter'}
+  %thead
+    %tr.tableHead2
+      %th Login
+      %th Imię Nazwisko
+      %th Email
+      %th Typ
+      %th Aktywny
+
+  %tbody
+    = render :partial => 'user', :collection => @users
