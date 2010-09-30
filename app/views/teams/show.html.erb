@@ -6,7 +6,7 @@
 
         <div class="team_edit">
           <% if @team.rights?(curuser) %>
-            <%= link_to (image_tag "/edit.png"), {:controller => "team", :action => "modify", :id => @team.id}, {:title => "Edytuj grupę", :class => "picture_link"} %>
+            <%= link_to (image_tag "/edit.png"), edit_team_path(@team), {:title => "Edytuj grupę", :class => "picture_link"} %>
           <% end %>
           <span class="team_opt">
             <% if @team.member?(curuser) %>
@@ -54,19 +54,19 @@
 
 
 
-<%= render :partial => "team/latest_topic", :locals => {:top_topics => @top_topics, :latest_topics => @latest_topics} if @team.member?(curuser)%>
+<%= render :partial => "teams/latest_topic", :locals => {:top_topics => @top_topics, :latest_topics => @latest_topics} if @team.member?(curuser)%>
 
 
 <div class="partial ">
 
   <div class="header p_team_latest"></div>
   <div class="body">
-    <%= render :partial => "team/users" %>
+    <%= render :partial => "teams/users" %>
 
     <%begin%>
       <hr/>
       <hr/>
-    <%= render :partial => "team/pending_users" %>
+    <%= render :partial => "teams/pending_users" %>
     <% end unless @team.pending_users.empty? %>
   </div>
 </div>

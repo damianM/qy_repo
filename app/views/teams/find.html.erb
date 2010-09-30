@@ -2,7 +2,7 @@
   <div class="header p_team_find"></div>
 
   <div class="body">
-    <% form_tag do%>
+    <% form_tag find_teams_path do%>
       <div class="form_row">
         <%= label_tag :query, "Wpisz zapytanie" %>
         <%= text_field_tag :query %>

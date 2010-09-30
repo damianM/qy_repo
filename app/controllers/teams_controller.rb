@@ -1,31 +1,35 @@
 # -*- coding: utf-8 -*-
-class TeamController < ApplicationController
+class TeamsController < ApplicationController
+
   before_filter :login_required
   layout "application", :except => [:iusers, :ipending_list]
 
   def new
-    if request.post?
-      @team = Team.new(params[:team])
-      Teamuser.create(:user => curuser, :team => @team, :status => "owner")
-      if @team.save
-        Forum.create(:team => @team)
-        flash[:notice]="Utworzono grupę"
-        redirect_to :controller => "user", :action => "myteams"
-      end
+    @team = Team.new
+  end
+
+  def create
+    @team = Team.new(params[:team])
+    Teamuser.create(:user => curuser, :team => @team, :status => "owner")
+    if @team.save
+      Forum.create(:team => @team)
+      flash[:notice]="Utworzono grupę"
+      redirect_to myteams_user_path(current_user)
+    else
+      render :action => 'new'
     end
   end
 
-  def delete
-    if params[:id]
-      @team = Team.find(params[:id])
-      links = Teamuser.find_all_by_team_id(params[:id])
-      for link in links
-        link.delete
-      end
-      @team.delete
-      flash[:notice]="Pomyślnie usunięto grupę"
-      redirect_to :controller => "user", :action => "myteams"
+  def destroy
+    @team = Team.find(params[:id])
+    links = Teamuser.find_all_by_team_id(params[:id])
+    for link in links
+      link.delete
     end
+    @team.delete
+ 
+   flash[:notice]="Pomyślnie usunięto grupę"
+    redirect_to myteams_user_path(current_user)
   end
 
   def join
@@ -33,7 +37,7 @@ class TeamController < ApplicationController
       @team = Team.find(params[:id])
       Teamuser.create(:user => curuser, :team => @team, :status => "pending")
       flash[:notice]="Pomyślnie wysłano prośbę o dołączenie do grupy"
-      redirect_to :controller => "user", :action => "myteams"
+      redirect_to myteams_user_path(current_user)
     end
   end
 
@@ -44,7 +48,7 @@ class TeamController < ApplicationController
       link.delete
       @team.delete if @team.users.count==0
       flash[:notice]="Pomyślnie opuszczono grupę"
-      redirect_to :controller => "user", :action => "myteams"
+      redirect_to myteams_user_path(current_user)
     end
   end
 
@@ -76,7 +80,7 @@ class TeamController < ApplicationController
         teamuser.save
       end
       flash[:notice]="Zapisano zmiany"
-      redirect_to :controller => "team", :action => "show",:id => @team.id
+      redirect_to team_path(@team)
     elsif request.post? and !params[:users]
       flash[:error]="Nie zaznaczono użytkowników"
       redirect_to :controller => "team", :action => "pending_list",:id => @team.id
@@ -106,29 +110,33 @@ class TeamController < ApplicationController
 
   end
 
-  def modify
-    if params[:id]
-      @team = Team.find(params[:id])
-      @team.update_attributes(params[:team])
-      if request.post? and @team.save
-        flash[:notice]="Zmodyfikowano grupę"
-        redirect_to :controller => "user", :action => "myteams"
-      end
-    end
+  def edit
+    @team = Team.find(params[:id])    
   end
 
+  def update
+    @team = Team.find(params[:id])
+    @team.update_attributes(params[:team])
+    if @team.save
+      flash[:notice]="Zmodyfikowano grupę"
+      redirect_to myteams_user_path(current_user)
+    else
+      render :action => 'edit'
+    end
+  end
 
   def list
     @teams = Team.find(:all)
   end
 
 
-  def find
+  def find_form
     @teams = []
+    render :action => 'find'
+  end
 
-    if request.post? and params[:query]
-      @teams = [] #Team.find_with_ferret(params[:query])
-    end
+  def find
+    @teams = Team.find(:all, :conditions => "name LIKE '%#{params[:query]}%'")
   end
 
 
@@ -139,6 +147,8 @@ class TeamController < ApplicationController
     else
       @myteams = curuser.teams
     end
+
+    @team = Team.new
   end
 
   
@@ -146,4 +156,5 @@ class TeamController < ApplicationController
     @team = Team.find(params[:id])
     @users = @team.users
   end
+
 end
