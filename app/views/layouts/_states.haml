@@ -4,3 +4,4 @@
     %ul.states
       - State.find(:all, :order => 'name').each do |state|
         %li= link_to "#{state.name} (#{User.find_all_by_active_and_state_id(state.id, true).count})", find_users_path(:id => state.id, :by => 'state_id') 
+

@@ -1,0 +1,17 @@
+<div class="partial">
+  
+  <div class="header p_team_myteams"></div>
+  <div class="body">
+    <% unless teams.empty? %>
+      <% for team in teams %>
+        <%= render :partial => "teams/team", :locals => {:team => team} %>
+
+      <% end %>
+    <% else %>
+      Nie należysz do żadnej grupy
+    <% end %>
+    <div class="button_gold_100">
+      <%= link_to "Dodaj grupę" , new_team_path %>
+    </div>
+  </div>
+</div>

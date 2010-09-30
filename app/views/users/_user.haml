@@ -1,0 +1,7 @@
+%tr{:id => "user_#{user.id}", :class=> 'user'}
+  %td= user.login
+  %td= user.name
+  %td= user.email
+  %td= user_type_in_polish(user.type)
+  %td= link_to "#{tf_in_pl(user.active?)}", '#'
+  %td= link_to 'Edycja', edit_user_path(user)

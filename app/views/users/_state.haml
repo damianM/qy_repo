@@ -1,0 +1,6 @@
+#state
+
+#state-edit{:style => 'display:none;'}
+  = select_tag 'state', state_options_for_select(user.state)
+  = link_to 'zapisz', '#', :class => 'submit'
+  = link_to 'anuluj', '#', :class => 'cancel'

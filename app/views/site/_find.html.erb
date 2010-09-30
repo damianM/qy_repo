@@ -1,9 +1,9 @@
 <div class="partial partial_left">
   <div class="header p_findq"></div>
   <div class="body">
-    <% form_tag '/user/find', :method => "get" do %>
-      <%=  text_field_tag 'id' %><br/><br/>
-      <%=  hidden_field_tag 'by', "aaf" %>
+    <% form_tag find_users_path do %>
+      <%=  text_field_tag :id %><br/><br/>
+      <%=  hidden_field_tag 'by', "user_login" %>
       <div class="button_silver_67" style="font-size:10pt; font-weight: bold;float:right;">
         <a style="" href="#" onclick="parentNode.parentNode.submit(); return false">Szukaj</a>
       </div>

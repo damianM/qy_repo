@@ -1,0 +1,14 @@
+.partial.latest_items
+  .mheader Edytuj grupę
+  .body
+    - form_for(@team) do |f|
+      .form_row
+        = f.label :name, "Nazwa"
+        = f.text_field :name
+        = f.error_message_on :name 
+      .form_row
+        = f.label :description, "Opis"
+        = f.text_area :description, :rows => 10
+        = f.error_message_on :description
+      .form_row
+        = f.submit "Zapisz zmiany", :class => "submit"

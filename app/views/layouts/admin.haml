@@ -1,0 +1,25 @@
+!!! XML
+!!! Strict
+%html{'xmlns' =>'http://www.w3.org/1999/xhtml', 'xml:lang' => 'pl', 'lang' => 'pl'}
+  %head
+    %title quadomaniacy.pl
+
+    %meta{'http-equiv' => 'content-type', 'content'=>'text/html; charset=UTF-8'}
+    %meta{'name' => 'robots', 'content' => 'index,follow'}
+    %meta{'name' => 'keywords', 'content' => 'quady'}
+    %meta{'name' => 'description', 'content' => 'quady'}
+
+    = render "layouts/includes"
+
+  %body
+
+    #page
+      = render "layouts/head"
+
+      #main
+        = render :partial => "layouts/flash", :object => flash    
+        = render("layouts/admin_left_menu")
+        = yield :layout
+
+
+      = render "layouts/footer"

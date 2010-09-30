@@ -14,3 +14,11 @@
     width:100%;
     margin: 1px;
 }
+
+table{
+ width: 78%;
+}
+
+table th{
+  border-bottom: 1px solid #B8B8B8;
+}

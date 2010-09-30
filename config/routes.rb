@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action
+  map.admin_panel '/admin_panel', :controller => 'home'
   map.login '/user/login', :controller => 'user_sessions', :action => "new"
   map.logout '/user/logout', :controller => 'user_sessions', :action => "destroy"
   # Sample of named route:
@@ -19,8 +20,9 @@ ActionController::Routing::Routes.draw do |map|
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
 
-  map.resources :users, :member => {:friends_index => :get, :friends => :get, :pending => :get, :requested => :get}, :collection => { :find => :get }
   map.resources :comments
+  map.resources :teams, :collection => {:list => :get, :find_form => :get, :find => :post}
+  map.resources :users, :member => {:friends_index => :get, :friends => :get, :pending => :get, :requested => :get, :myteams => :get}, :collection => { :find => :get }
   
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|

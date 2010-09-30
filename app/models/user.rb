@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :skype, :allow_nil => true, :allow_blank => true
   validates_uniqueness_of :gg, :allow_nil => true, :allow_blank => true
   
+  named_scope :active, :conditions => [ "users.active = ?", true]
+
   def self.find_all_by_company_id company_id
     User.find(:all, :joins => :quad, :conditions => [ "users.active = ? AND quads.company_id = ?", true, company_id])
   end
@@ -99,6 +101,10 @@ class User < ActiveRecord::Base
     save
   end
 
+  def role_symbols
+    self ? [self.class.to_s.underscore.to_sym] : [:guest]
+  end
+   
   def deliver_activation_instructions!
     reset_perishable_token!
     UserMailer.deliver_activation_instructions(self)
@@ -108,9 +114,13 @@ class User < ActiveRecord::Base
     reset_perishable_token!
     UserMailer.deliver_activation_confirmation(self)
   end
-  def deliver_greeting!
 
+  def deliver_greeting!
     UserMailer.deliver_greeting(self)
+  end
+
+  def is_admin?
+    instance_of?(Admin)
   end
 
 end
