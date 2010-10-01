@@ -26,7 +26,7 @@
 
     <div id="add_g">
       <div class="button_gold_100" style="text-align:left;display:block;float:left">
-        <%= link_ "Impreza", "event", "show", @event %>
+        <%= link_to "Impreza", event_path(@event) %>
       </div>
       <% if @event.rights?(curuser) %>
         <div class="button_silver_75" style="text-align:left;display:block;float:right">
