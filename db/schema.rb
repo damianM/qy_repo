@@ -9,13 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101001123609) do
-
-  create_table "adverts", :force => true do |t|
-    t.string   "section_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20101001211019) do
 
   create_table "assets", :force => true do |t|
     t.integer  "assetable_id"
@@ -29,6 +23,13 @@ ActiveRecord::Schema.define(:version => 20101001123609) do
     t.integer  "width"
     t.integer  "height"
     t.string   "serial",         :limit => 32
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "banners", :force => true do |t|
+    t.string   "name"
+    t.string   "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,15 @@
+%fieldset
+  %legend Baner
+  %div
+    = form.label :name, 'Nazwa'
+    = form.error_message_on :name
+    = form.text_field :name, :size => 80
+
+  %div
+    = form.label :position, 'Pozycja'
+    = form.error_message_on :position
+    = form.select :position, banner_options_for_positions_select(form.object)
+
+  %div
+    = form.hidden_field :serial
+

@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+
+  def form_authenticity_token_tag
+    javascript_tag("var AUTH_TOKEN = '#{form_authenticity_token}';") if protect_against_forgery?
+  end
+
   def link_ (text, controller, action, id=nil, confirm=nil)
     if id.nil?
       if confirm.nil?
