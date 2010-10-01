@@ -31,7 +31,7 @@ class ConvertTablesToUtf8 < ActiveRecord::Migration
   end
 
   def self.down
-    raise "cant revert sorry"
+    p "cant revert sorry"
   end
 
 end

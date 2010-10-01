@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :user
+  belongs_to :event_category
   has_many :files, :class_name => "Efile"
   has_many :galleries
 

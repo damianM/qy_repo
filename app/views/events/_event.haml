@@ -1,0 +1,8 @@
+%tr{:id => "event_#{event.id}", :class=> 'event'}
+  %td= event.title
+  %td= event.place
+  %td= "#{event.event_start} - #{event.event_end}"
+  %td= event.organiser_name
+  %td= event.event_category.name
+  %td= link_to 'Edycja', edit_event_path(event)
+  %td= link_to 'Usuń', event_path(event), :method => :delete

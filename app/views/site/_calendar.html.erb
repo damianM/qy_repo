@@ -9,13 +9,13 @@
       <p>Ostatnio dodane imprezy:</p>
     
     <% events.reverse[0...5].each do |event| %>
-      <%= link_ (cut event.title,20),"event","show",event.id %><br/>
+      <%= link_to (cut event.title,20),event_path(event) %><br/>
     <% end %>
     </div>
 
     
-      <div class="button_silver_75" style="float:left"><%= link_ "Dodaj nową", "event","new"  %></div>
-      <div class="button_gold_100" style="float:right"><%= link_ "Pokaż wszystkie", "event","list",0  %></div>
+      <div class="button_silver_75" style="float:left"><%= link_to "Dodaj nową", new_event_path  %></div>
+      <div class="button_gold_100" style="float:right"><%= link_to "Pokaż wszystkie", list_events_path({:id => 0})  %></div>
       <div class="clr"></div>
   </div>
 </div>

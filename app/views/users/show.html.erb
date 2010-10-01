@@ -9,19 +9,19 @@
 
 <div id="user_show">
   <div class="col_left">
-    <%= render :partial => "user/about", :locals => {:user => @user, :quad => @user.quad } %>
-    <%= render :partial => "user/quad", :locals => {:user => @user } %>
+    <%= render :partial => "users/about", :locals => {:user => @user, :quad => @user.quad } %>
+    <%= render :partial => "users/quad", :locals => {:user => @user } %>
   </div>
   <div class="col_right">
-    <%= render :partial => "user/friends", :locals => {:user => @user } %>
-    <%= render :partial => "user/galleries", :locals => {:user => @user } %>
-    <%= render :partial => "user/groups", :locals => {:user => @user } %>
+    <%= render :partial => "users/friends", :locals => {:user => @user } %>
+    <%= render :partial => "users/galleries", :locals => {:user => @user } %>
+    <%= render :partial => "users/groups", :locals => {:user => @user } %>
 
   </div>
   <div class="clr"></div>
   
-<%#= render :partial => "user/links", :locals => {:user => @user } %>
-<%#= render :partial => "user/quad", :locals => {:user => @user } %>
+<%#= render :partial => "users/links", :locals => {:user => @user } %>
+<%#= render :partial => "users/quad", :locals => {:user => @user } %>
 
 
 

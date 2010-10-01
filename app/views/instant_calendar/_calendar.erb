@@ -9,7 +9,7 @@
     <table summary="Calendar">
       <caption>
         
-        <%= link_to (localize(time, :format => "%B") + " " + year.to_s), :controller => "event", :action => "list", :month => time.month, :year => time.year%>
+        <%= link_to (localize(time, :format => "%B") + " " + year.to_s), :controller => "events", :action => "list", :month => time.month, :year => time.year%>
         
       </caption>
       <thead>
@@ -66,7 +66,7 @@
       </tbody>
 
     </table>
-    <span id="cal_left"><%=  link_to_remote "<<",:url => {:controller => "event", :action => "gcal", :m => prev_month.month, :y => prev_month.year}, :html => {:title => "Poprzedni miesiąc"}%></span>
-    <span id="cal_right"><%=  link_to_remote ">>",:url => {:controller => "event", :action => "gcal", :m => next_month.month, :y => next_month.year}, :html => {:title => "Następny miesiąc"}%></span>
+    <span id="cal_left"><%=  link_to_remote "<<",:url => {:controller => "events", :action => "gcal", :m => prev_month.month, :y => prev_month.year}, :html => {:title => "Poprzedni miesiąc"}%></span>
+    <span id="cal_right"><%=  link_to_remote ">>",:url => {:controller => "events", :action => "gcal", :m => next_month.month, :y => next_month.year}, :html => {:title => "Następny miesiąc"}%></span>
   </div>
 </div>

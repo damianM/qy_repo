@@ -99,7 +99,7 @@ module ApplicationHelper
     this_month_events=Event.find(:all,:conditions => "month(event_start) = \"#{time.strftime("%m")}\" and year(event_start) = \"#{time.strftime("%Y")}\"")
     this_month_events.each do |event|
       highlights << event.event_start.day
-      actions[event.event_start.day] = link_ event.event_start.day,"event","show",event.id
+      actions[event.event_start.day] = link_to event.event_start.day, event_path(event)
     end
 
     a[:highlight_dates]=highlights
