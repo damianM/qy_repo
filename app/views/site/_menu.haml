@@ -1,9 +1,9 @@
 .button_menu
   = link_to "START", {:controller => "site", :action => "index"}, {:style => "color: orange"}
 .button_menu
-  = link_ "PROFIL", "users", "show"
+  = link_to "PROFIL", current_user ? user_path(current_user) : '#'
   %div
-    %div= link_to "Mój profil", curuser ? user_path(current_user) : '#'
+    %div= link_to "Mój profil", current_user ? user_path(current_user) : '#'
     %div= link_to "Edytuj profil", curuser ? edit_user_path(current_user) : '#'
     %div= link_ "Galeria", "gallery", "list"
     %div= link_ "Moje imprezy", "event", "list",(current_user ? current_user.id : 0)
