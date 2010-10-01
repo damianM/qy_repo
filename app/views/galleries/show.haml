@@ -1,0 +1,74 @@
+.partial
+  .header.p_gal
+
+  .body
+    = render :partial => "nav", :locals => {:gallery => @gallery, :user => (@gallery.user.nil? ? @gallery.event : @gallery.user) }
+
+    - unless @gallery.photos.empty?
+      %table.gallery
+        - @galleries.photos.in_groups_of(3).each do |triple|
+          %tr
+            - triple.each do |photo|
+              %td
+                .photo_m
+                  = link_to image_tag(photo.thumb), { :controller => 'photo', :action => 'show', :id => photo.id }
+                  .clr
+                  .al_opt_left
+                    %table
+                      %tr
+                        %td.gal_opt_lef Dodano
+                        %td.al_opt_right= photo.created_at.strftime("%d.%m.%Y, %H:%M") 
+
+                      - if photo.description !=""
+                        %tr
+                          %td.gal_opt_left Opis:
+                          %td.gal_opt_right= truncate(photo.description, 9, '...')
+
+                      - if photo.rights?(current_user)
+                        %tr
+                          %td.gal_opt_left
+                            = link_to image_tag("/edit.png"), { :action => "p_edit", :id => photo.id }, { :title => "Edytuj zdjęcie", :class => "picture_link"}
+                          %td.gal_opt_right
+                            = link_to image_tag("/delete.png"), {:controller => "photo", :action => "delete", :id => photo.id}, { :confirm => "Czy jesteś pewien?", :title => "Usuń zdjęcie", :class => "picture_link"} 
+
+    - unless @gallery.videos.empty?
+      %table.gallery
+        - @galleries.videos.in_groups_of(3).each do |triple|
+          %tr
+            - triple.each do |video|
+              %td
+                .photo_m
+                  = link_to image_tag(video.link[0...-3] + "jpg"), { :controller => 'video', :action => 'show', :id => video.id }
+                .clear
+                .gallery_opt
+                  %table
+                    %tr
+                      %td.gal_opt_left Dodano:
+                      %td.gal_opt_right=video.created_at.strftime("%d.%m.%Y, %H:%M")
+
+                    - if vide.description != ""
+                      %tr
+                        %td.gal_opt_left Opis:
+                        %td.gal_opt_right= truncate(video.description, 9, '...')
+
+                    - if video.rights?(current_user)
+                      %tr
+                        %td.gal_opt_left
+                          = link_to image_tag("/edit.png"), { :action => "v_edit", :id => video.id }, { :title => "Edytuj film", :class => "picture_link" } 
+                        %td.gal_opt_right
+                          = link_to image_tag("/delete.png"), { :controller => "video", :action => "delete", :id => photo.id }, { :confirm => "Czy jesteś pewien?", :title => "Usuń film", :class => "picture_link"}
+
+    - else
+      %p Album jest pusty!
+
+
+    #add_obj
+      .button_gold_100{ :style => "text-align:left;display:block;float:left;" }
+        = link_to "Wszystkie albumy", user_galleries_path(@user)
+      - if @gallery.rights?(current_user)
+        .button_silver_75{ :style => "text-align:right;display:block;float:right" }
+          = link_to "Dodaj zdjęcie!", { :action => "p_unfold", :id => @gallery.id}
+        .button_silver_75{ :style => "text-align:right;display:block;float:right;margin-right:5px;" }
+          = link_to "Dodaj film!", { :action => "v_unfold", :id => @gallery.id}
+
+      .clr

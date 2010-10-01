@@ -124,13 +124,6 @@ module ApplicationHelper
     t
   end
 
-  def format_galleries user
-    gg=user.galleries.sort{|x,y| x.created_at <=> y.created_at}
-    g=[]
-    gg.each_with_index{|x,indx| g << [x,indx]}
-    g
-  end
-
   def iframe_styles
     stylesheet_link_tag("style") +
       "<style type=\"text/css\">

@@ -1,0 +1,20 @@
+.partial
+  .header.p_gal_index
+  .body
+    - if @galleries.empty?
+      %p
+        = @user == current_user ? "Nie masz jeszcze galerii" : "Ten uzytkownik nie ma jeszcze galerii"
+    - else
+      %table.gallery_list
+        - @galleries.in_groups_of(2).each do |pair|
+          %tr
+            - pair.each do |gallery|
+              %td
+                = render :partial => "gallery", :object => gallery unless gallery.nil?
+
+
+    - if @user == current_user
+      #new_gallery
+        .button_silver_75{ :style => "float:right" }
+          = link_to "Dodaj album", new_user_gallery_path(@user)
+        .clr

@@ -1,0 +1,28 @@
+.partial_login
+  .header.p_user
+  .body{ :style => "padding-top:20px;" }
+    - if controller_name != "users" || action_name != 'show'
+      %div{ :style => "text-align:center;font-size:10pt" }
+        .photo
+          = link_to img(current_user.photo), user_path(current_user)
+
+        .link{ :style => "font-weight: bold;" }
+          = link_to current_user.login, user_path(current_user)
+
+        .userinfo_sub1.bolder
+          - if current_user.quad 
+            = current_user.quad.company.nil? ? "" : current_user.quad.company.name + " "
+            = current_user.quad.qtype.nil? ? "" : current_user.quad.qtype
+
+        .userinfo_sub01{ :style => "color:#000" }
+          = current_user.city unless current_user.city.blank?
+
+    .user_links{ :style => "float:left" }
+      = link_to "Edytuj profil", edit_user_path(current_user)
+      = link_to "Zobacz galerię", user_galleries_path(current_user)
+      = link_to "Przejdź do forum", :controller => "forum", :action => "login", :id => current_user.id
+
+    .button_silver_67{ :style => "font-size:10pt; font-weight: bold;float:right;margin-top:27px;" }
+      = link_to 'Wyloguj', logout_path, :style => "color: #888;"
+
+    .clr

@@ -1,0 +1,13 @@
+.partial
+  .header.p_gal_index
+  .body
+    %p Edytuj album
+    - form_for @gallery, :url => user_gallery_path(@user, @gallery) do |f|
+      .form_row
+        = f.label :name, "Nazwa"
+        = f.text_field :name
+
+      .form_row
+        = f.submit "Zmień", :class => 'submit'
+        .button_silver_67.submit{ :style => "border: 1px solid #AAA; height:24px; margin-right:5px;" }
+          = link_to "Zamknij", user_galleries_path(@user)
