@@ -3,3 +3,4 @@
 [a-zA-Z0-9\.-_]*~
 /tmp
 /public/images/data/*
+/public/uploads

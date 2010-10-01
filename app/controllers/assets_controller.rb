@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AssetsController < ApplicationController
   before_filter :find_asset, :only => [ :destroy, :asset, :download ]
   filter_access_to :all
@@ -14,6 +15,7 @@ class AssetsController < ApplicationController
     else
       @asset = Attachment.new(params[:asset])
     end
+
 
     if @asset.save
       render :json => {

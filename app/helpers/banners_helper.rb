@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 module BannersHelper
 
-  def display_banner position
-    if banner = Banner.active.find_all_by_position(position).rand
-      if asset = banner.assets.first
-        asset.flash? ? flashobject_tag(asset.public_filename) : image_tag(asset.public_filename)
-      end
+  def display_banner banner
+    if asset = banner.assets.first
+      asset.flash? ? flashobject_tag(asset.public_filename) : image_tag(asset.public_filename)
     end
   end
 

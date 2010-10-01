@@ -4,7 +4,6 @@ class Banner < ActiveRecord::Base
   
   validates_presence_of :name, :position
   validates_length_of :name, :maximum => 64
-  validates_inclusion_of :position, :in => %w( top right center )
 
   has_many :assets, :as => :assetable, :class_name => 'Attachment', :dependent => :destroy
 
