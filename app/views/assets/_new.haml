@@ -1,0 +1,11 @@
+- assets = ( object.assets + Asset.find_all_by_serial_and_type(object.serial, asset_type) )
+
+%ul#assets
+  = render :partial => 'assets/asset', :collection => assets
+
+- form_for setup_asset(object), :html => { :multipart => true, :id => 'ajaxUploadForm', :style => "display:block;" } do |form|
+  = hidden_field_tag 'asset_type', asset_type
+  = form.hidden_field :serial
+  = form.file_field :uploaded_data, :rel => object.class.acceptable_assets_quantity, :id => 'upload_button'
+
+#ajax_upload_notification_box

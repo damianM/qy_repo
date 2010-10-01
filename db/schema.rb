@@ -9,7 +9,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101001064727) do
+ActiveRecord::Schema.define(:version => 20101001123609) do
+
+  create_table "adverts", :force => true do |t|
+    t.string   "section_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "assets", :force => true do |t|
+    t.integer  "assetable_id"
+    t.string   "assetable_type", :limit => 64
+    t.integer  "parent_id"
+    t.string   "content_type",   :limit => 64
+    t.string   "type",           :limit => 16
+    t.string   "filename"
+    t.string   "thumbnail"
+    t.integer  "size"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "serial",         :limit => 32
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", :force => true do |t|
     t.text     "content"

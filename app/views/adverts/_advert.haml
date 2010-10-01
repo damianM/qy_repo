@@ -1,0 +1,5 @@
+%tr{:id => "advert_#{advert.id}", :class=> 'advert'}
+  %td= advert.section_name
+  %td 
+  %td= link_to 'Edycja', edit_user_path(user)
+  %td= link_to 'Usuń', advert_path(advert), :method => :delete, :cofirm => 'Czy napewno chcesz usunąć?')

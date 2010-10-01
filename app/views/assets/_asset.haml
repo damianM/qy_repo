@@ -1,0 +1,12 @@
+%li{:id => "asset_#{asset.id}", :class => 'asset', :style => 'list-style:none;'}
+  - if asset.class.to_s == 'Attachment'
+    - if asset.flash?
+      = raw flashobject_tag(asset.public_filename)
+    - else
+      = image_tag(asset.public_filename())
+  - elsif asset.class.to_s == 'ForumAttachment'
+    = asset.filename
+  - else
+    = image_tag(asset.public_filename(:thumb))
+
+  = link_to "Usuń", '#', :rel => asset_path(asset), :id => 'destroy_asset'
