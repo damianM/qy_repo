@@ -1,8 +1,5 @@
-.ccol_narrower{
-    width: 480px;
-}
 .ccol_wider{
-    width: 710px;
+ width: 700px!important;
 }
 
 .col_left{

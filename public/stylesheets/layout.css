@@ -59,6 +59,7 @@ body{
 #ccol{
     float:left;
     display: block;
+    width: 470px;
 }
 
 #flash {
@@ -66,7 +67,7 @@ body{
 }
 
 #rcol{
-    width: 208px;
+    width: 218px;
     float:right;
     display: block;
     margin-left: 10px;

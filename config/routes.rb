@@ -22,8 +22,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :events, :collection => {:list => :get}
   map.resources :comments
+
   map.resources :teams, :collection => {:list => :get, :find_form => :get, :find => :post, :admin_list => :get}
-  map.resources :users, :member => {:friends_index => :get, :friends => :get, :pending => :get, :requested => :get, :myteams => :get}, :collection => { :find => :get }
+  map.resources :users, :member => {:friends_index => :get, :friends => :get, :pending => :get, :requested => :get, :myteams => :get}, :collection => {:find => :get} do |user|
+    user.resources :galleries
+  end
   
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|

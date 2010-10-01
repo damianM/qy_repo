@@ -1,0 +1,24 @@
+.gallery
+  .lcol_user= link_to image_tag('../gallery.png'), user_gallery_path(@user, gallery)
+
+  .rcol_user
+    .about_links
+      .name= link_to gallery.name, user_gallery_path(@user, gallery)
+      .photos
+        Zdjęć:
+        %div= gallery.photos.nil? ? 0 : gallery.photos.length
+      .movies
+        Filmów:
+        %d= gallery.videos.nil? ? 0 : gallery.videos.length
+
+      .actions
+        .gallery_link_edit{ :style => "float:left" }
+          - if gallery.rights?(curuser)
+            = link_to image_tag("/edit.png"), edit_user_gallery_path(@user, gallery), { :title => "Edytuj album", :class => "picture_link" }
+	  
+        .gallery_link_delete
+          - if gallery.rights?(curuser)
+            = link_to image_tag("/delete.png"), user_gallery_path(@user, gallery), { :method => :delete, :confirm => "Czy jesteś pewien? Usunięcie albumu spowoduje usunięcie wszystkich zdjęć w nim zawartych", :title => "Usuń album", :class => "picture_link" }
+
+  .clr
+

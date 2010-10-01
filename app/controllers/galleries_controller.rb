@@ -1,92 +1,65 @@
 # -*- coding: utf-8 -*-
-class GalleryController < ApplicationController
+class GalleriesController < ApplicationController
   before_filter :login_required
   IMAGE_PATH="public/images/data"
-
-  def list
-    @curuser = curuser
-    @user = params[:id].nil? ? @curuser : User.find(params[:id])
-    @galleries = format_galleries(@user)
-
-    @user.galleries.collect{|x| x.regenerate_thumb}
-    tmp=[]
-    while @galleries.length > 0
-      tmp << @galleries[0...2]
-      @galleries[0...2]=[]
-    end
-    @galleries= tmp
-
-    if request.post? and params[:gallery]
-      @gallery = Gallery.new(params[:gallery])
-      @gallery.user = @user
-      @gallery.generate_thumb
-      if @gallery.save
-        flash[:notice]="Dodano galerię"
-        redirect_to :controller => "gallery" ,:action => "list"
-      end
-    end
-  end
-
   
-  def elist
-    if request.post? and params[:gallery] and params[:id]
-      @gallery = Gallery.new(params[:gallery])
-      @gallery.event = Event.find(params[:id])
-      @gallery.generate_thumb
-      if @gallery.save
-        flash[:notice]="Dodano galerię"
-        redirect_to :controller => "gallery" ,:action => "elist", :id => params[:id]
-      else
-        flash[:error]="Błąd podczas dodawania galerii"
-        redirect_to :controller => "gallery" ,:action => "elist", :id => params[:id]
-      end
-      return
-    else
-      @event = Event.find(params[:id])
-      @galleries = format_galleries(@event)
-
-      @event.galleries.collect{|x| x.regenerate_thumb}
-      tmp=[]
-      while @galleries.length > 0
-        tmp << @galleries[0...2]
-        @galleries[0...2]=[]
-      end
-      @galleries= tmp
-
-
-    end
-  end
-
-    
-  def delete
-    @gallery = Gallery.find(params[:id])
-    if @gallery.rights?(curuser)
-      for photo in @gallery.photos
-        photo.remove
-        photo.delete
-      end
-      @gallery.delete
-      flash[:notice]="Pomyślnie usunięto galerię"
-    else
-      flash[:error]="Napotkano błąd"
-    end
-    redirect_to :action => "list"
-  end
-
   def index
-    
-    @gallery = Gallery.find(params[:id])
-    @photos = (@gallery.photos.nil? ? [] : @gallery.photos) + (@gallery.videos.nil? ? [] : @gallery.videos)
-    @photos.sort!{|x,y| x.created_at <=> y.created_at}
-    unless @photos.nil?
-      tmp=[]
-      while @photos.length > 0
-        tmp << @photos[0...3]
-        @photos[0...3]=[]
-      end
-      @photos= tmp
+    @user = User.find(params[:user_id])
+    @galleries = @user.galleries
+  end
+
+  def new
+    @user = User.find(params[:user_id])
+    @gallery = @user.galleries.build
+  end
+
+  def create
+    @user = User.find(params[:user_id])
+
+    @gallery = Gallery.new(params[:gallery])
+    @gallery.user = @user
+    if @gallery.save
+      flash[:notice] = "Dodano galerię"
+      redirect_to user_galleries_path(@user)
+    else
+      flash[:error] = "Galeria nie została dodana"
+      render :action => "new"
     end
-    
+  end
+  
+  def edit
+    @user = User.find(params[:user_id])
+    @gallery = @user.galleries.find(params[:id])
+  end
+ 
+  def update
+    @user = User.find(params[:user_id])
+    @gallery = @user.galleries.find(params[:id])
+
+    if @gallery.update_attributes(params[:gallery])
+      flash[:notice] = "Pomyślnie zmodyfikowano galerię"
+      redirect_to user_galleries_path(@user)
+    else
+      flash[:error] = "Wystąpił błąd podczas edycji galerii"
+      render :action => 'edit'
+    end
+  end
+  
+  def destroy
+    @user = User.find(params[:user_id])
+    @gallery = @user.galleries.find(params[:id])
+    @gallery.delete
+    flash[:notice]="Pomyślnie usunięto galerię"
+    redirect_to user_galleries_path(@user)
+  end
+
+  def show
+    @user = User.find(params[:user_id])
+    @gallery = @user.galleries.find(params[:id], :include => [ :photos, :videos ])
+  end
+
+
+  def add_photo?    
     if request.post? and params[:photo]
       
       p=params[:photo].clone
@@ -125,6 +98,40 @@ class GalleryController < ApplicationController
     end
   end
 
+
+
+
+
+
+
+
+  def elist
+    if request.post? and params[:gallery] and params[:id]
+      @gallery = Gallery.new(params[:gallery])
+      @gallery.event = Event.find(params[:id])
+      @gallery.generate_thumb
+      if @gallery.save
+        flash[:notice]="Dodano galerię"
+        redirect_to :controller => "galleries" ,:action => "elist", :id => params[:id]
+      else
+        flash[:error]="Błąd podczas dodawania galerii"
+        redirect_to :controller => "galleries" ,:action => "elist", :id => params[:id]
+      end
+      return
+    else
+      @event = Event.find(params[:id])
+      @galleries = @event.galleries
+
+      @event.galleries.collect{|x| x.regenerate_thumb}
+      tmp=[]
+      while @galleries.length > 0
+        tmp << @galleries[0...2]
+        @galleries[0...2]=[]
+      end
+      @galleries= tmp
+    end
+  end
+
   def convert_file(p) #mało przenośne, uwaga windows!
     cd=IMAGE_PATH + "/" + curuser.id.to_s
     Dir.mkdir(cd) unless File.exist?(cd)
@@ -142,23 +149,6 @@ class GalleryController < ApplicationController
     system("convert #{tname} -resize \"80x80>\" -format 'roundrectangle 1,1 %[fx:w],%[fx:h] 10,10' -write info:tmp.mvg -matte \\( +clone -alpha transparent -background none -fill white -stroke none -strokewidth 0 -draw @tmp.mvg \\) -compose DstIn -composite #{t80name}")
     system("rm tmp.mvg")
     return "data/"+curuser.id.to_s+"/"+time + ".png", "data/"+curuser.id.to_s+"/t"+time + ".png"
-  end
-
-  def edit
-    if request.post? and params[:id]
-      gallery = Gallery.find(params[:id])
-      if(gallery.rights? curuser)
-        gallery.update_attributes(params[:gallery])
-        if gallery.save
-          flash[:notice] = "Pomyślnie zmodyfikowano galerię"
-        else
-          flash[:error] = "Wystąpił błąd podczas edycji galerii"
-        end
-      else
-        flash[:error] = "Nie możesz edytować tej galerii"
-      end
-    end
-    redirect_to :action => "list"
   end
 
   def p_unfold
@@ -218,39 +208,6 @@ class GalleryController < ApplicationController
     end
   end
 
-  def foldg
-    respond_to do |format|
-
-      format.js do
-
-        render :update do |page|
-
-
-          page.remove "obj"
-          page.visual_effect :blind_down, "add_g"
-        end
-      end
-    end
-  end
-
-  def g_add
-    respond_to do |format|
-
-      format.js do
-
-        render :update do |page|
-
-
-          #page.hide "add_obj"
-          page.visual_effect :blind_up, "add_g"
-          page.insert_html :after, "add_g", :partial => "gallery/add_gallery"
-          page.hide "obj"
-          page.visual_effect :blind_down, "obj"
-        end
-      end
-    end
-  end
-
   def e_add
     respond_to do |format|
 
@@ -262,23 +219,6 @@ class GalleryController < ApplicationController
           #page.hide "add_obj"
           page.visual_effect :blind_up, "add_g"
           page.insert_html :after, "add_g", {:partial => "gallery/add_egallery", :locals => {:id => params[:id]}}
-          page.hide "obj"
-          page.visual_effect :blind_down, "obj"
-        end
-      end
-    end
-  end
-
-  def g_edit
-    respond_to do |format|
-
-      format.js do
-
-        render :update do |page|
-
-          #page.hide "add_obj"
-          page.visual_effect :blind_up, "add_g"
-          page.insert_html :after, "add_g", :partial => "gallery/edit_gallery", :locals => {:gallery => params[:id], :cname => Gallery.find(params[:id]).name}
           page.hide "obj"
           page.visual_effect :blind_down, "obj"
         end

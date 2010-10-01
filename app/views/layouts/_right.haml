@@ -1,6 +1,6 @@
 #rcol
   - if logged_in?
-    = render :partial => "site/user", :controller => "site", :locals => {:user => current_user}
+    = render :partial => "layouts/user"
     = render :partial => "site/messages", :controller => "site", :locals => {:user => current_user}
     = render :partial => "site/find_video", :controller => "site", :locals => {:user => current_user}
   - else
