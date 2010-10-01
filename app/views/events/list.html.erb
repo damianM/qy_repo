@@ -20,12 +20,7 @@
         </div>
         <div class="form_row bolder">
           <%= label_tag :category, "Kategoria:" %>
-          <% opts = []
-          @categories.each_pair{|key,value| opts << [key,value]}
-          opts.unshift(["Wszystkie",""])
-
-        %>
-          <%= select_tag :category,options_for_select(opts)  %>
+          <%= select_tag :category,options_for_select(EventCategory.all.map(&:name).zip)  %>
         </div>
 
         <div class="form_row">

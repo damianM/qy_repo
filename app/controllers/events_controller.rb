@@ -5,12 +5,11 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    render :action => 'index', :layout => 'admin'
   end
-
+  
   def new
     @event=Event.new
-    @categories=cats
-
   end
 
   def create
@@ -26,17 +25,15 @@ class EventsController < ApplicationController
   
 
   def destroy
-    if(params[:id])
-      @event = Event.find(params[:id])
-      if(@event.rights?(curuser))
-        if @event.delete
-          flash[:notice] = "Pomyślnie usunięto imprezę"
-        else
-          flash[:error] = "Wystapił błąd"
-        end
+    @event = Event.find(params[:id])
+    if(@event.rights?(curuser))
+      if @event.delete
+        flash[:notice] = "Pomyślnie usunięto imprezę"
       else
-        flash[:error] = "Nie możesz usunąć tej imprezy"
+        flash[:error] = "Wystapił błąd"
       end
+    else
+      flash[:error] = "Nie możesz usunąć tej imprezy"
     end
     redirect_to events_path
   end
@@ -48,29 +45,13 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @categories=cats
-    if params[:id]
-      @event=Event.find(params[:id])
-    else
-      flash[:error]="Błąd!"
-      redirect_to session[:prevpage]
-      return
-    end
+    @event=Event.find(params[:id])
   end
-
+  
   def update
-    @categories=cats
-    if params[:id]
-      @event=Event.find(params[:id])
-    else
-      flash[:error]="Błąd!"
-      redirect_to session[:prevpage]
-      return
-    end
+    @event=Event.find(params[:id])
 
     if params[:event] and @event.rights?(curuser)
-
-
       @event.update_attributes(params[:event])
       if params[:event].has_key? :relation
         @event.relationdate = Date.today
@@ -88,8 +69,6 @@ class EventsController < ApplicationController
   end
 
   def list
-    @categories=cats
-    
     if params[:month] and params[:year]
       
       @events = Event.find(:all, :conditions => "month(event_start) = '#{params[:month].to_i}' AND year(event_start) = '#{params[:year].to_i}'")
@@ -203,35 +182,7 @@ class EventsController < ApplicationController
 
   private
   def cats
-    {
-      "12 godzinny wyścig" => "12 godzinny wyścig",
-      "Cross Country" => "Cross Country",
-      "Cross Country PL" => "Cross Country PL",
-      "Enduro" => "Enduro",
-      "Enduro PL" => "Enduro PL",
-      "Impreza integracyjna" => "Impreza integracyjna",
-      "Maraton off-road" => "Maraton off-road",
-      "Motocross" => "Motocross",
-      "Motocross PL" => "Motocross PL",
-      "Mundial quadów" => "Mundial quadów",
-      "Obóz" => "Obóz",
-      "Pokazy" => "Pokazy",
-      "Przeprawowa" => "Przeprawowa",
-      "Rajd" => "Rajd",
-      "Rekreacyjno-sportowa" => "Rekreacyjno-sportowa",
-      "Sportowo-towarzyska" => "Sportowo-towarzyska",
-      "Supermoto" => "Supermoto",
-      "Supermoto PL" => "Supermoto PL",
-      "Szkolenie" => "Szkolenie",
-      "Targi i wystawy" => "Targi i wystawy",
-      "Turystyczno-przeprawowa" => "Turystyczno-przeprawowa",
-      "Wczasy na quadach" => "Wczasy na quadach",
-      "Wczasy off-roadowe" => "Wczasy off-roadowe",
-      "Wyprawa" => "Wyprawa",
-      "Wyścigi" => "Wyścigi",
-      "Zlot" => "Zlot"
-      
-    }
+
   end
   
   def calendar_options(time)

@@ -3,11 +3,11 @@
 %table{:class => 'events tablesorter'}
   %thead
     %tr.tableHead2
-      %th Login
-      %th Imię Nazwisko
-      %th Email
-      %th Typ
-      %th Aktywny
+      %th Nazwa
+      %th Miejsce
+      %th Od - do
+      %th Organizator
+      %th Kategoria
 
   %tbody
-    = render :partial => 'user', :collection => @users
+    = render :partial => 'event', :collection => @events

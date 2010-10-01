@@ -61,8 +61,8 @@
       </div>
       <div class="form_row">
         <span class="required_field"> </span>
-        <%= f.label :category, "Kategoria" %>
-        <%= f.select :category, @categories %>
+        <%= f.label :event_category_id, "Kategoria" %>
+        <%= f.collection_select :event_category_id, EventCategory.all, :id, :name %>
       </div>
       <%# unless @event.files.empty? %>
         <%#*<div class="partial">%>
