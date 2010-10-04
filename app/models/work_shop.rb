@@ -1,2 +1,0 @@
-class WorkShop < Store
-end
