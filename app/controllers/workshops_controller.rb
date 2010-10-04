@@ -8,43 +8,48 @@ class WorkshopsController < ApplicationController
   end
   
   def new
-    @banner = Banner.new
-    @banner.serial = Banner.generate_serial
+    @workshop = Workshop.new
   end
 
   def create
-    @banner = Banner.new(params[:banner])
+    @workshop = Workshop.new(params[:workshop])
 
-    if @banner.save
-      flash[:notice] = "Reklama zostało dodana."
+    if @workshop.save
+      flash[:notice] = "Serwis został dodany."
 
-      redirect_to banners_path
+      redirect_to workshops_path
     else
-      flash[:error]  = "Próba utworzenia reklamy nie powiodła się."
+      flash[:error]  = "Próba utworzenia serwisu nie powiodła się."
       render :action => 'new'
     end
   end
   
   def show
-    @banner = Banner.find(params[:id])
+    @workshop = Workshop.find(params[:id])
   end
   
   def edit
-    @banner = Banner.find(params[:id])
-    @banner.serial = Banner.generate_serial
+    @workshop = Workshop.find(params[:id])
   end
 
   def update
-    @banner = Banner.find(params[:id])
+    @workshop = Workshop.find(params[:id])
 
-    if @banner.update_attributes(params[:banner])
+    if @workshop.update_attributes(params[:workshop])
       flash[:notice] = "Edycja przebiegła pomyślnie."
-      redirect_to banners_path
+      redirect_to workshops_path
     else
       flash[:error]  = "Edycja nie powiodła się."
       render :action => 'edit'
     end
   end
 
+  def destroy
+    @workshop = Workshop.find(params[:id])
+    
+    @workshop.destroy
+
+    redirect_to workshops_path
+  end
 
 end

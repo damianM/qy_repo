@@ -1,0 +1,39 @@
+%fieldset
+  %legend Serwis
+  %div
+    = form.label :name, 'Nazwa'
+    = form.error_message_on :name
+    %br
+    = form.text_field :name
+
+  %div
+    = form.label :street, 'Ulica'
+    = form.error_message_on :street
+    %br
+    = form.text_field :street
+
+  %div
+    = form.label :city, 'Miasto'
+    = form.error_message_on :city
+    %br
+    = form.text_field :city
+
+  %div
+    = form.label :phone, 'Telefon'
+    = form.error_message_on :phone
+    %br
+    = form.text_field :phone
+
+  %div
+    = form.label :email, 'E-mail'
+    = form.error_message_on :email
+    %br
+    = form.text_field :email
+
+  %div
+    = form.label :www, 'Adres www'
+    = form.error_message_on :www
+    %br
+    = form.text_field :www
+
+

@@ -154,6 +154,10 @@ module ApplicationHelper
     return 'Tak' if value
     return 'Nie'
   end
+
+  def yes_no_for_select
+    [['tak',true],['nie',false]]
+  end
   
 end
 

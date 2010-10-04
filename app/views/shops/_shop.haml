@@ -1,0 +1,11 @@
+%tr{:id => "shop_#{shop.id}", :class=> 'shop'}
+  %td= tf_in_pl(shop.web_store)
+  %td= shop.name
+  %td= shop.street
+  %td= shop.city
+  %td= shop.phone
+  %td= shop.email
+  %td= shop.www
+  %td= link_to 'Edycja', edit_shop_path(shop)
+  %td= link_to 'Usuń', shop_path(shop), :method => :delete, :cofirm => 'Czy napewno chcesz usunąć?'
+  

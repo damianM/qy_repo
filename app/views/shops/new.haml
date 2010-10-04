@@ -1,0 +1,7 @@
+- form_for @shop do |form|
+  = render :partial => 'fields', :locals => { :form => form }
+
+  %div
+    = submit_tag 'Zapisz', :class => 'submit'
+    = link_to 'Anuluj', shops_path, :class => 'submit'
+

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101001211019) do
+ActiveRecord::Schema.define(:version => 20101004200749) do
 
   create_table "assets", :force => true do |t|
     t.integer  "assetable_id"
@@ -184,6 +184,19 @@ ActiveRecord::Schema.define(:version => 20101001211019) do
 
   create_table "states", :force => true do |t|
     t.string   "name",       :limit => 32
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stores", :force => true do |t|
+    t.string   "type"
+    t.boolean  "web_store",  :default => false
+    t.string   "name"
+    t.string   "street"
+    t.string   "city"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "www"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
