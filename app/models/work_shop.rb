@@ -1,0 +1,2 @@
+class WorkShop < Store
+end

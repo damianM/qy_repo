@@ -1,0 +1,2 @@
+class Shop < Store
+end
