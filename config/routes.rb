@@ -20,7 +20,10 @@ ActionController::Routing::Routes.draw do |map|
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
 
-  map.resources :adverts
+  map.resources :workshops
+  map.resources :shops
+  map.resources :assets
+  map.resources :banners
   map.resources :events, :collection => {:list => :get}
   map.resources :comments
 

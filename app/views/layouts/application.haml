@@ -11,8 +11,7 @@
 
     = render "layouts/includes"
 
-  %body
-
+  %body{:onload => 'checkScreen();'}
     #page
       = render "layouts/head"
     

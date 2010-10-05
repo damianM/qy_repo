@@ -1,0 +1,7 @@
+%tr{:id => "banner_#{banner.id}", :class=> 'banner'}
+  %td= banner.name
+  %td= banner.position
+  %td= display_banner(banner)
+  %td= link_to 'Edycja', edit_banner_path(banner)
+  %td= link_to 'Usuń', banner_path(banner), :method => :delete, :cofirm => 'Czy napewno chcesz usunąć?'
+  

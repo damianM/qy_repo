@@ -1,0 +1,7 @@
+- form_for @workshop do |form|
+  = render :partial => 'fields', :locals => { :form => form }
+
+  %div
+    = submit_tag 'Zapisz', :class => 'submit'
+    = link_to 'Anuluj', workshops_path, :class => 'submit'
+

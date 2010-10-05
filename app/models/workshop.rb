@@ -1,0 +1,2 @@
+class Workshop < Store
+end

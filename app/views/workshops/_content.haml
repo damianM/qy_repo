@@ -1,0 +1,13 @@
+//= will_paginate @users, :renderer => 'RemoteLinkRenderer', :remote => remote_pagination_params, :previous_label => "&laquo;", :next_label => "&raquo;"
+
+%table{:class => 'banner tablesorter'}
+  %thead
+    %tr.tableHead2
+      %th Nazwa
+      %th Ulica 
+      %th Miasto
+      %th Telefon
+      %th Email
+      %th Adres www
+  %tbody
+    = render :partial => 'workshop', :collection => @workshops

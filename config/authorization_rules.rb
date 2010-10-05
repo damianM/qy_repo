@@ -10,7 +10,7 @@ authorization do
   
   role :admin do 
     includes :user
-    
+    has_permission_on :assets, :to => [ :create, :asset, :download, :destroy ]    
   end
   
 end

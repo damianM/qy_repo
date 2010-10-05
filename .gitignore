@@ -4,3 +4,4 @@
 /tmp
 /public/images/data/*
 /public/uploads/*
+/db/schema.rb
