@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PhotoControllerTest < ActionController::TestCase
+class PhotosControllerTest < ActionController::TestCase
   # Replace this with your real tests.
   test "the truth" do
     assert true

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101001123609) do
+ActiveRecord::Schema.define(:version => 20101001132544) do
 
   create_table "adverts", :force => true do |t|
     t.string   "section_name"
@@ -54,11 +54,6 @@ ActiveRecord::Schema.define(:version => 20101001123609) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "event_id"
-  end
-
-  create_table "even_categories", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "event_categories", :force => true do |t|
@@ -129,12 +124,18 @@ ActiveRecord::Schema.define(:version => 20101001123609) do
 
   create_table "photos", :force => true do |t|
     t.integer  "gallery_id"
-    t.string   "link"
-    t.string   "thumb"
+    t.integer  "parent_id"
+    t.string   "content_type", :limit => 64
+    t.string   "type",         :limit => 16
+    t.string   "filename"
+    t.string   "thumbnail"
+    t.integer  "size"
+    t.integer  "width"
+    t.integer  "height"
     t.text     "description"
+    t.integer  "counter",                    :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "counter"
   end
 
   create_table "prates", :force => true do |t|
@@ -221,23 +222,23 @@ ActiveRecord::Schema.define(:version => 20101001123609) do
   create_table "users", :force => true do |t|
     t.string   "login"
     t.string   "email"
-    t.string   "name"
-    t.string   "surname"
-    t.string   "city"
-    t.string   "skype"
-    t.string   "gg"
     t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "birth"
     t.integer  "photo_id"
-    t.text     "about"
-    t.string   "sex",               :limit => 1
     t.string   "crypted_password",                                  :null => false
     t.string   "persistence_token",                                 :null => false
     t.string   "perishable_token",                                  :null => false
     t.boolean  "active",                         :default => false
     t.string   "password_salt"
+    t.string   "name"
+    t.string   "surname"
+    t.string   "skype"
+    t.string   "gg"
+    t.string   "city"
+    t.date     "birth"
+    t.text     "about"
+    t.string   "sex",               :limit => 1
     t.integer  "state_id"
     t.string   "type"
   end

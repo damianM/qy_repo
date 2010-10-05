@@ -1,0 +1,6 @@
+.nav_gal
+  = link_to "Galerie", user_galleries_path(@user)
+
+  - unless gallery.nil?
+    &gt;
+    = link_to gallery.name, user_gallery_path(gallery, @user)

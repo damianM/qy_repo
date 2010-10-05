@@ -1,0 +1,66 @@
+.partial
+  .header.p_photo
+  .body{ :style => "padding-left:5px;" }
+    = render :partial => "photos/nav"
+
+    = image_tag @photo.public_filename, { :style => "margin:4px 0px 4px 0px;" }
+    %br
+
+    %div{ :style => "font-size:10pt; font-weight: bold;" }
+      %div{ :style => "float:left;" }
+        Średnia ocena:
+        = @photo.prate.votes.blank? || @photo.prate.votes ==0 ? 0 : (@photo.prate.sum.to_f / @photo.prate.votes).round(2)
+      %div{ :style => "float:right;" }
+        = "Ilość wyświetleń: #{@photo.counter} razy"
+      .clr
+
+    %br
+
+    - unless @photo.description.blank?
+      .partial{ :style => "padding-left:20px;text-align:left;padding-top:20px;padding-bottom:20px;margin:0px;" }
+        = @photo.description
+
+    %br
+
+    = render :partial => "nav2"
+
+    %br
+
+    - unless @photo.prate.users.include?(current_user)
+      - form_for :prate, :url => {:controller => "prate", :action => "vote", :id => @photo.id } do |f|
+        %p
+          = f.select :vote , (1..5).collect{ |x| [x,x] }
+          = f.submit "Głosuj!"
+      %br
+
+
+    - if @photo.gallery.user.nil? || @photo.gallery.user == current_user || @photo.gallery.user.friends.include?(current_user)
+      .new_comment
+        - form_for :comment, :url => { :controller => "comments", :action => "new", :id => @photo.id } do |f|
+          = f.text_area :content, :style => "height: 100px; width:100%; border:1px solid #aaa;"
+        .clr
+          .button_silver_67{ :style => "font-size:10pt; font-weight: bold;float:right;margin-top:7px;" }
+            = link_to_function 'Dodaj', "parentNode.parentNode.submit(); return false;"
+          .clr
+    
+    %br
+    .comment_info
+      - if @photo.comments.empty?
+        To zdjęcie nie ma jeszcze komentarzy...
+      - else
+        %hr{ :class => "dotted", :style => "width:75%;" }
+        Komentarze:
+
+    - for comment in @photo.comments.reverse
+      .comment
+        .comment_user
+          = img comment.user.photo
+          = link_to comment.user.login, user_path(comment.user)
+
+        .comment_content
+          = ntobr comment.content
+
+        .clr
+        .comment_other
+          = comment.created_at.strftime("%d.%m.%Y, %H:%M")
+          = link_to "Usuń komentarz", comment_path(comment), :method => :delete, :prompt => "Czy na pewno chcesz usunąć komentarz?" if @photo.rights?(current_user)

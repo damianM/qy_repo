@@ -21,9 +21,9 @@ end
   <div class="userinfo_photo">
     <div>
       <% unless gray %>
-        <%= link_to img80(user.photo, :class=>"about_photo"), user_path(user), {:target => target} %>
+        <%= link_to image_tag(user.photo ? user.photo.public_filename : "/80_anon.png", :class=>"about_photo"), user_path(user), {:target => target} %>
       <% else %>
-        <%= link_to user.photo ? image_tag(user.photo.thumb.gsub(/\/t/,"/g"), :class=>"about_photo") : image_tag("/80_anon.png", :class=>"about_photo"), user_path(user), {:target => target} %>
+        <%= link_to user.photo ? image_tag(user.photo.public_filename(:thumb), :class=>"about_photo") : image_tag("/80_anon.png", :class=>"about_photo"), user_path(user), {:target => target} %>
       <% end %>
     </div>
   </div>

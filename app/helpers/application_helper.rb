@@ -141,10 +141,6 @@ module ApplicationHelper
     Video.find(:all, :order => "counter desc",:conditions => "description IS NOT NULL ", :limit => 10).reject{|x| x.gallery.user.nil?}
   end
   
-  def s_latest_photos
-    Photo.find(:all,:limit => 10, :order => "created_at desc").reject{|x| x.gallery.user.nil?}[0...6]
-  end
-
   def tf_in_pl value
     return 'Tak' if value
     return 'Nie'

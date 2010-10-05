@@ -1,0 +1,14 @@
+.nav2
+  .nav2left
+    %span.filler
+    = link_ "<< Poprzednie", @prev.class == Video ? "video" : "photo", "show", @prev.id if !@prev.nil?
+
+  .nav2center
+    %span.filler
+    = link_to "Ustaw jako główne", main_user_gallery_photo_path(@user, @gallery, @photo) if @photo.rights?(current_user)
+
+  .nav2right
+    %span.filler
+    = link_ "Następne >>", @nxt.class == Video ? "video" : "photo", "show", @nxt.id if !@nxt.nil?
+
+  .clear

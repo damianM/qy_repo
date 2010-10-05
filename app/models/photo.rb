@@ -1,31 +1,25 @@
 class Photo < ActiveRecord::Base
+  require 'RMagick'
+
   belongs_to :gallery
+  has_many :comments, :as => :commentable, :dependent => :destroy
   has_one :prate
   
-  has_many :comments, :as => :commentable, :dependent => :destroy
+  has_attachment :storage => :file_system,
+                 :content_type => :image,
+                 :path_prefix  => '/public/uploads/',
+                 :processor => :Rmagick,
+                 :max_size => 2.megabytes,
+                 :resize_to => 'x133',
+                 :thumbnails => { :main => '80x80', :thumb => 'x65' }
+
+
+  validates_as_attachment
   
-  def remove
-    cd="public/images"
-    begin
-      File.delete(cd+"/"+self.link)
-      File.delete(cd+"/"+self.thumb)
-    rescue
-    end
-  end
-  
-  def image?(p)
-    unless p.content_type=~/^image/
-      return false
-    end
-    return true
-  end
   
   def rights?(usr)
     gallery.rights?(usr)
   end
   
-  def thumb80     
-    self.link.gsub /(\/\d*\/)/, '\080_t'
-  end
 end
 

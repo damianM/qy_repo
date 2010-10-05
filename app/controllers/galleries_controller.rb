@@ -59,49 +59,6 @@ class GalleriesController < ApplicationController
   end
 
 
-  def add_photo?    
-    if request.post? and params[:photo]
-      
-      p=params[:photo].clone
-      p.delete(:file)
-      @photo = Photo.new(p)
-      if @photo.image?(params[:photo][:file])
-        @photo.gallery=@gallery
-        file,thumb = convert_file(params[:photo][:file])
-        
-        @photo.link=file
-        @photo.thumb=thumb
-        pr=Prate.new
-        pr.photo_id=@photo
-        pr.sum=0
-        pr.votes=0
-        pr.save!
-        @photo.prate=pr
-        @photo.counter=0
-        if @photo.save
-          @photo.gallery.regenerate_thumb
-          flash[:notice]="Dodano zdjęcie"
-          if params[:mark_as_main_photo]
-            
-            user = curuser
-            user.update_attribute("photo", @photo)
-            
-            user.save
-          end
-        else
-          flash[:error]="problem podczas dodawania zdjęcia"
-        end
-        redirect_to :action => "index", :id => params[:id]
-      else
-        flash[:error]="Wysłany plik nie jest zdjęciem"
-      end
-    end
-  end
-
-
-
-
-
 
 
 
@@ -151,30 +108,6 @@ class GalleriesController < ApplicationController
     return "data/"+curuser.id.to_s+"/"+time + ".png", "data/"+curuser.id.to_s+"/t"+time + ".png"
   end
 
-  def p_unfold
-    @gallery = Gallery.find(params[:id])
-    if @gallery.nil? or @gallery.user.nil?
-      disable = true
-    else
-      disable = false
-    end
-    respond_to do |format|
-
-      format.js do
-
-        render :update do |page|
-
-
-          #page.hide "add_obj"
-          page.visual_effect :blind_up, "add_obj"
-          page.insert_html :after, "add_obj", :partial => "gallery/add_photo", :locals => {:gallery => params[:id], :disable_mamp => disable}
-          page.hide "obj"
-          page.visual_effect :blind_down, "obj"
-        end
-      end
-    end
-  end
-
   def v_unfold
     respond_to do |format|
 
@@ -219,23 +152,6 @@ class GalleriesController < ApplicationController
           #page.hide "add_obj"
           page.visual_effect :blind_up, "add_g"
           page.insert_html :after, "add_g", {:partial => "gallery/add_egallery", :locals => {:id => params[:id]}}
-          page.hide "obj"
-          page.visual_effect :blind_down, "obj"
-        end
-      end
-    end
-  end
-
-  def p_edit
-    respond_to do |format|
-
-      format.js do
-
-        render :update do |page|
-          
-          #page.hide "add_obj"
-          page.visual_effect :blind_up, "add_obj"
-          page.insert_html :after, "add_obj", :partial => "gallery/edit_photo", :locals => {:photo => params[:id], :cname => Photo.find(params[:id]).description}
           page.hide "obj"
           page.visual_effect :blind_down, "obj"
         end

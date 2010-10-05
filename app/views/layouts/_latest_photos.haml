@@ -1,0 +1,20 @@
+.partial.partial_right
+  .header.p_l_photos
+
+  .body
+    - photos = Photo.find(:all, :conditions => ['parent_id IS NULL'], :limit => 6, :order => "created_at desc") 
+
+    %table.p_photos
+      - photos.in_groups_of(2).each do |pair|
+        %tr
+          - pair.each do |photo|
+            %td
+              - unless photo.nil?
+                %div= link_to image_tag(photo.public_filename(:thumb)), user_gallery_photo_path(photo.gallery.user, photo.gallery, photo) 
+                %br
+                = link_to photo.gallery.user.login, user_path(photo.gallery.user)
+
+    .button_silver_67{ :style => "float:right;" }
+      = link_to "Wszystkie", :controller => "photo", :action => "find"
+
+    .clr
