@@ -2,16 +2,17 @@ class Video < ActiveRecord::Base
   require "rvideo.rb"
 
   belongs_to :gallery
-  has_many :rates, :as => :rateatable, :dependent => :destroy
+
   has_many :comments, :as => :commentable, :dependent => :destroy
+
+  has_many :rates, :as => :rateatable, :dependent => :destroy
+  has_many :voters, :through => :rates, :source => :user
 
   validates_presence_of :description
 
-  IMAGE_PATH="public/images/data"
-  
   def convert(file,user)
     puts "Converting file #{file} sized #{File.size(file)}"
-    cd=IMAGE_PATH + "/" + user.id.to_s
+    cd="public/videos" + "/" + user.id.to_s
     Dir.mkdir(cd) unless File.exist?(cd)
     time=(Time.now.to_f*1000).to_i.to_s
     name=cd+"/"+ time + ".flv"
