@@ -1,14 +1,13 @@
-<div class="partial" id="obj">
-  <div class="header">Edytuj zdjęcie</div>
-  <%= insert_corners%>
-  <% form_for :photo, :url => {:controller => "photo", :action => "edit", :id => photo} do |f|%>
-    <p>
-      <%= f.label :name, "Opis" %>
-      <%= f.text_field :description, :value => cname %>
-    </p>
-    <p>
-      <%= f.submit "Zapisz zmiany!" %>
-    </p>
-  <%end%>
-  <%= link_to_remote "Zamknij", :url => {:action => "fold"},:html => {:class => "remote_close"} %>
-</div>
+.partial
+  .header.p_photo
+  .body
+    %p Edytuj zdjęcie
+    - form_for @photo, :url => user_gallery_photo_path(@user, @gallery, @photo), :method => :put do |f|
+      .form_row
+        = f.label :name, "Opis"
+        = f.text_field :description
+    
+      .form_row
+        = f.submit "Zapisz", :class => 'submit'
+        .button_silver_67.submit{ :style => "border: 1px solid #AAA; height:24px; margin-right:5px;" }
+          = link_to "Zamknij", user_gallery_path(@user, @gallery)
