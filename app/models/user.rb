@@ -22,8 +22,8 @@ class User < ActiveRecord::Base
   has_many :cqueries, :through => :userqueries, :source => :query
   has_many :queries
   has_many :events
-  has_many :prates, :through => :userprates, :source => :prate
-  has_many :vrates, :through => :uservrates, :source => :vrate
+
+  has_many :rates
 
   has_one :quad, :dependent => :destroy
 

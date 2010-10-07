@@ -15,6 +15,6 @@
                 = link_to photo.gallery.user.login, user_path(photo.gallery.user)
 
     .button_silver_67{ :style => "float:right;" }
-      = link_to "Wszystkie", :controller => "photo", :action => "find"
+      = link_to "Wszystkie", url_for(:controller => 'photos', :action => 'index')
 
     .clr

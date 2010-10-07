@@ -25,5 +25,5 @@
 
 
 
-  <%= render :partial => "comments" if @user.friends.include?(curuser) or @user == curuser %>
+  <%= render :partial => "comments", :locals => { :commentable => @user } if @user.friends.include?(current_user) or @user == current_user %>
 </div>

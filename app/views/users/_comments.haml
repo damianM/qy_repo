@@ -1,29 +1,28 @@
 .partial
   .header.p_comments
   .body
-    - if @user
-      .new_comment
-        - form_for :comment, :url => comments_path do |f|
-          = hidden_field_tag :commentable_id, @user.id
-          = hidden_field_tag :commentable_type, @user.class
+    .new_comment
+      - form_for Comment.new do |f|
+        = hidden_field_tag :commentable_id, commentable.id
+        = hidden_field_tag :commentable_type, commentable.class.to_s
 
-          = f.text_area :content, :style => "height: 100px; width:85%; border:1px solid #aaa"
-          = f.submit 'Dodaj', :class => 'submit'
+        = f.text_area :content, :style => "height: 100px; width:85%; border:1px solid #aaa"
+        = f.submit 'Dodaj', :class => 'submit'
 
     .clr
 
     .comment_info
-      - if @user.comments.empty?
-        Ten użytkownik nie ma jeszcze komentarzy...
+      - if commentable.comments.empty?
+        Brak komentarzy ...
       - else
         %hr
         Komentarze:
 
-    - for comment in @user.comments.reverse
+    - for comment in commentable.comments.reverse
       .comment
         - if comment.user
           .comment_user
-            = img comment.user.photo
+            = img comment.user.photo.public_filename(:thumb) if comment.user.photo
             = link_ comment.user.login, "user", "show", comment.user.id
 
         .comment_content
