@@ -52,5 +52,10 @@ class ShopsController < ApplicationController
     redirect_to shops_path
   end
 
+  def show_on_google_map
+    @shop = Shop.find(params[:id])
+    
+    @address =@shop.street + ', ' +@shop.city+ ', Polska'
+  end
 
 end
