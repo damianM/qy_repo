@@ -22,8 +22,8 @@
       .comment
         - if comment.user
           .comment_user
-            = img comment.user.photo.public_filename(:thumb) if comment.user.photo
-            = link_ comment.user.login, "user", "show", comment.user.id
+            = image_tag comment.user.photo.public_filename(:thumb) if comment.user.photo
+            = link_to comment.user.login, user_path(comment.user)
 
         .comment_content
           = h comment.content

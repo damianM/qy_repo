@@ -114,20 +114,24 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    if request.post? and params[:id]
-      photo = Photo.find(params[:id])
-      if(photo.rights? curuser)
-        photo.update_attributes(params[:photo])
-        if photo.save
-          flash[:notice] = "Pomyślnie zmodyfikowano zdjęcie"
-        else
-          flash[:error] = "Wystąpił błąd podczas edycji zdjęcia"
-        end
-      else
-        flash[:error] = "Nie możesz edytować tego zdjęcia"
-      end
+    return redirect_to root_path unless @photo.rights? current_user
+
+    @user = User.find(params[:user_id])
+    @gallery = @user.galleries.find(params[:gallery_id])
+    @photo = @gallery.photos.find(params[:id])
+
+    if @photo.update_attributes(params[:photo])
+      flash[:notice] = "Pomyślnie zmodyfikowano zdjęcie"
+    else
+      flash[:error] = "Wystąpił błąd podczas edycji zdjęcia"
     end
-    redirect_to :controller => "gallery", :action => "index", :id => photo.gallery.id
+    
+    redirect_to user_gallery_path(@user, @gallery)
+  end
+  
+  
+  def update
+    
   end
 
 end

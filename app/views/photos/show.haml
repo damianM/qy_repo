@@ -34,6 +34,11 @@
           %p
             = f.select :value , (1..5).collect{ |x| [x,x] }
             = f.submit "Głosuj!"
+
+      - if photo.rights?(current_user)
+        %div
+          = link_to "Ustaw jako główne", main_user_gallery_photo_path(photo.gallery.user, photo.gallery, photo), :style => 'color:gray;'
+
       %br
 
       - if photo.gallery.user.nil? || photo.gallery.user == current_user || photo.gallery.user.friends.include?(current_user)
