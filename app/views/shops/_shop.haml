@@ -6,6 +6,7 @@
   %td= shop.phone
   %td= shop.email
   %td= shop.www
+  %td= link_to 'gm', show_on_google_map_shop_path(shop)
   %td= link_to 'Edycja', edit_shop_path(shop)
   %td= link_to 'Usuń', shop_path(shop), :method => :delete, :cofirm => 'Czy napewno chcesz usunąć?'
   
