@@ -49,7 +49,7 @@ function openDirectionWindow(){
   openPopupWindow("http://maps.google.com/maps?daddr="+encodeURI(address.replace(/ /g,"+"))+"&hl=pl");
 }
 
-functionopenPopupWindow(url) {
+function openPopupWindow(url) {
   window.open(url, "AdMapGoogle");
 }
 
