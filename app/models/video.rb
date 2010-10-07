@@ -2,8 +2,7 @@ class Video < ActiveRecord::Base
   require "rvideo.rb"
 
   belongs_to :gallery
-  has_one :vrate
-
+  has_many :rates, :as => :rateatable, :dependent => :destroy
   has_many :comments, :as => :commentable, :dependent => :destroy
 
   validates_presence_of :description

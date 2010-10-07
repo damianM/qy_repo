@@ -101,6 +101,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    store_location
     @user = params[:id] ? User.find(params[:id]) : current_user
   end
 

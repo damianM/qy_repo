@@ -2,6 +2,10 @@
 class PhotosController < ApplicationController
   before_filter :login_required
 
+  def index
+    render :text => 'index'
+  end
+
   def new
     @allow_main_photo = false
 
@@ -14,8 +18,6 @@ class PhotosController < ApplicationController
     @user = User.find(params[:user_id])
     @gallery = @user.galleries.find(params[:gallery_id])
     @photo = @gallery.photos.build(params[:photo])
-
-    @photo.build_prate
 
     if @photo.save
       flash[:notice] = "Zdjęcie zostało dodane"
@@ -33,20 +35,19 @@ class PhotosController < ApplicationController
   end
   
   def show
+    store_location
+
     @user = User.find(params[:user_id])
     @gallery = @user.galleries.find(params[:gallery_id])
     @photo = @gallery.photos.find(params[:id])
 
-    if @gallery.user != current_user
-      @photo.counter+=1
-      @photo.save
-    end
+    @photo.increase_display_counter if @gallery.user != current_user
 
-    photos = @gallery.photos + ( @gallery.videos.nil? ? [] : @gallery.videos )
-    ind = -1
-    photos.each_with_index{ |x, indx| ind = indx if x == @photo }
-    @prev = ind > 0 ? photos[ind - 1] : nil
-    @nxt = ind < photos.length - 1 ? photos[ind + 1] : nil
+    params[:per_page] ||= 1
+
+    photos = @gallery.photos.find(:all, :conditions => ["id != ?", @photo.id])
+    photos.unshift(@photo)
+    @photos = photos.paginate(:page => params[:page], :per_page => params[:per_page])
   end
 
   def main
@@ -59,10 +60,27 @@ class PhotosController < ApplicationController
     else
       flash[:error]="Problem podczas ustawiania zdjęcia"
     end
-    
-    redirect_to user_gallery_photo_path(@photo, @gallery, @user)
+    redirect_to user_gallery_photo_path(@user, @gallery, @photo)
   end
 
+  def vote
+    @user = User.find(params[:user_id])
+    @gallery = @user.galleries.find(params[:gallery_id])
+    @photo = @gallery.photos.find(params[:id])
+    
+    @rate = Rate.new(params[:rate])
+    @rate.rateatable = @photo
+    @rate.user = current_user
+
+    if @rate.save
+      flash[:notice] = "Głos został zapisany"
+    else
+      flash[:error] = "Głos nie został zapisany" + @rate.errors.inspect
+    end
+
+    redirect_to user_gallery_photo_path(@user, @gallery, @photo)
+  end
+  
   def p_edit
     respond_to do |format|
 

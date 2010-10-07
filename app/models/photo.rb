@@ -2,8 +2,11 @@ class Photo < ActiveRecord::Base
   require 'RMagick'
 
   belongs_to :gallery
+
   has_many :comments, :as => :commentable, :dependent => :destroy
-  has_one :prate
+
+  has_many :rates, :as => :rateatable, :dependent => :destroy
+  has_many :voters, :through => :rates, :source => :user
   
   has_attachment :storage => :file_system,
                  :content_type => :image,
@@ -15,7 +18,10 @@ class Photo < ActiveRecord::Base
 
 
   validates_as_attachment
-  
+
+  def increase_display_counter
+    update_attribute(:counter, counter + 1)
+  end
   
   def rights?(usr)
     gallery.rights?(usr)

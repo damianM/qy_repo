@@ -7,10 +7,11 @@ class CommentsController < ApplicationController
 
   
   def create
-    @comment = @commentable.comments.build(params[:comment].merge({:user_id => current_user.id}))    
+    @comment = @commentable.comments.build(params[:comment])    
+    @comment.user = current_user
     if @comment.save
       flash[:notice] = "Dodano komentarz"
-      redirect_to user_path(@commentable)
+      redirect_back_or_default(root_path)
     end
   end
   
