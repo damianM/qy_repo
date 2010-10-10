@@ -22,7 +22,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :sale_ads
   map.resources :buy_ads
-  map.resources :workshops
+  map.resources :workshops, :member => {:show_on_google_map => :get}
   map.resources :shops, :member => {:show_on_google_map => :get}
   map.resources :assets
   map.resources :banners

@@ -49,6 +49,10 @@
     background-repeat: repeat-y;
 }
 
+.partial_right .body_white{
+    background-repeat: repeat-y;
+}
+
 .partial a{
     font-size:9pt;
     font-weight: bold;

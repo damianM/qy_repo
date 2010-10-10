@@ -1,0 +1,18 @@
+<%= link_to image_tag(friend.photo ? friend.photo.public_filename : "/80_anon.png", :class=>"about_photo"), user_path(friend) %>
+
+
+  <div class="userinfo_icons">
+     <%=  link_to friend.login, user_path(friend) %>
+     <br/>
+     <%= link_to image_tag("/friends.png", :class => "icon"), {:controller => "users", :action => "friends",
+          :id => friend.id}, {:title => "Zobacz znajomych"} %>
+
+
+      <%= link_to image_tag("/envelope.png", :class => "icon"), {:controller => "messages", :action => "new",
+          :id => friend.id}, {:title => "Napisz wiadomość"} %>
+      <%= link_to image_tag("/fav.png", :class => "icon"), user_path(friend), {:title => "Zobacz profil"}  %>
+
+
+    </div>
+
+

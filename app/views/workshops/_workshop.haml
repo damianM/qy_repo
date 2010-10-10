@@ -5,6 +5,7 @@
   %td= workshop.phone
   %td= workshop.email
   %td= workshop.www
+  %td= link_to 'gm', show_on_google_map_workshop_path(workshop)
   %td= link_to 'Edycja', edit_workshop_path(workshop)
   %td= link_to 'Usuń', workshop_path(workshop), :method => :delete, :cofirm => 'Czy napewno chcesz usunąć?'
   

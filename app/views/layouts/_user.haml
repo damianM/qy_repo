@@ -14,7 +14,7 @@
             = current_user.quad.company.nil? ? "" : current_user.quad.company.name + " "
             = current_user.quad.qtype.nil? ? "" : current_user.quad.qtype
 
-        .userinfo_sub01{ :style => "color:#000" }
+        .userinfo_sub01
           = current_user.city unless current_user.city.blank?
 
     .user_links{ :style => "float:left" }

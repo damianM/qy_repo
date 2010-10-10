@@ -1,5 +1,4 @@
 <div class="partial latest_items">
-  <%=insert_corners%>
   <div class="header">
     Ostatnio dodane zdjęcia Twoich znajomych
   </div>
@@ -10,9 +9,9 @@
       <%  for photo in photos  %>
         <div class="latest_item">
           <div>
-            <%= link_ image_tag(photo.thumb), "photo", "show", photo.id %><br/>
+            <%= link_to image_tag(photo.public_filename(:thumb)), user_gallery_photo_path(photo.gallery.user,photo.gallery,photo) %><br/>
           </div>
-          <%= link_ photo.gallery.user.login, "user", "show", photo.gallery.user.id%>
+          <%= link_to photo.gallery.user.login, user_path(photo.gallery.user.id) %>
         </div>
 
       <% end %>

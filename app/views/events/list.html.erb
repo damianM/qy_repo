@@ -50,7 +50,7 @@
         </div>
         <div class="event_body">
           <div>
-            <span style="font-size:10pt;"><%= link_ event.title, "event", "show", event.id %></span>
+            <span style="font-size:10pt;"><%= link_to event.title, event_path(event) %></span>
           </div>
           <div class="clr"></div>
           <div class="col1_event">

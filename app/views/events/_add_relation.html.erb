@@ -1,7 +1,7 @@
 <div class="partial" id="obj">
   <div class="header">Dodaj relację!</div>
   <div class="body">
-    <% form_for :event,:url => {:controller => "event", :action => "modify", :id => event} do |f| %>
+    <% form_for :event,:url => {:controller => "events", :action => "update", :id => event}, :html => {:method => :put} do |f| %>
       <div class="form_row">
         <%= f.label :file, "Relacja z imprezy" %>
         <%= f.text_area :relation, :style => "width:80%; height: 180px" %>
