@@ -1,45 +1,7 @@
 %fieldset
   %legend Ogłoszenie
 
-  %div
-    = form.label :company_id, 'Mark'
-    = form.error_message_on :company_id
-    = form.collection_select :company_id, Company.all, :id, :name
 
-  %div
-    = form.label :type, 'Typ'
-    = form.error_message_on :type
-    = form.text_field :type, :size => 80
-
-  %div
-    = form.label :capacity, 'Pojemność'
-    = form.error_message_on :capacity
-    = form.text_field :capacity, :size => 80
-
-  %div
-    = form.label :year, 'Rok'
-    = form.error_message_on :year
-    = form.text_field :year, :size => 80
-
-  %div
-    = form.label :mileage, 'Przebieg'
-    = form.error_message_on :mileage
-    = form.text_field :mileage, :size => 80
-
-  %div
-    = form.label :kind, 'Rodzaj'
-    = form.error_message_on :kind
-    = form.select :kind, options_for_select(quad_kinds_for_select)
-
-  %div
-    = form.label :price, 'Price'
-    = form.error_message_on :price
-    = form.text_field :price, :size => 80
-    
-  %div
-    = form.label :sale_person, 'Sprzedaje'
-    = form.error_message_on :sale_person
-    = form.select :sale_person, options_for_select(sale_persons_for_select)
 
   %div
     = form.label :title, 'Tytuł'

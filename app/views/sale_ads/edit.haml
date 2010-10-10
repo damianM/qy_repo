@@ -1,0 +1,8 @@
+- form_for @sale_ad do |form|
+  = render :partial => 'fields', :locals => { :form => form }
+
+  %div
+    = submit_tag 'Zapisz', :class => 'submit'
+    = link_to 'Anuluj', banners_path, :class => 'submit'
+
+= render :partial => 'assets/new', :locals => { :object => @sale_ad, :asset_type => "Image" }

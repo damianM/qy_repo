@@ -1,0 +1,8 @@
+%tr{:id => "sale_ad_#{sale_ad.id}", :class=> 'sale_ad'}
+  %td= sale_ad.title
+  %td= sale_ad.description
+  %td= sale_ad.email
+  %td= sale_ad.phone
+  %td= link_to 'Edycja', edit_sale_ad_path(sale_ad)
+  %td= link_to 'Usuń', sale_ad_path(sale_ad), :method => :delete, :cofirm => 'Czy napewno chcesz usunąć?'
+  
