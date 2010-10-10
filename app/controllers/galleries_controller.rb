@@ -59,9 +59,6 @@ class GalleriesController < ApplicationController
   end
 
 
-
-
-
   def elist
     if request.post? and params[:gallery] and params[:id]
       @gallery = Gallery.new(params[:gallery])
@@ -108,47 +105,10 @@ class GalleriesController < ApplicationController
     return "data/"+curuser.id.to_s+"/"+time + ".png", "data/"+curuser.id.to_s+"/t"+time + ".png"
   end
 
-  def v_unfold
-    respond_to do |format|
-
-      format.js do
-
-        render :update do |page|
-
-
-          #page.hide "add_obj"
-          page.visual_effect :blind_up, "add_obj"
-          page.insert_html :after, "add_obj", :partial => "gallery/add_video", :locals => {:gallery => params[:id]}
-          page.hide "obj"
-          page.visual_effect :blind_down, "obj"
-        end
-      end
-    end
-  end
-
-  def fold
-    respond_to do |format|
-
-      format.js do
-
-        render :update do |page|
-
-
-          page.remove "obj"
-          page.visual_effect :blind_down, "add_obj"
-        end
-      end
-    end
-  end
-
   def e_add
     respond_to do |format|
-
       format.js do
-
         render :update do |page|
-
-
           #page.hide "add_obj"
           page.visual_effect :blind_up, "add_g"
           page.insert_html :after, "add_g", {:partial => "gallery/add_egallery", :locals => {:id => params[:id]}}
@@ -159,20 +119,4 @@ class GalleriesController < ApplicationController
     end
   end
 
-  def v_edit
-    respond_to do |format|
-
-      format.js do
-
-        render :update do |page|
-
-          #page.hide "add_obj"
-          page.visual_effect :blind_up, "add_obj"
-          page.insert_html :after, "add_obj", :partial => "gallery/edit_video", :locals => {:video => params[:id], :cname => Video.find(params[:id]).description}
-          page.hide "obj"
-          page.visual_effect :blind_down, "obj"
-        end
-      end
-    end
-  end
 end

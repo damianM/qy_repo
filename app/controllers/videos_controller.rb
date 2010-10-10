@@ -1,10 +1,12 @@
-class VideoController < ApplicationController
+# -*- coding: utf-8 -*-
+class VideosController < ApplicationController
   upload_status_for  :new
   layout "application", :except => [:ifind, :idfind]
 
   def new
-    if request.post? and params[:video]
+  end
 
+  def create
       v=params[:video].clone
       params[:video].delete(:file)
       if !v[:file] or v[:file].content_type !~ /video/
@@ -31,7 +33,12 @@ class VideoController < ApplicationController
         #render :text => %(UPLOADED: #{params.inspect}.<script type="text/javascript">window.parent.UploadProgress.finish();</script>)
         redirect_to :controller => "gallery", :action => "index", :id => params[:id]
       end
-    end
+  end
+  
+  def edit
+  end
+
+  def update
   end
 
   def delete
