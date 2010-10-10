@@ -53,9 +53,7 @@ class ShopsController < ApplicationController
   end
 
   def show_on_google_map
-    @shop = Shop.find(params[:id])
-    
-    @address =@shop.street + ', ' +@shop.city+ ', Polska'
+    @shop = Shop.find(params[:id])   
   end
 
 end

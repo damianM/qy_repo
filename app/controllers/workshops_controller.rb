@@ -52,4 +52,8 @@ class WorkshopsController < ApplicationController
     redirect_to workshops_path
   end
 
+  def show_on_google_map
+    @workshop = Workshop.find(params[:id])   
+  end
+
 end

@@ -1,0 +1,11 @@
+//= will_paginate @users, :renderer => 'RemoteLinkRenderer', :remote => remote_pagination_params, :previous_label => "&laquo;", :next_label => "&raquo;"
+
+%table{:class => 'buy_ad tablesorter'}
+  %thead
+    %tr.tableHead2
+      %th Tytuł
+      %th Opis
+      %th Email
+      %th Telefon
+  %tbody
+    = render :partial => 'buy_ad', :collection => @buy_ads

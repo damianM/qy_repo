@@ -1,0 +1,18 @@
+<div class="partial">
+<div class="header p_relation">
+  </div>
+  <div class='body'>
+    <% events.each do |e| %>
+
+      <h2><%=e.title%></h2>
+
+      <p>
+        <%= ntobr e.relation %>
+      </p>
+      <div class="button_silver_67" style="float:right">
+        <%= link_to "Więcej",event_path(e.id) %>
+      </div>
+      <div class="clr"></div>
+    <% end %>
+  </div>
+</div>

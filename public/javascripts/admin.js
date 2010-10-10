@@ -1,3 +1,4 @@
+
 function checkScreen(){
   if (screen.width==1024){
     $('#page').css('width','1000px');
@@ -9,5 +10,4 @@ function checkScreen(){
   }   
   return false;
 }
-
 

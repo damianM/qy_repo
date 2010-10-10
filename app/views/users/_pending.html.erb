@@ -5,21 +5,19 @@
       Ten użytkownik nie ma jeszcze znajomych
     <% else %>
       <table class="friend_list">
-        <% for user_row in users %>
+        <% for friend in user.pending_friends %>
           <tr>
-            <% for user in user_row %>
               <td>
                 <div class="friend" style="margin-right:40px;">
                   <%= render :partial => "/userinfo", :locals =>
-                    {:user => user, :protect=> false, :special => "joined"} %>
+                    {:user => friend, :protect=> false, :special => "joined"} %>
                 </div>
               </td>
-            <% end %>
           </tr>
         <%end%>
       </table>
       <div class="button_silver_67" style="float:right ;">
-        <%= link_to "Wszystkie",{:controller => "user", :action => "friends", :id => user.id} %>
+        <%= link_to "Wszystkie",{:controller => "users", :action => "friends", :id => user.id} %>
       </div>
     <% end %>
   </div>

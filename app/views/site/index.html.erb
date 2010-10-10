@@ -1,21 +1,21 @@
 
-<%# if !curuser %>
-  <%#= render :partial => "site/greeting"%>
+<% unless current_user %>
   
   <%= render :partial => "site/top_video", :locals => {:video => @top_video } unless @top_video.nil?%>
   <%= render :partial => "site/latest_videos", :locals => {:videos => @latest_videos }%>
-  <%= render :partial => "site/relation", :locals => {:events => @latest_events} unless @latest_events.empty?%>
+  <%= render :partial => "site/relations", :locals => {:events => @latest_events} unless @latest_events.empty?%>
   <%= image_tag(params['black'] ? "../helmet_d.png" : "../helmet.png") %>
   <%#= render :partial => "site/latest_users", :locals => {:users => @latest_users }%>
   <%#= render :partial => "site/latest_photos", :locals => {:photos => @latest_photos }%>
   
   
-<%# else %>
-  <%#= render :partial => "site/info", :locals => {:photos => @latest_photos }%>
-  <%#= render :partial => "site/top_video", :locals => {:video => @top_video } unless @top_video.nil?%>
-  <%#= render :partial => "site/c_latest_photos", :locals => {:photos => @clatest_photos }%>
-  <%#= render :partial => "site/c_latest_videos", :locals => {:videos => @clatest_videos }%>
-  <%#= render :partial => "site/relation", :locals => {:event => @latest_event} unless @latest_event.nil?%>
-  <%#= render :partial => "site/latest_users", :locals => {:users => @latest_users[0...4] }%>
+<% else %>
+  <%= render :partial => "site/what_is_new", :locals => {:events => @events} %>
+  <%= render :partial => "site/top_video", :locals => {:video => @top_video } unless @top_video.nil? %>
+  <%= render :partial => "site/latest_friends", :locals => {:users => @latest_friends} %> 
+  <%= render :partial => "site/latest_friends_videos", :locals => {:videos => @latest_friends_videos }%>
+  <%= render :partial => "site/latest_friends_photos", :locals => {:photos => @latest_friends_photos }%>
+  <%= render :partial => "site/relations", :locals => {:events => @latest_events} %>
+
   
-<%# end %>
+<% end %>

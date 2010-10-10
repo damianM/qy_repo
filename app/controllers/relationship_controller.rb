@@ -14,11 +14,11 @@ class RelationshipController < ApplicationController
         Message.send_invitation(@user,@friend)
         
         flash[:notice] = "Wysłano zaproszenie"
-        redirect_to :controller => "user", :action => "pending"
+        redirect_to :controller => "users", :action => "pending"
       else
         Relationship.accept(@user, @friend)
         flash[:notice] = "Dodano użytkownika do znajomych"
-        redirect_to :controller => "user", :action => "friends"
+        redirect_to :controller => "users", :action => "friends"
       end
       
     end
@@ -35,7 +35,7 @@ class RelationshipController < ApplicationController
         flash[:notice] = "Dodano użytkownika do znajomych"
       end
       
-      redirect_to :controller => "user", :action => "friends"
+      redirect_to :controller => "users", :action => "friends"
     end
   end
 
@@ -45,7 +45,7 @@ class RelationshipController < ApplicationController
       @friend = User.find(params[:id])
       Relationship.delete(@user, @friend)
       flash[:notice] = "Usunięto znajomość"
-      redirect_to :controller => "user", :action => "friends"
+      redirect_to :controller => "users", :action => "friends"
     end
   end
 
