@@ -1,7 +1,5 @@
 class Ad < ActiveRecord::Base
 
-  AD_TYPES = ['SALE_QUAD', 'SALE_PARTS', 'BUY']
-
   attr_accessor :serial
   
   validates_presence_of :title

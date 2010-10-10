@@ -1,0 +1,2 @@
+class SaleAdsController < ApplicationController
+end

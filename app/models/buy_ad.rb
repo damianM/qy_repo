@@ -1,0 +1,2 @@
+class BuyAd < Ad
+end

@@ -1,0 +1,2 @@
+module SaleAdsHelper
+end
