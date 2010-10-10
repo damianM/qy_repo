@@ -195,6 +195,6 @@ class MessageController < ApplicationController
     else
       flash[:error] = "Usuwanie wiadomości nie powiodło się"
     end
-    redirect_to session[:prevpage]
+    redirect_to :controller => "message", :action => "received"
   end
 end

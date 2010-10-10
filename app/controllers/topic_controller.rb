@@ -28,7 +28,7 @@ class TopicController < ApplicationController
         end
         @topic.delete
         flash[:notice]="Pomyślnie usunięto temat"
-        redirect_to session[:prevpage]
+        redirect_to :controller => 'forum', :action => 'list', :id => @topic.forum
       end
     end
   end

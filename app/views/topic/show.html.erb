@@ -22,7 +22,7 @@
               
               <div  style="text-align:right;display:block;float:rgiht">
 
-                <%= link_to (image_tag "/delete.png"), {:controller => "post", :action => "delete", :id => post.id}, {:title => "Usuń posta", :class => "picture_link post_delete",:confirm => "Czy na pewno chcesz usunąć tego posta?"} %>
+                <%= link_to (image_tag "/delete.png"), {:controller => "fpost", :action => "delete", :id => post.id}, {:title => "Usuń posta", :class => "picture_link post_delete",:confirm => "Czy na pewno chcesz usunąć tego posta?"} %>
               </div>
               <div class="clr"></div>
             </div>
