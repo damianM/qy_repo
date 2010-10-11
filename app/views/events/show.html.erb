@@ -1,39 +1,46 @@
-<% content_for :left do -%>
-  &nbsp;
-<% end -%>
 
-<% content_for :ccol_style do -%>
-  ccol_wider
-<% end -%>
-
-
-<div>
-  <div class="col_left">
+<div id="ccol">
+  <div>
     <div class="partial">
       <div class="header p_event"><%=cut(@event.title,20) %></div>
       <div class="body">
-        <dl class="event_dl">
-          <dt>Organizator:</dt><dd> <%= @event.organiser_name %></dd>
+        <div style='float: right; text'>
+          Kategoria: <%= @event.category %>
+          <hr/>
+          Początek: <%= ltd @event.event_start %>
+          <br/>
+          Koniec: <%= ltd @event.event_start %>
+          <br/>
+          Miejsce: <%= @event.place %>
+        </div>  
 
-          <dt>Miejsce:</dt><dd><%= @event.place %></dd>
-          <dt>Data rozpoczęcia:</dt><dd><%= ltd @event.event_start %></dd>
-          <dt>Data zakończenia:</dt><dd><%= ltd @event.event_start %></dd>
-          <dt>Kategoria:</dt><dd><%= @event.category %></dd>
-          <dt>Adres organizatora:</dt><dd><%= @event.organiser_address %></dd>
-          <dt>Telefon organizatora:</dt><dd><%= @event.organiser_phone %></dd>
 
+       <div class="clr"></div>     
+       <br/><br/>
+       <b>Opis</b>
 
+      <div style='padding-top: 10px;padding-bottom: 20px;'>
+        <%= @event.description  -%>    
+      </div>      
 
-          <% unless @event.organiser_www == "" %>
-            <dt>Strona WWW:</dt><dd><%= @event.organiser_www %></dd>
-          <% end %>
-          <% unless @event.organiser_email == "" %>
-            <dt>Adres email:</dt><dd><%= @event.organiser_email %></dd>
-          <% end %>
-        </dl>
-        <p>
-          Imprezę dodał użytkownik <%=link_ @event.user.login,"user","show",@event.user %>
-        </p>
+      <b>Organizator:</b> <%= @event.organiser_name %>
+      <br/>
+      <b>Adres:</b> <%= @event.organiser_address %>
+      <br/>
+      <b>Telefon:</b> <%= @event.organiser_phone %>
+      <br/>
+      <% unless @event.organiser_www == "" %>
+        <b>Strona WWW:</b> <%= @event.organiser_www %>
+      <% end %>
+
+      <% unless @event.organiser_email == "" %>
+        <b>Adres email:</b> <%= @event.organiser_email %>
+      <% end %>
+
+      <p>
+        <b>Imprezę dodał użytkownik:</b> <%=link_to @event.user.login, user_path(@event.user) %>
+      </p>
+
         <% begin %>
           <div>
             <div class="grey_link" style="text-align:right;display:block;float:left">
@@ -63,7 +70,7 @@
           Impreza nie ma jeszcze galerii
         <% end %>
 
-        <div style="text-align:center">
+        <div class="button_silver_75" style="float:right;">
 
           <% if @event.galleries.length>0%>
             <%= link_to "Pokaż wszystkie albumy", {:controller => "gallery", :action => "elist", :id => @event.id}, :class => "opt_link" %>
@@ -75,33 +82,7 @@
     </div>
 
   </div>
-  <div class="col_right">
-    <div class="partial">
 
-      <div class="header p_event_d">Opis </div>
-      <div class="body">
-        <div style="text-align:left;padding-bottom:7px;">
-          <%= ntobr @event.description  %>
-        </div>
-      </div>
-      <% unless @event.files.empty? %>
-        <div class="partial">
-          <div class="header">Pliki </div>
-          <div class="body">
-            <% for file in @event.files %>
-
-              <%= link_file file.name,file.link %> <br/>
-
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-
-
-  </div>
-  <div class="clr"></div>
 
   <% unless @event.relation.nil? or @event.relation == "" %>
     <div class="partial">

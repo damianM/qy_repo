@@ -29,7 +29,7 @@ class FpostController < ApplicationController
       end
 
     end
-    redirect_to session[:prevpage]
+    redirect_to :controller => 'topic', :action => 'show', :id => @post.topic
   end
 
   def edit
