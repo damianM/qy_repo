@@ -22,3 +22,24 @@ table{
 table th{
   border-bottom: 1px solid #B8B8B8;
 }
+
+#progress {
+  width: 80%;
+  border: 2px dotted #eee;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  margin: 15px auto;
+  padding: 10px;
+  text-align: center;
+}
+
+#bar {
+  background-color: #333;
+  color: #e0e0e0;
+  text-align: center;
+  min-width: 1.5em;
+  padding: 5px 0;
+  display: block;
+  margin-left: 0;
+}

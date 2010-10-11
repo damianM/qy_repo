@@ -1,0 +1,73 @@
+.partial
+  .header.p_gal_index
+
+  .body
+    = render :partial => "nav"
+
+    %br
+
+    .video_int
+      = link_to '',  @video.public_filename, :id => 'player', :style => "display:block;width:446px;height:348px;"
+
+    %br
+
+    :javascript
+      flowplayer("player", "/flowplayer-3.1.1.swf",{
+
+        plugins: {
+          pseudo: { url: 'flowplayer.pseudostreaming-3.1.2.swf' },
+          controls:  {
+            backgroundColor: '#000',
+            backgroundGradient: 'none',
+
+            scrubber: true,
+            height: 20,
+            sliderColor: '#222',
+            progressColor: '#FFe3af',
+            bufferColor: '#666666'
+
+          }
+        },
+
+        // clip properties
+        clip: {
+          autoPlay: false,
+          autoBuffering: false,
+          // our clip uses pseudostreaming
+          provider: 'pseudo'
+
+          // provide MP4 file for Flash version 9.0.115 and above. otherwise use FLV
+          //#*url: flashembed.isSupported([9, 115]) ?
+          //#*'http://e1p2.simplecdn.net/flowplayer/eye-pseudo.mp4' :
+          //#*'http://e1p1.simplecdn.net/flowplayer/flowplayer-700.flv'
+         }
+       });
+
+    %div{ :style => "font-size:10pt; font-weight: bold;" }
+      %div{ :style => "float:left;" }
+        Średnia ocena:
+        = Rate.average(:value, :conditions => ['rateatable_id = ? AND rateatable_type = ?', @video.id, 'Video']) || '0'
+      %div{ :style => "float:right;" }
+        = "Ilość wyświetleń: #{@video.counter || 0} razy"
+        .clr
+
+    %br
+
+    - if @video.description != ""
+      .partial{ :style => "padding-left:20px;text-align:left;padding-top:20px;padding-bottom:20px;margin:0px;" }
+        .body
+          = @video.description
+
+    %br
+
+    - unless @video.voters.include?(current_user)
+      - form_for :rate, :url => vote_user_gallery_video_path(@video.gallery.user, @video.gallery, @video) do |f|
+        %p
+          = f.select :value , (1..5).collect{ |x| [x,x] }
+          = f.submit "Głosuj!"
+
+    %br
+
+    - if @video.gallery.user.nil? || @video.gallery.user == current_user || @video.gallery.user.friends.include?(current_user)
+      = render :partial => "users/comments", :locals => { :commentable => @video }
+

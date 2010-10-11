@@ -17,13 +17,13 @@
                  
     - unless @gallery.videos.empty?
       %table.gallery
-        - @galleries.videos.in_groups_of(3).each do |triple|
+        - @gallery.videos.in_groups_of(3).each do |triple|
           %tr
             - triple.each do |video|
               %td
                 .photo_m
                   - unless video.nil?
-                    = link_to image_tag(video.link[0...-3] + "jpg"), { :controller => 'video', :action => 'show', :id => video.id }
+                    = link_to (video.thumbnail ? image_tag(video.thumbnail.public_filename) : "Miniaturka niedostępna" ), user_gallery_video_path(@user, @gallery, video)
                     = render :partial => "asset", :object => video
 
     - if @gallery.photos.empty? && @gallery.videos.empty?

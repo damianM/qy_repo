@@ -1,98 +1,101 @@
 # -*- coding: utf-8 -*-
 class VideosController < ApplicationController
-  upload_status_for  :new
-  layout "application", :except => [:ifind, :idfind]
-
-  def new
-  end
-
-  def create
-      v=params[:video].clone
-      params[:video].delete(:file)
-      if !v[:file] or v[:file].content_type !~ /video/
-        flash[:error]="Nieprawidłowy typ pliku"
-        redirect_to session[:prevpage]
-      else
-        @video=Video.new(params[:video])
-        vr=Vrate.new
-        vr.video_id=@video
-        vr.sum=0
-        vr.votes=0
-        vr.save!
-        @video.vrate=vr
-        @video.views=0
-        @video.gallery=Gallery.find(params[:id])
-        c=@video.convert(v[:file],curuser)
-        @video.counter=0
-        if c and @video.save
-          flash[:notice]="Pomyślnie dodano wideo"
-        else
-          flash[:error]="Wystąpił błąd"
-        end
-
-        #render :text => %(UPLOADED: #{params.inspect}.<script type="text/javascript">window.parent.UploadProgress.finish();</script>)
-        redirect_to :controller => "gallery", :action => "index", :id => params[:id]
-      end
+  
+  def index
+    @videos = Video.find :all
+    render :text => 'index'
   end
   
-  def edit
+  def new
+    @uuid = (0..29).to_a.map {|x| rand(10)}
+
+    @user = User.find(params[:user_id])
+    @gallery = @user.galleries.find(params[:gallery_id])
+    @video = @gallery.videos.build
+  end
+  
+  def create
+    @user = User.find(params[:user_id])
+    @gallery = @user.galleries.find(params[:gallery_id])
+    @video = @gallery.videos.build(params[:video])
+
+    if @video.save
+      @video.convert
+      flash[:notice] = 'Film został dodany'
+      redirect_to user_gallery_path(@user, @gallery)
+    else
+      flash[:error] = "Wystąpił problem podczas dodawania filmu"
+      render :action => 'new'
+    end
+  end
+  
+  def show
+    store_location
+
+    @user = User.find(params[:user_id])
+    @gallery = @user.galleries.find(params[:gallery_id])
+    @video = @gallery.videos.find(params[:id])
+
+    @video.increase_display_counter if @gallery.user != current_user
   end
 
-  def update
-  end
+  def vote
+    @user = User.find(params[:user_id])
+    @gallery = @user.galleries.find(params[:gallery_id])
+    @video = @gallery.videos.find(params[:id])
 
+    @rate = Rate.new(params[:rate])
+    @rate.rateatable = @video
+    @rate.user = current_user
+
+    if @rate.save
+      flash[:notice] = "Głos został zapisany"
+    else
+      flash[:error] = "Głos nie został zapisany" + @rate.errors.inspect
+    end
+
+    redirect_to user_gallery_video_path(@user, @gallery, @video)
+  end
+  
   def delete
-    @video=Video.find(params[:id])
-    @gallery=@video.gallery
-    if @gallery.rights?(curuser)
-      @video.remove
-      @video.delete
-      flash[:notice]="Pomyślnie usunięto wideo"
+    @user = User.find(params[:user_id])
+    @gallery = @user.galleries.find(params[:gallery_id])
+    @video = @gallery.videos.find(params[:id])
+
+    if @gallery.rights?(current_user)
+      @video.destroy
+      flash[:notice]="Pomyślnie usunięto film"
     else
       flash[:error]="Napotkano błąd"
     end
-    redirect_to :controller => "gallery", :action =>"index", :id => @gallery.id
-  end
-
-  def show
-    @video=Video.find(params[:id])
-    @gallery = @video.gallery
-    if @gallery.user!=curuser
-      @video.counter+=1
-      @video.save
-    end
-    photos = @gallery.photos + (@gallery.videos.nil? ? [] : @gallery.videos)
-    ind=-1
-    photos.each_with_index{|x,indx| ind=indx if x==@video }
-    @prev = ind>0 ? photos[ind-1] : nil
-    @nxt = ind<photos.length-1 ? photos[ind+1] : nil
+    redirect_to user_gallery_path(@user, @gallery)
   end
 
   def edit
-    if request.post? and params[:id]
-      video = Video.find(params[:id])
-      if(video.rights? curuser)
-        video.update_attributes(params[:video])
-        if video.save
-          flash[:notice] = "Pomyślnie zmodyfikowano film"
-        else
-          flash[:error] = "Wystąpił błąd podczas edycji filmu"
-        end
-      else
-        flash[:error] = "Nie możesz edytować tego filmu"
-      end
-    end
-    redirect_to :controller => "gallery", :action => "index", :id => video.gallery.id
+    @user = User.find(params[:user_id])
+    @gallery = @user.galleries.find(params[:gallery_id])
+    @video = @gallery.videos.find(params[:id])
+    
+    return redirect_to root_path unless @video.rights? current_user
   end
 
+  def update
+    @user = User.find(params[:user_id])
+    @gallery = @user.galleries.find(params[:gallery_id])
+    @video = @gallery.videos.find(params[:id])
+
+    if @video.update_attributes(params[:video])
+      flash[:notice] = "Pomyślnie zmodyfikowano film"
+    else
+      flash[:error] = "Wystąpił błąd podczas edycji filmu"
+    end
+
+    redirect_to user_gallery_path(@user, @gallery)
+  end
 
   def find
-    unless(params[:id].nil?)
-      @videos = Video.find_with_ferret(params[:id])
-    end
-    @videos
+    @videos = Video.search(params[:search])
   end
-
   
   def dfind
     puts params.inspect
@@ -128,4 +131,5 @@ class VideosController < ApplicationController
     params.delete :views if params[:views]
     @videos
   end
+
 end

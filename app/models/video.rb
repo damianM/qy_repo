@@ -1,59 +1,94 @@
 class Video < ActiveRecord::Base
-  require "rvideo.rb"
 
   belongs_to :gallery
+  belongs_to :thumbnail, :dependent => :destroy
 
   has_many :comments, :as => :commentable, :dependent => :destroy
 
   has_many :rates, :as => :rateatable, :dependent => :destroy
   has_many :voters, :through => :rates, :source => :user
 
-  validates_presence_of :description
+  has_attachment :storage => :file_system, 
+                 :content_type => :video,
+                 :path_prefix  => '/public/uploads/',
+                 :max_size => 100.megabytes
 
-  def convert(file,user)
-    puts "Converting file #{file} sized #{File.size(file)}"
-    cd="public/videos" + "/" + user.id.to_s
-    Dir.mkdir(cd) unless File.exist?(cd)
-    time=(Time.now.to_f*1000).to_i.to_s
-    name=cd+"/"+ time + ".flv"
-    name2=cd+"/"+ time + "x.flv"
-    File.open(name2,"w"){|w|
-      w.write(file.read)
-    }
-    system("ffmpegthumbnailer  -i #{name2} -o #{name[0...-3] + "jpg"} -s96")
-    system("composite -gravity center public/triangle.png #{name[0...-3] + "jpg"} #{name[0...-3] + "jpg"}")
+  before_create :save_thumbnail
 
-    #    file = RVideo::Inspector.new(:file => "#{name}")
-    #    transcoder = RVideo::Transcoder.new
-    c=false
-    if system("ffmpeg -i #{name2} -s 512x384 -f flv -ab 128000 -ar 44100 -vcodec flv -b 1000000 -y #{name}")
-      if system("flvtool2 -U #{name}")
-        if system("rm -rf #{name2}")
-        c=true
-        end
-      end
+  #turn off attachment_fu's auto file renaming 
+  #when you change the value of the filename field
+  def rename_file
+    true
+  end
+
+  #acts as state machine plugin
+  acts_as_state_machine :initial => :pending
+  state :pending
+  state :converting
+  state :converted, :enter => :set_new_filename
+  state :error
+
+  event :convert do
+    transitions :from => :pending, :to => :converting
+  end
+
+  event :converted do
+    transitions :from => :converting, :to => :converted
+  end
+
+  event :failure do
+    transitions :from => :converting, :to => :error
+  end
+
+  # This method is called from the controller and takes care of the converting
+  def convert
+    self.convert!
+    success = system(convert_command)
+    if success && $?.exitstatus == 0
+      self.converted!
+    else
+      self.failure!
     end
-    #    begin
-    #      transcoder.execute(recipe, {:input_file => name,
-    #          :output_file => name[0...-3] + "flv", :resolution => "640x360"})
-    #    rescue RVideo::TranscoderError => e
-    #      puts "Unable to transcode file: #{e.class} - #{e.message}"
-    #    end
+  end
+
+  def increase_display_counter
+    update_attribute(:counter, counter + 1)
+  end
+
+  def save_thumbnail
+    t = Thumbnail.create!(self.temp_path)
+    self.thumbnail = t
+    t
+  end
+  
+  def self.search search
+    conditions = search.blank? ? '' : "title LIKE '%#{search}%' OR description LIKE '%#{search}%'"
+    find(:all, :conditions => conditions)
+  end
+  
+  def rights?(usr)
+     gallery.rights?(usr)
+  end
+  
+  protected
+
+  def convert_command
+    #construct new file extension
+    flv =  "." + id.to_s + ".flv"
+
+    #build the command to execute ffmpeg
+    command = <<-end_command
+     ffmpeg -i #{ RAILS_ROOT + '/public' + public_filename }  -ar 22050 -ab 32 -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y #{ RAILS_ROOT + '/public' + public_filename + flv }  
+    end_command
     
-    #system("ffmpeg -y -i #{name} -acodec libfaac -ar 44100 -ab 96k -vcodec libx264 -level 41 -crf 25 -bufsize 20000k -maxrate 25000k -g 250 -r 20 -s 1280x720 -coder 1 -flags +loop -cmp +chroma -partitions +parti4x4+partp8x8+partb8x8 -flags2 +brdo+dct8x8+bpyramid -me umh -subq 7 -me_range 16 -keyint_min 25 -sc_threshold 40 -i_qfactor 0.71 -rc_eq 'blurCplx^(1-qComp)' -bf 16 -b_strategy 1 -bidir_refine 1 -refs 6 -deblockalpha 0 -deblockbeta 0 #{name}")
-    
-    self.link="data" + "/" + user.id.to_s + "/"+ time + ".flv"
-    c
+    logger.debug "Converting video...command: " + command
+    command
   end
 
-  def rights?(user)
-    gallery.rights?(user)
+  # This updates the stored filename with the new flash video file
+  def set_new_filename
+    update_attribute(:filename, "#{filename}.#{id}.flv")
+    update_attribute(:content_type, "application/x-flash-video")
   end
 
-  def remove
-    cd="public/images"
-    File.delete(cd+"/"+self.link)
-
-    File.delete(cd + "/" + self.link[0...-3] + "jpg")
-  end
 end

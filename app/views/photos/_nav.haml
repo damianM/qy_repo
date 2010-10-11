@@ -7,5 +7,5 @@
 
   - unless @photo.nil?
     &raquo;
-    - label = ( @photo.class == Video ? "film" : "zdjęcie" ) + ( @photo.description != "" ? " #{truncate(@photo.description, 40, '..')}" : "" )
+    - label = "zdjęcie" + ( @photo.description != "" ? " #{truncate(@photo.description, 40, '..')}" : "" )
     = link_to label, user_gallery_photo_path(@user, @gallery, @photo), :class => "nav_photo"				  
