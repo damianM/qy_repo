@@ -56,7 +56,7 @@
       </div>
     </div>
     <div class="partial">
-      <div class="header p_mygalleries"></div>
+      <div class="header event_gallery"></div>
       <div class='body'>
         <% if @event.galleries.length>0 %>
 
@@ -90,7 +90,7 @@
 
   <% unless @event.relation.nil? or @event.relation == "" %>
     <div class="partial">
-      <div class="header p_event_rel">Relacja z imprezy</div>
+      <div class="header event_relation"></div>
       <div class="body">
         <%= ntobr @event.relation  %>
       </div>
