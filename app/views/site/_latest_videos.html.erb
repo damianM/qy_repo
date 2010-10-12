@@ -6,7 +6,7 @@
       <tr>
         <% for video in videos[0...4]  %>
           <td>
-            <%= link_ image_tag(video.link[0...-3] + "jpg"), "video", "show", video.id %><br/>
+            <%= link_to image_tag(video.public_filename + "jpg"), video_path(video) %><br/>
           </td>
 
         <% end %>
@@ -15,14 +15,14 @@
         <%if videos.length > 4
           for video in videos[4...7]  %>
             <td>
-              <%= link_ image_tag(video.link[0...-3] + "jpg"), "video", "show", video.id %><br/>
+              <%= link_to image_tag(video.public_filename + "jpg"), video_path(video) %><br/>
             </td>
 
           <%end
         end %>
         <td>
           <div class="button_silver_67" style="margin-top:45px;margin-left:28px">
-            <%= link_to "Wszystkie", :controller => "video", :action => "dfind" %>
+            <%= link_to "Wszystkie", :controller => "videos", :action => "find" %>
           </div>
         </td>
       </tr>
