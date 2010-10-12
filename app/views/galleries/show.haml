@@ -37,6 +37,8 @@
         .button_silver_75{ :style => "text-align:right;display:block;float:right" }
           = link_to "Dodaj zdjęcie!", new_user_gallery_photo_path(@user, @gallery)
         .button_silver_75{ :style => "text-align:right;display:block;float:right;margin-right:5px;" }
-          = link_to "Dodaj film!", new_user_gallery_video_path(@user, @gallery)
+          = add_video_button 'Dodaj film!'
 
-      .clr
+    .clr
+
+    #add_form

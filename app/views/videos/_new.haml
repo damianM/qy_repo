@@ -7,11 +7,7 @@
       %p W tym czasie zajmujemy się przekodowaniem Twojego filmu i może to potrwać kolejne kilka minut
       %p Zarówno pole 'Film', jak i 'Opis' muszą być uzupełnione
 
-    #progress{ :style => 'display: none;' }
-      #bar{ :style => 'width: 0%;' } 0%
-
-    - form_for @video, :url => "/users/#{@user.id}/galleries/#{@gallery.id}/videos?X-Progress-ID=#{@uuid}", :html => { :multipart => true } do |form|
-      = hidden_field_tag "X-Progress-ID", @uuid
+    - form_for video, :url => "/users/#{@user.id}/galleries/#{@gallery.id}/videos?upload_id=#{@uuid}", :html => { :multipart => true } do |form|
 
       .form_row
         = form.error_messages
@@ -29,6 +25,10 @@
         = form.file_field :uploaded_data
 
       .form_row
-        = form.submit 'upload video', :class => 'submit', :style => 'width:75px;'
+        = form.submit 'upload video', :class => 'submit', :id => 'vup_submit', :style => 'width:75px;'
         .button_silver_67.submit{ :style => "border: 1px solid #AAA; height:24px; margin-right:5px;" }
           = link_to "Zamknij", user_galleries_path(@user)
+
+
+    #results
+    #progress-bar
