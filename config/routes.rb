@@ -33,7 +33,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :member => {:friends_index => :get, :friends => :get, :pending => :get, :requested => :get, :myteams => :get}, :collection => {:find => :get} do |user|
     user.resources :galleries do |gallery|
       gallery.resources :photos, :member => { :main => :get, :vote => :post }
-      gallery.resources :videos
+      gallery.resources :videos, :member => { :vote => :post }
     end
   end
   

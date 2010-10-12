@@ -17,9 +17,9 @@
           <div class="event_body_info">
             Dodał: <%= video.gallery.user ? video.gallery.user.login : video.gallery.event.user.login %><br/>
             Dnia: <%=ltd video.created_at%><br/>
-            Ocena: <%=  video.vrate.votes==0 ? 0 : (video.vrate.sum.to_f / video.vrate.votes).round(2) %><br/>
-            Ilość wyświetleń: <%= video.counter %><br/>
-            <%= link_to "Zobacz", {:controller => "video", :action => "show", :id => video.id}, {:target => "_parent"} %>
+            Ocena: <%= Rate.average(:value, :conditions => ['rateatable_id = ? AND rateatable_type = ?', video.id, 'Video']) || '0' %><br/>
+            Ilość wyświetleń: <%= video.counter || 0 %><br/>
+            <%= link_to "Zobacz", user_gallery_video_path(video.gallery.user, video.gallery, video), {:target => "_parent"} %>
             <br/>
 
           </div>
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="col2_dif">
-        <p class="event_description"><%=ntobr (cut video.description, 200) %></p>
+        <p class="event_description"><%=truncate(video.description, 200, '...') %></p>
       </div>
       <div class="clear"></div>
     </div>

@@ -1,0 +1,17 @@
+.partial
+  .header.p_gal_index
+  .body
+    %p Edytuj film
+    - form_for @video, :url => user_gallery_video_path(@user, @gallery, @video), :method => :put do |f|
+      .form_row
+        = f.label :title, "Tytul"
+        = f.text_field :title
+
+      .form_row
+        = f.label :description, "Opis"
+        = f.text_field :description
+
+      .form_row
+        = f.submit "Zapisz", :class => 'submit'
+        .button_silver_67.submit{ :style => "border: 1px solid #AAA; height:24px; margin-right:5px;" }
+          = link_to "Zamknij", user_gallery_path(@user, @gallery)

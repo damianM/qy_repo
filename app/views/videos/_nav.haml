@@ -1,0 +1,11 @@
+.nav_gal
+  = link_to "Galeria", user_galleries_path(@user)
+
+  - unless @gallery.nil?
+    &raquo;
+    = link_to @gallery.name, user_gallery_path(@user, @gallery)
+
+  - unless @video.nil?
+    &raquo;
+    - label = "film" + ( @video.description != "" ? " #{truncate(@video.description, 40, '..')}" : "" )
+    = link_to label, user_gallery_video_path(@user, @gallery, @video), :class => "nav_photo"

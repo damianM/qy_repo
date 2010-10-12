@@ -2,7 +2,7 @@
   - if logged_in?
     = render :partial => "layouts/user"
     = render :partial => "site/messages", :controller => "site", :locals => {:user => current_user}
-    = render :partial => "site/find_video", :controller => "site", :locals => {:user => current_user}
+    = render :partial => "layouts/find_video"
   - else
     = render :partial => "site/login" unless ["/users/login", "/users/register", "/user_sessions/create"].include?(request.request_uri)
     = render :partial => "layouts/latest_users"
