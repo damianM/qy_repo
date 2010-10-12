@@ -18,7 +18,7 @@
       </div>
       <div class="login_links" style="float:left">
         <%= link_to "Zarejestruj się", new_user_path %><br/>
-        <%= link_ "Nie pamiętasz hasła?", "user", "ulogin" %>
+        <%= link_to "Nie pamiętasz hasła?", :controller => "users", :action => "ulogin" %>
       </div>
     <div style="display:none">
       <%= f.submit "Zaloguj" %>
