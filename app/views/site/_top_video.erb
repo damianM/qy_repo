@@ -3,9 +3,7 @@
   </div>
   <div class='body'>
     <div class='<%= !curuser ? "main_movie" : ""%>'>
-    <a style="display:block;width:425px;height:320px;padding-left:<%= curuser ? "0" : "25"%> px;"
-      id="player">
-    </a>
+     <%= link_to '',  video.public_filename, :id => 'player', :style => "display:block;width:446px;height:348px;" -%>
 
     <br/>
 
@@ -33,8 +31,8 @@
           autoPlay: false,
           autoBuffering: false,
           // our clip uses pseudostreaming
-          provider: 'pseudo',
-          url: '<%= "/images/" +  video.link %>'
+          provider: 'pseudo'
+
          
 
         }
@@ -42,8 +40,8 @@
     </script>
   </div>  
     <div class="grey_text" style="font-size:7.5pt;margin-bottom:8px;">
-      <div style="float:left;padding-left:75px;">Średnia ocena: <%= video.vrate.votes==0 ? 0 : (video.vrate.sum.to_f / video.vrate.votes).round(2)%></div>
-      <div style="float:right;padding-right:80px;">Ilość wyświetleń: <%= video.counter %> razy</div>
+      <div style="float:left;padding-left:75px;">Średnia ocena:<%= Rate.average(:value, :conditions => ['rateatable_id = ? AND rateatable_type = ?', video.id, 'Video']) || '0' %></div>
+      <div style="float:right;padding-right:80px;">Ilość wyświetleń: <%= video.counter || 0 %> razy</div>
       <div style="clear:both"></div>
     </div>
   
