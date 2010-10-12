@@ -34,6 +34,7 @@
       <% end %>
 
       <% unless @event.organiser_email == "" %>
+        <br/>
         <b>Adres email:</b> <%= @event.organiser_email %>
       <% end %>
 
@@ -70,14 +71,17 @@
           Impreza nie ma jeszcze galerii
         <% end %>
 
-        <div class="button_silver_75" style="float:right;">
+
 
           <% if @event.galleries.length>0%>
-            <%= link_to "Pokaż wszystkie albumy", {:controller => "gallery", :action => "elist", :id => @event.id}, :class => "opt_link" %>
+            <div class="button_silver_75" style="float:right;">
+               <%= link_to "Pokaż wszystkie albumy", {:controller => "gallery", :action => "elist", :id => @event.id}, :class => "opt_link" %>
+            </div>
           <% elsif @event.rights?(curuser) %>
-            <%= link_to "Dodaj album", {:controller => "gallery", :action => "elist", :id => @event.id}, :class => "opt_link" %>
+            <div class="button_silver_75" style="float:right;">
+              <%= link_to "Dodaj album", {:controller => "gallery", :action => "elist", :id => @event.id}, :class => "opt_link" %>
+            </div>
           <% end %>
-        </div>
       </div>
     </div>
 
