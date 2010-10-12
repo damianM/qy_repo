@@ -6,7 +6,7 @@
     %div= link_to "Mój profil", current_user ? user_path(current_user) : '#'
     %div= link_to "Edytuj profil", curuser ? edit_user_path(current_user) : '#'
     %div= link_ "Galeria", "gallery", "list"
-    %div= link_ "Moje imprezy", "event", "list",(current_user ? current_user.id : 0)
+    %div= link_to "Moje imprezy", :controller => "events", :action => "list", :id => (current_user ? current_user.id : 0)
 .button_menu
   = link_ "POCZTA", "message", "index"
   %div
