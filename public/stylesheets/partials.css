@@ -154,6 +154,22 @@
      background-image: url('../headers/relations.png');position: relative; top: 6px;height:45px;
 }
 
+.l_users{
+     background-image: url('/images/you_last_friends.png');position: relative; top: 6px;height:45px;
+}
+
+.v_latest_friends_videos{
+     background-image: url('/images/latest_friends_videos.png');position: relative; top: 6px;height:45px;
+}
+
+.p_latest_friends_photos{
+     background-image: url('/images/latest_friends_photos.png');position: relative; top: 6px;height:45px;
+}
+
+.what_is_new{
+     background-image: url('/images/what_is_new.png');position: relative; top: 6px;height:45px;
+}
+
 .p_login{
      background-image: url('../headers/login.png');position: relative; top: 6px;height:50px;
 }
@@ -172,6 +188,14 @@
 
 .p_mygalleries{
     background-image: url('../headers/user/gallery.png');position: relative; top: 6px;height:45px;
+}
+
+.event_gallery{
+    background-image: url('/images/event_gallery.png');position: relative; top: 6px;height:45px;
+}
+
+.event_relation{
+    background-image: url('/images/event_relation.png');position: relative; top: 6px;height:45px;
 }
 
 .p_mygroups{
@@ -281,10 +305,10 @@
 
 .p_event{
     background-image: url('../headers/event/event.png');position: relative; top: 6px;height:30px;
-        color: #fff;
-    padding-top: 12px;
+        color: #a7a7a7;
+    padding-top: 16px;
     font-weight: bold;
-    padding-left:90px;
+    padding-left:108px;
 }
 
 .p_event_d{

@@ -8,4 +8,6 @@
     = render :partial => "layouts/latest_users"
     
   = render :partial => "layouts/latest_photos" 
+  %div{:style => 'margin-top:10px'}
+    = link_to image_tag("ogloszenia.png"), sale_ads_path
   = render :partial => "site/calendar", :controller => "site", :locals => {:events => incoming_events, :calendar_options => calendar_options}
