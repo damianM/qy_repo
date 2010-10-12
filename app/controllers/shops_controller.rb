@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class ShopsController < ApplicationController
 
+  before_filter :login_required
   layout 'admin'
   
   def index
