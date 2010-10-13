@@ -10,13 +10,17 @@ class RebuildVideos < ActiveRecord::Migration
       t.string  :title
       t.string  :description
       t.string  :state
-      t.integer :counter
+      t.integer :counter, :default => 0
       t.timestamps
     end
   end
 
   def self.down
     drop_table :videos
+    
+    create_table :videos do |t|
+      t.timestamps
+    end
   end
 
 end

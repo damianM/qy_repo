@@ -1,7 +1,7 @@
 .partial.partial_right
   .header.p_findv
   .body.find
-    - form_tag '/videos/find' do
+    - form_tag 'videos/index' do
       = text_field_tag :search, params[:search]
 
       %div

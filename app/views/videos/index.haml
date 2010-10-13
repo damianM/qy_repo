@@ -1,0 +1,30 @@
+.partial.latest_items
+  .header.p_user_var Znalezione filmy
+  .body
+    - unless  @videos.blank?
+      - @videos.each do |video|
+        .event
+          .event_body
+            .col1_dif
+              .event_body_left
+                %br
+                .event_body_info
+                  = "Dodał: #{video.gallery.user ? video.gallery.user.login : video.gallery.event.user.login}"
+                  %br
+                  = "Dnia: #{video.created_at.strftime("%d.%m.%Y, %H:%M")}"
+                  %br
+                  = "Ocena: #{Rate.average(:value, :conditions => ['rateatable_id = ? AND rateatable_type = ?', video.id, 'Video']) || '0'}"
+                  %br
+                  = "Ilość wyświetleń: #{video.counter}"
+                  %br
+                  = link_to "Zobacz", video_path(video), {:target => "_parent"}
+                  %br
+
+            .col2_dif
+              %p.event_description
+                = truncate(video.description, 200, '...')
+
+            .clr
+
+    - else
+      Niestety, nie znaleziono filmów...

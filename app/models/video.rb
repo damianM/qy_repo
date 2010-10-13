@@ -1,5 +1,7 @@
 class Video < ActiveRecord::Base
 
+  validates_presence_of :title
+
   belongs_to :gallery
   belongs_to :thumbnail, :dependent => :destroy
 
@@ -56,11 +58,17 @@ class Video < ActiveRecord::Base
   end
 
   def save_thumbnail
-    t = Thumbnail.create!(self.temp_path)
-    self.thumbnail = t
-    t
+    self.thumbnail = Thumbnail.create!(self.temp_path)
   end
   
+  def self.top10
+    find(:all, :joins => :gallery, :order => "counter desc", :limit => 10)
+  end
+  
+  def self.latest
+    find(:all, :joins => :gallery, :order => "created_at desc", :limit => 7)
+  end
+
   def self.search search
     conditions = search.blank? ? '' : "title LIKE '%#{search}%' OR description LIKE '%#{search}%'"
     find(:all, :conditions => conditions)
@@ -81,7 +89,6 @@ class Video < ActiveRecord::Base
      ffmpeg -i #{ RAILS_ROOT + '/public' + public_filename }  -ar 22050 -ab 32 -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y #{ RAILS_ROOT + '/public' + public_filename + flv }  
     end_command
     
-    logger.debug "Converting video...command: " + command
     command
   end
 

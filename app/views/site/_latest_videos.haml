@@ -1,0 +1,13 @@
+.partial
+  .header.p_l_videos
+  .body
+    %table.p_movies
+      - Video.latest.in_groups_of(4).each do |group|
+        %tr
+          - group.each do |video|
+            %td
+              = link_to image_tag(video.public_filename), video_path(video) if video
+      %tr
+        %td
+          .button_silver_67{ :style => "margin-top:45px;margin-left:28px;" }
+            = link_to "Wszystkie", videos_path

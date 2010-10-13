@@ -11,8 +11,7 @@ class VideosController < ApplicationController
   end
   
   def index
-    @videos = Video.find :all
-    render :text => 'index'
+    @videos = Video.search(params[:search])
   end
   
   def create
@@ -91,10 +90,6 @@ class VideosController < ApplicationController
     end
 
     redirect_to user_gallery_path(@user, @gallery)
-  end
-
-  def find
-    @videos = Video.search(params[:search])
   end
   
   def dfind

@@ -142,10 +142,6 @@ module ApplicationHelper
   def insert_bcorners
   end
   
-  def s_top_videos
-    Video.find(:all, :order => "counter desc",:conditions => "description IS NOT NULL ", :limit => 10).reject{|x| x.gallery.user.nil?}
-  end
-  
   def tf_in_pl value
     return 'Tak' if value
     return 'Nie'

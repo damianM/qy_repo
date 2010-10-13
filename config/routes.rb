@@ -20,8 +20,6 @@ ActionController::Routing::Routes.draw do |map|
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
 
-  map.resources :videos
-  map.resources :galleries
   map.resources :sale_ads
   map.resources :buy_ads
   map.resources :workshops, :member => {:show_on_google_map => :get}
@@ -31,6 +29,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :events, :collection => {:list => :get}
   map.resources :comments
 
+  map.resources :galleries
+  map.resources :photos
+  map.resources :videos
+
   map.resources :teams, :collection => {:list => :get, :find_form => :get, :find => :post, :admin_list => :get}
   map.resources :users, :member => {:friends_index => :get, :friends => :get, :pending => :get, :requested => :get, :myteams => :get}, :collection => {:find => :get} do |user|
     user.resources :galleries do |gallery|
@@ -38,7 +40,8 @@ ActionController::Routing::Routes.draw do |map|
       gallery.resources :videos, :member => { :vote => :post }
     end
   end
-  
+
+    
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments
