@@ -15,9 +15,7 @@ class VideosController < ApplicationController
   end
   
   def create
-    @user = User.find(params[:user_id])
-    @gallery = @user.galleries.find(params[:gallery_id])
-    @video = @gallery.videos.build(params[:video])
+    @video = Video.new(params[:video])
 
     if @video.save
       @video.convert
@@ -25,23 +23,18 @@ class VideosController < ApplicationController
     else
       flash[:error] = "Wystąpił problem podczas dodawania filmu"
     end
-    redirect_to user_gallery_path(@user, @gallery)
+    redirect_to user_gallery_path(@video.gallery.user, @video.gallery)
   end
   
   def show
     store_location
 
-    @user = User.find(params[:user_id])
-    @gallery = @user.galleries.find(params[:gallery_id])
-    @video = @gallery.videos.find(params[:id])
-
-    @video.increase_display_counter if @gallery.user != current_user
+    @video = Video.find(params[:id])
+    @video.increase_display_counter if @video.gallery.user != current_user
   end
 
   def vote
-    @user = User.find(params[:user_id])
-    @gallery = @user.galleries.find(params[:gallery_id])
-    @video = @gallery.videos.find(params[:id])
+    @video = Video.find(params[:id])
 
     @rate = Rate.new(params[:rate])
     @rate.rateatable = @video
@@ -53,35 +46,29 @@ class VideosController < ApplicationController
       flash[:error] = "Głos nie został zapisany" + @rate.errors.inspect
     end
 
-    redirect_to user_gallery_video_path(@user, @gallery, @video)
+    redirect_to video_path(@video)
   end
   
-  def delete
-    @user = User.find(params[:user_id])
-    @gallery = @user.galleries.find(params[:gallery_id])
-    @video = @gallery.videos.find(params[:id])
+  def destroy
+    @video = Video.find(params[:id])
 
-    if @gallery.rights?(current_user)
+    if @video.gallery.rights?(current_user)
       @video.destroy
       flash[:notice]="Pomyślnie usunięto film"
     else
       flash[:error]="Napotkano błąd"
     end
-    redirect_to user_gallery_path(@user, @gallery)
+    redirect_to user_gallery_path(@video.gallery.user, @video.gallery)
   end
 
   def edit
-    @user = User.find(params[:user_id])
-    @gallery = @user.galleries.find(params[:gallery_id])
-    @video = @gallery.videos.find(params[:id])
-    
+    @video = Video.find(params[:id])
     return redirect_to root_path unless @video.rights? current_user
   end
 
   def update
-    @user = User.find(params[:user_id])
-    @gallery = @user.galleries.find(params[:gallery_id])
-    @video = @gallery.videos.find(params[:id])
+    @video = Video.find(params[:id])
+    return redirect_to root_path unless @video.rights? current_user
 
     if @video.update_attributes(params[:video])
       flash[:notice] = "Pomyślnie zmodyfikowano film"
@@ -89,11 +76,10 @@ class VideosController < ApplicationController
       flash[:error] = "Wystąpił błąd podczas edycji filmu"
     end
 
-    redirect_to user_gallery_path(@user, @gallery)
+    redirect_to user_gallery_path(@video.gallery.user, @video.gallery)
   end
   
-  def dfind
-    puts params.inspect
+  def search
     if(params[:since] and params[:since]["since(1i)"]!="" and params[:since]["since(2i)"]!="" and params[:since]["since(3i)"]!="")
       since=Time.mktime(params[:since]["since(1i)"].to_i,params[:since]["since(2i)"].to_i,params[:since]["since(3i)"].to_i,0,0,0)
     else

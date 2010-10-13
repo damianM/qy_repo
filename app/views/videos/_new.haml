@@ -7,7 +7,8 @@
       %p W tym czasie zajmujemy się przekodowaniem Twojego filmu i może to potrwać kolejne kilka minut
       %p Zarówno pole 'Tytuł', 'Opis' jak i 'Film' muszą być uzupełnione
 
-    - form_for video, :url => "/users/#{@user.id}/galleries/#{@gallery.id}/videos?upload_id=#{uuid}", :html => { :multipart => true, :onsubmit => "return validate(this, #{escape_javascript uuid} ); return false;" } do |form|
+    - form_for video, :url => videos_path(:upload_id => uuid), :html => { :multipart => true, :onsubmit => "return validate(this, #{escape_javascript uuid} ); return false;" } do |form|
+      = form.hidden_field :gallery_id
 
       .form_row
         = form.error_messages

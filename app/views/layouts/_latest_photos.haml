@@ -10,11 +10,11 @@
           - pair.each do |photo|
             %td
               - unless photo.nil?
-                %div= link_to image_tag(photo.public_filename(:thumb)), user_gallery_photo_path(photo.gallery.user, photo.gallery, photo) 
+                %div= link_to image_tag(photo.public_filename(:thumb)), photo_path(photo)
                 %br
                 = link_to photo.gallery.user.login, user_path(photo.gallery.user)
 
     .button_silver_67{ :style => "float:right;" }
-      = link_to "Wszystkie", url_for(:controller => 'photos', :action => 'index')
+      = link_to "Wszystkie", photos_path
 
     .clr

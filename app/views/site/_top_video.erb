@@ -2,7 +2,7 @@
   <div class="header p_t_video"></div>
   <div class='body'>
     <div class='<%= logged_in? ? "" : "main_movie" %>'>
-      <%= render :partial => 'videos/player', :locals => { :video => @top_video, :styles => "display:block;width:446px;height:348px;" }
+      <%= render :partial => 'videos/player', :locals => { :video => @top_video, :styles => "display:block;width:446px;height:348px;" } %>
     </div>  
 
     <div class="grey_text" style="font-size:7.5pt;margin-bottom:8px;">

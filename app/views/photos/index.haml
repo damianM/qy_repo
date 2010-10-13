@@ -1,0 +1,15 @@
+.partial
+  .header.p_photo
+  .body
+
+    = will_paginate @photos
+
+    %table.gallery
+      - @photos.in_groups_of(3).each do |triple|
+        %tr
+          - triple.each do |photo|
+            %td
+              .photo_m
+                - unless photo.nil?
+                  = link_to image_tag(photo.public_filename(:thumb)), photo_path(photo)
+                  = render :partial => "galleries/asset", :object => photo

@@ -61,7 +61,7 @@
     %br
 
     - unless @video.voters.include?(current_user)
-      - form_for :rate, :url => vote_user_gallery_video_path(@video.gallery.user, @video.gallery, @video) do |f|
+      - form_for :rate, :url => vote_video_path(@video) do |f|
         %p
           = f.select :value , (1..5).collect{ |x| [x,x] }
           = f.submit "Głosuj!"

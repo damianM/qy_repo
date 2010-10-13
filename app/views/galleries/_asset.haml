@@ -1,9 +1,15 @@
 .clr
 .gallery_opt_left
   %table
-    %tr
-      %td.gal_opt_lef Dodano
-      %td.al_opt_right= asset.created_at.strftime("%d.%m.%Y, %H:%M") 
+    - if asset.created_at
+      %tr
+        %td.gal_opt_lef Dodano
+        %td.al_opt_right= asset.created_at.strftime("%d.%m.%Y, %H:%M") 
+
+    - if defined?(asset.title)
+      %tr
+        %td.gal_opt_left Tytuł:
+        %td.gal_opt_right= asset.title
 
     - if asset.description !=""
       %tr
@@ -13,6 +19,6 @@
     - if asset.rights?(current_user)
       %tr
         %td.gal_opt_left
-          = link_to image_tag("/edit.png"), eval("edit_user_gallery_#{asset.class.to_s.downcase}_path(@user, @gallery, asset)"), { :title => "Edytuj", :class => "picture_link" }
+          = link_to image_tag("/edit.png"), eval("edit_#{asset.class.to_s.downcase}_path(asset)"), { :title => "Edytuj", :class => "picture_link" }
         %td.gal_opt_right
-          = link_to image_tag("/delete.png"), eval("user_gallery_#{asset.class.to_s.downcase}_path(@user, @gallery, asset)"), { :method => :delete, :confirm => "Czy jesteś pewien?", :title => "Usuń", :class => "picture_link"} 
+          = link_to image_tag("/delete.png"), eval("#{asset.class.to_s.downcase}_path(asset)"), { :method => :delete, :confirm => "Czy jesteś pewien?", :title => "Usuń", :class => "picture_link"} 

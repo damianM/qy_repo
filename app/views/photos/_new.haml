@@ -1,7 +1,9 @@
 .partial
   .header Dodaj zdjęcie!
   .body
-    - form_for photo, :url => user_gallery_photos_path(@user, @gallery), :html => { :multipart => true } do |f|      
+    - form_for photo, :url => photos_path, :html => { :multipart => true } do |f|
+      = f.hidden_field :gallery_id
+
       .form_row
         = f.label :description, "Opis"
         = f.text_field :description

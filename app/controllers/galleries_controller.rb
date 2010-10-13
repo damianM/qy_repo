@@ -36,6 +36,8 @@ class GalleriesController < ApplicationController
     @user = User.find(params[:user_id])
     @gallery = @user.galleries.find(params[:id])
 
+    return redirect_to root_path unless @gallery.rights? current_user
+
     if @gallery.update_attributes(params[:gallery])
       flash[:notice] = "Pomyślnie zmodyfikowano galerię"
       redirect_to user_galleries_path(@user)

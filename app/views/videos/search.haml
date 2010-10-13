@@ -1,0 +1,33 @@
+.partial.latest_items
+  .header p_user_var Szukanie filmów
+  .body
+    .find_event
+      - form_tag search_videos_path do
+        .bolder{ :style => "text-align:left;padding-left:40px;" } Data:
+        %br
+        .form_row
+          = label :query, :since, "od: "
+          = date_select :since, :since , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10}, :class => "date_select"
+          .clr
+
+        .form_row
+          = label :query, :to, "do: "
+          = date_select :to, :to , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10}, :class => "date_select"
+          .clr
+
+        .form_row
+          = label :query, :user, "Użytkownik: "
+          = text_field :user,:user
+
+        .form_row
+          = submit_tag "Szukaj!"
+
+    %br
+
+    .sorters
+      Oceny
+      = link_to "&darr;",params.merge({:marks => "asc"})
+      = link_to "&uarr;",params.merge({:marks => "desc"})
+      Ilość wyświetleń
+      = link_to "&darr;",params.merge({:views => "asc"} )
+      = link_to "&uarr;",params.merge({:views => "desc"} )

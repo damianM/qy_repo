@@ -1,11 +1,11 @@
 .nav_gal
-  = link_to "Galeria", user_galleries_path(@user)
+  = link_to "Galeria", user_galleries_path(@photo.gallery.user)
 
   - unless @gallery.nil?
     &raquo;
-    = link_to @gallery.name, user_gallery_path(@user, @gallery)
+    = link_to @photo.gallery.name, user_gallery_path(@photo.gallery.user, @hoto.gallery)
 
   - unless @photo.nil?
     &raquo;
     - label = "zdjęcie" + ( @photo.description != "" ? " #{truncate(@photo.description, 40, '..')}" : "" )
-    = link_to label, user_gallery_photo_path(@user, @gallery, @photo), :class => "nav_photo"				  
+    = link_to label, photo_path(@photo), :class => "nav_photo"				  

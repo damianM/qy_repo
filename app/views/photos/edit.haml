@@ -2,7 +2,7 @@
   .header.p_photo
   .body
     %p Edytuj zdjęcie
-    - form_for @photo, :url => user_gallery_photo_path(@user, @gallery, @photo), :method => :put do |f|
+    - form_for @photo, :url => photo_path(@photo), :method => :put do |f|
       .form_row
         = f.label :name, "Opis"
         = f.text_field :description
@@ -10,4 +10,4 @@
       .form_row
         = f.submit "Zapisz", :class => 'submit'
         .button_silver_67.submit{ :style => "border: 1px solid #AAA; height:24px; margin-right:5px;" }
-          = link_to "Zamknij", user_gallery_path(@user, @gallery)
+          = link_to "Zamknij", user_gallery_path(@photo.gallery.user, @photo.gallery)

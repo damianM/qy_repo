@@ -30,14 +30,14 @@
       %br
 
       - unless photo.voters.include?(current_user)
-        - form_for :rate, :url => vote_user_gallery_photo_path(photo.gallery.user, photo.gallery, photo) do |f|
+        - form_for :rate, :url => vote_photo_path(photo) do |f|
           %p
             = f.select :value , (1..5).collect{ |x| [x,x] }
             = f.submit "Głosuj!"
 
       - if photo.rights?(current_user)
         %div
-          = link_to "Ustaw jako główne", main_user_gallery_photo_path(photo.gallery.user, photo.gallery, photo), :style => 'color:gray;'
+          = link_to "Ustaw jako główne", main_photo_path(photo), :style => 'color:gray;'
 
       %br
 
