@@ -1,23 +1,25 @@
 .partial.latest_items
-  .header p_user_var Szukanie filmów
+  .header.p_user_find
   .body
     .find_event
       - form_tag search_videos_path do
-        .bolder{ :style => "text-align:left;padding-left:40px;" } Data:
+
+        Wyszukaj film:
         %br
+
         .form_row
-          = label :query, :since, "od: "
-          = date_select :since, :since , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10}, :class => "date_select"
+          = label_tag :since, "od: "
+          = date_select :query, :since , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10}, :class => "date_select"
           .clr
 
         .form_row
-          = label :query, :to, "do: "
-          = date_select :to, :to , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10}, :class => "date_select"
+          = label_tag :to, "do:"
+          = date_select :query, :to , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10}, :class => "date_select"
           .clr
 
         .form_row
-          = label :query, :user, "Użytkownik: "
-          = text_field :user,:user
+          = label_tag :user, "Użytkownik:"
+          = text_field_tag :query, :user
 
         .form_row
           = submit_tag "Szukaj!"
