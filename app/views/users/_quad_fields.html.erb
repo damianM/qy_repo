@@ -2,14 +2,19 @@
       <div class="form_row">
         <%= f.label :company_id, "Marka" %>
         <%= f.collection_select :company_id, Company.all, :id, :name, { :include_blank => true }  %>
+        <%= f.error_message_on :company_id %>
       </div>
+      <br/>
       <div class="form_row">
         <%= f.label :qtype, "Typ" %>
         <%= f.text_field :qtype %>
+        <%= f.error_message_on :qtype %>
       </div>
+      <br/>
       <div class="form_row">
         <%= f.label :description, "Opis" %>
         <%= f.text_area :description, :rows => 5, :cols => 40 %>
+        <%= f.error_message_on :description %>
       </div>
       <div class="button_silver_67" style="font-size:10pt; font-weight: bold;float:right;margin-top:7px;">
         <a style="color: #222;" href="#" onclick="parentNode.parentNode.parentNode.parentNode.submit(); return false">Zapisz</a>

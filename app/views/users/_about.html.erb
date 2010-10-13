@@ -21,7 +21,7 @@
     <div class="rcol_user">
       <div class="about_links">
         <div>
-          <%= link_ "Znajomi", "user", "friends", @user.id %>
+          <%= link_ "Znajomi", "users", "friends", @user.id %>
           <div>(<%= @user.friends.length%>)</div>
         </div>
         <div>
@@ -36,7 +36,7 @@
           </div>
         <% end %>
         <div>
-          <%= link_ "Moje imprezy", "event", "list", @user.id%>
+          <%= link_ "Moje imprezy", "events", "list", @user.id%>
         </div>
         <% unless @user.friend?(curuser) or curuser.pending?(@user) or @user==curuser  %>
           <div>

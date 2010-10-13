@@ -3,46 +3,45 @@
   <div class="body">
     <% form_for(setup_user(@user)) do |f| %>
       <div class="form_row">
-        <span class="required_field">*</span>
-        <%= f.label :login, "Login" %>
+        <%= f.label :login, "Login *" %>
         <%= f.text_field :login %>
         <%= f.error_message_on :login %>
       </div>
+      <br/>
       <div class="form_row">
-        <span class="required_field">*</span>
-        <%= f.label :password,"Hasło" %>
+        <%= f.label :password,"Hasło *" %>
         <%= f.password_field :password %>
         <%= f.error_message_on :password %>
 
       </div>
+      <br/>
       <div class="form_row">
-        <span class="required_field">*</span>
-        <%= f.label :password_confirmation, "Potwierdź hasło" %>
+        <%= f.label :password_confirmation, "Potwierdź hasło *" %>
         <%= f.password_field :password_confirmation %>
 
       </div>
+      <br/>
       <div class="form_row">
-        <span class="required_field"> </span>
         <%= f.label :state_id, "Województwo" %>
         <%= f.collection_select :state_id, State.all, :id, :name, { :include_blank => true } %>
       </div>
+      <br/>
       <div class="form_row">
-        <span class="required_field"> </span>
         <%= f.label :city , "Miejscowość"%>
         <%= f.text_field :city %>
       </div>
+      <br/>
       <div class="form_row">
-        <span class="required_field">*</span>
         <%= f.label :email, "Email" %>
         <%= f.text_field :email %>
         <%= f.error_message_on :email %>
       </div>
-
+      <br/>
       <div class="form_row">
-        <span class="required_field"> </span>
         <label>Quad</label>
         <%= select_tag :register_select, options_for_select([['wybierz',0],['nie posiadam',1],['posiadam',2]],params[:register_select].to_i), :onChange => "f(this)" -%>
       </div>
+      <br/>
       <div class="partial" id="n_quad">
         <div class="header">Quad</div>
         <div class="body">
@@ -52,10 +51,12 @@
               <%= qf.label :company_id, "Marka" %>
               <%= qf.collection_select :company_id, Company.all, :id, :name, { :include_blank => true } %>
             </div>
+            <br/>
             <div class="form_row">
               <%= qf.label :qtype, "Typ" %>
               <%= qf.text_field :qtype %>
             </div>
+            <br/>
             <div class="form_row">
               <%= qf.label :description, "Opis" %>
               <%= qf.text_area :description, :rows => 10 %>
@@ -65,12 +66,13 @@
         </div>
       </div>
       <div class="form_row">
-        <%= show_simple_captcha :distorion => "high", :image_style => "simply_red", :label => "Proszę przepisać kod z obrazka" %>
+        <div style='float: right;'><%= show_simple_captcha :distorion => "high", :image_style => "simply_red", :label => "Proszę przepisać kod z obrazka" %></div>
       </div>
+      <br/>
       <div class="form_row">
-        <span class="required_field">*</span>
-        <%= label_tag :reg, "Akceptuję #{ link_ "regulamin", "site", "terms"}" %><br/>
-        <%= check_box_tag :reg, params[:reg], params[:reg] %>
+        <div style='float: right;'> <%= label_tag :reg, "Akceptuję #{ link_ "regulamin", "site", "terms"} *" %>
+             <%= check_box_tag :reg, params[:reg], params[:reg] %>
+        </div>
       </div>
       <div class="form_row">
         <%= f.submit "Rejestruj!", :class => "submit" %>

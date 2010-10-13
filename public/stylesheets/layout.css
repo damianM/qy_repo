@@ -144,6 +144,7 @@ div#error{
     padding: 10px 10px 10px 10px;
     font-weight:bold;
     font-size:9pt;
+    text-align: center;
 }
 
 div#notice{
@@ -154,4 +155,34 @@ div#notice{
     padding: 10px 10px 10px 10px;
     font-weight:bold;
     font-size:9pt;
+}
+
+form p.error {
+  color: red;
+  font-size: 10px; }
+form input.error {
+  border: 1px solid red; }
+form span.error , form label.error, form .formError {
+  float: none;
+  color: red;
+  font-size: 80%;
+  font-weight: bold;
+  display: block; 
+  float: right;
+  clear: both;}
+
+.fieldWithErrors input {
+  border: 1px solid red; }
+
+.error {
+  color: red;
+  font-size: 10px; }
+
+.success {
+  color: green;
+  font-size: 10px; }
+
+#simple_captcha .simple_captcha_field, #simple_captcha .simple_captcha_image{
+  float: right;
+  clear: both;
 }
