@@ -4,65 +4,69 @@
     <% form_for @event do |f| %>
 
       <div class="form_row">
-        <span class="required_field">*</span>
-        <%= f.label :title, "Nazwa imprezy"%>
+        <%= f.label :title, "Nazwa imprezy *"%>
         <%= f.text_field :title %>
+        <%= f.error_message_on :title %>	
       </div>
+      <br/>
       <div class="form_row">
-        <span class="required_field">*</span>
-        <%= f.label :description,"Opis" %>
+        <%= f.label :description,"Opis *" %>
         <%= f.text_area :description %>
+        <%= f.error_message_on :description %>
       </div>
+      <br/>
       <div class="form_row">
-        <span class="required_field"> </span>
         <%= f.label :event_date, "Data rozpoczęcia" %>
         <%= f.date_select :event_start,{}, :class => "date_select"%>
-        <div class="clear"></div>
+        <%= f.error_message_on :event_start %>
       </div>
+      <br/>
       <div class="form_row">
-        <span class="required_field"> </span>
         <%= f.label :event_end, "Data zakończenia" %>
         <%= f.date_select :event_end,{}, :class => "date_select"%>
-        <div class="clear"></div>
+        <%= f.error_message_on :event_end %>
       </div>
-
+      <br/>
       <div class="form_row">
-        <span class="required_field">*</span>
-        <%= f.label :place,"Miejsce" %>
+        <%= f.label :place,"Miejsce *" %>
         <%= f.text_field :place %>
+        <%= f.error_message_on :place %>
       </div>
-
+      <br/>
       <div class="form_row">
-        <span class="required_field">*</span>
-        <%= f.label :organiser_name,"Organizator" %>
+        <%= f.label :organiser_name,"Organizator *" %>
         <%= f.text_field :organiser_name %>
+        <%= f.error_message_on :organisername %>
       </div>
-
+      <br/>
       <div class="form_row">
-        <span class="required_field">*</span>
-        <%= f.label :organiser_address,"Adres organizatora" %>
+        <%= f.label :organiser_address,"Adres organizatora *" %>
         <%= f.text_field :organiser_address %>
+        <%= f.error_message_on :organiser_address %>
       </div>
-
+      <br/>
       <div class="form_row">
-        <span class="required_field"> </span>
         <%= f.label :organiser_www,"Strona WWW" %>
         <%= f.text_field :organiser_www %>
+        <%= f.error_message_on :organiser_www %>
       </div>
+      <br/>
       <div class="form_row">
-        <span class="required_field"> </span>
         <%= f.label :organiser_email,"Adres email" %>
         <%= f.text_field :organiser_email %>
+        <%= f.error_message_on :organiser_email %>
       </div>
+      <br/>
       <div class="form_row">
-        <span class="required_field">*</span>
-        <%= f.label :organiser_phone,"Telefon" %>
+        <%= f.label :organiser_phone,"Telefon *" %>
         <%= f.text_field :organiser_phone %>
+        <%= f.error_message_on :organiser_phone %>
       </div>
+      <br/>
       <div class="form_row">
-        <span class="required_field"> </span>
         <%= f.label :event_category_id, "Kategoria" %>
         <%= f.collection_select :event_category_id, EventCategory.all, :id, :name %>
+        <%= f.error_message_on :event_category_id %>
       </div>
       <%# unless @event.files.empty? %>
         <%#*<div class="partial">%>

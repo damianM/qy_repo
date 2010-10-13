@@ -72,7 +72,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = curuser
+    @user = current_user
 
     if @user.update_attributes(params[:user])
       flash[:notice]="Pomyślnie zmodyfikowano profil"

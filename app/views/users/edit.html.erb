@@ -11,56 +11,73 @@
   </div>
 </div>
 
-<% form_for(:user,setup_user(@user)) do |f| %>
+<% form_for(:user,setup_user(@user), :url => {:controller => 'users', :action => 'update'}, :html => {:method => :put}) do |f| %>
   <div class="partial">
     <div class="header p_user_edit_mydata"></div>
     <div class="body">
       <div class="form_row">
         <%= f.label :name, "Imię"%>
         <%= f.text_field :name %>
+        <%= f.error_message_on :name %>
       </div>
+      <br/>
       <div class="form_row">
         <%= f.label :surname ,"Nazwisko"%>
         <%= f.text_field :surname %>
+        <%= f.error_message_on :surname %>
       </div>
+      <br/>
       <div class="form_row">
-        <%= f.label :sex , "Kobieta" %>
+        <%= f.label :sex , "Kobieta /" %>
+        <%= f.error_message_on :sex %>
         <%= f.radio_button :sex, "k"%>
-
       </div>
       <div class="form_row">
         <%= f.label :sex , "Mężczyzna" %>
         <%= f.radio_button :sex, "m"%>
 
       </div>
+      <br/>
       <div class="form_row">
         <%= f.label :birth , "Data urodzenia" %>
         <%= f.date_select :birth , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 90, :end_year => Time.now.year},  :class => "date_select" %>
-        <div class="clear"></div>
+        <%= f.error_message_on :birth -%>
       </div>
+      <br/>
       <div class="form_row">
         <%= f.label :state_id ,"Województwo"%>
 	<%= f.collection_select :state_id, State.all, :id, :name %>
+        <%= f.error_message_on :state_id -%>
       </div>
+      <br/>
       <div class="form_row">
         <%= f.label :city , "Miejscowość"%>
         <%= f.text_field :city %>
+        <%= f.error_message_on :city %>
       </div>
+      <br/>
       <div class="form_row">
         <%= f.label :gg , "Numer GG"%>
         <%= f.text_field :gg %>
+        <%= f.error_message_on :gg %>
       </div>
+      <br/>
       <div class="form_row">
         <%= f.label :skype,"Login Skype" %>
         <%= f.text_field :skype %>
+        <%= f.error_message_on :skype %>
       </div>
+      <br/>
       <div class="form_row">
         <%= f.label :phone, "Telefon" %>
         <%= f.text_field :phone %>
+        <%= f.error_message_on :phone %>
       </div>
+      <br/>
       <div class="form_row">
         <%= f.label :about, "O mnie" %>
         <%= f.text_area :about %>
+        <%= f.error_message_on :about %>
       </div>
     </div>
   </div>

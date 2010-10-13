@@ -7,7 +7,7 @@
           <%= link_ team.name,"team", "show", team.id %><br/>
         <% end %>
       <div class="button_silver_67" style="float:right">
-        <%= link_to "Wszystkie", {:controller => "user", :action => "myteams", :id => user.id} %>
+        <%= link_to "Wszystkie", {:controller => "users", :action => "myteams", :id => user.id} %>
       </div>
       <div class="clr"></div>
     <% else %>

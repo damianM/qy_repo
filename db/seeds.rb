@@ -12,7 +12,7 @@ end
 
 p 'User populating...'
 unless User.find_by_login('admin')
-  admin = Admin.new({:name => 'admin', :login => 'admin', :password => 'admin.123', :password_confirmation => 'admin.123'})
+  admin = Admin.new({:name => 'admin', :login => 'admin', :password => 'admin.123', :password_confirmation => 'admin.123', :email => 'dmarciniec@gmail.com'})
   admin.active = true
   admin.save_without_validation
 end
