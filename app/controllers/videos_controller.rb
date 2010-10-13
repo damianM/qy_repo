@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 class VideosController < ApplicationController
+  session :off, :only => :progress
+  skip_before_filter :verify_authenticity_token, :only => :progress
+  
+  def progress
+    render :update do |page|
+      @status = Mongrel::Uploads.check(params[:upload_id])
+      page << "UploadProgress.update(#{@status[:size]}, #{@status[:received]})" if @status
+    end
+  end
   
   def index
     @videos = Video.find :all
     render :text => 'index'
-  end
-  
-  def new
-    @uuid = (0..29).to_a.map {|x| rand(10)}
-
-    @user = User.find(params[:user_id])
-    @gallery = @user.galleries.find(params[:gallery_id])
-    @video = @gallery.videos.build
   end
   
   def create
@@ -22,11 +23,10 @@ class VideosController < ApplicationController
     if @video.save
       @video.convert
       flash[:notice] = 'Film został dodany'
-      redirect_to user_gallery_path(@user, @gallery)
     else
       flash[:error] = "Wystąpił problem podczas dodawania filmu"
-      render :action => 'new'
     end
+    redirect_to user_gallery_path(@user, @gallery)
   end
   
   def show

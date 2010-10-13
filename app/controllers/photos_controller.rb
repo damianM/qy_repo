@@ -21,11 +21,11 @@ class PhotosController < ApplicationController
 
     if @photo.save
       flash[:notice] = "Zdjęcie zostało dodane"
-      redirect_to user_gallery_path(@user, @gallery)
     else
       flash[:error] = "Wystąpił problem podczas dodawania zdjęcia"
-      render :action => 'new'
     end
+
+    redirect_to user_gallery_path(@user, @gallery)
     
     #if params[:mark_as_main_photo]
     # user = curuser

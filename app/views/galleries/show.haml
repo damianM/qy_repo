@@ -30,15 +30,19 @@
       %p Album jest pusty!
 
 
-    #add_obj
+    #buttons
       .button_gold_100{ :style => "text-align:left;display:block;float:left;" }
         = link_to "Wszystkie albumy", user_galleries_path(@user)
       - if @gallery.rights?(current_user)
         .button_silver_75{ :style => "text-align:right;display:block;float:right" }
-          = link_to "Dodaj zdjęcie!", new_user_gallery_photo_path(@user, @gallery)
+          = toggle_photo_form 'Dodaj zdjęcie!'
         .button_silver_75{ :style => "text-align:right;display:block;float:right;margin-right:5px;" }
-          = add_video_button 'Dodaj film!'
+          = toggle_video_form 'Dodaj film!'
 
     .clr
 
-    #add_form
+    #video_form{:style => 'display:none;margin-top:10px;'}
+      = render :partial => 'videos/new', :locals => { :video => Video.new, :uuid => Time.now.to_i.to_s }
+
+    #photo_form{:style => 'display:none;margin-top:10px;'}
+      = render :partial => 'photos/new', :locals => { :photo => Photo.new, :allow_main_photo => false }

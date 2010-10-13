@@ -6,7 +6,7 @@ var UploadProgress = {
         if(!this.periodicExecuter) {
             this.periodicExecuter = new PeriodicalExecuter(function() {
                 if(!UploadProgress.uploading) return;
-                new Ajax.Request('/files/progress?upload_id=' + upid);
+                new Ajax.Request('/videos/progress?upload_id=' + upid);
             }, 3);
         }
 
@@ -136,18 +136,23 @@ Number.prototype.toHumanSize = function() {
 
 
 function validate(f,pid){
-    if(f.elements['video[file]'].value==''){
+    if(f.elements['video[uploaded_data]'].value==''){
         alert("Nie podano filmu. Podaj film do załadowania i spróbuj ponownie");
         return false;
-    }else if(f.elements['video[description]'].value==''){
+    }
+    else if(f.elements['video[title]'].value==''){
+        alert("Nie podano tytułu. Uzupełnij tytuł i spróbuj ponownie");
+        return false;
+    }
+    else if(f.elements['video[description]'].value==''){
         alert("Nie podano opisu. Uzupełnij opis i spróbuj ponownie");
         return false;
-    } else {
-	$('vup_submit').disabled=true;
-	$('vup_stop').show();
+    }
+    else {
+	$('vup_submit').disabled = true;
         UploadProgress.monitor(pid);
         f.submit();
         return false;
     }
-
+    
 }

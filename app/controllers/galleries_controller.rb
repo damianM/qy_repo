@@ -2,16 +2,6 @@
 class GalleriesController < ApplicationController
   before_filter :login_required
   IMAGE_PATH="public/images/data"
-
-  session :off, :only => :progress
-  skip_before_filter :verify_authenticity_token, :only => :progress
-
-  def progress
-    render :update do |page|
-      @status = Mongrel::Uploads.check(params[:upload_id])
-      page << "UploadProgress.update(#{@status[:size]}, #{@status[:received]})" if @status
-    end
-  end
   
   def index
     @user = User.find(params[:user_id])
