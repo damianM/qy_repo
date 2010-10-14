@@ -7,7 +7,7 @@
 
     <div class="grey_text" style="font-size:7.5pt;margin-bottom:8px;">
       <div style="float:left;padding-left:75px;">
-        Średnia ocena: <%= Rate.average(:value, :conditions => ['rateatable_id = ? AND rateatable_type = ?', video.id, 'Video']) || '0' %>
+        Średnia ocena: <%= Rate.average(:value, :conditions => ['rateatable_id = ? AND rateatable_type = ?', @top_video.id, 'Video']) || '0' %>
       </div>
       <div style="float:right;padding-right:80px;">Ilość wyświetleń: <%= @top_video.counter %> razy</div>
       <div style="clear:both"></div>
