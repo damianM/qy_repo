@@ -23,7 +23,7 @@
               %td
                 .photo_m
                   - unless video.nil?
-                    = link_to (video.thumbnail ? image_tag(video.thumbnail.public_filename) : "Miniaturka niedostępna" ), video_path(video)
+                    = link_to((video.thumbnail ? (image_tag(video.thumbnail.public_filename)) : ("Miniaturka niedostępna")), video_path(video))
                     = render :partial => "asset", :object => video
 
     - if @gallery.photos.empty? && @gallery.videos.empty?
