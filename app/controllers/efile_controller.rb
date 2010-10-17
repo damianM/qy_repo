@@ -19,7 +19,7 @@ class EfileController < ApplicationController
       end
 
 
-      redirect_to :controller => "event", :action => "show", :id => @efile.event.id
+      redirect_to :controller => "events", :action => "show", :id => @efile.event.id
       
     end
   end
