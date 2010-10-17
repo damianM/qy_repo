@@ -1,6 +1,5 @@
 <div class="partial" id="obj">
   <div class="header">Dodaj załącznik!</div>
-  <%= insert_corners %>
   <div class="body">
     <% form_for :efile,:url => {:controller => "efile", :action => "new", :id => event}, :html => {:multipart => true} do |f|%>
       <div class="form_row">
