@@ -11,8 +11,10 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     if @comment.save
       flash[:notice] = "Dodano komentarz"
-      redirect_back_or_default(root_path)
+    else
+      flash[:notice] = "Komentarz nie został dodany"
     end
+    redirect_back_or_default(root_path)
   end
   
   def destroy

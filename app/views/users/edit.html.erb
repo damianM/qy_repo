@@ -2,7 +2,7 @@
   <div class="header p_user_edit"></div>
   <div class="body">
     <div style="text-align:center;">
-      <%= @user.photo.nil? ? image_tag("/anon.png") + "<br/><span class=\"nophoto\">           Nie masz jeszcze zdjęcia głównego.      #{link_ "Dodaj", "gallery", "list"}</span>" : image_tag(@user.photo.public_filename(:thumb))%>
+      <%= @user.photo.nil? ? image_tag("/anon.png") + "<br/><span class=\"nophoto\">           Nie masz jeszcze zdjęcia głównego.      #{link_to 'Dodaj', user_galleries_path(@user)}</span>" : image_tag(@user.photo.public_filename(:thumb))%>
       <div class="mod_userinfo">
         <p><%= @user.login %></p>
         <%= @user.email %>
