@@ -2,7 +2,7 @@
   .header.p_gal
 
   .body
-    = render :partial => "nav", :locals => {:gallery => @gallery, :user => (@gallery.user.nil? ? @gallery.event : @gallery.user) }
+    = render :partial => "nav"
 
     - unless @gallery.photos.empty?
       %table.gallery
@@ -32,7 +32,7 @@
 
     #buttons
       .button_gold_100{ :style => "text-align:left;display:block;float:left;" }
-        = link_to "Wszystkie albumy", user_galleries_path(@user)
+        = link_to "Wszystkie albumy", eval("#{@galleriable.class.to_s.downcase}_galleries_path(@galleriable)")
       - if @gallery.rights?(current_user)
         .button_silver_75{ :style => "text-align:right;display:block;float:right" }
           = toggle_photo_form 'Dodaj zdjęcie!'

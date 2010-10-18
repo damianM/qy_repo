@@ -50,7 +50,7 @@ module AuthenticatedSystem
   end
   
   def self.included(base)
-    base.send :helper_method, :current_user, :current_user_session, :logged_in?, :curuser if base.respond_to? :helper_method
+    base.send :helper_method, :current_user, :current_user_session, :logged_in?, :curuser, :get_back_or_default if base.respond_to? :helper_method
   end
 
 end

@@ -26,8 +26,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :shops, :member => {:show_on_google_map => :get}
   map.resources :assets
   map.resources :banners
-  map.resources :events, :collection => {:list => :get}
   map.resources :comments
+
+  map.resources :events, :collection => {:list => :get} do |event|
+    event.resources :galleries
+  end
 
   map.resources :galleries
   map.resources :photos, :member => { :main => :get, :vote => :post }

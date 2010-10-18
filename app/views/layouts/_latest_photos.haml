@@ -12,7 +12,8 @@
               - unless photo.nil?
                 %div= link_to image_tag(photo.public_filename(:thumb)), photo_path(photo)
                 %br
-                = link_to photo.gallery.user.login, user_path(photo.gallery.user)
+                - galleriable = photo.gallery.galleriable
+                = link_to galleriable.title, eval("#{ galleriable.class.to_s.downcase}_galleries_path(galleriable)")
 
     .button_silver_67{ :style => "float:right;" }
       = link_to "Wszystkie", photos_path

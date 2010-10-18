@@ -21,8 +21,35 @@ class EventsController < ApplicationController
     else
       render :action => 'new'
     end
-  end
+  end  
   
+  def gallery
+    if request.post? and params[:gallery] and params[:id]
+      @gallery = Gallery.new(params[:gallery])
+      @gallery.event = Event.find(params[:id])
+      # @gallery.generate_thumb
+      if @gallery.save
+        flash[:notice]="Dodano galerię"
+        redirect_to :controller => "events" ,:action => "gallery", :id => params[:id]
+      else
+        flash[:error]="Błąd podczas dodawania galerii"
+        redirect_to :controller => "events" ,:action => "gallery", :id => params[:id]
+      end
+      return
+    else
+      @event = Event.find(params[:id])
+      @galleries = @event.galleries
+
+      # @event.galleries.collect{|x| x.regenerate_thumb}
+      tmp=[]
+      while @galleries.length > 0
+        tmp << @galleries[0...2]
+        @galleries[0...2]=[]
+      end
+      @galleries= tmp
+    end
+  end
+
 
   def destroy
     @event = Event.find(params[:id])

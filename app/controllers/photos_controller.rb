@@ -15,7 +15,7 @@ class PhotosController < ApplicationController
       flash[:error] = "Wystąpił problem podczas dodawania zdjęcia"
     end
 
-    redirect_to user_gallery_path(@photo.gallery.user, @photo.gallery)
+    redirect_back_or_default(root_path)
     
     #if params[:mark_as_main_photo]
     # user = curuser
@@ -74,7 +74,7 @@ class PhotosController < ApplicationController
     else
       flash[:error]="Napotkano błąd"
     end
-    redirect_to user_gallery_path(@photo.gallery.user, @photo.gallery)
+    redirect_back_or_default('/')
   end
 
   def edit
@@ -93,7 +93,7 @@ class PhotosController < ApplicationController
       flash[:error] = "Wystąpił błąd podczas edycji zdjęcia"
     end
     
-    redirect_to user_gallery_path(@photo.gallery.user, @photo.gallery)    
+    redirect_back_or_default('/')
   end
 
 end
