@@ -2,24 +2,24 @@
   .header.p_user_find
   .body
     .find_event
-      - form_tag search_videos_path do
+      - form_tag search_videos_path, :method => :get do
 
         Wyszukaj film:
         %br
 
         .form_row
           = label_tag :since, "od: "
-          = date_select :query, :since , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10}, :class => "date_select"
+          = date_select :since, :since , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10}, :class => "date_select"
           .clr
 
         .form_row
           = label_tag :to, "do:"
-          = date_select :query, :to , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10}, :class => "date_select"
+          = date_select :to, :to , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10}, :class => "date_select"
           .clr
 
         .form_row
           = label_tag :user, "Użytkownik:"
-          = text_field_tag :query, :user
+          = text_field_tag :user
 
         .form_row
           = submit_tag "Szukaj!"
@@ -33,3 +33,17 @@
       Ilość wyświetleń
       = link_to "&darr;",params.merge({:views => "asc"} )
       = link_to "&uarr;",params.merge({:views => "desc"} )
+
+    %br
+
+    .videos
+      - unless @videos.empty?
+        %table.gallery
+        - @videos.in_groups_of(3).each do |triple|
+          %tr
+            - triple.each do |video|
+              %td
+                .photo_m
+                  - unless video.nil?
+                    = link_to((video.thumbnail ? (image_tag(video.thumbnail.public_filename)) : ("Miniaturka niedostępna")), video_path(video))
+                    = render :partial => "galleries/asset", :object => video
