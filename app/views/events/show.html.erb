@@ -78,7 +78,7 @@
           </div>
         <% elsif @event.rights?(curuser) %>
           <div class="button_silver_75" style="float:right;">
-            <%= link_to "Dodaj album", new_event_galleries_path(@event), :class => "opt_link" %>
+            <%= link_to "Dodaj album", new_event_gallery_path(@event), :class => "opt_link" %>
           </div>
         <% end %>
       </div>

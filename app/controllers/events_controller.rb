@@ -66,9 +66,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    if(params[:id])
-      @event = Event.find(params[:id])
-    end
+    @event = Event.find(params[:id])
   end
 
   def edit
@@ -208,8 +206,8 @@ class EventsController < ApplicationController
   end
 
   private
-  def cats
 
+  def cats
   end
   
   def calendar_options(time)
