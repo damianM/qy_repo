@@ -1,9 +1,9 @@
 .nav_gal
-  = link_to "Galeria", user_galleries_path(@video.gallery.user)
+  = link_to "Galeria", eval("#{@gallery.galleriable.class.to_s.downcase}_galleries_path(@gallery.galleriable)")
 
   - unless @video.gallery.nil?
     &raquo;
-    = link_to @video.gallery.name, user_gallery_path(@video.gallery.user, @video.gallery)
+    = link_to @video.gallery.name, eval("#{@gallery.galleriable.class.to_s.downcase}_gallery_path(@gallery.galleriable, @gallery)")
 
   - unless @video.nil?
     &raquo;

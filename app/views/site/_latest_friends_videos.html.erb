@@ -7,7 +7,7 @@
         <div>
           <%= link_ image_tag(video.link[0...-3] + "jpg"), "video", "show", video.id %><br/>
         </div>
-        <%= link_ video.gallery.user.login, "user", "show", video.gallery.user.id%>
+        <%= link_to video.gallery.galleriable.login, user_path(video.gallery.galleriable) %>
       </div>
 
     <% end %>

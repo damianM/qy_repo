@@ -23,14 +23,16 @@ class VideosController < ApplicationController
     else
       flash[:error] = "Wystąpił problem podczas dodawania filmu"
     end
-    redirect_to user_gallery_path(@video.gallery.user, @video.gallery)
+    redirect_back_or_default(root_path)
   end
   
   def show
     store_location
 
     @video = Video.find(params[:id])
-    @video.increase_display_counter if @video.gallery.user != current_user
+    @gallery = @video.gallery
+
+    @video.increase_display_counter if @gallery.galleriable != current_user
   end
 
   def vote
@@ -58,7 +60,7 @@ class VideosController < ApplicationController
     else
       flash[:error]="Napotkano błąd"
     end
-    redirect_to user_gallery_path(@video.gallery.user, @video.gallery)
+    redirect_back_or_default('/')
   end
 
   def edit
@@ -76,7 +78,7 @@ class VideosController < ApplicationController
       flash[:error] = "Wystąpił błąd podczas edycji filmu"
     end
 
-    redirect_to user_gallery_path(@video.gallery.user, @video.gallery)
+    redirect_back_or_default('/')
   end
   
   def search
@@ -100,7 +102,7 @@ class VideosController < ApplicationController
 
     @videos.reject! { |x|  x.created_at < since}
     @videos.reject! { |x|  x.created_at > to}
-    @videos.reject!{|x| x.gallery.user != user} if user
+    @videos.reject!{|x| x.gallery.galleriable != user} if user
 
     if params[:marks]
       @videos.sort!{|x,y| (params[:marks]=="desc" ? -1 : 1)*

@@ -28,12 +28,13 @@ class PhotosController < ApplicationController
     store_location
 
     @photo = Photo.find(params[:id])
+    @gallery = @photo.gallery
 
-    @photo.increase_display_counter if @photo.gallery.user != current_user
+    @photo.increase_display_counter if @gallery.galleriable != current_user
 
     params[:per_page] ||= 1
 
-    photos = @photo.gallery.photos.find(:all, :conditions => ["id != ?", @photo.id])
+    photos = @gallery.photos.find(:all, :conditions => ["id != ?", @photo.id])
     photos.unshift(@photo)
     @photos = photos.paginate(:page => params[:page], :per_page => params[:per_page])
   end
