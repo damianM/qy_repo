@@ -32,7 +32,7 @@
 
     #buttons
       .button_gold_100{ :style => "text-align:left;display:block;float:left;" }
-        = link_to "Wszystkie albumy", eval("#{@galleriable.class.to_s.downcase}_galleries_path(@galleriable)")
+        = link_to "Wszystkie albumy", eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_galleries_path(@galleriable)")
       - if @gallery.rights?(current_user)
         .button_silver_75{ :style => "text-align:right;display:block;float:right" }
           = toggle_photo_form 'Dodaj zdjęcie!'

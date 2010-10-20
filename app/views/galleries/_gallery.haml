@@ -1,9 +1,9 @@
 .gallery
-  .lcol_user= link_to image_tag('../gallery.png'), eval("#{@galleriable.class.to_s.downcase}_gallery_path(@galleriable, gallery)")
+  .lcol_user= link_to image_tag('../gallery.png'), eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_gallery_path(@galleriable, gallery)")
 
   .rcol_user
     .about_links
-      .name= link_to gallery.name, eval("#{@galleriable.class.to_s.downcase}_gallery_path(@galleriable, gallery)")
+      .name= link_to gallery.name, eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_gallery_path(@galleriable, gallery)")
       .photos
         Zdjęć:
         %div= gallery.photos.nil? ? 0 : gallery.photos.length
@@ -14,11 +14,11 @@
       .actions
         .gallery_link_edit{ :style => "float:left" }
           - if gallery.rights?(current_user)
-            = link_to image_tag("/edit.png"), eval("edit_#{@galleriable.class.to_s.downcase}_gallery_path(@galleriable, gallery)"), { :title => "Edytuj album", :class => "picture_link" }
+            = link_to image_tag("/edit.png"), eval("edit_#{@galleriable.is_a?(User) ? 'user' : 'event'}_gallery_path(@galleriable, gallery)"), { :title => "Edytuj album", :class => "picture_link" }
 	  
         .gallery_link_delete
           - if gallery.rights?(curuser)
-            = link_to image_tag("/delete.png"), eval("#{@galleriable.class.to_s.downcase}_gallery_path(@galleriable, gallery)"), { :method => :delete, :confirm => "Czy jesteś pewien? Usunięcie albumu spowoduje usunięcie wszystkich zdjęć w nim zawartych", :title => "Usuń album", :class => "picture_link" }
+            = link_to image_tag("/delete.png"), eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_gallery_path(@galleriable, gallery)"), { :method => :delete, :confirm => "Czy jesteś pewien? Usunięcie albumu spowoduje usunięcie wszystkich zdjęć w nim zawartych", :title => "Usuń album", :class => "picture_link" }
 
   .clr
 

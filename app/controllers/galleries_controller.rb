@@ -20,7 +20,7 @@ class GalleriesController < ApplicationController
 
     if @gallery.save
       flash[:notice] = "Dodano galerię"
-      redirect_to eval("#{@galleriable.class.to_s.downcase}_galleries_path(@galleriable)") 
+      redirect_to eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_galleries_path(@galleriable)") 
     else
       flash[:error] = "Galeria nie została dodana"
       render :action => "new"
@@ -40,7 +40,7 @@ class GalleriesController < ApplicationController
 
     if @gallery.update_attributes(params[:gallery])
       flash[:notice] = "Pomyślnie zmodyfikowano galerię"
-      redirect_to eval("#{@galleriable.class.to_s.downcase}_galleries_path(@galleriable)")
+      redirect_to eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_galleries_path(@galleriable)")
     else
       flash[:error] = "Wystąpił błąd podczas edycji galerii"
       render :action => 'edit'
@@ -53,7 +53,7 @@ class GalleriesController < ApplicationController
 
     @gallery.delete
     flash[:notice]="Pomyślnie usunięto galerię"
-    redirect_to eval("#{@galleriable.class.to_s.downcase}_galleries_path(@galleriable)")
+    redirect_to eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_galleries_path(@galleriable)")
   end
 
   def show
