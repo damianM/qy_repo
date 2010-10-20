@@ -2,6 +2,13 @@
 class PhotosController < ApplicationController
   before_filter :login_required
 
+  def list
+    store_location
+
+    @photos = Photo.find(:all, :conditions => [ "parent_id IS NULL" ])
+    render :action => 'list', :layout => 'admin'
+  end
+  
   def index
     params[:per_page] ||= 30
     @photos = Photo.paginate(:page => params[:page], :per_page => params[:per_page], :conditions => [ "parent_id IS NULL" ])

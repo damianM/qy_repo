@@ -1,0 +1,7 @@
+%tr{:id => "video_#{video.id}", :class=> 'video'}
+  %td= video.gallery.name
+  %td= video.filename
+  %td= video.type
+  %td= truncate(video.description, 9, '...')
+  %td= video.state
+  %td= link_to 'Edycja', edit_video_path(video)

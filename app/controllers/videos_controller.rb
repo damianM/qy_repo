@@ -10,6 +10,13 @@ class VideosController < ApplicationController
     end
   end
   
+  def list
+    store_location
+
+    @videos = Video.all
+    render :action => 'list', :layout => 'admin'
+  end
+  
   def index
     @videos = Video.search(params[:search])
   end
