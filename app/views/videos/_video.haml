@@ -5,3 +5,4 @@
   %td= truncate(video.description, 9, '...')
   %td= video.state
   %td= link_to 'Edycja', edit_video_path(video)
+  %td= link_to 'Usuń', video_path(video), :method => :delete
