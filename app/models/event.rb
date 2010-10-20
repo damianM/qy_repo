@@ -10,4 +10,9 @@ class Event < ActiveRecord::Base
   def rights?(u)
     self.user == u
   end
+  
+  def to_param 
+    "#{id}-#{title.to_url_format}"
+  end
+
 end

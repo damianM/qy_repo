@@ -22,6 +22,10 @@ class Photo < ActiveRecord::Base
   def increase_display_counter
     update_attribute(:counter, counter + 1)
   end
+
+  def to_param 
+    "#{id}-#{description.to_url_format}"
+  end
   
   def rights?(usr)
     gallery.rights?(usr)

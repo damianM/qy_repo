@@ -9,7 +9,7 @@
               .event_body_left
                 %br
                 .event_body_info
-                  = "Dodał: #{video.gallery.user ? video.gallery.user.login : video.gallery.event.user.login}"
+                  = "Dodał: #{video.gallery.galleriable.is_a?(User) ? video.gallery.galleriable.login : video.gallery.galleriable.user.login}"
                   %br
                   = "Dnia: #{video.created_at.strftime("%d.%m.%Y, %H:%M")}"
                   %br

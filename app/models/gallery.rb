@@ -10,4 +10,8 @@ class Gallery < ActiveRecord::Base
     galleriable && ( galleriable == usr  || galleriable.user == usr )
   end
 
+  def to_param 
+    "#{id}-#{name.to_url_format}"
+  end
+
 end

@@ -77,6 +77,10 @@ class Video < ActiveRecord::Base
   def rights?(usr)
      gallery.rights?(usr)
   end
+
+  def to_param 
+    "#{id}-#{description.to_url_format}"
+  end
   
   protected
 

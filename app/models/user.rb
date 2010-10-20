@@ -126,5 +126,9 @@ class User < ActiveRecord::Base
   def is_admin?
     instance_of?(Admin)
   end
+  
+  def to_param 
+    "#{id}-#{login.to_url_format}"
+  end
 
 end
