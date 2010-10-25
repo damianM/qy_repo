@@ -1,12 +1,46 @@
+# -*- coding: utf-8 -*-
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action
+
+  # users
+  map.user 'moj_profil/:id', :controller => 'users', :action => 'show'
+  map.edit_user 'edytuj_profil/:id', :controller => 'users', :action => 'edit'
+  map.pending_user 'wyslane_zaproszenia/:id', :controller => 'users', :action => 'pending'
+  map.requested_user 'otrzymane_zaproszenia/:id', :controller => 'users', :action => 'requested'
+  map.requested_user 'otrzymane_zaproszenia/:id', :controller => 'users', :action => 'requested'
+  map.friends_user 'twoi_znajomi/:id', :controller => 'users', :action => 'friends'
+  map.friends_index_user 'znajomi/:id', :controller => 'users', :action => 'friends_index'
+  map.myteams_user 'moje_grupy/:id', :controller => 'users', :action => 'myteams'
+
+  # user galleries
+  map.galleries 'galerie', :controller => 'galleries', :action => 'index'
+  map.user_galleries 'galerie_użytkownika/:user_id', :controller => 'galleries', :action => 'index'
+
+  #event
+  map.list_events 'imprezy/:id', :controller => 'events', :action => 'list'
+  map.new_event 'dodaj_impreze', :controller => 'events', :action => 'new'
+
+  # messages 
+  map.newr_messages 'napisz_wiadomosc', :controller => 'messages', :action => 'newr'
+  map.received_messages 'odebrane_wiadomosc', :controller => 'messages', :action => 'received'
+  map.sent_messages 'wyslane_wiadomosc', :controller => 'messages', :action => 'sent'
+  map.messages 'poczta', :controller => 'messages', :action => 'index'
+
+  # teams
+  map.teams 'grupy', :controller => 'teams', :action => 'index'
+  map.list_teams 'wszystkie_grupy', :controller => 'teams', :action => 'list'
+  map.new_team 'utworz_grupe', :controller => 'teams', :action => 'new'
+  map.find_form_teams 'znajdz_grupe', :controller => 'teams', :action => 'find_form'
+
+  # other
   map.admin_panel '/admin_panel', :controller => 'home'
   map.login '/user/login', :controller => 'user_sessions', :action => "new"
   map.logout '/user/logout', :controller => 'user_sessions', :action => "destroy"
+
   # Sample of named route:
   #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
   # This route can be invoked with purchase_url(:id => product.id)
@@ -27,6 +61,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :assets
   map.resources :banners
   map.resources :comments
+  map.resources :messages, :collection => {:newr => :get, :received => :get, :sent => :get}
 
   map.resources :events, :collection => {:list => :get} do |event|
     event.resources :galleries

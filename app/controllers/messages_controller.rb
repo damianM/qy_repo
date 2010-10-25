@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-class MessageController < ApplicationController
+class MessagesController < ApplicationController
+
   before_filter :login_required
 
   def index
@@ -197,4 +198,5 @@ class MessageController < ApplicationController
     end
     redirect_to :controller => "message", :action => "received"
   end
+
 end
