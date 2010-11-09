@@ -21,6 +21,13 @@ ActionController::Routing::Routes.draw do |map|
   # user galleries
   map.galleries 'galerie', :controller => 'galleries', :action => 'index'
   map.user_galleries 'galerie-użytkownika/:user_id', :controller => 'galleries', :action => 'index'
+  map.new_user_gallery 'nowa-galeria/:user_id', :controller => 'galleries', :action => 'new'
+  map.create_user_gallery 'dodaj-galerie/:user_id', :controller => 'galleries', :action => 'create', :method => :post
+
+  # event galleries
+  map.new_event_gallery 'nowa-galeria/:event_id', :controller => 'galleries', :action => 'new'
+  map.create_event_gallery 'dodaj-galerie/:event_id', :controller => 'galleries', :action => 'create', :method => :post
+
 
   #event
   map.list_events 'imprezy/:id', :controller => 'events', :action => 'list'
@@ -46,6 +53,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # videos
   map.videos 'filmy', :controller => 'videos', :action => 'index'
+  map.create_video 'dodaj-film', :controller => 'videos', :action => 'create'
 
   # zdjecia
   map.photos 'zdjecia', :controller => 'photos', :action => 'index'

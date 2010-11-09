@@ -41,7 +41,7 @@
 
     .clr
 
-    #video_form{:style => 'display:none;margin-top:10px;'}
+    #video_form{:style => 'margin-top:10px;'}
       = render :partial => 'videos/new', :locals => { :video => @gallery.videos.build, :uuid => Time.now.to_i.to_s }
 
     #photo_form{:style => 'display:none;margin-top:10px;'}

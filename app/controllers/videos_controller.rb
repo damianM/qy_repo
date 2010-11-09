@@ -1,15 +1,8 @@
 # -*- coding: utf-8 -*-
 class VideosController < ApplicationController
-  session :off, :only => :progress
-  skip_before_filter :verify_authenticity_token, :only => :progress
-  
-  def progress
-    render :update do |page|
-      @status = Mongrel::Uploads.check(params[:upload_id])
-      page << "UploadProgress.update(#{@status[:size]}, #{@status[:received]})" if @status
-    end
-  end
-  
+  protect_from_forgery :except => [:create]
+
+
   def list
     store_location
 
@@ -23,6 +16,7 @@ class VideosController < ApplicationController
   
   def create
     @video = Video.new(params[:video])
+    @video.uploaded_data = params[:Filedata]
 
     if @video.save
       @video.convert
@@ -30,7 +24,7 @@ class VideosController < ApplicationController
     else
       flash[:error] = "Wystąpił problem podczas dodawania filmu"
     end
-    redirect_back_or_default(root_path)
+    #    redirect_back_or_default(root_path)
   end
   
   def show
