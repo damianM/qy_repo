@@ -1,0 +1,14 @@
+//= will_paginate @users, :renderer => 'RemoteLinkRenderer', :remote => remote_pagination_params, :previous_label => "&laquo;", :next_label => "&raquo;"
+
+%table{:class => 'photos tablesorter'}
+  %thead
+    %tr.tableHead2
+      %th Galeria
+      %th Ścieżka
+      %th Typ
+      %th Opis
+      %th
+      %th
+
+  %tbody
+    = render :partial => 'photo', :collection => @photos

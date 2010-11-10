@@ -2,7 +2,7 @@
   .header.p_gal_index
   .body
     %p Dodaj album
-    - form_for setup_gallery(@user), :url => user_galleries_path(@user) do |f|
+    - form_for setup_gallery(@galleriable), :url => create_gallery_link(@galleriable)  do |f|
       .form_row
         = f.label :name, "Nazwa"
         = f.text_field :name
@@ -10,4 +10,4 @@
       .form_row
         = f.submit "Dodaj", :class => 'submit'
         .button_silver_67.submit{ :style => "border: 1px solid #AAA; height:24px; margin-right:5px;" }
-          = link_to "Zamknij", user_galleries_path(@user)
+          = link_to "Zamknij", eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_galleries_path(@galleriable)")

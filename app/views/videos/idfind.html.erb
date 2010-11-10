@@ -16,7 +16,7 @@
           <div class="event_body_left">
             <br/>
             <div class="event_body_info">
-              Dodał: <%= video.gallery.user ? video.gallery.user.login : video.gallery.event.user.login %><br/>
+              Dodał: <%= video.gallery.galleriable.is_a(User) ? video.gallery.galleriable.login : video.gallery.galleriable.user.login %><br/>
               Dnia: <%=ltd video.created_at%><br/>
               Ocena: <%=  video.vrate.votes==0 ? 0 : (video.vrate.sum.to_f / video.vrate.votes).round(2) %><br/>
               Ilość wyświetleń: <%= video.counter %><br/>

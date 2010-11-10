@@ -48,21 +48,22 @@
               <%= link_to "Edytuj", edit_event_path(@event), {:title => "Edytuj"} %>
             </div>
             <div class="grey_link" style="text-align:right;display:block;float:right">
-              <%=link_to "Usuń", event_path(@event), {:method => :delete, :title => "Usuń", :confirm => "Czy na pewno chcesz usunąć tę imprezę?"}%>
+              <%=link_to "Usuń", destroy_event_path(@event), {:method => :delete, :title => "Usuń", :confirm => "Czy na pewno chcesz usunąć tę imprezę?"}%>
             </div>
             <div class="clr"></div>
           </div>
         <% end if @event.rights?(curuser) and @event.event_start >= (Date.today) %>
       </div>
     </div>
+
     <div class="partial">
       <div class="header event_gallery"></div>
-      <div class='body'>
-        <% if @event.galleries.length>0 %>
+      <div class='body' style='padding-bottom:40px;'>
+        <% if @event.galleries.length > 0 %>
 
-          <% format_galleries(@event).reverse[0...2].each do |gallery| %>
+          <% @event.galleries.reverse[0...2].each do |gallery| %>
             <div class="latest_item">
-              <%= render :partial => "gallery/gallery2", :locals => {:gallery => gallery[0], :index => (gallery[1] +1)} %>
+              <%= render :partial => "galleries/gallery2", :locals => {:gallery => gallery} %>
             </div>
           <% end %>
           <div class="clr"></div>
@@ -71,17 +72,15 @@
           Impreza nie ma jeszcze galerii
         <% end %>
 
-
-
-          <% if @event.galleries.length>0%>
-            <div class="button_silver_75" style="float:right;">
-               <%= link_to "Pokaż wszystkie albumy", {:controller => "gallery", :action => "elist", :id => @event.id}, :class => "opt_link" %>
-            </div>
-          <% elsif @event.rights?(curuser) %>
-            <div class="button_silver_75" style="float:right;">
-              <%= link_to "Dodaj album", {:controller => "gallery", :action => "elist", :id => @event.id}, :class => "opt_link" %>
-            </div>
-          <% end %>
+        <% if @event.galleries.length>0%>
+          <div class="button_silver_75" style="float:right;">
+            <%= link_to "Pokaż wszystkie albumy", event_galleries_path(@event), :class => "opt_link" %>
+          </div>
+        <% elsif @event.rights?(curuser) %>
+          <div class="button_silver_75" style="float:right;">
+            <%= link_to "Dodaj album", new_event_gallery_path(@event), :class => "opt_link" %>
+          </div>
+        <% end %>
       </div>
     </div>
 

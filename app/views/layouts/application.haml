@@ -9,7 +9,10 @@
     %meta{'name' => 'keywords', 'content' => 'quady'}
     %meta{'name' => 'description', 'content' => 'quady'}
 
-    = render "layouts/includes"
+    - if params[:controller] == 'galleries'
+      = render "layouts/scripts"
+    - else
+      = render "layouts/includes"
 
   %body{:onload => 'checkScreen();'}
     #page

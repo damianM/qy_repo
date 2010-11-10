@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-class MessageController < ApplicationController
+class MessagesController < ApplicationController
+
   before_filter :login_required
 
   def index
@@ -50,22 +51,28 @@ class MessageController < ApplicationController
   def new
     @receiver = User.find(params[:id])
     @sender = curuser
-    if request.post? and params[:message]
-      @message = Message.new(params[:message])
-      @message.sender = @sender
-      @message.receiver = @receiver
-      @message.read = 0
-      (@message.details=MessageDetails.new(:details => 0)).save!
-      if @message.save
-        UserMailer.deliver_new_message(@receiver,@sender)
-        flash[:notice]="Wiadomość została wysłana"
-        redirect_to :controller => "message", :action => "sent"
-      else
-        flash[:error]="Wystąpił błąd!"
-      end
-    end
+    @message = Message.new
   end
 
+  def create
+    @receiver = User.find(params[:id])
+    @sender = curuser
+
+    @message = Message.new(params[:message])
+    @message.sender = @sender
+    @message.receiver = @receiver
+    @message.read = 0
+    (@message.details=MessageDetails.new(:details => 0)).save!
+    if @message.save
+      UserMailer.deliver_new_message(@receiver,@sender)
+      flash[:notice]="Wiadomość została wysłana"
+      redirect_to :controller => "message", :action => "sent"
+    else
+      flash[:error]="Wystąpił błąd!"
+      render :action => 'new'
+    end
+  end
+  
   def newr
     @sender = curuser
     if request.post? and params[:message]
@@ -197,4 +204,5 @@ class MessageController < ApplicationController
     end
     redirect_to :controller => "message", :action => "received"
   end
+
 end

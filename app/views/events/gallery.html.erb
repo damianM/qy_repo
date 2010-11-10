@@ -13,7 +13,7 @@
           <tr>
             <% for gallery in gal_row %>
               <td>
-                <%= render :partial => "gallery", :locals => {:gallery => gallery[0], :index =>  gallery[1]+1} %>
+                <%= render :partial => "galleries/gallery", :locals => {:gallery => gallery[0], :index =>  gallery[1]+1} %>
               </td>
             <% end %>
           </tr>
@@ -30,12 +30,15 @@
       </div>
       <% if @event.rights?(curuser) %>
         <div class="button_silver_75" style="text-align:left;display:block;float:right">
-          <%= link_to_remote "Dodaj album",:url => {:action=>"e_add", :id => @event.id}%>
+          <%= toggle_gallery_form 'Dodaj album!' %>
         </div>
       <% end %>
       <div class="clr"></div>
     </div>
 
+    <div id="gallery_form" style="display:none;margin-top:10px;">
+      <%= render :partial => 'new_gallery', :locals => { :gallery => @event.galleries.build} %>
+    </div>
 
   </div>
 </div>

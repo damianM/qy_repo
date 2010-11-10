@@ -17,8 +17,8 @@ class UsersController < ApplicationController
     if params[:reg]
       if simple_captcha_valid?
         if @user.save_without_session_maintenance         
-          @user.deliver_activation_instructions!
-          phpbb = `php ../../http/forum/reg.php #{params[:user][:login]} #{params[:user][:password]} #{params[:user][:email]}`
+          # @user.deliver_activation_instructions!
+          # phpbb = `php ../../http/forum/reg.php #{params[:user][:login]} #{params[:user][:password]} #{params[:user][:email]}`
           
           flash[:notice] = "Twoje konto zostało utworzone. Na Twój adres przesłaliśmy email z kodem potwierdzającym."
           redirect_to :controller => "site" ,:action => "index"

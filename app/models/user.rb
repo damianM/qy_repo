@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :pending_friends, :through => :relationships, :source => "friend", :conditions => "status = 'pending'"
   has_many :requested_friends, :through => :relationships, :source => "friend", :conditions => "status = 'requested'"
 
-  has_many :galleries
+  has_many :galleries, :as => :galleriable, :dependent => :destroy
 
   has_many :sent, :class_name => "Message", :foreign_key => "sender_id"
   has_many :received, :class_name => "Message", :foreign_key => "receiver_id"
@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
 
   def self.find_all_by_company_id company_id
     User.find(:all, :joins => :quad, :conditions => [ "users.active = ? AND quads.company_id = ?", true, company_id])
+  end
+
+  def title
+    login
   end
 
   def friend?(user)

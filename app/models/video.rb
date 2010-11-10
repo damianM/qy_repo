@@ -17,6 +17,8 @@ class Video < ActiveRecord::Base
 
   before_create :save_thumbnail
 
+  attr_accessible :title, :description
+
   #turn off attachment_fu's auto file renaming 
   #when you change the value of the filename field
   def rename_file

@@ -1,9 +1,9 @@
 .nav_gal
-  = link_to "Galeria", user_galleries_path(@photo.gallery.user)
+  = link_to "Galeria", eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_galleries_path(@gallery.galleriable)")
 
   - unless @gallery.nil?
     &raquo;
-    = link_to @photo.gallery.name, user_gallery_path(@photo.gallery.user, @hoto.gallery)
+    = link_to @photo.gallery.name, eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_gallery_path(@gallery.galleriable, @gallery)")
 
   - unless @photo.nil?
     &raquo;

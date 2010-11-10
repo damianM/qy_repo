@@ -7,11 +7,16 @@
       %p W tym czasie zajmujemy się przekodowaniem Twojego filmu i może to potrwać kolejne kilka minut
       %p Zarówno pole 'Tytuł', 'Opis' jak i 'Film' muszą być uzupełnione
 
-    - form_for video, :url => videos_path(:upload_id => uuid), :html => { :multipart => true, :onsubmit => "return validate(this, #{escape_javascript uuid} ); return false;" } do |form|
-      = form.hidden_field :gallery_id
 
-      .form_row
-        = form.error_messages
+    // #dir_link{:style => 'display: none;', :href => videos_path}
+
+    = hidden_field_tag :_quadomaniacy_session, cookies[:_quadomaniacy_session]
+
+    #jcu_error_container
+    %br
+
+    - form_for(video, :url => create_video_path, :html => {:id => "jcUploadForm", :multipart => true}) do |form|
+      = form.hidden_field :gallery_id
 
       .form_row
         = form.label :title, "Tytuł"
@@ -22,14 +27,10 @@
         = form.text_field :description
 
       .form_row
-        = form.label :uploaded_data, "Film"
-        = form.file_field :uploaded_data
-
-      .form_row
-        = form.submit 'Upload', :class => 'submit', :id => 'vup_submit', :style => 'width:75px;'
         .button_silver_67.submit{ :style => "border: 1px solid #AAA; height:24px; margin-right:5px;" }
           = toggle_video_form 'Zamknij', :reload => true
 
+#jcupload_content
 
-    #results
-    #progress-bar
+
+

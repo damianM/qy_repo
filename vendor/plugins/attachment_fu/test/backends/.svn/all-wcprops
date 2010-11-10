@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/newvent.com/!svn/ver/21/vendor/plugins/attachment_fu/test/backends
+END
+file_system_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/newvent.com/!svn/ver/21/vendor/plugins/attachment_fu/test/backends/file_system_test.rb
+END
+db_file_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/newvent.com/!svn/ver/21/vendor/plugins/attachment_fu/test/backends/db_file_test.rb
+END

@@ -41,7 +41,7 @@
 
       %br
 
-      - if photo.gallery.user.nil? || photo.gallery.user == current_user || photo.gallery.user.friends.include?(current_user)
+      - if photo.gallery.galleriable.nil? || photo.gallery.galleriable == current_user || photo.gallery.galleriable.friends.include?(current_user)
         = render :partial => "users/comments", :locals => { :commentable => photo }
 
     %br
