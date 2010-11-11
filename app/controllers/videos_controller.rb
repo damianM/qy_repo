@@ -18,6 +18,7 @@ class VideosController < ApplicationController
     @video = Video.new(params[:video])
     @video.uploaded_data = params[:Filedata]
 
+
     if @video.save
       @video.convert
       flash[:notice] = 'Film został dodany'
@@ -121,7 +122,7 @@ class VideosController < ApplicationController
   
   def update_video
     @video = Video.last
-    
+
     unless params[:title].empty?
       @video.update_attributes({:title => params[:title], :description => params[:description]})
     render :json => {:success => true}

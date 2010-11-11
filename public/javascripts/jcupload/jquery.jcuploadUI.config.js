@@ -17,7 +17,7 @@
 	max_file_size:100*1024*1024,
 	max_queue_count:100,
 	max_queue_size:0,
-	extensions:["Wybierz rozszerzenie (*.*)|*.*;"],
+	extensions:["Wybierz rozszerzenie (avi,mpg)|*.avi;*.AVI;*.mpg;*.MPG"],
 	multi_file:0,
 	callback:{
 		init:false,
