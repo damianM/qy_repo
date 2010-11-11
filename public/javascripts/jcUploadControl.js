@@ -22,10 +22,9 @@ var JcUploadControl = $.inherit({
     
     src = $(src);
 
-    var video_title = $('#video_title').val();
-    var video_description = $('#video_description').val();
+    var video_gallery_id = $('#video_gallery_id').val();
 
-    settings.url = "/videos/create" + '?video[title]='+video_title+'&video[description]='+video_description;
+    settings.url = "/videos/create" + '?video[gallery_id]='+video_gallery_id;
    
     this.jcUpload = $.jcuploadUI(settings);
     this.jcUpload.append_to("#jcupload_content");
@@ -46,11 +45,19 @@ var JcUploadControl = $.inherit({
   },
 
   queueUploadEnd: function(uo){
-    src = '#dir_link';
-    $.get($(src).attr('href'), $(src).serialize(), function(response){
-      $('#directory_create_link').html(response.create_link);
-      $('#directories').html(response.content);
+    var video_title = $('#video_title').val();
+    var video_description = $('#video_title').val();
+
+    $.get('/videos/update_video', {title: video_title, description: video_description}, function(response){
+      if (response.success){
+        window.location.href = window.location.href;
+      }
     }, "json");
+
+    if (video_title == ''){
+      $('#title_errors').html("<div class='formError'>Proszę o podanie tytułu.</div>");
+      $('table.jcu_file_table tbody').children('tr:last').remove();
+    }
   }
 
 

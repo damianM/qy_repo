@@ -18,7 +18,7 @@
 	max_queue_count:100,
 	max_queue_size:0,
 	extensions:["Wybierz rozszerzenie (*.*)|*.*;"],
-	multi_file:1,
+	multi_file:0,
 	callback:{
 		init:false,
 		pre_dialog:false,

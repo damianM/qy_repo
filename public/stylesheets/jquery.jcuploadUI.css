@@ -17,7 +17,7 @@
 }
 
 .jcu_file_container {
-    height: 350px !important;
+    height: 40px !important;
     overflow: auto;
 }
 
@@ -72,3 +72,6 @@
     display: none;
 }
 
+.jcu_toolbar_left{
+  float: right;
+}

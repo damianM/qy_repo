@@ -11,10 +11,10 @@ class VideosController < ApplicationController
   end
   
   def index
-    @videos = Video.search(params[:search])
+    @videos = Video.search(params[:search])    
   end
   
-  def create
+  def create   
     @video = Video.new(params[:video])
     @video.uploaded_data = params[:Filedata]
 
@@ -24,7 +24,8 @@ class VideosController < ApplicationController
     else
       flash[:error] = "Wystąpił problem podczas dodawania filmu"
     end
-    #    redirect_back_or_default(root_path)
+
+    render :json => {:success => true}
   end
   
   def show
@@ -117,5 +118,17 @@ class VideosController < ApplicationController
     params.delete :views if params[:views]
     @videos
   end
-
+  
+  def update_video
+    @video = Video.last
+    
+    unless params[:title].empty?
+      @video.update_attributes({:title => params[:title], :description => params[:description]})
+    render :json => {:success => true}
+    else
+      @video.destroy
+    render :json => {:success => false}
+    end
+  end
+  
 end

@@ -8,8 +8,6 @@
       %p Zarówno pole 'Tytuł', 'Opis' jak i 'Film' muszą być uzupełnione
 
 
-    // #dir_link{:style => 'display: none;', :href => videos_path}
-
     = hidden_field_tag :_quadomaniacy_session, cookies[:_quadomaniacy_session]
 
     #jcu_error_container
@@ -21,16 +19,22 @@
       .form_row
         = form.label :title, "Tytuł"
         = form.text_field :title
+        %span{:id => 'title_errors'}
 
+      %br
       .form_row
         = form.label :description, "Opis"
         = form.text_field :description
 
       .form_row
+        %br
+        #jcupload_content
+  
+      .form_row
         .button_silver_67.submit{ :style => "border: 1px solid #AAA; height:24px; margin-right:5px;" }
           = toggle_video_form 'Zamknij', :reload => true
 
-#jcupload_content
+
 
 
 
