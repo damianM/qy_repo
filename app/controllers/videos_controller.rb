@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
 class VideosController < ApplicationController
-  session :off, :only => :progress
-  skip_before_filter :verify_authenticity_token, :only => :progress
-  
-  def progress
-    render :update do |page|
-      @status = Mongrel::Uploads.check(params[:upload_id])
-      page << "UploadProgress.update(#{@status[:size]}, #{@status[:received]})" if @status
-    end
+  protect_from_forgery :except => [:create]
+
+
+  def list
+    store_location
+
+    @videos = Video.all
+    render :action => 'list', :layout => 'admin'
   end
   
   def index
-    @videos = Video.search(params[:search])
+    @videos = Video.search(params[:search])    
   end
   
-  def create
+  def create   
     @video = Video.new(params[:video])
+    @video.uploaded_data = params[:Filedata]
 
     if @video.save
       @video.convert
@@ -23,14 +24,17 @@ class VideosController < ApplicationController
     else
       flash[:error] = "Wystąpił problem podczas dodawania filmu"
     end
-    redirect_to user_gallery_path(@video.gallery.user, @video.gallery)
+
+    render :json => {:success => true}
   end
   
   def show
     store_location
 
     @video = Video.find(params[:id])
-    @video.increase_display_counter if @video.gallery.user != current_user
+    @gallery = @video.gallery
+
+    @video.increase_display_counter if @gallery.galleriable != current_user
   end
 
   def vote
@@ -58,7 +62,7 @@ class VideosController < ApplicationController
     else
       flash[:error]="Napotkano błąd"
     end
-    redirect_to user_gallery_path(@video.gallery.user, @video.gallery)
+    redirect_back_or_default('/')
   end
 
   def edit
@@ -76,7 +80,7 @@ class VideosController < ApplicationController
       flash[:error] = "Wystąpił błąd podczas edycji filmu"
     end
 
-    redirect_to user_gallery_path(@video.gallery.user, @video.gallery)
+    redirect_back_or_default('/')
   end
   
   def search
@@ -100,7 +104,7 @@ class VideosController < ApplicationController
 
     @videos.reject! { |x|  x.created_at < since}
     @videos.reject! { |x|  x.created_at > to}
-    @videos.reject!{|x| x.gallery.user != user} if user
+    @videos.reject!{|x| x.gallery.galleriable != user} if user
 
     if params[:marks]
       @videos.sort!{|x,y| (params[:marks]=="desc" ? -1 : 1)*
@@ -114,5 +118,17 @@ class VideosController < ApplicationController
     params.delete :views if params[:views]
     @videos
   end
-
+  
+  def update_video
+    @video = Video.last
+    
+    unless params[:title].empty?
+      @video.update_attributes({:title => params[:title], :description => params[:description]})
+    render :json => {:success => true}
+    else
+      @video.destroy
+    render :json => {:success => false}
+    end
+  end
+  
 end

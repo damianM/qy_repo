@@ -2,8 +2,7 @@
   .header.p_gal_index
   .body
     - if @galleries.empty?
-      %p
-        = @user == current_user ? "Nie masz jeszcze galerii" : "Ten uzytkownik nie ma jeszcze galerii"
+      %p Brak galerii
     - else
       %table.gallery_list
         - @galleries.in_groups_of(2).each do |pair|
@@ -13,8 +12,8 @@
                 = render :partial => "gallery", :object => gallery unless gallery.nil?
 
 
-    - if @user == current_user
+    - if @galleriable == current_user || @galleriable.user == current_user
       #new_gallery
         .button_silver_75{ :style => "float:right" }
-          = link_to "Dodaj album", new_user_gallery_path(@user)
+          = link_to "Dodaj album", eval("new_#{@galleriable.is_a?(User) ? 'user' : 'event'}_gallery_path(@galleriable)")
         .clr

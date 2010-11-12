@@ -1,0 +1,7 @@
+%tr{:id => "photo_#{photo.id}", :class=> 'photo'}
+  %td= photo.gallery.name if photo.gallery
+  %td= photo.filename
+  %td= photo.content_type
+  %td= truncate(photo.description, 9, '...')
+  %td= link_to 'Edycja', edit_photo_path(photo)
+  %td= link_to 'Usuń', photo_path(photo), :method => :delete

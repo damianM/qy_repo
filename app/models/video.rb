@@ -1,6 +1,6 @@
 class Video < ActiveRecord::Base
 
-  validates_presence_of :title
+  # validates_presence_of :title
 
   belongs_to :gallery
   belongs_to :thumbnail, :dependent => :destroy
@@ -16,6 +16,8 @@ class Video < ActiveRecord::Base
                  :max_size => 100.megabytes
 
   before_create :save_thumbnail
+
+  attr_accessible :title, :description, :gallery_id
 
   #turn off attachment_fu's auto file renaming 
   #when you change the value of the filename field

@@ -68,6 +68,6 @@
 
     %br
 
-    - if @video.gallery.user.nil? || @video.gallery.user == current_user || @video.gallery.user.friends.include?(current_user)
+    - if @gallery.galleriable.nil? || @gallery.galleriable == current_user || @gallery.galleriable.friends.include?(current_user)
       = render :partial => "users/comments", :locals => { :commentable => @video }
 

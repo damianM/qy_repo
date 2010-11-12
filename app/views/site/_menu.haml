@@ -6,13 +6,13 @@
     %div= link_to "Mój profil", current_user ? user_path(current_user) : '#'
     %div= link_to "Edytuj profil", curuser ? edit_user_path(current_user) : '#'
     %div= link_to "Galeria", galleries_path
-    %div= link_to "Moje imprezy", :controller => "events", :action => "list", :id => (current_user ? current_user.id : 0)
+    %div= link_to "Moje imprezy", list_events_path(:id => (current_user ? current_user.id : 0))
 .button_menu
-  = link_ "POCZTA", "message", "index"
+  = link_ "POCZTA", "messages", "index"
   %div
-    %div= link_ "Napisz wiadomość", "message", "newr"
-    %div= link_ "Odebrane (#{current_user.nil? ? 0 : current_user.unread})", "message", "received"
-    %div= link_ "Wysłane", "message", "sent"
+    %div= link_to "Napisz wiadomość", newr_messages_path
+    %div= link_ "Odebrane (#{current_user.nil? ? 0 : current_user.unread})", "messages", "received"
+    %div= link_ "Wysłane", "messages", "sent"
 .button_menu
   = link_to "ZNAJOMI", current_user ? friends_index_user_path(current_user) : '#'
   %div

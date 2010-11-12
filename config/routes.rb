@@ -1,12 +1,81 @@
+# -*- coding: utf-8 -*-
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action
-  map.admin_panel '/admin_panel', :controller => 'home'
-  map.login '/user/login', :controller => 'user_sessions', :action => "new"
-  map.logout '/user/logout', :controller => 'user_sessions', :action => "destroy"
+
+  # users
+  map.user 'profil/:id', :controller => 'users', :action => 'show'
+  map.new_user 'zarejestruj-sie', :controller => 'users', :action => 'new'
+  map.ulogin_users 'nie-pamietasz-hasla', :controller => 'users', :action => 'ulogin'
+  map.edit_user 'edytuj-profil/:id', :controller => 'users', :action => 'edit'
+  map.pending_user 'wyslane-zaproszenia/:id', :controller => 'users', :action => 'pending'
+  map.requested_user 'otrzymane-zaproszenia/:id', :controller => 'users', :action => 'requested'
+  map.friends_user 'twoi-znajomi/:id', :controller => 'users', :action => 'friends'
+  map.friends_index_user 'znajomi/:id', :controller => 'users', :action => 'friends_index'
+  map.myteams_user 'moje-grupy/:id', :controller => 'users', :action => 'myteams'
+  map.find_users 'znajdz-quadomanika', :controller => 'users', :action => 'find'
+  
+  # user galleries
+  map.galleries 'galerie', :controller => 'galleries', :action => 'index'
+  map.user_galleries 'galerie-użytkownika/:user_id', :controller => 'galleries', :action => 'index'
+  map.new_user_gallery 'nowa-galeria/:user_id', :controller => 'galleries', :action => 'new'
+  map.create_user_gallery 'dodaj-galerie/:user_id', :controller => 'galleries', :action => 'create', :method => :post
+
+  # event galleries
+  map.new_event_gallery 'nowa-galeria/:event_id', :controller => 'galleries', :action => 'new'
+  map.create_event_gallery 'dodaj-galerie/:event_id', :controller => 'galleries', :action => 'create', :method => :post
+
+
+  #event
+  map.list_events 'imprezy/:id', :controller => 'events', :action => 'list'
+  map.new_event 'nowa-impreza', :controller => 'events', :action => 'new'
+  map.create_event 'dodaj-impreze', :controller => 'events', :action => 'create', :method => :post
+  map.edit_event 'edytuj-impreze/:id', :controller => 'events', :action => 'edit'
+  map.update_event 'aktualizuj-impreze/:id', :controller => 'events', :action => 'update', :method => :put
+  map.show_event 'impreza/:id', :controller => 'events', :action => 'show'
+  map.destroy_event 'usun-impreze/:id', :controller => 'events', :action => 'destroy', :method => :delete
+
+  # messages 
+  map.newr_messages 'napisz-wiadomosc', :controller => 'messages', :action => 'newr'
+  map.new_message 'napisz-wiadomosc/:id', :controller => 'messages', :action => 'new'
+  map.received_messages 'odebrane-wiadomosc', :controller => 'messages', :action => 'received'
+  map.sent_messages 'wyslane-wiadomosc', :controller => 'messages', :action => 'sent'
+
+
+  # teams
+  map.teams 'grupy', :controller => 'teams', :action => 'index'
+  map.list_teams 'wszystkie-grupy', :controller => 'teams', :action => 'list'
+  map.new_team 'utworz-grupe', :controller => 'teams', :action => 'new'
+  map.find_form_teams 'znajdz-grupe', :controller => 'teams', :action => 'find_form'
+
+  # videos
+  map.videos 'filmy', :controller => 'videos', :action => 'index'
+  map.create_video 'dodaj-film', :controller => 'videos', :action => 'create'
+
+  # zdjecia
+  map.photos 'zdjecia', :controller => 'photos', :action => 'index'
+
+  # worksshops
+  map.workshops 'serwisy-przyjazne-quadomanikom', :controller => 'workshops', :action => 'index'
+
+  # shops
+  map.shops 'sklepy-przyjazne-quadomanikom', :controller => 'shops', :action => 'index'
+
+  # sale_ads
+  map.sale_ads 'ogloszenia-sprzedazy', :controller => 'sale_ads', :action => 'index'
+
+  # relationship 
+  map.relationship_req 'zapros-do-znajomych/:id', :controller => 'relationship', :action => 'req'
+
+  # other
+  map.login_forum 'forum/:id', :controller => 'forum', :action => 'login'
+  map.admin_panel '/admin-panel', :controller => 'home'
+  map.login 'zaloguj', :controller => 'user_sessions', :action => "new"
+  map.logout 'wyloguj', :controller => 'user_sessions', :action => "destroy"
+
   # Sample of named route:
   #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
   # This route can be invoked with purchase_url(:id => product.id)
@@ -26,12 +95,16 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :shops, :member => {:show_on_google_map => :get}
   map.resources :assets
   map.resources :banners
-  map.resources :events, :collection => {:list => :get}
   map.resources :comments
+  map.resources :messages, :collection => {:newr => :get, :received => :get, :sent => :get}
+
+  map.resources :events, :collection => {:list => :get} do |event|
+    event.resources :galleries
+  end
 
   map.resources :galleries
-  map.resources :photos, :member => { :main => :get, :vote => :post }
-  map.resources :videos, :member => { :vote => :post }, :collection => { :search => :any }
+  map.resources :photos, :member => { :main => :get, :vote => :post }, :collection => { :list => :get }
+  map.resources :videos, :member => { :vote => :post }, :collection => { :search => :any, :list => :get, :check_upload => :get, :update_video => :get }
 
   map.resources :teams, :collection => { :list => :get, :find_form => :get, :find => :post, :admin_list => :get }
   map.resources :users, :member => { :friends_index => :get, :friends => :get, :pending => :get, :requested => :get, :myteams => :get}, :collection => {:find => :get } do |user|

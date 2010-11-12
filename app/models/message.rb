@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 class Message < ActiveRecord::Base
   belongs_to :sender, :class_name => "User"
   belongs_to :receiver, :class_name => "User"
   has_one :details, :class_name => "MessageDetails"
-  validates_presence_of :title;
+  validates_presence_of :title
 
 
   def self.send_invitation(user, receiver)

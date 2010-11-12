@@ -1,24 +1,32 @@
 <div class="partial">
   <div class="header p_msg_new"></div>
   <div class="body">
-    <% form_for :message do |f| %>
+    <% form_for @message do |f| %>
+      <%= hidden_field_tag :id, params[:id] -%>
       <% if receiver %>
-        Adresat: <%= receiver.login %>
+        Adresat: 
+        <span style='float: right'>
+          <%= receiver.login %>
+        </span>
       <% else %>
         <div class="form_row">
           <%= f.label :user, "Użytkownik" %>
           <%= f.select :user,curuser.friends.sort{|x,y| x.login <=> y.login}.collect{|x| [x.login,x.login]}, {:include_blank => true}, :style => "width:220px" %>
         </div>
       <% end %>
-
+      <br/>
+      <br/>
       <div class="form_row">
         <%= f.label :title, "Tytuł" %>
         <%= f.text_field :title %>
+        <%= f.error_message_on :title -%>
       </div>
+      <br/>
       <div class="form_row">
 
         <%= f.label :content, "Treść" %>
         <%= f.text_area :content, :rows => 10 %>
+        <%= f.error_message_on :content -%>
       </div>
       <div class="form_row">
         <%= f.submit "Wyślij", :class=>"submit" %>

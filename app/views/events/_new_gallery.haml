@@ -1,0 +1,13 @@
+.partial
+  .header.p_gal_index
+  .body
+    %p Dodaj album
+    - form_for gallery, :url => gallery_event_path(@event) do |f|
+      .form_row
+        = f.label :name, "Nazwa"
+        = f.text_field :name
+
+      .form_row
+        = f.submit "Dodaj", :class => 'submit'
+        .button_silver_67.submit{ :style => "border: 1px solid #AAA; height:24px; margin-right:5px;" }
+          = toggle_gallery_form "Zamknij"
