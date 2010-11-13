@@ -16,18 +16,26 @@ class VideosController < ApplicationController
   
   def create   
     @video = Video.new(params[:video])
-    @video.uploaded_data = params[:Filedata]
+    @video.uploaded_data = params[:uploaded_data]
 
     if @video.save
       @video.convert
       flash[:notice] = 'Film został dodany'
     else
-      flash[:error] = "Wystąpił problem podczas dodawania filmu"
+      raise 'Error'
     end
-
-    render :json => {:success => true}
+    
+    return render :text => @video.id
   end
   
+  def set_attributes
+    @video = Video.find(params[:hidFileID])
+
+    @video.update_attributes(params[:video])
+    
+    redirect_to user_gallery_path(current_user,@video.gallery)
+  end
+
   def show
     store_location
 
@@ -121,7 +129,7 @@ class VideosController < ApplicationController
   
   def update_video
     @video = Video.last
-    
+
     unless params[:title].empty?
       @video.update_attributes({:title => params[:title], :description => params[:description]})
     render :json => {:success => true}
