@@ -8,5 +8,5 @@ environment: production
 user: root
 pid_file: tmp/pids/mongrel.pid
 servers: 6
-config_script: config/mongrel_upload_progress.conf
+
 
