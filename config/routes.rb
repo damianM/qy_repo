@@ -53,7 +53,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # videos
   map.videos 'filmy', :controller => 'videos', :action => 'index'
-  map.create_video 'dodaj-film', :controller => 'videos', :action => 'create'
+#  map.create_video 'dodaj-film', :controller => 'videos', :action => 'create'
 
   # zdjecia
   map.photos 'zdjecia', :controller => 'photos', :action => 'index'
@@ -104,7 +104,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :galleries
   map.resources :photos, :member => { :main => :get, :vote => :post }, :collection => { :list => :get }
-  map.resources :videos, :member => { :vote => :post }, :collection => { :search => :any, :list => :get, :check_upload => :get, :update_video => :get }
+  map.resources :videos, :member => { :vote => :post }, :collection => { :search => :any, :list => :get, :check_upload => :get, :set_attributes => :post }
 
   map.resources :teams, :collection => { :list => :get, :find_form => :get, :find => :post, :admin_list => :get }
   map.resources :users, :member => { :friends_index => :get, :friends => :get, :pending => :get, :requested => :get, :myteams => :get}, :collection => {:find => :get } do |user|

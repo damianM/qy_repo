@@ -8,12 +8,8 @@
       %p Zarówno pole 'Tytuł', 'Opis' jak i 'Film' muszą być uzupełnione
 
 
-    = hidden_field_tag :_quadomaniacy_session, cookies[:_quadomaniacy_session]
 
-    #jcu_error_container
-    %br
-
-    - form_for(video, :url => create_video_path, :html => {:id => "jcUploadForm", :multipart => true}) do |form|
+    - form_for(video, :url => {:controller => 'videos', :action => 'set_attributes'}, :html => {:id => "swfuploadForm", :multipart => true}) do |form|
       = form.hidden_field :gallery_id
 
       .form_row
@@ -26,13 +22,28 @@
         = form.label :description, "Opis"
         = form.text_field :description
 
+      %br
+      %div
+        .form_row
+          %label{:for => 'txtFileName'} Film (10 MB max)
+          <input type="text" id="txtFileName" disabled="true" style="border: solid 1px; background-color: #FFFFFF;float:left;margin-left: 70px; margin-right: 10px;" />
+          <span id="spanButtonPlaceholder"></span>
+
+
+        %div
+          %div{:class => "flash",  :id => "fsUploadProgress"}
+        <input type="hidden" name="hidFileID" id="hidFileID" value="" />  
+
+      %br
       .form_row
-        %br
-        #jcupload_content
-  
-      .form_row
-        .button_silver_67.submit{ :style => "border: 1px solid #AAA; height:24px; margin-right:5px;" }
-          = toggle_video_form 'Zamknij', :reload => true
+        <input type="submit" value="Dodaj" id="btnSubmit" />
+
+
+
+
+
+
+
 
 
 
