@@ -3,7 +3,7 @@
   <div class="header p_team_new"></div>
 
   <div class="body">
-    <% form_for @team do |f| %>
+    <% form_for @team, :url => create_team_path do |f| %>
 
       <div class="form_row">
         <%= f.label :name, "Nazwa"%>
