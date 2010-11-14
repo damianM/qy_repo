@@ -20,7 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   
   # user galleries
   map.galleries 'galerie', :controller => 'galleries', :action => 'index'
-  map.user_galleries 'galerie-użytkownika/:user_id', :controller => 'galleries', :action => 'index'
+  map.user_galleries 'galerie-uzytkownika/:user_id', :controller => 'galleries', :action => 'index'
   map.new_user_gallery 'nowa-galeria/:user_id', :controller => 'galleries', :action => 'new'
   map.create_user_gallery 'dodaj-galerie/:user_id', :controller => 'galleries', :action => 'create', :method => :post
 
