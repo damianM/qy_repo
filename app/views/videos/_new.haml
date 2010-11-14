@@ -13,7 +13,7 @@
       = form.hidden_field :gallery_id
 
       .form_row
-        = form.label :title, "Tytuł"
+        = form.label :title, "Tytuł *"
         = form.text_field :title
         %span{:id => 'title_errors'}
 
@@ -36,7 +36,9 @@
 
       %br
       .form_row
-        <input type="submit" value="Dodaj" id="btnSubmit" />
+        <input type="submit" value="Dodaj" id="btnSubmit" class='submit' />
+        .button_silver_67.submit{ :style => "border: 1px solid #AAA; height:24px; margin-right:5px;" }
+          = link_to 'Zamknij', '#', :id => 'toggle_video_form'
 
 
 

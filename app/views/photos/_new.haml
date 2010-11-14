@@ -20,4 +20,4 @@
       .form_row
         = f.submit "Dodaj", :class=>"submit", :disable_with => "Twoje zdjęcie jest właśnie ładowane, proszę, czekaj..."
         .button_silver_67.submit{ :style => "border: 1px solid #AAA; height:24px; margin-right:5px;" }
-          = toggle_photo_form "Zamknij"
+          = link_to 'Zamknij', '#', :id => 'toggle_photo_form'
