@@ -57,6 +57,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # zdjecia
   map.photos 'zdjecia', :controller => 'photos', :action => 'index'
+  map.create_photo 'dodaj-zdjecie', :controller => 'photos', :action => 'create'
 
   # worksshops
   map.workshops 'serwisy-przyjazne-quadomanikom', :controller => 'workshops', :action => 'index'
