@@ -19,7 +19,7 @@ class Photo < ActiveRecord::Base
 
   validates_as_attachment
 
-  attr_accessible :gallery_id
+  attr_accessible :gallery_id, :description
 
   def increase_display_counter
     update_attribute(:counter, counter + 1)
