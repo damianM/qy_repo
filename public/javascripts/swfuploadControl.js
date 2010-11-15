@@ -7,8 +7,8 @@ jQuery(document).ready(function() {
 	    file_post_name: "uploaded_data",
 
 	    // Flash file settings
-	    file_size_limit : "10 MB",
-	    file_types : "*.*",// or you could use something like: "*.doc;*.wpd;*.pdf",
+	    file_size_limit : "100 MB",
+	    file_types : "*.avi;*.mpg;*.MPG;*.AVI",// or you could use something like: "*.doc;*.wpd;*.pdf",
 	    file_types_description : "All Files",
 	    file_upload_limit : "0",
 	    file_queue_limit : "1",

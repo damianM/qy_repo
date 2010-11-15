@@ -6,4 +6,4 @@
     = link_to image_tag(params['black'] ? "../services_d.png" : "../services.png"), workshops_path
   %div{:style => 'margin-top:10px'}
     = link_to image_tag(params['black'] ? "../shops_d.png" : "../shops.png"), shops_path
-  = render :partial => "layouts/top10_videos"
+  = render :partial => "layouts/top10_videos" if logged_in?
