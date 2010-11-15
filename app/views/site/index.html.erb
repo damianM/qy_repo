@@ -2,12 +2,12 @@
 <% unless logged_in? %>
   
   <%= render :partial => "site/top_video" unless @top_video.nil? %>
-  <%= render :partial => "site/latest_videos" %>
+  <%#= render :partial => "site/latest_videos" %>
 
-  <%= render :partial => "site/relations", :locals => {:events => @latest_events} unless @latest_events.empty?%>
-  <%= image_tag(params['black'] ? "../helmet_d.png" : "../helmet.png") %>
+  <%#= render :partial => "site/relations", :locals => {:events => @latest_events} unless @latest_events.empty?%>
+  <%#= image_tag(params['black'] ? "../helmet_d.png" : "../helmet.png") %>
   <%#= render :partial => "site/latest_users", :locals => {:users => @latest_users }%>
-  <%#= render :partial => "site/latest_photos", :locals => {:photos => @latest_photos }%>
+  <%#= render :partial => "site/latest_photos", :locals => {:photos => @latest_photos }%> 
   
   
 <% else %>

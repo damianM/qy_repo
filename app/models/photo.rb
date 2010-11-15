@@ -12,7 +12,7 @@ class Photo < ActiveRecord::Base
                  :content_type => :image,
                  :path_prefix  => '/public/uploads/',
                  :processor => :Rmagick,
-                 :max_size => 2.megabytes,
+                 :max_size => 10.megabytes,
                  :resize_to => 'x133',
                  :thumbnails => { :main => '80x80', :thumb => 'x65' }
 

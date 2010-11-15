@@ -60,7 +60,7 @@
 }
 
 .partial span{
-        font-size:10pt;
+    font-size:9pt;
     font-weight: 900;
     color: #000;
 }
@@ -70,7 +70,7 @@
     font-weight: bold;
 }
 .partial p{
-    font-size: 10pt;
+    font-size: 9pt;
     line-height: 1.5;
 }
 
@@ -92,6 +92,7 @@
     font-size: 10pt;
     display:block;
     float:left;
+    font-weight: bold;
 }
 
 .login_form_row input{
@@ -103,10 +104,11 @@
 
 .login_form_row_rem{
     margin-top:7px;
+    font-weight: bold;
 }
 .login_form_row_rem label {
     color: #fff;
-    width: 72px;
+    width: 74px;
     font-size: 7pt;
     padding-top:3px;
     display:block;
@@ -114,7 +116,7 @@
 }
 
 .login_links a{
-    font-size:7pt;color:#fff;text-decoration:underline
+    font-size:7pt;color:#fff;text-decoration:underline;font-weight: bold;
 }
 
 
