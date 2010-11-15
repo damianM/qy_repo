@@ -1,7 +1,7 @@
 .partial
   .header Dodaj zdjęcie!
   .body
-    - form_for photo, :url => photos_path, :html => { :multipart => true } do |f|
+    - form_for photo, :url => create_photo_path, :html => { :multipart => true } do |f|
       = f.hidden_field :gallery_id
 
       .form_row
@@ -20,4 +20,4 @@
       .form_row
         = f.submit "Dodaj", :class=>"submit", :disable_with => "Twoje zdjęcie jest właśnie ładowane, proszę, czekaj..."
         .button_silver_67.submit{ :style => "border: 1px solid #AAA; height:24px; margin-right:5px;" }
-          = toggle_photo_form "Zamknij"
+          = link_to 'Zamknij', '#', :id => 'toggle_photo_form'

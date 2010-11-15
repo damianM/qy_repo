@@ -48,7 +48,7 @@
               <%= link_to "Edytuj", edit_event_path(@event), {:title => "Edytuj"} %>
             </div>
             <div class="grey_link" style="text-align:right;display:block;float:right">
-              <%=link_to "Usuń", event_path(@event), {:method => :delete, :title => "Usuń", :confirm => "Czy na pewno chcesz usunąć tę imprezę?"}%>
+              <%=link_to "Usuń", destroy_event_path(@event), {:method => :delete, :title => "Usuń", :confirm => "Czy na pewno chcesz usunąć tę imprezę?"}%>
             </div>
             <div class="clr"></div>
           </div>

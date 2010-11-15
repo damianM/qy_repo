@@ -29,7 +29,7 @@
             <%end%>
           </span>
           <% if @team.rights?(curuser) %>
-            <%= link_to (image_tag "/delete.png"), team_path(@team), {:method => :delete, :title => "Usuń grupę", :class => "picture_link",  :confirm => "Czy na pewno chcesz usunąć tę grupę?"} %>
+            <%= link_to (image_tag "/delete.png"), destroy_team_path(@team), {:method => :delete, :title => "Usuń grupę", :class => "picture_link",  :confirm => "Czy na pewno chcesz usunąć tę grupę?"} %>
           <% end %>
         </div>
 

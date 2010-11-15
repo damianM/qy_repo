@@ -1,15 +1,8 @@
 # -*- coding: utf-8 -*-
 class VideosController < ApplicationController
-  session :off, :only => :progress
-  skip_before_filter :verify_authenticity_token, :only => :progress
-  
-  def progress
-    render :update do |page|
-      @status = Mongrel::Uploads.check(params[:upload_id])
-      page << "UploadProgress.update(#{@status[:size]}, #{@status[:received]})" if @status
-    end
-  end
-  
+  protect_from_forgery :except => [:create]
+
+
   def list
     store_location
 
@@ -18,21 +11,31 @@ class VideosController < ApplicationController
   end
   
   def index
-    @videos = Video.search(params[:search])
+    @videos = Video.search(params[:search])    
   end
   
-  def create
+  def create   
     @video = Video.new(params[:video])
+    @video.uploaded_data = params[:uploaded_data]
 
     if @video.save
       @video.convert
       flash[:notice] = 'Film został dodany'
     else
-      flash[:error] = "Wystąpił problem podczas dodawania filmu"
+      raise 'Error'
     end
-    redirect_back_or_default(root_path)
+    
+    return render :text => @video.id
   end
   
+  def set_attributes
+    @video = Video.find(params[:hidFileID])
+
+    @video.update_attributes(params[:video])
+    
+    redirect_to user_gallery_path(current_user,@video.gallery)
+  end
+
   def show
     store_location
 
@@ -123,5 +126,17 @@ class VideosController < ApplicationController
     params.delete :views if params[:views]
     @videos
   end
+  
+  def update_video
+    @video = Video.last
 
+    unless params[:title].empty?
+      @video.update_attributes({:title => params[:title], :description => params[:description]})
+    render :json => {:success => true}
+    else
+      @video.destroy
+    render :json => {:success => false}
+    end
+  end
+  
 end

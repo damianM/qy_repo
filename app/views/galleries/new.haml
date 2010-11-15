@@ -2,7 +2,7 @@
   .header.p_gal_index
   .body
     %p Dodaj album
-    - form_for setup_gallery(@galleriable), :url => eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_galleries_path(@galleriable)") do |f|
+    - form_for setup_gallery(@galleriable), :url => create_gallery_link(@galleriable)  do |f|
       .form_row
         = f.label :name, "Nazwa"
         = f.text_field :name

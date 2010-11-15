@@ -8,8 +8,11 @@
     %meta{'name' => 'robots', 'content' => 'index,follow'}
     %meta{'name' => 'keywords', 'content' => 'quady'}
     %meta{'name' => 'description', 'content' => 'quady'}
+    - if params[:controller] == 'galleries' and params[:action] == 'show'
+      = render "layouts/scripts"
+    - else
+      = render "layouts/includes"
 
-    = render "layouts/includes"
 
   %body{:onload => 'checkScreen();'}
     #page
@@ -27,5 +30,5 @@
 
       = render "layouts/footer"
 
-    =render :partial => "layouts/google_analytics"
+    //=render :partial => "layouts/google_analytics"
   

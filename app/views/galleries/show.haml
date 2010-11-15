@@ -35,9 +35,9 @@
         = link_to "Wszystkie albumy", eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_galleries_path(@galleriable)")
       - if @gallery.rights?(current_user)
         .button_silver_75{ :style => "text-align:right;display:block;float:right" }
-          = toggle_photo_form 'Dodaj zdjęcie!'
+          = link_to 'Dodaj zdjęcie!', '#', :id => 'toggle_photo_form'
         .button_silver_75{ :style => "text-align:right;display:block;float:right;margin-right:5px;" }
-          = toggle_video_form 'Dodaj film!'
+          = link_to 'Dodaj film!', '#', :id => 'toggle_video_form'
 
     .clr
 
