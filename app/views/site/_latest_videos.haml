@@ -6,7 +6,7 @@
         %tr
           - group.each do |video|
             %td
-              = link_to image_tag(video.public_filename), video_path(video) if video
+              = link_to((video.thumbnail ? (image_tag(video.thumbnail.public_filename)) : ("Miniaturka niedostępna")), video_path(video)) if video
       %tr
         %td
           .button_silver_67{ :style => "margin-top:45px;margin-left:28px;" }
