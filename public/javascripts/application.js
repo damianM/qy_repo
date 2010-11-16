@@ -12,14 +12,8 @@ function checkScreen(){
 
 
 function startProcedures(){
-  if($('n_quad') != null){
-    Element.hide('n_quad');
-  }
   if($('flash')!= null){
     Effect.Fade('flash',{duration: 4.0});
-  }
-  if($('v_msg')!=null){
-    $('v_msg').hide();
   }
   checkScreen();
 }

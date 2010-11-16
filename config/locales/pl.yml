@@ -120,7 +120,6 @@ pl:
         less_than_or_equal_to: "musi być mniejsze lub równe {{count}}"
         odd: "musi być nieparzyste"
         even: "musi być parzyste"
-
   support:
     array:
       sentence_connector: "i"
