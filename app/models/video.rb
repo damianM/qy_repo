@@ -81,7 +81,7 @@ class Video < ActiveRecord::Base
   end
 
   def to_param 
-    "#{id}-#{description.to_url_format}"
+    "#{id}-#{title.to_url_format}"
   end
   
   protected
