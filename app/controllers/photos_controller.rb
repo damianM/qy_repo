@@ -22,13 +22,13 @@ class PhotosController < ApplicationController
       flash[:error] = "Wystąpił problem podczas dodawania zdjęcia"
     end
 
-    redirect_back_or_default(root_path)
     
-    #if params[:mark_as_main_photo]
-    # user = curuser
-    # user.update_attribute("photo", @photo)
-    #   user.save
-    #end
+    if params[:mark_as_main_photo]
+      user = curuser
+      user.update_attribute(:photo_id, @photo.id)
+    end
+
+    redirect_back_or_default(root_path)
   end
   
   def show

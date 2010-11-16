@@ -45,4 +45,4 @@
       = render :partial => 'videos/new', :locals => { :video => @gallery.videos.build, :uuid => Time.now.to_i.to_s }
 
     #photo_form{:style => 'display:none;margin-top:10px;'}
-      = render :partial => 'photos/new', :locals => { :photo => @gallery.photos.build, :allow_main_photo => false }
+      = render :partial => 'photos/new', :locals => { :photo => @gallery.photos.build, :allow_main_photo => true }
