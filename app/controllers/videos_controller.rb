@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class VideosController < ApplicationController
   protect_from_forgery :except => [:create]
-
+  before_filter :login_required
 
   def list
     store_location

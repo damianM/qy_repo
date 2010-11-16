@@ -21,7 +21,7 @@ end
   <div class="userinfo_photo">
     <div>
       <% unless gray %>
-        <%= link_to image_tag(user.photo ? user.photo.public_filename : "/80_anon.png", :class=>"about_photo"), user_path(user), {:target => target} %>
+        <%= link_to image_tag(user.photo ? user.photo.public_filename : "/80_anon.png", :class=>"about_photo", :size => '80x80'), user_path(user), {:target => target} %>
       <% else %>
         <%= link_to user.photo ? image_tag(user.photo.public_filename(:thumb), :class=>"about_photo") : image_tag("/80_anon.png", :class=>"about_photo"), user_path(user), {:target => target} %>
       <% end %>
@@ -43,7 +43,7 @@ end
       <% elsif special == "pending"%>
         <div class="userinfo_joined">
           <%  if [curuser.pending_friends].flatten.include? user %>
-            Wysłałeś zaproszenie do użytkownika<br/>
+          Wysłałeś zaproszenie do użytkownika<br/>
             <%=lt Relationship.find_by_user_id_and_friend_id(curuser.id,user.id).updated_at %>
           <% else %>
             Jesteście znajomymi od
