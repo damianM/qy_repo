@@ -11,8 +11,8 @@
             - triple.each do |photo|
               %td
                 .photo_m
-                  - unless photo.nil?
-                    = link_to image_tag(photo.public_filename(:thumb)), photo_path(photo)
+                  - unless photo.blank?
+                    = link_to image_tag(photo.public_filename(:thumb)), photo_path(photo) if photo
                     = render :partial => "asset", :object => photo
                  
     - unless @gallery.videos.empty?
