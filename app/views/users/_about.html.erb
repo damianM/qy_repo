@@ -5,7 +5,7 @@
     <div class="lcol_user">
       <div class="about_head">
         <div class="photo">
-          <%= image_tag user.photo.public_filename(:thumb), :class=>"about_photo" if user.photo %>
+          <%= image_tag user.photo.public_filename(:main), :class=>"about_photo" if user.photo %>
         </div>
         <div style="font-weight: bold;">
           <%= user.login%>

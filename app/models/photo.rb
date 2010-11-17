@@ -14,7 +14,7 @@ class Photo < ActiveRecord::Base
                  :processor => :Rmagick,
                  :max_size => 10.megabytes,
                  :resize_to => 'x133',
-                 :thumbnails => { :main => '80x80', :thumb => 'x65' }
+                 :thumbnails => { :main => [85, 80], :thumb => [74, 74] }
 
 
   validates_as_attachment

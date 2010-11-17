@@ -6,7 +6,8 @@ class Thumbnail < ActiveRecord::Base
 
   has_attachment :content_type => :image,
                  :storage => :file_system,
-                 :path_prefix  => '/public/uploads/'
+                 :path_prefix  => '/public/uploads/',
+                 :resize_to => [93, 71]
 
 
   def self.create!(vpath)
