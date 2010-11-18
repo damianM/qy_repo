@@ -12,8 +12,8 @@ function checkScreen(){
 
 
 function startProcedures(){
-  if($('flash')!= null){
-    Effect.Fade('flash',{duration: 4.0});
+  if (($('flash') != null)){
+      Effect.Fade('flash',{duration: 4.0});
   }
   checkScreen();
 }
