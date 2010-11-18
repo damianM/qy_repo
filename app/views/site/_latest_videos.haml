@@ -7,7 +7,7 @@
           - group.each do |video|
             %td
               = link_to((video.thumbnail ? (image_tag(video.thumbnail.public_filename)) : ("Miniaturka niedostępna")), video_path(video)) if video
-      %tr
-        %td
-          .button_silver_67{ :style => "margin-top:45px;margin-left:28px;" }
-            = link_to "Wszystkie", videos_path
+
+    .button_silver_67{ :style => "margin-top:45px;float:right;" }
+      %b= link_to "Wszystkie", videos_path
+    .clr
