@@ -23,6 +23,11 @@ table th{
   border-bottom: 1px solid #B8B8B8;
 }
 
+table.p_photos {}
+  table.p_photos td {
+    text-align: center;
+  }
+
 #progress {
   width: 80%;
   border: 2px dotted #eee;
