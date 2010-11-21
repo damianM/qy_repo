@@ -38,6 +38,7 @@ jQuery(document).ready(function() {
 
 	    custom_settings : {
 		progress_target : "fsUploadProgress",
+                percent_uploaded : "PercentUploaded",
 		upload_successful : false
 	    },
 	    

@@ -20,7 +20,7 @@
       %br
       .form_row
         = form.label :description, "Opis"
-        = form.text_field :description
+        = form.text_field :description   
 
       %br
       %div
@@ -28,6 +28,7 @@
           %label{:for => 'txtFileName'} Film (100 MB max)
           <input type="text" id="txtFileName" disabled="true" style="border: solid 1px; background-color: #FFFFFF;float:left;margin-left: 70px; margin-right: 10px;" />
           <span id="spanButtonPlaceholder"></span>
+          <span id="PercentUploaded"></span>
 
 
         %div

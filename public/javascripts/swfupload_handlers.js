@@ -127,6 +127,7 @@ function uploadProgress(file, bytesLoaded, bytesTotal) {
 
 function uploadSuccess(file, serverData) {
 	try {
+
 		file.id = "singlefile";	// This makes it so FileProgress only makes a single UI element, instead of one for each file
 		var progress = new FileProgress(file, this.customSettings.progress_target);
 		progress.setComplete();
