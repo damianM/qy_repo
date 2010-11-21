@@ -1,7 +1,7 @@
 <div class="partial">
   <div class="header p_msg_new"></div>
   <div class="body">
-    <% form_for @message do |f| %>
+    <% form_for :message, :url => create_message_path  do |f| %>
       <%= hidden_field_tag :id, params[:id] -%>
       <% if receiver %>
         Adresat: 

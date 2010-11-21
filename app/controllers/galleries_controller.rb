@@ -3,7 +3,14 @@ class GalleriesController < ApplicationController
   before_filter :login_required
   
   def index
-    @galleriable = params[:user_id].nil? ? Event.find(params[:event_id]) : User.find(params[:user_id])
+    if params[:user_id]
+      @galleriable = User.find(params[:user_id])
+    elsif params[:event_id]
+      @galleriable = Event.find(params[:event_id])
+    else
+      @galleriable = current_user
+    end
+      
     @galleries = @galleriable.galleries
   end
 
