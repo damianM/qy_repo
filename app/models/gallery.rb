@@ -7,7 +7,7 @@ class Gallery < ActiveRecord::Base
   has_many :videos, :order => 'created_at'
   
   def rights?(usr)
-    galleriable && ( galleriable == usr  || galleriable.user == usr )
+    galleriable && ( galleriable.is_a?(User) ? galleriable == usr : galleriable.user == usr )
   end
 
   def to_param 

@@ -80,8 +80,8 @@ class Video < ActiveRecord::Base
      gallery.rights?(usr)
   end
 
-  def to_param 
-    "#{id}-#{title.to_url_format}"
+  def to_param
+    title.blank? ? "#{id}" : "#{id}-#{title.to_url_format}"
   end
   
   protected
