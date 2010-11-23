@@ -169,7 +169,7 @@
 }
 
 .what_is_new{
-     background-image: url('/images/what_is_new.png');position: relative; top: 6px;height:45px;
+     background-image: url('/images/what_is_new.png');position: relative; top: 3px;height:45px;
 }
 
 .p_login{
@@ -217,11 +217,11 @@
 }
 
 .p_findq{
-    background-image: url('../headers/findq.png');position: relative; top: 6px;height:38px;
+    background-image: url('../headers/findq.png');position: relative; top: 3px;height:38px;
 }
 
 .p_user{
-    background-image: url('../headers/user.png');position: relative; top: 6px;height:50px;
+    background-image: url('../headers/user.png');position: relative; top: 5px;height:50px;
 }
 
 .p_gal_index{

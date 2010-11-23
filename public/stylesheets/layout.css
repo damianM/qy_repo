@@ -50,7 +50,7 @@ body{
 }
 
 #lcol{
-    width: 210px;
+    width: 220px;
     float: left;
     display: block;
     margin-left: 10px;
@@ -69,10 +69,9 @@ body{
 
 #rcol{
     width: 208px;
-    float:right;
+    float:left;
     display: block;
-    margin-left: 20px;
-    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .clr{
