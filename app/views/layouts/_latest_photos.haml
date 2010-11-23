@@ -13,7 +13,7 @@
                 %div= link_to image_tag(photo.public_filename(:thumb)), photo_path(photo)
                 - if photo.gallery && photo.gallery.galleriable
                   - galleriable = photo.gallery.galleriable
-                  %div= link_to galleriable.is_a?(User) ? galleriable.login : galleriable.user.login, eval("#{galleriable.is_a?(User) ? 'user' : 'event'}_galleries_path(galleriable)")
+                  %div= link_to galleriable.is_a?(User) ? galleriable.login : galleriable.user.login, eval("#{galleriable.is_a?(User) ? 'user' : 'event'}_gallery_path(galleriable, photo.gallery)")
 
     .button_silver_67{ :style => "float:right;" }
       = link_to "Wszystkie", photos_path

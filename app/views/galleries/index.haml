@@ -12,7 +12,7 @@
                 = render :partial => "gallery", :object => gallery unless gallery.nil?
 
 
-    - if @galleriable == current_user || @galleriable.user == current_user
+    - if ( @galleriable.is_a?(User) ? @galleriable == current_user : @galleriable.user == current_user )
       #new_gallery
         .button_silver_75{ :style => "float:right" }
           = link_to "Dodaj album", eval("new_#{@galleriable.is_a?(User) ? 'user' : 'event'}_gallery_path(@galleriable)")
