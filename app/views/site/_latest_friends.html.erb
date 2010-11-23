@@ -2,7 +2,11 @@
   <div class="header l_users"></div>
 
   <div class='body', style='background-image: none;'>
-    <%= render :partial => "friend", :collection => users -%>
+    <% if users.blank? %>
+      Nie masz jeszcze znajomych
+    <% else %>
+      <%= render :partial => "friend", :collection => users -%>
+    <% end %>
 
     <div style="clear:both"></div>
   </div>
