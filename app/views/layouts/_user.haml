@@ -7,9 +7,9 @@
           = link_to image_tag(current_user.photo.public_filename(:thumb)), user_path(current_user) if current_user.photo
 
         .link{ :style => "font-weight: bold;" }
-          = link_to current_user.login, user_path(current_user), { :style => "color:navy;" }
+          = link_to current_user.login, user_path(current_user)
 
-        .userinfo_sub1.bolder
+        .userinfo_sub1.bolder{ :style => "color:navy;" }
           - if current_user.quad 
             = current_user.quad.company.nil? ? "" : current_user.quad.company.name + " "
             = current_user.quad.qtype.nil? ? "" : current_user.quad.qtype
