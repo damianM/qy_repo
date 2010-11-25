@@ -10,8 +10,8 @@
         </span>
       <% else %>
         <div class="form_row">
-          <%= f.label :user, "Użytkownik" %>
-          <%= f.select :user,curuser.friends.sort{|x,y| x.login <=> y.login}.collect{|x| [x.login,x.login]}, {:include_blank => true}, :style => "width:220px" %>
+          <%= f.label :receiver_id, "Użytkownik" %>
+          <%= f.select :receiver_id, curuser.friends.sort{|x,y| x.login <=> y.login}.collect{|x| [x.login,x.id]}, {:include_blank => true}, :style => "width:220px" %>
         </div>
       <% end %>
       <br/>

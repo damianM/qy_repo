@@ -55,12 +55,11 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @receiver = User.find(params[:id])
+    @receiver = User.find(params[:message][:receiver_id])
     @sender = curuser
 
     @message = Message.new(params[:message])
     @message.sender = @sender
-    @message.receiver = @receiver
     @message.read = 0
     (@message.details=MessageDetails.new(:details => 0)).save!
     if @message.save

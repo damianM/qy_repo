@@ -40,8 +40,8 @@ ActionController::Routing::Routes.draw do |map|
 
   # messages 
   map.newr_messages 'napisz-wiadomosc', :controller => 'messages', :action => 'newr'
-  map.new_message 'napisz-wiadomosc/:id', :controller => 'messages', :action => 'new'
-  map.create_message 'dodaj-wiadomosc/:id', :controller => 'messages', :action => 'create'
+  map.new_message 'napisz-wiadomosc', :controller => 'messages', :action => 'new'
+  map.create_message 'dodaj-wiadomosc', :controller => 'messages', :action => 'create'
   map.received_messages 'odebrane-wiadomosc', :controller => 'messages', :action => 'received'
   map.sent_messages 'wyslane-wiadomosc', :controller => 'messages', :action => 'sent'
 
