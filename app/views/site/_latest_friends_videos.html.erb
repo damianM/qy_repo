@@ -5,7 +5,7 @@
     <% for video in videos  %>
       <div class="latest_item">
         <div>
-          <%= link_ image_tag(video.link[0...-3] + "jpg"), "video", "show", video.id %><br/>
+          <%= link_to((video.thumbnail ? (image_tag(video.thumbnail.public_filename)) : ("Miniaturka niedostępna")), video_path(video)) if video -%>
         </div>
         <%= link_to video.gallery.galleriable.login, user_path(video.gallery.galleriable) %>
       </div>
