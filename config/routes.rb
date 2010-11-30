@@ -25,8 +25,8 @@ ActionController::Routing::Routes.draw do |map|
   map.create_user_gallery 'dodaj-galerie/:user_id', :controller => 'galleries', :action => 'create', :method => :post
 
   # event galleries
-  map.new_event_gallery 'nowa-galeria/:event_id', :controller => 'galleries', :action => 'new'
-  map.create_event_gallery 'dodaj-galerie/:event_id', :controller => 'galleries', :action => 'create', :method => :post
+  map.new_event_gallery 'nowa-album/:event_id', :controller => 'galleries', :action => 'new'
+  map.create_event_gallery 'dodaj-album/:event_id', :controller => 'galleries', :action => 'create', :method => :post
 
 
   #event
