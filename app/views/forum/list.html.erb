@@ -32,7 +32,7 @@
     <br/>
     <div id="add_t">
          <div class="button_silver_75"  style="text-align:left;display:block;float:left">
-             <%= link_ "Powrót", "team", "show", @forum.team.id %>
+             <%= link_ "Powrót", "teams", "show", @forum.team.id %>
       </div>
       <div class="button_gold_100" style="text-align:right;display:block;float:right">
         <%= link_to_remote "Nowy temat", :url => {:controller => "topic",:action => "t_add",:id =>  @forum.id} %>
