@@ -65,7 +65,7 @@ class MessagesController < ApplicationController
     if @message.save
       UserMailer.deliver_new_message(@receiver,@sender)
       flash[:notice]="Wiadomość została wysłana"
-      redirect_to :controller => "message", :action => "sent"
+      redirect_to :controller => "messages", :action => "sent"
     else
       flash[:error]="Wystąpił błąd!"
       render :action => 'new'
@@ -89,7 +89,7 @@ class MessagesController < ApplicationController
       if @message.save
         UserMailer.deliver_new_message(@receiver,@sender)
         flash[:notice]="Wiadomość została wysłana"
-        redirect_to :controller => "message", :action => "sent"
+        redirect_to :controller => "messages", :action => "sent"
       end
     end
   end
@@ -158,7 +158,7 @@ class MessagesController < ApplicationController
       (@message.details=MessageDetails.new(:details => 0)).save!
       if @message.save
         flash[:notice]="Wiadomość została wysłana"
-        redirect_to :controller => "message", :action => "sent"
+        redirect_to :controller => "messages", :action => "sent"
       end
     end
   end
@@ -201,7 +201,7 @@ class MessagesController < ApplicationController
     else
       flash[:error] = "Usuwanie wiadomości nie powiodło się"
     end
-    redirect_to :controller => "message", :action => "received"
+    redirect_to :controller => "messages", :action => "received"
   end
 
 end
