@@ -5,7 +5,7 @@
       <div class="header p_event"><%=cut(@event.title,20) %></div>
       <div class="body">
         <div style='float: right; text'>
-          Kategoria: <%= @event.category %>
+          Kategoria: <%= @event.event_category.name if @event.event_category %>
           <hr/>
           Początek: <%= ltd @event.event_start %>
           <br/>

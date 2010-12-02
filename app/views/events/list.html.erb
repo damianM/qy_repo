@@ -19,8 +19,8 @@
           <div class="clear"></div>
         </div>
         <div class="form_row bolder">
-          <%= label_tag :category, "Kategoria:" %>
-          <%= select_tag :category,options_for_select([["Wszystkie",""]] + EventCategory.all.map(&:name).zip,params[:category])  %>
+          <%= label_tag :event_category_id, "Kategoria:" %>
+          <%= select_tag :event_category_id, "<option value="">Wszystkie</option>" + options_from_collection_for_select(EventCategory.all, :id, :name, params[:event_category_id]) %>
         </div>
 
         <div class="form_row">
@@ -45,7 +45,7 @@
           <span>
 
             <span style="font-weight:normal;border:none;color:#777">Kategoria:</span>
-            <%=  event.category%>
+            <%= event.event_category.name if event.event_category %>
           </span>
         </div>
         <div class="event_body">
