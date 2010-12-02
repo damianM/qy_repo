@@ -72,9 +72,7 @@ class User < ActiveRecord::Base
   end
 
   def unread
-    i=0
-    self.received.each{|x| i+=1 unless (x.read and x.read==1)}
-    i
+    self.received.find(:all, :conditions => { :read => false }).count
   end
 
   def delete
