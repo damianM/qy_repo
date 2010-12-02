@@ -112,7 +112,6 @@ class UsersController < ApplicationController
     else
       @users = curuser.friends
     end
-   
   end
 
   def friends_index
@@ -120,14 +119,13 @@ class UsersController < ApplicationController
     @requested = (curuser.ninitiator + curuser.requested_friends).uniq
     @pending = (curuser.initiator + curuser.requested_friends).uniq
   end
+
   def requested
-    @users = (curuser.ninitiator + curuser.requested_friends).uniq
+    @users = curuser.requested_friends.uniq
   end
   
-
   def pending
-    @users = (curuser.initiator + curuser.requested_friends).uniq
-    
+    @users = curuser.pending_friends.uniq
   end
 
   def myteams

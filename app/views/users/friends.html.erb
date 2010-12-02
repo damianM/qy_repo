@@ -1,18 +1,17 @@
 <div class="partial">
   <div class="header p_friends_m"></div>
   <div class="body">
-    <%  if @users.length > 0%>
+    <% unless @users.blank? %>
       <table>
-            <tr>
-            <td>
-              <%- @users.each do |user| -%>
-                <%= render :partial => "/userinfo", :locals =>
-                  {:user => user, :protect=> false, :special => "joined"} %>
-              <% end %>
-            </td>
-          </tr>
+        <tr>
+          <td>
+            <%- @users.each do |user| -%>
+              <%= render :partial => "/userinfo", :locals => {:user => user, :protect=> false, :special => "joined"} %>
+            <% end %>
+          </td>
+        </tr>
       </table>
-    <%else%>
+    <% else %>
       Niestety, nikogo nie znaleziono...
     <% end %>
   </div>

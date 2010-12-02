@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
   end
 
   def initiator
-    r=Relationship.find_all_by_initiator_id(self.id)
+    r = Relationship.find_all_by_initiator_id(self.id)
     r.collect!{|x| x.friend}
     r-[self]
   end
