@@ -2,7 +2,6 @@
 class TeamsController < ApplicationController
 
   before_filter :login_required
-  layout "application", :except => [:iusers, :ipending_list]
 
   def new
     @team = Team.new
@@ -38,6 +37,9 @@ class TeamsController < ApplicationController
       Teamuser.create(:user => curuser, :team => @team, :status => "pending")
       flash[:notice]="Pomyślnie wysłano prośbę o dołączenie do grupy"
       redirect_to myteams_user_path(current_user)
+    else
+      flash[:error] = "Nie określono grupy"
+      redirect_to teams_path
     end
   end
 
@@ -45,13 +47,15 @@ class TeamsController < ApplicationController
     if params[:id]
       @team = Team.find(params[:id])
       link = Teamuser.find_by_user_id_and_team_id(curuser,params[:id])
-      link.delete
+      link.delete if link
       @team.delete if @team.users.count==0
       flash[:notice]="Pomyślnie opuszczono grupę"
       redirect_to myteams_user_path(current_user)
+    else
+      flash[:error] = "Nie określono grupy"
+      redirect_to teams_path
     end
   end
-
   
   def pending_list
     if params[:id]
@@ -83,7 +87,7 @@ class TeamsController < ApplicationController
       redirect_to team_path(@team)
     elsif request.post? and !params[:users]
       flash[:error]="Nie zaznaczono użytkowników"
-      redirect_to :controller => "team", :action => "pending_list",:id => @team.id
+      redirect_to pending_list_team_path(@team)
     end
   end
 
@@ -106,8 +110,6 @@ class TeamsController < ApplicationController
 
     end
     
-    
-
   end
 
   def edit
@@ -129,7 +131,6 @@ class TeamsController < ApplicationController
     @teams = Team.find(:all)
   end
 
-
   def find_form
     @teams = []
     render :action => 'find'
@@ -138,8 +139,6 @@ class TeamsController < ApplicationController
   def find
     @teams = Team.find(:all, :conditions => "name LIKE '%#{params[:query]}%'")
   end
-
-
 
   def index
     if(params[:id])
@@ -150,7 +149,6 @@ class TeamsController < ApplicationController
 
     @team = Team.new
   end
-
   
   def users
     @team = Team.find(params[:id])
@@ -158,8 +156,7 @@ class TeamsController < ApplicationController
   end
 
   def admin_list
-    @teams = Team.all   
-   
+    @teams = Team.all      
     render :action => 'admin_list', :layout => 'admin'
   end
 

@@ -22,5 +22,5 @@
 </table>
 <br/>
 <div class="button_gold_100">
-  <%= link_to "Pokaż oczekujących", {:controller => "team", :action => "pending_list", :id => @team.id},:style=>"padding-top:1px;" %>
+  <%= link_to "Pokaż oczekujących", pending_list_team_path(@team), :style=>"padding-top:1px;" %>
 </div>

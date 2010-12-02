@@ -2,6 +2,7 @@ class Team < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :description
   validates_uniqueness_of :name
+
   has_many :teamusers
   has_many :users, :through => :teamusers, :source => :user, :conditions => "status='member' or status='owner'"
   has_many :pending_users, :through => :teamusers, :source => :user, :conditions => "status='pending'"

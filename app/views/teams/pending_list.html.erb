@@ -2,8 +2,8 @@
   <div class="header  p_team_appr">Prośby o dołączenie</div>
   <div class="body">
 
-    <% if !@pending_users.empty? %>
-      <form action="/team/ipending_list/<%= @team.id%> " target="_top" method="post">
+    <% if !@pending_users.blank? %>
+     <% form_tag '' do %>
         <table class="friend_list">
           <% for user_row in @pending_users %>
             <tr>
@@ -20,7 +20,7 @@
         <div class="form_row">
           <%= submit_tag "Akceptuj", :class => "submit" %>
         </div>
-      </form>
+      <% end %>
     <% elsif @rights %>
       Nie możesz zobaczyć pełnej listy oczekujących
     <% else %>

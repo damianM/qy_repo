@@ -5,7 +5,6 @@
     <% unless teams.empty? %>
       <% for team in teams %>
         <%= render :partial => "teams/team", :locals => {:team => team} %>
-
       <% end %>
     <% else %>
       Nie należysz do żadnej grupy

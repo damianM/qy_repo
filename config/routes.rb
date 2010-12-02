@@ -49,10 +49,13 @@ ActionController::Routing::Routes.draw do |map|
   # teams
   map.teams 'grupy', :controller => 'teams', :action => 'index'
   map.list_teams 'wszystkie-grupy', :controller => 'teams', :action => 'list'
-  map.new_team 'nowa-grupe', :controller => 'teams', :action => 'new'
+  map.new_team 'nowa-grupa', :controller => 'teams', :action => 'new'
   map.create_team 'dodaj-grupe', :controller => 'teams', :action => 'create'
   map.team 'pokaz-grupe/:id', :controller => 'teams', :action => 'show'
-  map.destroy_team 'usun-grupe/:id', :controller => 'teams', :action => 'destroy', :method => :delete
+  map.join_team 'dolacz-do-grupy/:id', :controller => 'teams', :action => 'join'
+  map.leave_team 'opusc-grupe/:id', :controller => 'teams', :action => 'leave'
+  map.pending_list_team 'oczekujacy-w-grupie/:id', :controller => 'teams', :action => 'pending_list'
+  map.destroy_team 'usun-grupe/:id', :controller => 'teams', :action => 'destroy'
 
   map.find_form_teams 'znajdz-grupe', :controller => 'teams', :action => 'find_form'
 
