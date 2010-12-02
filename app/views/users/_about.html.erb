@@ -12,7 +12,7 @@
         </div>
         <% if quad %>
           <div>
-            <b><%= quad.company %><br/><%= quad.qtype %></b> <br/>
+            <b><%= quad.company.nil? ? "" : quad.company.name %><br/><%= quad.qtype.nil? ? "" : quad.qtype %></b> <br/>
           </div>
         <% end %>
       </div>
