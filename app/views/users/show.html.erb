@@ -1,4 +1,4 @@
-<% content_for :left do -%>
+<!-- <% content_for :left do -%>
   &nbsp;
 <% end -%>
 
@@ -27,3 +27,4 @@
 
   <%= render :partial => "comments", :locals => { :commentable => @user } if @user.friends.include?(current_user) or @user == current_user %>
 </div>
+--!>

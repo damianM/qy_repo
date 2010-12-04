@@ -1,0 +1,26 @@
+.partial
+  .header.p_mygalleries
+  .body
+    - if user.galleries.length > 0
+      - user.galleries[0..3].each do |gallery|
+        .gallery-user
+          .g-photo
+            = image_tag("photo-f.png")
+          .g-about
+            %div Nicka: quado1
+            %div Model: honda ricon 660
+            %div miejscowosc: nowy sacz
+          .links
+            %a{:href => "#"}
+              %img{:alt => "icon", :src => "/headers/icon-p.png"}/
+            %a{:href => "#"}
+              %img{:alt => "icon", :src => "/headers/icon-m.png"}/
+            %a{:href => "#"}
+              %img{:alt => "icon", :src => "/headers/icon-s.png"}/
+    - else 
+      Użytkownik nie utworzył jeszcze galerii
+    .clr
+    .clear
+    .button_silver_67{:style => "float:right"}
+      = link_to (user.galleries.length > 0 ? "Wszystkie" : "Dodaj"), user_galleries_path(user)
+    .clr

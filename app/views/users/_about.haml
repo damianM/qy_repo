@@ -1,0 +1,38 @@
+.partial.user-profil
+  .header.p_about
+  .body
+    .lcol_user
+      .about_head
+        .photo
+          = image_tag user.photo.public_filename(:main), :class=>"about_photo" if user.photo 
+        .user-info
+          .nick= @user.login
+          - if quad
+            %div= quad.company.name
+            %div= quad.qtype
+    .rcol_user
+      .about_links
+        %div
+          = link_ "Znajomi", "users", "friends", @user.id 
+          %div= "(#{@user.friends.length})"
+        %div
+          = link_ "Galeria", "galleries", "index", @user.id
+          %div= "(#{@user.galleries.length})"
+        %div
+          = link_ "Moje imprezy", "events", "list", @user.id
+    .clr
+    .about
+      .col_left
+        %div= "Imię:  #{user.name if agree(user)}"
+        %div= "Nazwisko: #{user.surname if agree(user)}"
+        %div= "Wiek: #{ltdiff user.birth if agree(user)}"
+        %div= "Płeć: #{user.sex == 'm' ? 'Mężczyzna' : user.sex == 'k' ? 'Kobieta' : ''}"
+      .col_right
+        %div= "Województwo: #{user.state.name  if agree(user) && user.state}"
+        %div= "Miejscowość: #{user.city  if agree(user)}"
+        %div= "GG: #{user.gg  if agree(user)}"
+        %div= "Login Skype: #{user.skype  if agree(user)}"
+      .clr
+
+
+

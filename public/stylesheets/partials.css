@@ -161,15 +161,15 @@
 }
 
 .v_latest_friends_videos{
-     background-image: url('/images/latest_friends_videos.png');position: relative; top: 3x;height:42px;
+     background-image: url('/images/latest_friends_videos.png');position: relative; top: 6px;height:45px;
 }
 
 .p_latest_friends_photos{
-     background-image: url('/images/latest_friends_photos.png');position: relative; top: 3px;height:45px;
+     background-image: url('/images/latest_friends_photos.png');position: relative; top: 6px;height:45px;
 }
 
 .what_is_new{
-     background-image: url('/images/what_is_new.png');position: relative; top: 3px;height:45px;
+     background-image: url('/images/what_is_new.png');position: relative; top: 6px;height:45px;
 }
 
 .p_login{
@@ -181,15 +181,15 @@
 }
 
 .p_myquad{
-    background-image: url('../headers/user/mequad.png');position: relative; top: 6px;height:42px;
+    background-image: url('../headers/user/mequad.png');position: relative; top: 6px;height:40px;
 }
 
 .p_myfriends{
-    background-image: url('../headers/user/friends.png');position: relative; top: 6px;height:47px;
+    background-image: url('../headers/user/friends.png');position: relative; top: 6px;height:40px;
 }
 
 .p_mygalleries{
-    background-image: url('../headers/user/gallery.png');position: relative; top: 6px;height:45px;
+    background-image: url('../headers/user/gallery.png');position: relative; top: 6px;height:40px;
 }
 
 .event_gallery{
@@ -201,15 +201,21 @@
 }
 
 .p_mygroups{
-    background-image: url('../headers/user/mygroups.png');position: relative; top: 6px;height:45px;
+    background-image: url('../headers/user/mygroups.png');position: relative; top: 6px;height:40px;
+}
+.p_mynotice {
+	background-image: url('../headers/user/mynotice.png');position: relative; top: 6px;height:40px;
+}
+.p_myevents {
+	background-image: url('../headers/user/myevents.png');position: relative; top: 6px;height:40px;
 }
 
 .p_comments{
-    background-image: url('../headers/user/comments.png');position: relative; top: 6px;height:41px;
+    background-image: url('../headers/user/comments.png');position: relative; top: 6px;height:40px;
 }
 
 .p_mail{
-    background-image: url('../headers/mail.png');position: relative; top:13px;height:45px;
+    background-image: url('../headers/mail.png');position: relative; top:14px;height:45px;
 }
 
 .p_findv{
@@ -217,11 +223,11 @@
 }
 
 .p_findq{
-    background-image: url('../headers/findq.png');position: relative; top: 3px;height:38px;
+    background-image: url('../headers/findq.png');position: relative; top: 6px;height:38px;
 }
 
 .p_user{
-    background-image: url('../headers/user.png');position: relative; top: 5px;height:50px;
+    background-image: url('../headers/user.png');position: relative; top: 6px;height:36px;
 }
 
 .p_gal_index{

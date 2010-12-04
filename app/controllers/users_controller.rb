@@ -103,6 +103,8 @@ class UsersController < ApplicationController
   def show
     store_location
     @user = params[:id] ? User.find(params[:id]) : current_user
+
+    render :action => 'show', :layout => 'user'
   end
 
 

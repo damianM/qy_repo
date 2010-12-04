@@ -1,0 +1,11 @@
+.partial
+  .header.p_myquad
+  .body
+    - if user.quad.nil?
+      Ten użytkownik nie ma jeszcze quada.
+    - else 
+      .quad
+        .quad_title
+          = user.quad.company.name unless user.quad.company.nil?
+          = user.quad.qtype
+        .quad_description= user.quad.description
