@@ -2,7 +2,7 @@
   <div class="header p_msg_rcvd"></div>
   <div class="body">
     <% unless @received.length==0 %>
-      <% form_tag do%>
+      <% form_tag '/messages/received' do%>
 
         <div class="messages">
           <div class="messages_header">
@@ -10,35 +10,35 @@
             <div class="messages_topic">Temat</div>
             <div class="clr"></div>
           </div>
+
           <% for msg in @received.reverse %>
             <% next if msg.trash? %>
-            <div class="message <%= (msg.read.nil? or msg.read==0 or msg.read==0.to_s) ? "unread":"read" %>" >
+
+            <div class="message <%= msg.read? ? 'read' :'unread' %>" >
               <div class="message_check">
-                <%= check_box_tag "#{msg.id}m","",@mark == 1 %>
+		<%= check_box_tag "messages[]", msg.id, @mark == 1 %>
               </div>
               <div class="login">
-
-                <%= link_ msg.sender.login, "user", "show", msg.sender.id %><br/>
+                <%= link_to current_user.login, user_path(current_user) %><br/>
                 <%= lt msg.created_at %>
               </div>
               <div class="title">
                 <%= link_ msg.title, "messages", "show", msg.id %>
               </div>
               <div class="msg_delete">
-
                 <%= link_to (image_tag "/delete.png"), {:action => "del", :id =>  msg.id},{:class => "picture_link", :title => "Usuń wiadomość", :confirm => "Czy na pewno chcesz usunąć tę wiadomość?"} %>
               </div>
             </div>
           <% end %>
           <br/><br/>
-          <div class="message_options form_row">
 
+          <div class="message_options form_row">
             <%= submit_tag "Oznacz jako nieprzeczytane", :style => "float:left" %>
             <%= submit_tag "Oznacz jako przeczytane" %><br/>
             <%= submit_tag (@mark==1 ? "Odznacz wszystkie" : "Zaznacz wszystkie") %>
-
             <%= submit_tag "Usuń", :style => "float:left" %>
           </div>
+
         </div>
       <% end %>
     <% else %>

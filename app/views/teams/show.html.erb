@@ -10,26 +10,24 @@
           <% end %>
           <span class="team_opt">
             <% if @team.member?(curuser) %>
-
               <%= link_ "Forum grupy", "forum", "list", @team.forum %>
             <% elsif !@team.pending?(curuser) %>
-              <%= link_ "Dołącz do grupy", "team", "join", @team.id %>
+              <%= link_to "Dołącz do grupy", join_team_path(@team) %>
             <%end%>
           </span>
-
+	  
         </div>
 
         <div class="team_del">
 
           <span class="team_opt" >
-            <% if @team.member?(curuser) or @team.pending?(curuser) %>
-
-              <%= link_ "Opuść grupę", "team", "leave", @team.id, "Czy jesteś pewien, że chcesz opuścić grupę?" %>
-
-            <%end%>
+            <% if !@team.rights?(curuser) && ( @team.member?(curuser) or @team.pending?(curuser) ) %>
+              <%= link_to "Opuść grupę", leave_team_path(@team), :confirm => "Czy jesteś pewien, że chcesz opuścić grupę?" %>
+            <% end %>
           </span>
+
           <% if @team.rights?(curuser) %>
-            <%= link_to (image_tag "/delete.png"), destroy_team_path(@team), {:method => :delete, :title => "Usuń grupę", :class => "picture_link",  :confirm => "Czy na pewno chcesz usunąć tę grupę?"} %>
+            <%= link_to (image_tag "/delete.png"), destroy_team_path(@team), {:title => "Usuń grupę", :class => "picture_link", :confirm => "Czy na pewno chcesz usunąć tę grupę?"} %>
           <% end %>
         </div>
 
@@ -58,16 +56,15 @@
 
 
 <div class="partial ">
-
   <div class="header p_team_latest"></div>
   <div class="body">
     <%= render :partial => "teams/users" %>
 
-    <%begin%>
+    <% unless @team.pending_users.blank? %>
       <hr/>
       <hr/>
-    <%= render :partial => "teams/pending_users" %>
-    <% end unless @team.pending_users.empty? %>
+      <%= render :partial => "teams/pending_users" %>
+    <% end %>
   </div>
 </div>
 

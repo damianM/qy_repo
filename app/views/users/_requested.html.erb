@@ -1,22 +1,22 @@
 <div class="partial">
   <div class="header p_requested"></div>
   <div class="body">
-    <% if user.friends.empty? %>
-      Ten użytkownik nie ma jeszcze znajomych
+    <% if @users.blank? %>
+      Ten użytkownik nie otrzymał jeszcze nowych zaproszeń
     <% else %>
       <table class="friend_list">
-        <% for friend in user.requested_friends %>
+        <% for friend in @users %>
           <tr>
               <td>
                 <div class="friend" style="margin-right:40px;">
-                  <%= render :partial => "/userinfo", :locals =>
-                    {:user => friend, :protect=> false, :special => "joined"} %>
+                  <%= render :partial => "/userinfo", :locals => {:user => friend, :protect=> false, :special => "joined"} %>
                 </div>
               </td>
           </tr>
-        <%end%>
+        <% end %>
       </table>
-      <div class="button_silver_67" style="float:right ;">
+      <br />
+      <div class="button_silver_67">
         <%= link_to "Wszystkie",{:controller => "users", :action => "friends", :id => user.id} %>
       </div>
     <% end %>

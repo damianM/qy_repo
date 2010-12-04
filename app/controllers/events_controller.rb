@@ -125,7 +125,7 @@ class EventsController < ApplicationController
       
       @events.reject! { |x|  x.event_start.to_time < since}
       @events.reject! { |x|  x.event_end.to_time > to}
-      @events.reject! { |x|  x.category != params[:category]} if params[:category]!= nil and params[:category]!=""
+      @events.reject! { |x|  x.event_category_id.to_s != params[:event_category_id]} unless params[:event_category_id].blank?
       
     end
     @events.sort!{|x,y| x.event_start <=> y.event_start}

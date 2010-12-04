@@ -4,10 +4,10 @@
       <%= link_to (image_tag "/edit.png"), edit_team_path(team), {:title => "Edytuj grupę"} %>
     </div>
     <div class="event_delete">
-
-      <%= link_to (image_tag "/delete.png"), team_path(team), :method => :delete, :title => "Usuń grupę", :confirm => "Czy na pewno chcesz usunąć tę grupę?" %>
+      <%= link_to (image_tag "/delete.png"), destroy_team_path(team), :title => "Usuń grupę", :confirm => "Czy na pewno usunąć grupę?" %>
     </div>
   <% end %>
+
   <div class="event_header">
 
   </div>

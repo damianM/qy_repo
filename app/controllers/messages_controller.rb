@@ -111,40 +111,45 @@ class MessagesController < ApplicationController
   end
 
   def received
-    @mark||=0
+    @mark ||= 0
     @received = curuser.received
+
+    params[:messages] ||= []
     
-    if params[:commit]=="Oznacz jako nieprzeczytane"
+    if params[:commit] == "Oznacz jako nieprzeczytane"
 
-      p=get_messages params
+      params[:messages].each do |id|
+        message = Message.find(id)
+        message.update_attributes(:read => false)
+      end
+
+    elsif params[:commit] == "Oznacz jako przeczytane"
+
+      params[:messages].each do|id|
+        message = Message.find(id)
+        message.update_attributes(:read => true)
+      end
+
+    elsif params[:commit] == "Usuń"
       
-      p.each do |msg|
-        msg.read=0
-        msg.save!
+      params[:messages].each do|id|
+        message = Message.find(id)
+        message.details.trash
       end
-    elsif params[:commit]=="Oznacz jako przeczytane"
-      p=get_messages params
 
-      p.each do |msg|
-        msg.read=1
-        msg.save!
-        
-      end
-    elsif params[:commit]=="Usuń"
-      p=get_messages params
+    elsif params[:commit] == "Zaznacz wszystkie"
 
-      p.each do |msg|
-        msg.details.trash
-      end
-    elsif params[:commit]=="Zaznacz wszystkie"
-      @mark=1
-    elsif params[:commit]=="Odznacz wszystkie"
-      @mark=0
+      @mark = 1
+
+    elsif params[:commit] == "Odznacz wszystkie"
+
+      @mark = 0
+
     end
+
   end
+
   def reply
-
-
     @message = Message.find(params[:id])
     @receiver = @message.sender
     @sender = @message.receiver
