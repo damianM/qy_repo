@@ -21,12 +21,14 @@ class PhotosController < ApplicationController
     else
       flash[:error] = "Wystąpił problem podczas dodawania zdjęcia"
     end
-
     
     if params[:mark_as_main_photo]
       user = curuser
       user.update_attribute(:photo_id, @photo.id)
     end
+
+    @photo.gallery.thumbnail = GalleryThumbnail.regenerate!(@photo.gallery.id)
+    @photo.gallery.save
 
     redirect_back_or_default(root_path)
   end
@@ -82,6 +84,10 @@ class PhotosController < ApplicationController
     else
       flash[:error]="Napotkano błąd"
     end
+    
+    @photo.gallery.thumbnail = GalleryThumbnail.regenerate!(@photo.gallery.id)
+    @photo.gallery.save
+
     redirect_back_or_default('/')
   end
 

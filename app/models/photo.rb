@@ -21,7 +21,6 @@ class Photo < ActiveRecord::Base
 
   validates_presence_of :description, :if => Proc.new { |record| record.parent_id.blank? }
 
-  
   attr_accessible :gallery_id, :description
 
   def increase_display_counter
