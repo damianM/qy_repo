@@ -1,3 +1,16 @@
+.user-profil {
+	width: 930px!important;
+}
+.user-profil .body {
+	padding: 10px 20px!important;
+}
+.user-acount { 
+	width:211px; 
+	float:right;
+	margin-top: 10px;
+	margin-right:12px;
+}
+
 .ccol_wider{
  width: 700px!important;
 }
@@ -22,16 +35,15 @@
 .lcol_user{
     float:left;
     display:block;
-    width: 150px;
+    width: 50%;
     min-height: 130px;
 }
 
 .rcol_user{
-    float:left;
+    float:right;
     display:block;
-    width:160px;
+    width:240px;
 }
-
 
 
 div.about_links > div{
@@ -41,7 +53,7 @@ div.about_links > div{
     height: 25px;
     height: 100%;
     overflow: hidden;
-    padding:3px;
+    padding:5px 3px;
 }
 
 div.about_links > div > div{
@@ -54,18 +66,32 @@ div.about_links, div.about_links a{
 }
 
 div.about_head{
-    font-size: 8pt;
-    text-align: center;
+    font-size: 10pt;
+    text-align: left;
+}
+div.about_head .photo { 
+	float:left;
+	width: 110px;
+}
+div.about_head .user-info {
+	float:left;
+	width:150px;
+	text-align:center;
+	margin-top:20px;
+}
+div.about_head .user-info .nick {
+	font-weight:bold;
 }
 
-div.about > div{
-    width:100%;
-    border-top: 1px dotted #aaa;
-    height: 25px;
-    height: 100%;
-    overflow: hidden;
-    padding:3px;
-    font-size:8pt;
+div.about {
+	border-top: 1px dotted #aaa;
+	padding:15px 0;
+}
+div.about .col_left > div, 
+div.about .col_right > div {
+    font-size:10pt;
+	font-weight: bold;
+	padding: 5px 0;
 }
 
 div.user_links {
@@ -78,10 +104,41 @@ div.user_links a{
     width: 100%;
 }
 
-
-
-
 .team_opt a{
     color:#aaa;
     text-transform:uppercase;
+}
+
+.friend { 
+	width:100px; 
+	display:inline-block;
+	margin:10px 4px 0 0;
+	vertical-align:top;
+}
+.f-photo { margin-bottom:5px; }
+.f-about {  
+	margin-left:3px;
+	margin-bottom:10px;
+}
+.f-about > div {
+	font-size:9pt;
+	font-weight:bold;
+}
+.partial .links { margin-bottom:10px; }
+.partial .links a { margin:0 3px; }
+
+.gallery-user { 
+	margin:10px 0 0 10px;
+	clear:both;
+}
+.g-photo { 
+	width:130px; 
+	float:left;
+	margin:0 10px 10px 0;
+}
+	
+.g-about { margin-bottom:10px; }
+.g-about > div {
+	font-size:9pt;
+	font-weight:bold;
 }

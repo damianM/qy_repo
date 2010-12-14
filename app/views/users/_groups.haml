@@ -1,0 +1,14 @@
+.partial
+  .header.p_mygroups
+  .body
+    - if user.teams.length > 0 
+      - for team in user.teams[0..5]
+        = link_ team.name,"teams", "show", team.id
+
+      .clr
+      .button_silver_67{:style => "float:right"}
+        = link_to "Wszystkie", {:controller => "users", :action => "myteams", :id => user.id}
+      .clr
+
+    - else
+      Użytkownik nie należy jeszcze do żadnych grup

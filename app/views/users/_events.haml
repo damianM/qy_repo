@@ -1,0 +1,14 @@
+.partial
+  .header.p_myevents
+  .body
+    - if user.events.length > 0 
+      - for event in user.events[0..5]
+        = link_ event.title,"event", "show", event.id
+
+      .clr
+      .button_silver_67{:style => "float:right"}
+        = link_to "Wszystkie", {:controller => "events", :action => "list", :id => event.id}
+      .clr
+
+    - else
+      Użytkownik nie dodał jeszcze żadnej imprezy
