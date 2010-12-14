@@ -1,5 +1,5 @@
 .gallery
-  .lcol_user= link_to image_tag('../gallery.png'), eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_gallery_path(@galleriable, gallery)")
+  .lcol_user= link_to image_tag(gallery.thumbnail.public_filename), eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_gallery_path(@galleriable, gallery)")
 
   .rcol_user
     .about_links

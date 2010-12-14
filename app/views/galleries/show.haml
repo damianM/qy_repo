@@ -4,7 +4,7 @@
   .body
     = render :partial => "nav"
 
-    - unless @gallery.photos.empty?
+    - unless @gallery.photos.blank?
       %table.gallery
         - @gallery.photos.in_groups_of(3).each do |triple|
           %tr
@@ -15,7 +15,7 @@
                     = link_to image_tag(photo.public_filename(:thumb)), photo_path(photo) if photo
                     = render :partial => "asset", :object => photo
                  
-    - unless @gallery.videos.empty?
+    - unless @gallery.videos.blank?
       %table.gallery
         - @gallery.videos.in_groups_of(3).each do |triple|
           %tr
@@ -26,7 +26,7 @@
                     = link_to((video.thumbnail ? (image_tag(video.thumbnail.public_filename)) : ("Miniaturka niedostępna")), video_path(video))
                     = render :partial => "asset", :object => video
 
-    - if @gallery.photos.empty? && @gallery.videos.empty?
+    - if @gallery.photos.blank? && @gallery.videos.blank?
       %p Album jest pusty!
 
 

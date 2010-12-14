@@ -37,7 +37,7 @@
     %br
 
     .videos
-      - unless @videos.empty?
+      - unless @videos.blank?
         %table.gallery
         - @videos.in_groups_of(3).each do |triple|
           %tr
