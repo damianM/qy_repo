@@ -1,11 +1,11 @@
 <div class="partial">
   <div class="header p_requested"></div>
   <div class="body">
-    <% if @requested.blank? %>
+    <% if @users.blank? %>
       Ten użytkownik nie otrzymał jeszcze nowych zaproszeń
     <% else %>
       <table class="friend_list">
-        <% for friend in @requested %>
+        <% for friend in @users %>
           <tr>
               <td>
                 <div class="friend" style="margin-right:40px;">

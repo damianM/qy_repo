@@ -92,14 +92,12 @@ end
       <% else %>
         <%= link_to image_tag("/friends.png", :class => "icon"), {:controller => "relationship", :action => "req",
           :id => user.id}, (target.nil? ? {:title => "Zaproś do znajomych"} : {:title => "Zaproś do znajomych", :target => target}) %>
+      
+        <%= (link_to image_tag("/envelope.png", :class => "icon"), {:controller => "messages", :action => "new",
+            :id => user.id}, (target.nil? ? {:title => "Napisz wiadomość"} : {:title => "Napisz wiadomość", :target => target })) %>
       <% end %>
 
-
-
-      <%= (link_to image_tag("/envelope.png", :class => "icon"), {:controller => "messages", :action => "new",
-          :id => user.id}, (target.nil? ? {:title => "Napisz wiadomość"} : {:title => "Napisz wiadomość", :target => target })) %>
       <%= (link_to image_tag("/fav.png", :class => "icon"), user_path(user), (target.nil? ? {:title => "Zobacz profil"} : {:title => "Zobacz profil", :target => target })) %>
-
 
     </div>
 

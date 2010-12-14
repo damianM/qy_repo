@@ -18,8 +18,8 @@
   = link_to "ZNAJOMI", current_user ? friends_index_user_path(current_user) : '#'
   %div
     %div= link_to "Znajomi", current_user ? friends_user_path(current_user) : '#'
-    %div= link_to "Wysłane zaproszenia", current_user ? pending_user_path(current_user) : '#'
-    %div= link_to "Otrzymane zaproszenia", current_user ? requested_user_path(current_user) : '#'
+    %div= link_to "Wysłane zaproszenia #{current_user && current_user.pending_friends.count > 0 ? "(#{current_user.pending_friends.count})" : ''}", current_user ? pending_user_path(current_user) : '#'
+    %div= link_to "Otrzymane zaproszenia #{current_user && current_user.requested_friends.count > 0 ? "(#{current_user.requested_friends.count})" : ''}", current_user ? requested_user_path(current_user) : '#'
 .button_menu
   = link_to "GRUPY", teams_path
   %div

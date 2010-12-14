@@ -19,7 +19,7 @@
 		<%= check_box_tag "messages[]", msg.id, @mark == 1 %>
               </div>
               <div class="login">
-                <%= link_to current_user.login, user_path(current_user) %><br/>
+                <%= link_to msg.sender.login, user_path(msg.sender) %><br/>
                 <%= lt msg.created_at %>
               </div>
               <div class="title">

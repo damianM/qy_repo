@@ -2,8 +2,8 @@
   <div class="header p_msg_new"></div>
   <div class="body">
     <% form_for :message, :url => create_message_path  do |f| %>
-      <%= hidden_field_tag :id, params[:id] -%>
       <% if receiver %>
+        <%= hidden_field_tag "message[receiver_id]", receiver.id -%>
         Adresat: 
         <span style='float: right'>
           <%= receiver.login %>

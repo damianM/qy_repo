@@ -6,15 +6,17 @@
       Ten użytkownik nie wysłał jeszcze nowych zaproszeń
     <% else %>
       <table class="friend_list">
-        <% for friend in @pending %>
-          <tr>
-              <td>
-                <div class="friend" style="margin-right:40px;">
-                  <%= render :partial => "/userinfo", :locals => {:user => friend, :protect=> false, :special => "joined"} %>
-                </div>
-              </td>
-          </tr>
-        <%end%>
+        <% unless @users.blank? %>
+          <% for friend in @users %>
+            <tr>
+                <td>
+                  <div class="friend" style="margin-right:40px;">
+                    <%= render :partial => "/userinfo", :locals => {:user => friend, :protect=> false, :special => "joined"} %>
+                  </div>
+                </td>
+            </tr>
+          <% end %>
+        <% end %>
       </table>
       <br />
       <div class="button_silver_67" >

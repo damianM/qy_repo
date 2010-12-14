@@ -18,7 +18,7 @@ class RelationshipController < ApplicationController
       else
         Relationship.accept(@user, @friend)
         flash[:notice] = "Dodano użytkownika do znajomych"
-        redirect_to :controller => "users", :action => "friends"
+        redirect_to :controller => "users", :action => "friends", :id => @user.id
       end
       
     end
@@ -35,7 +35,7 @@ class RelationshipController < ApplicationController
         flash[:notice] = "Dodano użytkownika do znajomych"
       end
       
-      redirect_to :controller => "users", :action => "friends"
+      redirect_to :controller => "users", :action => "friends", :id => @user.id
     end
   end
 
@@ -45,7 +45,7 @@ class RelationshipController < ApplicationController
       @friend = User.find(params[:id])
       Relationship.delete(@user, @friend)
       flash[:notice] = "Usunięto znajomość"
-      redirect_to :controller => "users", :action => "friends"
+      redirect_to :controller => "users", :action => "friends", :id => @user.id
     end
   end
 

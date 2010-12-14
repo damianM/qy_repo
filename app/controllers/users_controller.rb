@@ -87,11 +87,11 @@ class UsersController < ApplicationController
     case params[:by]
     when "company_id"
       @company = Company.find(params[:id])
-      @users = User.find_all_by_company_id(@company.id)
+      @users = User.active.find_all_by_company_id(@company.id)
       @line = "Quadomaniacy posiadający quada marki " + @company.name
     when "state_id"
       @state = State.find(params[:id])
-      @users = User.find_all_by_state_id(@state.id)
+      @users = User.active.find_all_by_state_id(@state.id)
       @line = "Quadomaniacy zamieszkujący województwo " + @state.name
     when "user_login"
       @users = User.active.find(:all, :conditions => "login LIKE '%#{params[:id]}%'")
