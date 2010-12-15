@@ -42,12 +42,11 @@
 .rcol_user{
     float:right;
     display:block;
-    width:240px;
+    width:225px;
 }
 
 
 div.about_links > div{
-    width:100%;
     font-size: 10pt;
     border-bottom: 1px dotted #aaa;
     height: 25px;
