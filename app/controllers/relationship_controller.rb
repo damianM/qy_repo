@@ -2,17 +2,19 @@
 class RelationshipController < ApplicationController
   before_filter :login_required
 
-  def req
-    
+  def req 
     if(params[:id])
+      if curuser.id == params[:id]
+        flash[:notice] = "Nie można dodac siebie do znajomych"
+        redirect_to root_path
+      end
+
       @user = curuser
       @friend = User.find(params[:id])
       @relationship = Relationship.find_by_user_id_and_friend_id(@user,@friend)
       unless @relationship
         Relationship.req(@user, @friend)
-
         Message.send_invitation(@user,@friend)
-        
         flash[:notice] = "Wysłano zaproszenie"
         redirect_to :controller => "users", :action => "pending"
       else
@@ -20,9 +22,9 @@ class RelationshipController < ApplicationController
         flash[:notice] = "Dodano użytkownika do znajomych"
         redirect_to :controller => "users", :action => "friends", :id => @user.id
       end
-      
     end
   end
+
   def accept
     if(params[:id])
       @user = curuser
@@ -34,7 +36,6 @@ class RelationshipController < ApplicationController
         Relationship.accept(@user, @friend)
         flash[:notice] = "Dodano użytkownika do znajomych"
       end
-      
       redirect_to :controller => "users", :action => "friends", :id => @user.id
     end
   end

@@ -187,3 +187,7 @@ form span.error , form label.error, form .formError {
   float: right;
   clear: both;
 }
+
+table.gallery_list .gallery {
+ width: 220px;
+}

@@ -2,6 +2,33 @@
   <div class="header p_event_f"></div>
   
   <div class="body">
+    <div class="find_event">
+      <% form_tag list_events_path do%>
+        <br/>
+        <div class="bolder" style="text-align:left;padding-left:40px;"> Data:</div>
+        <br/>
+        <div class="form_row">
+          <%= label :query, :since, "od: " %>
+          <%= date_select :since, :since , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10},  :class => "date_select" %>
+          <div class="clear"></div>
+        </div>
+
+        <div class="form_row">
+          <%= label :query, :to, "do: " %>
+          <%= date_select :to, :to , {:order => [:day, :month, :year], :default => nil, :include_blank => 1, :start_year => Time.now.year - 10, :end_year => Time.now.year + 10},  :class => "date_select" %>
+          <div class="clear"></div>
+        </div>
+        <div class="form_row bolder">
+          <%= label_tag :event_category_id, "Kategoria:" %>
+          <%= select_tag :event_category_id, "<option value="">Wszystkie</option>" + options_from_collection_for_select(EventCategory.all, :id, :name, params[:event_category_id]) %>
+        </div>
+
+        <div class="form_row">
+
+          <%= submit_tag "Szukaj!"%>
+        </div>
+      <% end %>
+    </div>
     <% for event in @events %>
       <div class="event">
         <% if event.rights?(curuser) and event.event_start >= (Date.today) %>
@@ -9,11 +36,14 @@
             <%= link_to (image_tag "/edit.png"), edit_event_path(event), {:title => "Edytuj"} %>
           </div>
           <div class="event_delete">
+
             <%= link_to (image_tag "/delete.png"), event_path(event), {:method => :delete, :title => "Usuń", :confirm => "Czy na pewno chcesz usunąć tę imprezę?"} %>
           </div>
         <% end %>
         <div class="event_header">
+
           <span>
+
             <span style="font-weight:normal;border:none;color:#777">Kategoria:</span>
             <%= event.event_category.name if event.event_category %>
           </span>
@@ -45,19 +75,19 @@
       </div>
     <% end %>
 
+
     <div class="col1">
+
       <div class="button_gold_100" style="font-size:10pt; font-weight: bold;float:left;margin-top:7px;">
         <%= link_to "Dodaj nową", new_event_path %>
       </div>
     </div>
     
     <div class="col2">
-      <div class="button_silver_75" style="font-size:10pt; font-weight: bold;float:right;margin-top:7px;">
+      <div class="button_silver_75" style="font-size:10pt; font-weight: bold;float:right;margin-top:7px;">      
         <%= link_to "Wszystkie" , find_events_path %>
       </div>
     </div>
-
     <div class="clr"></div>
-
   </div>
 </div>
