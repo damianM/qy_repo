@@ -25,9 +25,9 @@
     %div= link_to "Otrzymane zaproszenia #{current_user && current_user.requested_friends.count > 0 ? "(#{current_user.requested_friends.count})" : ''}", requested_user_path
 
 .button_menu
-  = link_to "GRUPY", teams_path
+  = link_to "GRUPY", myteams_user_path
   %div
-    %div= link_to "Moje grupy", current_user ? myteams_user_path(current_user) : '#'
+    %div= link_to "Moje grupy", myteams_user_path
     %div= link_to "Wszystkie grupy", list_teams_path
     %div= link_to "Utwórz grupę", new_team_path
     %div= link_to "Znajdź grupę", find_form_teams_path

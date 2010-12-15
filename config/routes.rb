@@ -14,6 +14,9 @@ ActionController::Routing::Routes.draw do |map|
   map.myteams_user 'moje-grupy/:id', :controller => 'users', :action => 'myteams'
   map.find_users 'znajdz-quadomanika', :controller => 'users', :action => 'find'
  
+  # groups
+  map.myteams_user 'moje-grupy/:id', :controller => 'users', :action => 'myteams'
+  
   # friends
   map.pending_user 'wyslane-zaproszenia', :controller => 'users', :action => 'pending'
   map.requested_user 'otrzymane-zaproszenia', :controller => 'users', :action => 'requested'

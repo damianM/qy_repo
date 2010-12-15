@@ -127,12 +127,7 @@ class UsersController < ApplicationController
   end
 
   def myteams
-    if(params[:id])
-      @teams = User.find(params[:id]).teams
-    else
-      @teams = curuser.teams
-    end
-    
+    @teams = params[:id] ? User.find(params[:id]).teams : curuser.teams
   end
 
   def ulogin
