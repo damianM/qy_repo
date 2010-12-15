@@ -6,3 +6,4 @@
 /public/uploads/*
 /public/videos/*
 /db/schema.rb
+/config/mongrel_cluster.yml
