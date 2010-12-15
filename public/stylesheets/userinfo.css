@@ -19,3 +19,11 @@
     font-size: 6pt;
     margin-top:10px;
 }
+
+.details {
+  width:100px;
+}
+
+.details .userinfo_joined{
+  font-size: 7pt;
+}
