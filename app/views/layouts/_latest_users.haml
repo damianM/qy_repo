@@ -5,7 +5,7 @@
       - User.find(:all, :limit => 4, :conditions => ['active = ?', true], :order => "created_at desc").each do |user|
         %tr
           %td
-            = render :partial => "/userinfo", :locals => {:user => user, :protect=> true, :special => "joined"}
+            = render :partial => "/latestuserinfo", :locals => {:user => user, :protect=> true, :special => "joined"}
     .clear
 
   .clear

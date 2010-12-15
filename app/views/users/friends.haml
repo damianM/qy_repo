@@ -1,0 +1,12 @@
+.partial
+  .header.p_friends_m
+  .body
+    - if @users.blank?
+      Niestety, nikogo nie znaleziono...
+    - else
+      %table
+        - @users.in_groups_of(4).each do |quarter|
+          %tr
+            - quarter.each do |user|
+              %td
+                = render :partial => "/userinfo", :locals => {:user => user, :protect=> false, :special => "joined"}  if user

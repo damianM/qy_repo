@@ -1,5 +1,4 @@
-<% 
-unless defined?(target)
+<% unless defined?(target)
   target = nil
 end
 unless defined?(protect)
@@ -11,11 +10,15 @@ end
 unless defined?(gray)
   gray = nil
 end
+unless defined?(narrow)
+  narrow = nil
+end
+
 %>
 
 
-<div class="userinfo userinfo_<%= protect ? "small" : "big"%> <%= gray ? "userinfo_gray" : ""%>" style="width:100px;text-align:center;">
-  <div class="photo">
+<div class="userinfo userinfo_<%= protect ? "small" : "big"%> userinfo_<%= narrow ? "narrow" : "wide"%> <%= gray ? "userinfo_gray" : ""%>">
+  <div class="userinfo_photo">
     <div>
       <% unless gray %>
         <%= link_to image_tag(user.photo ? user.photo.public_filename(:main) : "/80_anon.png", :class=>"about_photo"), user_path(user), {:target => target} %>
@@ -24,7 +27,7 @@ end
       <% end %>
     </div>
   </div>
-  <div class="details">
+  <div class="userinfo_right">
     <div class="userinfo_login">
       <%=  link_to user.login, user_path(user), {:target => target} %>
     </div>
@@ -89,10 +92,11 @@ end
       <% else %>
         <%= link_to image_tag("/friends.png", :class => "icon"), {:controller => "relationship", :action => "req",
           :id => user.id}, (target.nil? ? {:title => "Zaproś do znajomych"} : {:title => "Zaproś do znajomych", :target => target}) %>
-      <% end %>
       
-      <%= (link_to image_tag("/envelope.png", :class => "icon"), {:controller => "messages", :action => "new",
+        <%= (link_to image_tag("/envelope.png", :class => "icon"), {:controller => "messages", :action => "new",
             :id => user.id}, (target.nil? ? {:title => "Napisz wiadomość"} : {:title => "Napisz wiadomość", :target => target })) %>
+      <% end %>
+
       <%= (link_to image_tag("/fav.png", :class => "icon"), user_path(user), (target.nil? ? {:title => "Zobacz profil"} : {:title => "Zobacz profil", :target => target })) %>
 
     </div>

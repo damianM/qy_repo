@@ -3,7 +3,7 @@
     <% @team.users[0...2].each_with_index do |user,userindx| %>
       <td>
 
-        <%= render :partial => "/userinfo", :locals => {:user => user, :narrow => true,:special => "team_since", :team_since => Teamuser.find_by_user_id_and_team_id(user.id,@team.id).created_at} %>
+        <%= render :partial => "/userinfo", :locals => {:user => user, :special => "team_since", :team_since => Teamuser.find_by_user_id_and_team_id(user.id,@team.id).created_at} %>
 
       </td>
     <% end %>
@@ -13,7 +13,7 @@
       @team.users[3...4].each_with_index do |user,userindx| %>
         <td>
 
-          <%= render :partial => "/userinfo", :locals => {:user => user, :narrow => true,:special => "team_since", :team_since => Teamuser.find_by_user_id_and_team_id(user.id,@team.id).created_at} %>
+          <%= render :partial => "/userinfo", :locals => {:user => user, :special => "team_since", :team_since => Teamuser.find_by_user_id_and_team_id(user.id,@team.id).created_at} %>
 
         </td>
       <% end
