@@ -47,6 +47,7 @@ body{
     padding: 25px 6px 0 6px;
     height: 100%;
     overflow: hidden;
+    position: relative;
 }
 
 #lcol{

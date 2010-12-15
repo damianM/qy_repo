@@ -4,11 +4,11 @@
 .user-profil .body {
 	padding: 10px 20px!important;
 }
-.user-acount { 
-	width:211px; 
-	float:right;
-	margin-top: 10px;
-	margin-right:12px;
+.user-acount {
+  position:absolute;
+  right:20px;
+  top:30px;
+  width:211px;
 }
 
 .ccol_wider{
