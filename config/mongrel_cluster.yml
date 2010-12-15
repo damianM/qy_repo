@@ -1,12 +1,8 @@
 --- 
-group: root
 address: 127.0.0.1
 log_file: log/mongrel.log
-port: "5000"
+port: "8000"
 cwd: /srv/rails/quadomaniacy
 environment: production
-user: root
 pid_file: tmp/pids/mongrel.pid
-servers: 6
-
-
+servers: 3

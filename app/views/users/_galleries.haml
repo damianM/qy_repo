@@ -20,5 +20,8 @@
     .clr
     .clear
     .button_silver_67{:style => "float:right"}
-      = link_to (user.galleries.length > 0 ? "Wszystkie" : "Dodaj"), user_galleries_path(user)
+      - if user.galleries.length > 0
+        = link_to "Wszystkie", user_galleries_path(user)
+      - else 
+        = link_to "Dodaj", user_galleries_path(user)
     .clr
