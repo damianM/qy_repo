@@ -4,21 +4,21 @@
     - if user.friends.empty?
       Ten użytkownik nie ma jeszcze znajomych      
     - else
-      - for friend in user.friends
+      - for friend in user.friends[0..2]
         .friend
           .f-photo
-            = link_to user.photo ? image_tag(user.photo.public_filename(:main), :class=>"about_photo") : image_tag("/80_anon.png", :class=>"about_photo"), user_path(user), {:target => nil}
+            = link_to friend.photo ? image_tag(friend.photo.public_filename(:main), :class=>"about_photo") : image_tag("/80_anon.png", :class=>"about_photo"), user_path(friend), {:target => nil}
           .f-about
-            %div= "Nick: #{user.login}"
-            %div= "Model: #{user.quad.company.name} #{user.quad.qtype}" if user.quad
-            %div= "miejscowosc: #{user.city}"
+            %div= friend.login
+            %div= "#{friend.quad.company.name} #{friend.quad.qtype}" if friend.quad
+            %div= "#{friend.city}"
           .links
-            - if user.friend?(curuser) or (curuser ? curuser.pending?(user) : false) or user==curuser
-              = link_to image_tag("/headers/icon-p.png"), {:controller => "users", :action => "friends", :id => user.id}, {:title => "Zobacz znajomych"}
+            - if friend.friend?(curuser) or (curuser ? curuser.pending?(friend) : false) or friend==curuser
+              = link_to image_tag("/headers/icon-p.png"), {:controller => "users", :action => "friends", :id => friend.id}, {:title => "Zobacz znajomych"}
             - else 
-              = link_to image_tag("/headers/icon-p.png"), {:controller => "relationship", :action => "req", :id => user.id}, {:title => "Zaproś do znajomych"}
-            = link_to image_tag("/headers/icon-m.png"), {:controller => "messages", :action => "new", :id => user.id}, {:title => "Napisz wiadomość"} 
-            = link_to image_tag("/headers/icon-s.png"), user_path(user), {:title => "Zobacz profil"}
+              = link_to image_tag("/headers/icon-p.png"), {:controller => "relationship", :action => "req", :id => friend.id}, {:title => "Zaproś do znajomych"}
+            = link_to image_tag("/headers/icon-m.png"), {:controller => "messages", :action => "new", :id => friend.id}, {:title => "Napisz wiadomość"} 
+            = link_to image_tag("/headers/icon-s.png"), user_path(friend), {:title => "Zobacz profil"}
     .clr
     .button_silver_67{:style => "float:right"}
       = link_to "Wszyscy",{:controller => "users", :action => "friends", :id => user.id} 

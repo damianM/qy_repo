@@ -2,7 +2,7 @@
   .header.p_mygroups
   .body
     - if user.teams.length > 0 
-      - for team in user.teams[0..5]
+      - for team in user.teams[0..4]
         = link_ team.name,"teams", "show", team.id
 
       .clr

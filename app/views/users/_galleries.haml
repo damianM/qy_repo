@@ -7,16 +7,14 @@
           .g-photo
             = image_tag("photo-f.png")
           .g-about
-            %div Nicka: quado1
-            %div Model: honda ricon 660
-            %div miejscowosc: nowy sacz
-          .links
-            %a{:href => "#"}
-              %img{:alt => "icon", :src => "/headers/icon-p.png"}/
-            %a{:href => "#"}
-              %img{:alt => "icon", :src => "/headers/icon-m.png"}/
-            %a{:href => "#"}
-              %img{:alt => "icon", :src => "/headers/icon-s.png"}/
+            %div= link_to gallery.name, user_gallery_path(current_user,gallery)
+          //.links
+          //  %a{:href => "#"}
+          //    %img{:alt => "icon", :src => "/headers/icon-p.png"}/
+          //  %a{:href => "#"}
+          //    %img{:alt => "icon", :src => "/headers/icon-m.png"}/
+          //  %a{:href => "#"}
+          //    %img{:alt => "icon", :src => "/headers/icon-s.png"}/
     - else 
       Użytkownik nie utworzył jeszcze galerii
     .clr
