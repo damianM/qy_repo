@@ -1,5 +1,6 @@
 .button_menu
   = link_to "START", {:controller => "site", :action => "index"}, {:style => "color: orange"}
+
 .button_menu
   = link_to "PROFIL", current_user ? user_path(current_user) : '#'
   %div
@@ -7,20 +8,22 @@
     %div= link_to "Edytuj profil", edit_user_path
     %div= link_to "Moje galerie", galleries_path
     %div= link_to "Moje imprezy", list_events_path
-
     %div= link_to "Moje ogłoszenia", sale_ads_path
+
 .button_menu
   = link_ "POCZTA", "messages", "index"
   %div
     %div= link_to "Napisz wiadomość", newr_messages_path
     %div= link_ "Odebrane (#{current_user.nil? ? 0 : current_user.unread})", "messages", "received"
     %div= link_ "Wysłane", "messages", "sent"
+
 .button_menu
-  = link_to "ZNAJOMI", current_user ? friends_user_path(current_user) : '#'
+  = link_to "ZNAJOMI", friends_user_path
   %div
-    %div= link_to "Znajomi", current_user ? friends_user_path(current_user) : '#'
-    %div= link_to "Wysłane zaproszenia #{current_user && current_user.pending_friends.count > 0 ? "(#{current_user.pending_friends.count})" : ''}", current_user ? pending_user_path(current_user) : '#'
-    %div= link_to "Otrzymane zaproszenia #{current_user && current_user.requested_friends.count > 0 ? "(#{current_user.requested_friends.count})" : ''}", current_user ? requested_user_path(current_user) : '#'
+    %div= link_to "Znajomi", friends_user_path
+    %div= link_to "Wysłane zaproszenia #{current_user && current_user.pending_friends.count > 0 ? "(#{current_user.pending_friends.count})" : ''}", pending_user_path
+    %div= link_to "Otrzymane zaproszenia #{current_user && current_user.requested_friends.count > 0 ? "(#{current_user.requested_friends.count})" : ''}", requested_user_path
+
 .button_menu
   = link_to "GRUPY", teams_path
   %div
@@ -28,6 +31,7 @@
     %div= link_to "Wszystkie grupy", list_teams_path
     %div= link_to "Utwórz grupę", new_team_path
     %div= link_to "Znajdź grupę", find_form_teams_path
+
 .button_menu= link_ "FORUM","forum", "login"
 - if current_user and current_user.is_admin?
   .button_menu= link_to 'Admin', admin_panel_path 

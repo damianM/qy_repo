@@ -11,13 +11,15 @@ ActionController::Routing::Routes.draw do |map|
   map.new_user 'zarejestruj-sie', :controller => 'users', :action => 'new'
   map.ulogin_users 'nie-pamietasz-hasla', :controller => 'users', :action => 'ulogin'
   map.edit_user 'edytuj-profil/:id', :controller => 'users', :action => 'edit'
-  map.pending_user 'wyslane-zaproszenia/:id', :controller => 'users', :action => 'pending'
-  map.requested_user 'otrzymane-zaproszenia/:id', :controller => 'users', :action => 'requested'
-  map.friends_user 'twoi-znajomi/:id', :controller => 'users', :action => 'friends'
-  map.friends_index_user 'znajomi/:id', :controller => 'users', :action => 'friends_index'
   map.myteams_user 'moje-grupy/:id', :controller => 'users', :action => 'myteams'
   map.find_users 'znajdz-quadomanika', :controller => 'users', :action => 'find'
-  
+ 
+  # friends
+  map.pending_user 'wyslane-zaproszenia', :controller => 'users', :action => 'pending'
+  map.requested_user 'otrzymane-zaproszenia', :controller => 'users', :action => 'requested'
+  map.friends_user 'twoi-znajomi/:id', :controller => 'users', :action => 'friends'
+  map.friends_index_user 'znajomi/:id', :controller => 'users', :action => 'friends_index'
+
   # user galleries
   map.galleries 'galerie', :controller => 'galleries', :action => 'index'
   map.user_galleries 'galerie-uzytkownika/:user_id', :controller => 'galleries', :action => 'index'

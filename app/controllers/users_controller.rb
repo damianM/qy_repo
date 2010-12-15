@@ -109,11 +109,7 @@ class UsersController < ApplicationController
 
 
   def friends
-    if(params[:id])
-      @users = User.find(params[:id]).friends
-    else
-      @users = curuser.friends
-    end
+    @users = params[:id] ? User.find(params[:id]).friends : curuser.friends
   end
 
   def friends_index
