@@ -1,4 +1,5 @@
 body{
+    font: 11px Tahoma,Verdana,sans-serif;
     background: #212121;
     margin: 0;
     padding: 0;
@@ -33,7 +34,6 @@ body{
     width: 1140px;
     border: dotted 1px #212121;
     margin: 0px auto 0 auto;
-    font-family: verdana;
     background-image: url("../background.png");
     background-repeat: no-repeat;
     background-position: -150px 0px;
