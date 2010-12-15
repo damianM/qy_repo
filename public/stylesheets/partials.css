@@ -177,7 +177,7 @@
 }
 
 .p_about{
-    background-image: url('../headers/user/name.png');position: relative; top: 6px;height:48px;
+    background-image: url('../headers/user/name.png');position: relative; top: 6px;height:48px;width: 460px;
 }
 
 .p_myquad{
