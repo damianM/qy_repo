@@ -2,7 +2,7 @@
   .header.p_myevents
   .body
     - if user.events.length > 0 
-      - for event in user.events[0..5]
+      - for event in user.events[0..4]
         = link_to event.title, event_path(event)
         %br
 

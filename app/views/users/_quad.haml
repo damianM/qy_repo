@@ -6,6 +6,16 @@
     - else 
       .quad
         .quad_title
+          %h3 mój quad
           = user.quad.company.name unless user.quad.company.nil?
-          = user.quad.qtype
+          = user.quad.qtype        
         .quad_description= user.quad.description
+  
+        %br
+        %br
+        .quad_title
+          %h3 o mnie
+        .quad_description= user.about
+          
+
+
