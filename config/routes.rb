@@ -30,7 +30,8 @@ ActionController::Routing::Routes.draw do |map|
 
 
   #event
-  map.list_events 'imprezy/:id', :controller => 'events', :action => 'list'
+  map.find_events 'imprezy', :controller => 'events', :action => 'find'
+  map.list_events 'moje-imprezy/:id', :controller => 'events', :action => 'list'
   map.new_event 'nowa-impreza', :controller => 'events', :action => 'new'
   map.create_event 'dodaj-impreze', :controller => 'events', :action => 'create', :method => :post
   map.edit_event 'edytuj-impreze/:id', :controller => 'events', :action => 'edit'
@@ -111,7 +112,6 @@ ActionController::Routing::Routes.draw do |map|
     event.resources :galleries
   end
 
-  map.resources :galleries
   map.resources :photos, :member => { :main => :get, :vote => :post }, :collection => { :list => :get }
   map.resources :videos, :member => { :vote => :post }, :collection => { :search => :any, :list => :get, :check_upload => :get, :set_attributes => :post }
 
@@ -119,6 +119,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :member => { :friends_index => :get, :friends => :get, :pending => :get, :requested => :get, :myteams => :get}, :collection => {:find => :get } do |user|
     user.resources :galleries
   end
+
+  map.resources :galleries
     
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|

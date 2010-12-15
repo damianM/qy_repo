@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
-  before_filter :login_required, :except => [:new, :create, :login, :find, :ulogin, :fetch, :reset]
+  before_filter :login_required, :except => [:new, :create, :find, :ulogin, :fetch, :reset]
 
   def index
     @users = User.all   
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = curuser
+    @user = params[:id] ? User.find(params[:id]) : current_user
   end
 
   def update

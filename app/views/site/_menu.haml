@@ -3,10 +3,11 @@
 .button_menu
   = link_to "PROFIL", current_user ? user_path(current_user) : '#'
   %div
-    %div= link_to "Mój profil", current_user ? user_path(current_user) : '#'
-    %div= link_to "Edytuj profil", curuser ? edit_user_path(current_user) : '#'
-    %div= link_to "Galeria", galleries_path
-    %div= link_to "Moje imprezy", list_events_path(:id => (current_user ? current_user.id : 0))
+    %div= link_to "Mój profil", user_path
+    %div= link_to "Edytuj profil", edit_user_path
+    %div= link_to "Moje galerie", galleries_path
+    %div= link_to "Moje imprezy", list_events_path
+
     %div= link_to "Moje ogłoszenia", sale_ads_path
 .button_menu
   = link_ "POCZTA", "messages", "index"

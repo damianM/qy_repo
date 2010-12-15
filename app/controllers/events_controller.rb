@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class EventsController < ApplicationController
 
-  before_filter :login_required, :except => [:show, :list, :gcal]
+  before_filter :login_required, :except => [:show, :find, :gcal]
 
   def index
     @events = Event.all
@@ -88,46 +88,37 @@ class EventsController < ApplicationController
         flash[:error]="Wystąpił błąd podczas edycji imprezy!"
         redirect_to :action => "list", :id => params[:id]
       end
-      
     end
-    
   end
 
   def list
+    @user = params[:id] ? User.find(params[:id]) : curuser
+    @events = @user.events
+  end
+
+  def find
     if params[:month] and params[:year]
-      
       @events = Event.find(:all, :conditions => "month(event_start) = '#{params[:month].to_i}' AND year(event_start) = '#{params[:year].to_i}'")
     else
       
-      if(params[:id] and params[:id]!=0.to_s)
-        @user=(params[:id].nil? ? curuser : User.find(params[:id]))
-        if @user
-          @events = @user.events
-        else
-          @events = Event.find(:all)
-        end
-      else
-        @events = Event.find(:all)
-      end
       if(params[:since] and params[:since]["since(1i)"]!="" and params[:since]["since(2i)"]!="" and params[:since]["since(3i)"]!="")
         since=DateTime.new(params[:since]["since(1i)"].to_i,params[:since]["since(2i)"].to_i,params[:since]["since(3i)"].to_i,0,0,0)
-      else
-        
+      else        
         since = 1.month.ago
       end
+      
       if(params[:to] and params[:to]["to(1i)"]!="" and params[:to]["to(2i)"]!="" and params[:to]["to(3i)"]!="")
-        to=DateTime.new(params[:to]["to(1i)"].to_i,params[:to]["to(2i)"].to_i,params[:to]["to(3i)"].to_i,0,0,0)
-        
+        to=DateTime.new(params[:to]["to(1i)"].to_i,params[:to]["to(2i)"].to_i,params[:to]["to(3i)"].to_i,0,0,0)        
       else
-        
         to = 1.year.from_now
       end
       
+      @events = Event.find(:all)      
       @events.reject! { |x|  x.event_start.to_time < since}
       @events.reject! { |x|  x.event_end.to_time > to}
-      @events.reject! { |x|  x.event_category_id.to_s != params[:event_category_id]} unless params[:event_category_id].blank?
-      
+      @events.reject! { |x|  x.event_category_id.to_s != params[:event_category_id]} unless params[:event_category_id].blank?      
     end
+
     @events.sort!{|x,y| x.event_start <=> y.event_start}
   end
   

@@ -3,7 +3,7 @@
   .body
     - if user.events.length > 0 
       - for event in user.events[0..5]
-        = link_to (cut event.title, 20), event_path(event)
+        = link_to event.title, event_path(event)
         %br
 
       .clr

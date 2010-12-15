@@ -70,23 +70,4 @@ class GalleriesController < ApplicationController
     @gallery = @galleriable.galleries.find(params[:id], :include => [ :photos, :videos ])
   end
 
-  def convert_file(p) #mało przenośne, uwaga windows!
-    cd=IMAGE_PATH + "/" + curuser.id.to_s
-    Dir.mkdir(cd) unless File.exist?(cd)
-    time=(Time.now.to_f*1000).to_i.to_s
-    name=cd+"/"+ time + ".png"
-    tname=cd+"/t"+time + ".png"
-    t80name=cd+"/80_t"+time + ".png"
-    gname=cd+"/g"+time + ".png"
-    File.open(name,"w"){|w|
-      w.write(p.read)
-    }
-    system("convert #{name} -resize \"96x96>\" #{tname}")
-    system("convert #{tname} -colorspace Gray #{gname}")
-    system("convert #{name} -resize \"460x460>\" #{name}")
-    system("convert #{tname} -resize \"80x80>\" -format 'roundrectangle 1,1 %[fx:w],%[fx:h] 10,10' -write info:tmp.mvg -matte \\( +clone -alpha transparent -background none -fill white -stroke none -strokewidth 0 -draw @tmp.mvg \\) -compose DstIn -composite #{t80name}")
-    system("rm tmp.mvg")
-    return "data/"+curuser.id.to_s+"/"+time + ".png", "data/"+curuser.id.to_s+"/t"+time + ".png"
-  end
-
 end
