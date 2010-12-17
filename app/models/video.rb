@@ -3,7 +3,7 @@ class Video < ActiveRecord::Base
   # validates_presence_of :title
 
   belongs_to :gallery
-  belongs_to :thumbnail, :dependent => :destroy
+  has_one :thumbnail, :as => :thumbnailable, :class_name => 'Thumbnail', :dependent => :destroy
 
   has_many :comments, :as => :commentable, :dependent => :destroy
 

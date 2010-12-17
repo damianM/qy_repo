@@ -9,7 +9,7 @@
         .link{ :style => "font-weight: bold;" }
           = link_to current_user.login, user_path(current_user)
 
-        .userinfo_sub1.bolder{ :style => "color:navy;" }
+        .userinfo_sub1.bolder{ :style => "color:#f5d048;" }
           - if current_user.quad 
             = current_user.quad.company.nil? ? "" : current_user.quad.company.name + " "
             = current_user.quad.qtype.nil? ? "" : current_user.quad.qtype
