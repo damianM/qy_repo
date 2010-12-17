@@ -105,10 +105,11 @@
 .login_form_row_rem{
     margin-top:7px;
     font-weight: bold;
+    height: 38px;
 }
 .login_form_row_rem label {
     color: #fff;
-    width: 74px;
+    width: 92px;
     font-size: 7pt;
     padding-top:3px;
     display:block;
