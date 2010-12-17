@@ -386,3 +386,10 @@
 .userinfo_wide {
   width: 180px;
 }
+
+.mheader{
+  text-align: center;
+  font-weight: bold;
+  font-size: 10pt;
+  color: orange;
+}

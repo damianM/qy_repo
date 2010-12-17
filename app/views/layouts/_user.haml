@@ -4,15 +4,19 @@
     - if controller_name != "users" || action_name != 'show'
       %div{ :style => "text-align:center;font-size:9pt" }
         .photo	   
-          = link_to image_tag(current_user.photo.public_filename(:thumb)), user_path(current_user) if current_user.photo
+          - if current_user.photo
+            = link_to image_tag(current_user.photo.public_filename(:thumb)), user_path(current_user)
+          - else
+            = link_to image_tag("/80_anon.png", :class=>"about_photo"), user_path(current_user)
 
         .link{ :style => "font-weight: bold;" }
           = link_to current_user.login, user_path(current_user)
 
         .userinfo_sub1.bolder{ :style => "color:#f5d048;" }
           - if current_user.quad 
-            = current_user.quad.company.nil? ? "" : current_user.quad.company.name + " "
-            = current_user.quad.qtype.nil? ? "" : current_user.quad.qtype
+            %b
+              = current_user.quad.company.nil? ? "" : current_user.quad.company.name + " "
+              = current_user.quad.qtype.nil? ? "" : current_user.quad.qtype
 
         .userinfo_sub01
           = current_user.city unless current_user.city.blank?
