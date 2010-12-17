@@ -5,7 +5,7 @@
       - user.galleries[0..3].each do |gallery|
         .gallery-user
           .g-photo
-            = image_tag("photo-f.png")
+            = link_to image_tag(gallery.thumbnail ? gallery.thumbnail.public_filename : '../gallery.png'), user_gallery_path(user, gallery)
           .g-about
             %div= link_to gallery.name, user_gallery_path(current_user,gallery)
           //.links

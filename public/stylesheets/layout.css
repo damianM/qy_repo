@@ -138,7 +138,6 @@ span.team_opt a{
 
 
 div#error{
-    font-family:Arial, sans-serif;
     border: solid 1px red;
     background: #f55;
     margin: 10px 100px 10px 30px;
@@ -149,7 +148,6 @@ div#error{
 }
 
 div#notice{
-    font-family:Arial, sans-serif;
     border: solid 1px green;
     background: #9f8;
     margin: 10px 100px 10px 50px;
