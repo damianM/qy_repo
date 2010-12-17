@@ -33,7 +33,6 @@ body{
     width: 1140px;
     border: dotted 1px #212121;
     margin: 0px auto 0 auto;
-    font-family: Arial, sans-serif;
     background-image: url("../background.png");
     background-repeat: no-repeat;
     background-position: -150px 0px;
@@ -137,7 +136,6 @@ span.team_opt a{
 
 
 div#error{
-    font-family:Arial, sans-serif;
     border: solid 1px red;
     background: #f55;
     margin: 10px 100px 10px 30px;
@@ -148,7 +146,6 @@ div#error{
 }
 
 div#notice{
-    font-family:Arial, sans-serif;
     border: solid 1px green;
     background: #9f8;
     margin: 10px 100px 10px 50px;

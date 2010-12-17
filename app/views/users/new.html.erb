@@ -32,7 +32,7 @@
       </div>
       <br/>
       <div class="form_row">
-        <%= f.label :email, "Email" %>
+        <%= f.label :email, "Email *" %>
         <%= f.text_field :email %>
         <%= f.error_message_on :email %>
       </div>
@@ -43,7 +43,6 @@
       </div>
       <br/>
       <div class="partial" id="n_quad">
-        <div class="header">Quad</div>
         <div class="body">
 
           <%- f.fields_for :quad do |qf| -%>
@@ -89,9 +88,14 @@
    var have_quad = sel.options[sel.selectedIndex].value;
 
     if(have_quad.toString() == '2'){
-      $('n_quad').show();
-    } else if((have_quad.toString() == '1') || (have_quad.toString() == '0')){
-      $('n_quad').hide();
+      if(!$('n_quad').visible()) {
+        $('n_quad').slideDown();
+      }
+    }
+    else if((have_quad.toString() == '1') || (have_quad.toString() == '0')) {
+      if($('n_quad').visible()) {
+        $('n_quad').slideUp();
+      }
     }
     return false;
   }
