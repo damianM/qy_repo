@@ -4,7 +4,7 @@
     .lcol_user
       .about_head
         .photo
-          = image_tag user.photo.public_filename(:main), :class=>"about_photo" if user.photo 
+          = user.photo.nil? ? image_tag("/anon.png") : image_tag(user.photo.public_filename(:main), :class=>"about_photo")
         .user-info
           .nick= @user.login
           - if quad
@@ -12,7 +12,7 @@
             %div= quad.qtype
           %div= @user.city
     .rcol_user
-      .about_links
+      .about_links{:style => "font-size:10px"}
         %div
           = link_ "Znajomi", "users", "friends", @user.id 
           %div= "(#{@user.friends.length})"
@@ -21,6 +21,17 @@
           %div= "(#{@user.galleries.length})"
         %div
           = link_ "Moje imprezy", "events", "list", @user.id
+        - unless @user == curuser
+          %div
+            = link_ "Napisz wiadomość", "messages", "new", @user.id
+        %div
+          = link_to "Moje grupy", myteams_user_path(@user)
+        %div
+          = link_to "Moje ogłoszenia", '#'
+        - unless @user.friend?(curuser) or curuser.pending?(@user) or @user == curuser
+          %div
+            = link_ "Zaproś do znajomych", "relationship", "req", @user.id
+
     .clr
     .about
       .col_left
