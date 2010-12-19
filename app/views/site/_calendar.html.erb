@@ -6,10 +6,10 @@
     <%= show_calendar calendar_options %>
 
     <div class="calendar_links" style="margin-bottom: 15px;">
-      <p><b>Ostatnio dodane imprezy:</b></p>
+      <p style="font-size:8pt;"><b>Ostatnio dodane imprezy:</b></p>
     
     <% events.reverse[0...5].each do |event| %>
-      <%= link_to (cut event.title,20),event_path(event), :style => 'font-weight: normal;' %><br/>
+      <%= link_to (cut event.title,20),event_path(event), :style => 'font-weight: normal;font-size:8pt;' %><br/>
     <% end %>
     </div>
 
