@@ -1,14 +1,13 @@
 <div class="partial">
-  <%= insert_bcorners %>
   <div class="mheader">
     Aktywuj konto
   </div>
-  <div class="body">
+
+  <div style='text-align: center;width: 100%;'>
     <% form_for @user, :url => {:action => "create", :id => (@user.id)} do |f| %>
       <%= f.error_messages %>
-      <%= f.submit "Aktywuj!" %>
-    <% end %>
-
+    
+        <%= f.submit "Aktywuj!", :class => 'submit', :style => 'font-size: 9pt;float: none; margin-top: 14px;'%>
+      <% end %> 
   </div>
-
 </div>
