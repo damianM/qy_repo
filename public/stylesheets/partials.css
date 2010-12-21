@@ -164,19 +164,19 @@
 }
 
 .l_users{
-     background-image: url('/images/you_last_friends.png');position: relative; top: 6px;height:45px;
+     background-image: url('/images/you_last_friends.jpg');position: relative; top: 6px;height:45px;
 }
 
 .v_latest_friends_videos{
-     background-image: url('/images/latest_friends_videos.png');position: relative; top: 6px;height:45px;
+     background-image: url('/images/latest_friends_videos.jpg');position: relative; top: 6px;height:45px;
 }
 
 .p_latest_friends_photos{
-     background-image: url('/images/latest_friends_photos.png');position: relative; top: 6px;height:45px;
+     background-image: url('/images/latest_friends_photos.jpg');position: relative; top: 6px;height:45px;
 }
 
 .what_is_new{
-     background-image: url('/images/what_is_new.png');position: relative; top: 6px;height:45px;
+     background-image: url('/images/what_is_new.jpg');position: relative; height:45px;top:6px;
 }
 
 .p_login{
@@ -230,7 +230,7 @@
 }
 
 .p_findq{
-    background-image: url('../headers/findq.png');position: relative; top: 6px;height:38px;
+    background-image: url('../headers/findq.jpg');position: relative; top: 6px;height:38px;
 }
 
 .p_user{
@@ -304,6 +304,10 @@
 
 .p_user_edit{
     background-image: url('../headers/user/edit_p.png');position: relative; top: 6px;height:44px;
+}
+
+.p_user_registry{
+    background-image: url('/images/registry.jpg');position: relative; top: 6px;height:44px;
 }
 
 
