@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
  class ActivationsController < ApplicationController
    
     def new
-      @user = User.find_using_perishable_token(params[:activation_code], 1.week)
+      @user = User.new
+#      @user = User.find_using_perishable_token(params[:activation_code], 1.week)
       #raise Exception if @user.active?
     end
 
