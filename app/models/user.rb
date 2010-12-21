@@ -34,6 +34,8 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :login, :email
   validates_format_of :login, :with => /^[A-Za-z0-9_]+$/, :message => "W nazwie użytkownika dozwolone są wyłącznie duże i małe litery, cyfry oraz podkreślniki"
+  validates_length_of :login, :maximum => 12
+
   validates_format_of :email, :with => /^[A-Z0-9._%-]+@[A-Z0-9._%-]+$/i, :message => "Podany adres nie jest poprawnym adresem email"
   validates_confirmation_of :password    
   validates_uniqueness_of :skype, :allow_nil => true, :allow_blank => true

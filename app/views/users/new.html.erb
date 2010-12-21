@@ -3,7 +3,7 @@
   <div class="body">
     <% form_for(setup_user(@user)) do |f| %>
       <div class="form_row">
-        <%= f.label :login, "Login *" %>
+        <%= f.label :login, "Login * (max. 12 znaków)" %>
         <%= f.text_field :login %>
         <%= f.error_message_on :login %>
       </div>

@@ -9,7 +9,7 @@
       <p style="font-size:8pt;"><b>Ostatnio dodane imprezy:</b></p>
     
     <% events.reverse[0...5].each do |event| %>
-      <%= link_to (cut event.title,20),event_path(event), :style => 'font-weight: normal;font-size:8pt;' %><br/>
+      <%= link_to (cut event.title,20),event_path(event), :style => 'font-weight: normal;font-size:8pt;color:#7C4E04;' %><br/>
     <% end %>
     </div>
 

@@ -4,12 +4,11 @@
     .lcol_user
       .about_head
         .photo
-          = user.photo.nil? ? image_tag("/anon.png") : image_tag(user.photo.public_filename(:main), :class=>"about_photo")
+          = user.photo.nil? ? image_tag("/80_anon.png") : image_tag(user.photo.public_filename(:main), :class=>"about_photo")
         .user-info
           .nick= @user.login
           - if quad
-            %div= quad.company.name
-            %div= quad.qtype
+            %div= quad.company.name + ' ' +quad.qtype
           %div= @user.city
     .rcol_user
       .about_links{:style => "font-size:10px"}
@@ -28,7 +27,7 @@
           = link_to "Moje grupy", myteams_user_path(@user)
         %div
           = link_to "Moje ogłoszenia", '#'
-        - unless @user.friend?(curuser) or curuser.pending?(@user) or @user == curuser
+        - unless @user.friend?(curuser) or current_user.pending?(@user) or @user == curuser
           %div
             = link_ "Zaproś do znajomych", "relationship", "req", @user.id
 
