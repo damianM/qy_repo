@@ -48,3 +48,8 @@ table.p_photos {}
   display: block;
   margin-left: 0;
 }
+
+form.user_edit label {
+  font-weight: bold;
+  font-size: 8pt;
+}

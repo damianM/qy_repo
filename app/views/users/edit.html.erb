@@ -11,10 +11,10 @@
   </div>
 </div>
 
-<% form_for(:user,setup_user(@user), :url => {:controller => 'users', :action => 'update'}, :html => {:method => :put}) do |f| %>
+<% form_for :user, setup_user(@user), :html => { :method => :put, :class => 'user_edit' } do |f| %>
   <div class="partial">
     <div class="header p_user_edit_mydata"></div>
-    <div class="body">
+    <div class="body edit_user_data">
       <div class="form_row">
         <%= f.label :name, "Imię"%>
         <%= f.text_field :name %>
