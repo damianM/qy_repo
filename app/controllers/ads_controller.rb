@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 class AdsController < ApplicationController
 
-  layout 'admin'
+  
+  def home 
+  end
   
   def index
     @ad = Ad.all

@@ -176,7 +176,7 @@
 }
 
 .what_is_new{
-     background-image: url('/images/what_is_new.jpg');position: relative; height:45px;top:6px;
+     background-image: url('/images/what_is_new.jpg');position: relative; height:45px;
 }
 
 .p_login{
@@ -308,6 +308,18 @@
 
 .p_user_registry{
     background-image: url('/images/registry.jpg');position: relative; top: 6px;height:44px;
+}
+
+.ads{
+    background-image: url('/images/ads.jpg');position: relative; top: 6px;height:44px;
+}
+
+.day_ad{
+    background-image: url('/images/day_ad.jpg');position: relative; top: 6px;height:44px;
+}
+
+.special_ads{
+    background-image: url('/images/special_ads.jpg');position: relative; top: 6px;height:44px;
 }
 
 
