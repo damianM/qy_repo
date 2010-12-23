@@ -43,10 +43,11 @@
          }
        });
 
-    %div{ :style => "font-size:10pt; font-weight: bold;" }
+    %div{ :style => "font-size:9pt; font-weight: bold;" }
       %div{ :style => "float:left;" }
         Średnia ocena:
-        = Rate.average(:value, :conditions => ['rateatable_id = ? AND rateatable_type = ?', @video.id, 'Video']) || '0'
+        %span.rating
+          = render :partial => 'rating', :locals => { :rated_object => @video }
       %div{ :style => "float:right;" }
         = "Ilość wyświetleń: #{@video.counter || 0} razy"
         .clr
@@ -61,10 +62,7 @@
     %br
 
     - unless @video.voters.include?(current_user)
-      - form_for :rate, :url => vote_video_path(@video) do |f|
-        %p
-          = f.select :value , (1..5).collect{ |x| [x,x] }
-          = f.submit "Głosuj!"
+      = render :partial => 'rating_form', :locals => { :rated_object => @video }
 
     %br
 

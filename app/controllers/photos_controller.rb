@@ -110,4 +110,21 @@ class PhotosController < ApplicationController
     redirect_back_or_default('/')
   end
 
+  def rate
+    @photo = Photo.find(params[:id])
+    
+    @photo.rates.build({:user_id => current_user.id, :value => params[:value]})
+
+    if @photo.save
+      render :json => {
+        :success => true,
+        :object_id => @photo.id,
+        :content => render_to_string( :partial => 'rating', :locals => { :rated_object => @photo }),
+        :message => "Głos został oddany."
+      }
+    else
+      render :json => { :success => false, :message => "Próba oddania głosu nie powiodła się." }
+    end
+  end
+
 end

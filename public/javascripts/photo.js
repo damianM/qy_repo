@@ -1,6 +1,7 @@
 var Photo = $.inherit({
   __constructor: function() {
     $('#toggle_photo_form').livequery('click',$.delegate(this, this.togglePhotoForm));    
+
   },
 
   togglePhotoForm: function(src){

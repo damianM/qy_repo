@@ -83,6 +83,19 @@ class Video < ActiveRecord::Base
   def to_param
     title.blank? ? "#{id}" : "#{id}-#{title.to_url_format}"
   end
+
+  def rate
+    Rate.average(:value, :conditions => ['rateatable_id = ? AND rateatable_type = ?', self.id, 'Video']) || '0'
+  end
+  
+  def rate_for user
+    if ( user && rating = rates.find_by_user_id(user.id) )
+      rating.rate
+    else
+      nil
+    end
+  end
+
   
   protected
 

@@ -1,0 +1,6 @@
+%div{:id => "rating_box_#{rated_object.id}", :class => "rating_box", :rating_object => rated_object.class.to_s.pluralize}
+  %span{:style => 'float:left;'}
+    = "Twoja ocena:"
+
+  - for rate in (1..5)
+    = radio_button_tag "file_radio_#{rated_object.id}", rate, ( rate.to_i == rated_object.rate_for(current_user).to_i ), :class => 'rating_star'

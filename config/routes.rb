@@ -80,7 +80,7 @@ ActionController::Routing::Routes.draw do |map|
   map.shops 'sklepy-przyjazne-quadomanikom', :controller => 'shops', :action => 'index'
 
   # sale_ads
-  map.sale_ads 'ogloszenia', :controller => 'ads', :action => 'home'
+  map.home_sale_ads 'ogloszenia', :controller => 'ads', :action => 'home'
 
   # relationship 
   map.relationship_req 'zapros-do-znajomych/:id', :controller => 'relationship', :action => 'req'

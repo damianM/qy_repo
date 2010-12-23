@@ -34,6 +34,18 @@ class Photo < ActiveRecord::Base
   def rights?(usr)
     gallery.rights?(usr)
   end
+
+  def rate
+    Rate.average(:value, :conditions => ['rateatable_id = ? AND rateatable_type = ?', self.id, 'Photo']) || '0'
+  end
+  
+  def rate_for user
+    if ( user && rating = rates.find_by_user_id(user.id) )
+      rating.rate
+    else
+      nil
+    end
+  end
   
 end
 

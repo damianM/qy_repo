@@ -138,5 +138,22 @@ class VideosController < ApplicationController
     render :json => {:success => false}
     end
   end
+
+  def rate
+    @video = Video.find(params[:id])
+    
+    @video.rates.build({:user_id => current_user.id, :value => params[:value]})
+
+    if @video.save
+      render :json => {
+        :success => true,
+        :object_id => @video.id,
+        :content => render_to_string( :partial => 'rating', :locals => { :rated_object => @video }),
+        :message => "Głos został oddany."
+      }
+    else
+      render :json => { :success => false, :message => "Próba oddania głosu nie powiodła się." }
+    end
+  end
   
 end

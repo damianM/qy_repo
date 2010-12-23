@@ -13,28 +13,28 @@
       = image_tag @photos[0].public_filename, { :style => "margin:4px 0px 4px 0px;" }
       %br
 
-      %div{ :style => "font-size:10pt; font-weight: bold;" }
+      %div{ :style => "font-size:9pt; font-weight: bold;" }
         %div{ :style => "float:left;" }
           Średnia ocena:
-          = Rate.average(:value, :conditions => ['rateatable_id = ? AND rateatable_type = ?', @photo.id, 'Photo']) || '0'
+          %span.rating
+            = render :partial => 'rating', :locals => { :rated_object => photo }
         %div{ :style => "float:right;" }
           = "Ilość wyświetleń: #{@photo.counter || 0} razy"
         .clr
 
       %br
 
+      - unless photo.voters.include?(current_user)
+        = render :partial => 'rating_form', :locals => { :rated_object => @photo }
+
+      %br
+ 
       - unless photo.description.blank?
         .partial{ :style => "padding-left:20px;text-align:left;padding-top:20px;padding-bottom:20px;margin:0px;" }
           = @photo.description
 
       %br
-
-      - unless photo.voters.include?(current_user)
-        - form_for :rate, :url => vote_photo_path(photo) do |f|
-          %p
-            = f.select :value , (1..5).collect{ |x| [x,x] }
-            = f.submit "Głosuj!"
-
+      
       - if photo.rights?(current_user)
         %div
           = link_to "Ustaw jako główne", main_photo_path(photo), :style => 'color:gray;'
