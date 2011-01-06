@@ -11,7 +11,10 @@
         = workshop.phone
         %br
         %span{:style => 'color: #feb100;'}= workshop.www
-
+        %br
+        - if current_user.is_admin?
+          = check_box_tag "main_workshop_#{workshop.id}", workshop.id, workshop.main, :onClick => "makeWorkshopMain('#{workshop.id}');", :class => 'main_workshops'
+        %br
 
 #pagination{:style => "float: right;padding-top: 160px;"}
   = will_paginate @workshops, { :renderer => 'RemoteLinkRenderer', :remote => {:update => 'table', :with => "'sort='+'#{params[:sort]}'+'&query='+'#{params[:query]}'"} }

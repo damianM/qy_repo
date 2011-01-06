@@ -8,16 +8,17 @@
         %param{:value => "/mapa.swf", :name => "movie"}
         %param{:value => "transparent", :name => "wmode"}
        
-      %br
-      %b SERWIS
-      %br
-      sklep internetowy
-      %br
-      Kraków
-      %br
-      (012) 653 12 12
-      %br
-      %span{:style => 'color: #feb100;'}www.czerwonamaszyna.pl
+      - if @main_workshop
+        %br
+        %b SERWIS
+        %br         
+        = @main_workshop.name
+        %br
+        = @main_workshop.street + ' ' + @main_workshop.city
+        %br
+        = @main_workshop.phone
+        %br
+        %span{:style => 'color: #feb100;'}= @main_workshop.www
 
 
     .image_box{:style => 'float:left;width: 58%;'}
@@ -37,6 +38,5 @@
       = render :partial => 'workshops'
 
     = image_tag 'shadow.jpg'
- 
-    = link_to image_tag('workshop-wheel.jpg'), new_workshop_path
+    = link_to image_tag('workshop-wheel.jpg', :style => 'margin: -10px;'), new_workshop_path
       

@@ -75,7 +75,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # worksshops
   map.home_workshops 'serwisy-przyjazne-quadomanikom', :controller => 'workshops', :action => 'home'
-  map.home_workshops 'serwisy-przyjazne-quadomanikom/:query', :controller => 'workshops', :action => 'home'
+  map.state_home_workshops 'serwisy-przyjazne-quadomanikom/:query', :controller => 'workshops', :action => 'home'
 
   # shops
   map.home_shops 'sklepy-przyjazne-quadomanikom', :controller => 'shops', :action => 'home'
@@ -107,7 +107,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :sale_ads
   map.resources :buy_ads
-  map.resources :workshops, :member => {:show_on_google_map => :get}
+  map.resources :workshops, :member => {:show_on_google_map => :get, :make_main => :post}
   map.resources :shops, :member => {:show_on_google_map => :get}
   map.resources :assets
   map.resources :banners

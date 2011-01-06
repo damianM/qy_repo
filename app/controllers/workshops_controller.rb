@@ -4,9 +4,11 @@ class WorkshopsController < ApplicationController
   before_filter :login_required
 
   def home
+    @main_workshop = Workshop.find(:first, :conditions => {:main => 1})
+
     conditions = "states.label like '%#{params[:query]}%'" if params[:query]
 
-    @workshops = Workshop.paginate :page => params[:page], :per_page => 2, :include => [:state], :conditions => conditions
+    @workshops = Workshop.paginate :page => params[:page], :per_page => 10, :include => [:state], :conditions => conditions
 
     if request.xhr?
       return render :partial => 'workshops'
@@ -70,5 +72,13 @@ class WorkshopsController < ApplicationController
   def show_on_google_map
     @workshop = Workshop.find(params[:id])   
   end
+  
+  def make_main
+    @workshop = Workshop.find(params[:id])
+    
+    Workshop.update_all({:main => 0})
 
+    @workshop.update_attribute(:main,1)
+    render :nothing => true
+  end
 end

@@ -18,3 +18,16 @@ function startProcedures(){
   checkScreen();
 }
 
+
+function makeWorkshopMain(workshop_id){
+  new Ajax.Request('/workshops/make_main/'+workshop_id, {async:true, evalScripts:true});
+  elements = document.getElementsByClassName('main_workshops');
+
+  for (var i=0; i< elements.length; i++) {
+    elements[i].checked = false;
+  }
+
+  $('main_workshop_'+workshop_id).checked = true;
+  return false;
+}
+
