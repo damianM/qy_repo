@@ -8,7 +8,7 @@
     %meta{'name' => 'robots', 'content' => 'index,follow'}
     %meta{'name' => 'keywords', 'content' => 'quady'}
     %meta{'name' => 'description', 'content' => 'quady'}
-    - if (params[:controller] == 'galleries' and params[:action] == 'show') or (params[:controller] == 'videos' and params[:action] == 'show') or (params[:controller] == 'photos' and params[:action] == 'show')
+    - if (params[:controller] == 'galleries' and params[:action] == 'show') or (params[:controller] == 'videos' and params[:action] == 'show') or (params[:controller] == 'photos' and params[:action] == 'show') or (params[:controller] == 'workshops' and params[:action] == 'new')
       = render "layouts/scripts"
     - else
       = render "layouts/includes"

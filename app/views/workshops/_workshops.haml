@@ -1,0 +1,17 @@
+%table
+  %tbody
+    - @workshops.each_with_index do |workshop,i|
+      - if (i%2).zero?
+        %tr       
+      %td
+        = workshop.name
+        %br  
+        = workshop.street + ' ' + workshop.city
+        %br
+        = workshop.phone
+        %br
+        %span{:style => 'color: #feb100;'}= workshop.www
+
+
+#pagination{:style => "float: right;padding-top: 160px;"}
+  = will_paginate @workshops, { :renderer => 'RemoteLinkRenderer', :remote => {:update => 'table', :with => "'sort='+'#{params[:sort]}'+'&query='+'#{params[:query]}'"} }

@@ -1,0 +1,8 @@
+- form_tag '', { :id => 'pagination_all', :method => :get } do
+  %fieldset
+    = hidden_field_tag 'sort', params[:sort]
+    = hidden_field_tag 'query', params[:query]
+    = hidden_field_tag 'status', params[:status]
+    %label= t('views.table.show') 
+    = select_tag :per_page, options_for_select({'10'=>'10', '20'=>'20', '30'=> '30', 'all'=>'1000'}, params[:per_page]), :onChange => toggle_spinner
+    

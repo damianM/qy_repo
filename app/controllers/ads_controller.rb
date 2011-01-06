@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class AdsController < ApplicationController
 
+  before_filter :login_required
   
   def home 
   end

@@ -1,0 +1,42 @@
+.partial
+  .header.workshops
+  .body
+    %br
+    %br
+    .map{:style => 'float: left;width:38%;'}
+      %object{:width => "167", :height => "167", :data => "/mapa.swf", :type => "application/x-shockwave-flash"}
+        %param{:value => "/mapa.swf", :name => "movie"}
+        %param{:value => "transparent", :name => "wmode"}
+       
+      %br
+      %b SERWIS
+      %br
+      sklep internetowy
+      %br
+      Kraków
+      %br
+      (012) 653 12 12
+      %br
+      %span{:style => 'color: #feb100;'}www.czerwonamaszyna.pl
+
+
+    .image_box{:style => 'float:left;width: 58%;'}
+      #state
+        %b{:style => 'padding-left: 30px;'} WOJEWÓDZTWO MAŁOPLSKIE
+      = image_tag "shadow-small.jpg"
+      %br
+      %br
+      = image_tag Workshop.last.assets.first.public_filename, :style => 'padding-left: 30px;'
+    .clr
+    
+    %br
+    = image_tag 'shadow.jpg'
+    %br
+    %br
+    #table
+      = render :partial => 'workshops'
+
+    = image_tag 'shadow.jpg'
+ 
+    = link_to image_tag('workshop-wheel.jpg'), new_workshop_path
+      

@@ -5,6 +5,8 @@ class Asset < ActiveRecord::Base
 
   validates_as_attachment
 
+  attr_accessible :serial
+
   def reset_serial
     update_attribute(:serial, nil)
   end

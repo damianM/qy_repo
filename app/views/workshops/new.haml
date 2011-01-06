@@ -1,7 +1,14 @@
-- form_for @workshop do |form|
-  = render :partial => 'fields', :locals => { :form => form }
+.partial
+  .header.workshops
+  .body
+    - form_for @workshop do |form|
+      = render :partial => 'fields', :locals => { :form => form }
 
-  %div
-    = submit_tag 'Zapisz', :class => 'submit'
-    = link_to 'Anuluj', workshops_path, :class => 'submit'
+      .form_row
+        = form.submit "Zapisz", :class => "submit"
+      %span.required_field 
+        * - pole wymagane
 
+    = render :partial => 'assets/new', :locals => { :object => @workshop, :asset_type => "Image" }
+
+    .clr

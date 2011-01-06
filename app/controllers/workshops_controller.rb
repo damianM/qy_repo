@@ -2,14 +2,27 @@
 class WorkshopsController < ApplicationController
 
   before_filter :login_required
-  layout 'admin'
+
+  def home
+    conditions = "states.label like '%#{params[:query]}%'" if params[:query]
+
+    @workshops = Workshop.paginate :page => params[:page], :per_page => 2, :include => [:state], :conditions => conditions
+
+    if request.xhr?
+      return render :partial => 'workshops'
+    else
+      render :action => 'home'
+    end
+
+  end
   
   def index
-    @workshops = Workshop.all
+    @workshops = Workshop.paginate :page => params[:page], :per_page => params[:per_page]
   end
   
   def new
     @workshop = Workshop.new
+    @workshop.serial = Workshop.generate_serial
   end
 
   def create
@@ -18,7 +31,7 @@ class WorkshopsController < ApplicationController
     if @workshop.save
       flash[:notice] = "Serwis został dodany."
 
-      redirect_to workshops_path
+      redirect_to home_workshops_path
     else
       flash[:error]  = "Próba utworzenia serwisu nie powiodła się."
       render :action => 'new'
@@ -31,6 +44,7 @@ class WorkshopsController < ApplicationController
   
   def edit
     @workshop = Workshop.find(params[:id])
+    @workshop.serial = Workshop.generate_serial
   end
 
   def update
@@ -38,7 +52,7 @@ class WorkshopsController < ApplicationController
 
     if @workshop.update_attributes(params[:workshop])
       flash[:notice] = "Edycja przebiegła pomyślnie."
-      redirect_to workshops_path
+      redirect_to home_workshops_path
     else
       flash[:error]  = "Edycja nie powiodła się."
       render :action => 'edit'

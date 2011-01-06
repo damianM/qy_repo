@@ -3,7 +3,7 @@
   = render :partial => "site/find" if logged_in?
   = render :partial => "layouts/quads"
   %div{:style => 'margin-top:10px'}
-    = link_to image_tag(params['black'] ? "../services_d.png" : "../services.png"), workshops_path
+    = link_to image_tag(params['black'] ? "../services_d.png" : "../services.png"), home_workshops_path
   %div{:style => 'margin-top:10px'}
-    = link_to image_tag(params['black'] ? "../shops_d.png" : "../shops.png"), shops_path
+    = link_to image_tag(params['black'] ? "../shops_d.png" : "../shops.png"), home_shops_path
   = render :partial => "layouts/top10_videos"
