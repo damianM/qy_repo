@@ -21,13 +21,13 @@
         %span{:style => 'color: #feb100;'}= @main_workshop.www
 
 
-    .image_box{:style => 'float:left;width: 58%;'}
-      #state
-        %b{:style => 'padding-left: 30px;'} WOJEWÓDZTWO MAŁOPLSKIE
-      = image_tag "shadow-small.jpg"
-      %br
-      %br
-      = image_tag Workshop.last.assets.first.public_filename, :style => 'padding-left: 30px;'
+      .image_box{:style => 'float:left;width: 58%;'}
+        #state
+          %b{:style => 'padding-left: 30px;'}= "WOJEWÓDZTWO #{@main_workshop.state.name.upcase}" 
+        = image_tag "shadow-small.jpg"
+        %br
+        %br
+        = image_tag @main_workshop.assets.first.public_filename, :style => 'padding-left: 30px;' if @main_workshop.assets.first
     .clr
     
     %br
