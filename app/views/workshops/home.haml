@@ -20,7 +20,7 @@
         %br
         %span{:style => 'color: #feb100;'}= @main_workshop.www
 
-
+    - if @main_workshop
       .image_box{:style => 'float:left;width: 58%;'}
         #state
           %b{:style => 'padding-left: 30px;'}= "WOJEWÓDZTWO #{@main_workshop.state.name.upcase}" 
