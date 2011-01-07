@@ -175,6 +175,10 @@
      background-image: url('/images/latest_friends_photos.jpg');position: relative; top: 6px;height:45px;
 }
 
+.p_waiting_for_accept_to_group{
+     background-image: url('/images/waiting_for_accept_to_group.jpg');position: relative; top: 6px;height:45px;
+}
+
 .what_is_new{
      background-image: url('/images/what_is_new.jpg');position: relative; height:45px;
 }

@@ -21,7 +21,7 @@
         %span{:style => 'color: #feb100;'}= @main_workshop.www
 
     - if @main_workshop
-      .image_box{:style => 'float:left;width: 58%;'}
+      .image_box{:style => 'float:left;width: 60%;'}
         #state
           %b{:style => 'padding-left: 30px;'}= "WOJEWÓDZTWO #{@main_workshop.state.name.upcase}" 
         = image_tag "shadow-small.jpg"
@@ -38,5 +38,6 @@
       = render :partial => 'workshops'
 
     = image_tag 'shadow.jpg'
-    = link_to image_tag('workshop-wheel.jpg', :style => 'margin: -10px;'), new_workshop_path
-      
+    %div{:style => "background-image: url('/images/workshop-wheel.jpg');margin: -10px;padding-bottom: 85px;"}
+      = link_to image_tag('add_your_company.jpg', :style => 'margin-top: 55px;margin-left:25px;'), new_workshop_path
+    .clr

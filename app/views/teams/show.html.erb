@@ -60,11 +60,18 @@
   <div class="body">
     <%= render :partial => "teams/users" %>
 
-    <% unless @team.pending_users.blank? %>
-      <hr/>
-      <hr/>
-      <%= render :partial => "teams/pending_users" %>
-    <% end %>
   </div>
 </div>
+
+
+<% unless @team.pending_users.blank? %>
+  <div class="partial ">
+    <div class="header p_waiting_for_accept_to_group"></div>
+    <div class="body">
+      <%= render :partial => "teams/pending_users" %>
+
+    </div>
+  </div>
+<% end %>
+
 
