@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 class AssetsController < ApplicationController
   before_filter :find_asset, :only => [ :destroy, :asset, :download ]
-  filter_access_to :all
   
   def create
     params[:asset].merge!(:uploaded_data => params[:uploaded_data])

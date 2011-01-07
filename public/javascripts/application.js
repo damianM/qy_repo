@@ -31,3 +31,16 @@ function makeWorkshopMain(workshop_id){
   return false;
 }
 
+
+function makeShopMain(shop_id){
+  new Ajax.Request('/shops/make_main/'+shop_id, {async:true, evalScripts:true});
+  elements = document.getElementsByClassName('main_shops');
+
+  for (var i=0; i< elements.length; i++) {
+    elements[i].checked = false;
+  }
+
+  $('main_shop_'+shop_id).checked = true;
+  return false;
+}
+

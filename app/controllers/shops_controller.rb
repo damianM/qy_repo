@@ -2,14 +2,29 @@
 class ShopsController < ApplicationController
 
   before_filter :login_required
-  layout 'admin'
   
+  def home
+    @main_shop = Shop.find(:first, :conditions => {:main => 1})
+
+    conditions = "states.label like '%#{params[:query]}%'" if params[:query]
+
+    @shops = Shop.paginate :page => params[:page], :per_page => 10, :include => [:state], :conditions => conditions
+
+    if request.xhr?
+      return render :partial => 'shops'
+    else
+      render :action => 'home'
+    end
+
+  end
+
   def index
     @shops = Shop.all
   end
   
   def new
     @shop = Shop.new
+    @shop.serial = Shop.generate_serial
   end
 
   def create
@@ -18,7 +33,7 @@ class ShopsController < ApplicationController
     if @shop.save
       flash[:notice] = "Sklep został dodany."
 
-      redirect_to shops_path
+      redirect_to shop_path(@shop)
     else
       flash[:error]  = "Próba utworzenia sklepu nie powiodła się."
       render :action => 'new'
@@ -55,6 +70,15 @@ class ShopsController < ApplicationController
 
   def show_on_google_map
     @shop = Shop.find(params[:id])   
+  end
+
+  def make_main
+    @shop = Shop.find(params[:id])
+    
+    Shop.update_all({:main => 0})
+
+    @shop.update_attribute(:main,1)
+    render :nothing => true
   end
 
 end

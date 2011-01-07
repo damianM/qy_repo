@@ -1,0 +1,20 @@
+%table
+  %tbody
+    - @shops.each_with_index do |shop,i|
+      - if (i%2).zero?
+        %tr       
+      %td
+        = shop.name
+        %br  
+        = shop.street + ' ' + shop.city
+        %br
+        = shop.phone
+        %br
+        %span{:style => 'color: #feb100;'}= shop.www
+        %br
+        - if current_user.is_admin?
+          = check_box_tag "main_shop_#{shop.id}", shop.id, shop.main, :onClick => "makeShopMain('#{shop.id}');", :class => 'main_shops'
+        %br
+
+#pagination{:style => "float: right;padding-top: 160px;"}
+  = will_paginate @shops, { :renderer => 'RemoteLinkRenderer', :remote => {:update => 'table', :with => "'sort='+'#{params[:sort]}'+'&query='+'#{params[:query]}'"} }

@@ -1,7 +1,17 @@
-- form_for @shop do |form|
-  = render :partial => 'fields', :locals => { :form => form }
+.partial
+  .header.shops
+  .body
+    - form_for @shop do |form|
+      = render :partial => 'fields', :locals => { :form => form }
 
-  %div
-    = submit_tag 'Zapisz', :class => 'submit'
-    = link_to 'Anuluj', shops_path, :class => 'submit'
+      .form_row
+        = form.submit "Zapisz", :class => "submit"
+      %span.required_field 
+        * - pole wymagane
+
+    = render :partial => 'assets/new', :locals => { :object => @shop, :asset_type => "Image" }
+
+    .clr
+
+
 
