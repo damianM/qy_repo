@@ -1,8 +1,44 @@
 .partial
-  .header.admin_content
-    .body
-      #table_with_pagination
-        = render :partial => 'content'
+  .header.shops
+  .body
+    %br
+    %br
+    .map{:style => 'float: left;width:38%;'}
+      %object{:width => "167", :height => "167", :data => "/mapa.swf", :type => "application/x-shockwave-flash"}
+        %param{:value => "/mapa.swf", :name => "movie"}
+        %param{:value => "transparent", :name => "wmode"}
+       
+      - if @main_shop
+        %br
+        %b SERWIS
+        %br         
+        = @main_shop.name
+        %br
+        = @main_shop.street + ' ' + @main_shop.city
+        %br
+        = @main_shop.phone
+        %br
+        %span{:style => 'color: #feb100;'}= @main_shop.www
 
+    - if @main_shop
+      .image_box{:style => 'float:left;width: 60%;'}
+        #state
+          %b{:style => 'padding-left: 30px;'}
+            = "WOJEWÓDZTWO #{@main_shop.state.name.upcase}" if @main_shop.state
+        = image_tag "shadow-small.jpg"
+        %br
+        %br
+        = image_tag @main_shop.assets.first.public_filename, :style => 'padding-left: 30px;' if @main_shop.assets.first
+    .clr
+    
+    %br
+    = image_tag 'shadow.jpg'
+    %br
+    %br
+    #table
+      = render :partial => 'shops'
 
-= link_to 'Dodaj', new_shop_path
+    = image_tag 'shadow.jpg'
+    %div{:style => "background-image: url('/images/workshop-wheel.jpg');margin: -10px;padding-bottom: 85px;"}
+      = link_to image_tag('add_your_company.jpg', :style => 'margin-top: 55px;margin-left:25px;'), new_shop_path
+    .clr

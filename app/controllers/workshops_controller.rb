@@ -3,7 +3,7 @@ class WorkshopsController < ApplicationController
 
   before_filter :login_required
 
-  def home
+  def index
     @main_workshop = Workshop.find(:first, :conditions => {:main => 1})
 
     conditions = "states.label like '%#{params[:query]}%'" if params[:query]
@@ -13,15 +13,11 @@ class WorkshopsController < ApplicationController
     if request.xhr?
       return render :partial => 'workshops'
     else
-      render :action => 'home'
+      render :action => 'index'
     end
 
   end
-  
-  def index
-    @workshops = Workshop.paginate :page => params[:page], :per_page => params[:per_page]
-  end
-  
+    
   def new
     @workshop = Workshop.new
     @workshop.serial = Workshop.generate_serial

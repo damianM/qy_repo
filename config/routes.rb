@@ -74,11 +74,11 @@ ActionController::Routing::Routes.draw do |map|
   map.create_photo 'dodaj-zdjecie', :controller => 'photos', :action => 'create'
 
   # worksshops
-  map.home_workshops 'serwisy-przyjazne-quadomanikom', :controller => 'workshops', :action => 'home'
-  map.state_home_workshops 'serwisy-przyjazne-quadomanikom/:query', :controller => 'workshops', :action => 'home'
+  map.home_workshops 'serwisy-przyjazne-quadomanikom', :controller => 'workshops', :action => 'index'
+  map.state_home_workshops 'serwisy-przyjazne-quadomanikom/:query', :controller => 'workshops', :action => 'index'
 
   # shops
-  map.home_shops 'sklepy-przyjazne-quadomanikom', :controller => 'shops', :action => 'home'
+  map.home_shops 'sklepy-przyjazne-quadomanikom', :controller => 'shops', :action => 'index'
 
   # sale_ads
   map.home_sale_ads 'ogloszenia', :controller => 'ads', :action => 'home'

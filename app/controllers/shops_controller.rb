@@ -3,7 +3,7 @@ class ShopsController < ApplicationController
 
   before_filter :login_required
   
-  def home
+  def index
     @main_shop = Shop.find(:first, :conditions => {:main => 1})
 
     conditions = "states.label like '%#{params[:query]}%'" if params[:query]
@@ -13,15 +13,11 @@ class ShopsController < ApplicationController
     if request.xhr?
       return render :partial => 'shops'
     else
-      render :action => 'home'
+      render :action => 'index'
     end
 
   end
 
-  def index
-    @shops = Shop.all
-  end
-  
   def new
     @shop = Shop.new
     @shop.serial = Shop.generate_serial
