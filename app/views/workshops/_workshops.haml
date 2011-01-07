@@ -14,6 +14,10 @@
         %br
         - if current_user.is_admin?
           = check_box_tag "main_workshop_#{workshop.id}", workshop.id, workshop.main, :onClick => "makeWorkshopMain('#{workshop.id}');", :class => 'main_workshops'
+          %br
+          = link_to 'Edycja', edit_workshop_path(workshop)
+          %br
+          = link_to 'Usuń', workshop_path(workshop), :method => :delete, :cofirm => 'Czy napewno chcesz usunąć?'
         %br
 
 #pagination{:style => "float: right;padding-top: 160px;"}

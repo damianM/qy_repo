@@ -14,6 +14,10 @@
         %br
         - if current_user.is_admin?
           = check_box_tag "main_shop_#{shop.id}", shop.id, shop.main, :onClick => "makeShopMain('#{shop.id}');", :class => 'main_shops'
+          %br
+          = link_to 'Edycja', edit_shop_path(shop)
+          %br
+          = link_to 'Usuń', shop_path(shop), :method => :delete, :cofirm => 'Czy napewno chcesz usunąć?'
         %br
 
 #pagination{:style => "float: right;padding-top: 160px;"}
