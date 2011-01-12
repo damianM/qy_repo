@@ -8,5 +8,5 @@
       = submit_tag 'Zapisz', :class => 'submit'
       = link_to 'Anuluj', sale_ads_path, :class => 'submit'
 
-    %div
-      = render :partial => 'assets/new', :locals => { :object => @sale_ad, :asset_type => "Image" }
+%div{:style => 'float:right; margin:30px 10px;'}
+  = render :partial => 'assets/new', :locals => { :object => @sale_ad, :asset_type => "Image" }
