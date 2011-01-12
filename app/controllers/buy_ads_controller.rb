@@ -16,8 +16,7 @@ class BuyAdsController < ApplicationController
     @buy_ad = BuyAd.new(params[:buy_ad])
 
     if @buy_ad.save
-      flash[:notice] = "Ogłoszenie zostało dodana."
-
+      flash[:notice] = "Ogłoszenie zostało dodane."
       redirect_to buy_ads_path
     else
       flash[:error]  = "Próba utworzenia ogłoszenia nie powiodła się."
@@ -36,7 +35,6 @@ class BuyAdsController < ApplicationController
 
   def update
     @buy_ad = BuyAd.find(params[:id])
-
     if @buy_ad.update_attributes(params[:buy_ad])
       flash[:notice] = "Edycja przebiegła pomyślnie."
       redirect_to buy_ads_path
@@ -46,6 +44,11 @@ class BuyAdsController < ApplicationController
     end
   end
 
-
+  def destroy
+    @buy_ad = BuyAd.find(params[:id])
+    @buy_ad.destroy
+    flash[:notice] = "Ogłoszenie zostało usunięte"
+    redirect_to buy_ads_path
+  end
 
 end

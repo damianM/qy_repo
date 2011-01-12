@@ -1,25 +1,78 @@
-%fieldset
-  %legend Baner
-  %div
-    = form.label :title, 'Tytuł'
-    = form.error_message_on :title
-    = form.text_field :title, :size => 80
+%div
+  = form.label :type, 'Typ ogłoszenia: Kupno'
 
-  %div
-    = form.label :description, 'Opis'
-    = form.error_message_on :description
-    = form.text_area :description
+%br
+  
+%div
+  = form.label :seller, 'Sprzedaje'
+  = form.error_message_on :seller
+  = form.select :seller, options_for_select(sellers_for_select, form.object.seller), :include_blank => true
 
-  %div
-    = form.label :email, 'Email'
-    = form.error_message_on :email
-    = form.text_field :email, :size => 80
+%div
+  = form.label :condition, 'Rodzaj'
+  = form.error_message_on :condition
+  = form.select :condition, options_for_select(conditions_for_select, form.object.condition), :include_blank => true
+    
+%div
+  = form.label :category, 'Typ'
+  = form.error_message_on :category
+  = form.select :category, options_for_select(categories_for_select, form.object.category), :include_blank => true
 
-  %div
-    = form.label :phone, 'Telefon'
-    = form.error_message_on :phone
-    = form.text_field :phone, :size => 80
+%div
+  = form.label :email, 'Email'
+  = form.error_message_on :email
+  = form.text_field :email, :size => 40
 
-  %div
-    = form.hidden_field :serial
+%div
+  = form.label :phone, 'Telefon'
+  = form.error_message_on :phone
+  = form.text_field :phone, :size => 40
+
+%hr
+
+%div
+  = form.label :title, 'Tytuł'
+  = form.error_message_on :title
+  = form.text_field :title, :size => 80
+    
+%div
+  = form.label :description, 'Opis'
+  = form.error_message_on :description
+  %br
+  = form.text_area :description, :size => '80x6'
+
+%hr
+
+%div
+  = form.label :company, 'Marka'
+  = form.error_message_on :company
+  = form.collection_select :company, Company.all, :name, :name, { :include_blank => true }
+
+%div
+  = form.label :kind, 'Typ'
+  = form.error_message_on :kind
+  = form.text_field :kind
+   
+%div
+  = form.label :capacity, 'Pojemność'
+  = form.error_message_on :capacity
+  = form.text_field :capacity, :size => 20
+
+%div
+  = form.label :year, 'Rok'
+  = form.error_message_on :year
+  = form.text_field :year, :size => 20
+
+%div
+  = form.label :mileage, 'Przebieg'
+  = form.error_message_on :mileage
+  = form.text_field :mileage, :size => 20
+
+%div
+  = form.label :price, 'Cena'
+  = form.error_message_on :price
+  = form.text_field :price, :size => 20
+
+%div
+  = form.hidden_field :serial
 

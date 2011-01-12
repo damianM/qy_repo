@@ -6,17 +6,17 @@
 %div
   = form.label :seller, 'Sprzedaje'
   = form.error_message_on :seller
-  = form.select :seller, options_for_select(sellers_for_select), :include_blank => true
+  = form.select :seller, options_for_select(sellers_for_select, form.object.seller), :include_blank => true
 
 %div
   = form.label :condition, 'Rodzaj'
   = form.error_message_on :condition
-  = form.select :kind, options_for_select(conditions_for_select), :include_blank => true
+  = form.select :condition, options_for_select(conditions_for_select, form.object.condition), :include_blank => true
     
 %div
   = form.label :category, 'Typ'
   = form.error_message_on :category
-  = form.select :category, options_for_select(categories_for_select), :include_blank => true
+  = form.select :category, options_for_select(categories_for_select, form.object.category), :include_blank => true
 
 %div
   = form.label :email, 'Email'

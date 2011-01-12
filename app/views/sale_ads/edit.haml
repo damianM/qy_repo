@@ -6,7 +6,7 @@
 
     %div
       = submit_tag 'Zapisz', :class => 'submit'
-      = link_to 'Anuluj', banners_path, :class => 'submit'
+      = link_to 'Anuluj', sale_ads_path, :class => 'submit'
 
     %div
       = render :partial => 'assets/new', :locals => { :object => @sale_ad, :asset_type => "Image" }

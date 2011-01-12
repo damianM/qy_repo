@@ -16,7 +16,7 @@ class SaleAdsController < ApplicationController
     @sale_ad = SaleAd.new(params[:sale_ad])
 
     if @sale_ad.save
-      flash[:notice] = "Ogłoszenie zostało dodana."
+      flash[:notice] = "Ogłoszenie zostało dodane."
 
       redirect_to sale_ads_path
     else
@@ -44,6 +44,13 @@ class SaleAdsController < ApplicationController
       flash[:error]  = "Edycja nie powiodła się."
       render :action => 'edit'
     end
+  end
+
+  def destroy
+    @sale_ad = SaleAd.find(params[:id])
+    @sale_ad.destroy
+    flash[:notice] = "Ogłoszenie zostało usunięte."
+    redirect_to sale_ads_path
   end
 
 
