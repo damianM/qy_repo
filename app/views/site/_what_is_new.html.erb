@@ -1,16 +1,13 @@
 <div class="partial">
   <div class="header what_is_new"></div>
   <div class='body'>
-    <% events.each do |e| %>
+    <% what_news.each do |wn| %>
 
-      <h2><%=e.title%></h2>
+      <h2><%=wn.title%></h2>
 
       <p>
-        <%= ntobr e.relation %>
+        <%= ntobr wn.content %>
       </p>
-      <div class="button_silver_67" style="float:right">
-        <%= link_to "Więcej",event_path(e) %>
-      </div>
       <div class="clr"></div>
     <% end %>
   </div>

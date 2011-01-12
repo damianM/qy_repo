@@ -1,0 +1,2 @@
+module WhatNewsHelper
+end
