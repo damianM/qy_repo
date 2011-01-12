@@ -1,8 +1,12 @@
-- form_for @sale_ad do |form|
-  = render :partial => 'fields', :locals => { :form => form }
+- form_for @sale_ad, :html => { :class => 'admin' } do |form|
+  %fieldset
+    %legend Ogłoszenie
 
-  %div
-    = submit_tag 'Zapisz', :class => 'submit'
-    = link_to 'Anuluj', banners_path, :class => 'submit'
+    = render :partial => 'fields', :locals => { :form => form }
 
-= render :partial => 'assets/new', :locals => { :object => @sale_ad, :asset_type => "Image" }
+    %div
+      = submit_tag 'Zapisz', :class => 'submit'
+      = link_to 'Anuluj', banners_path, :class => 'submit'
+
+    %div
+      = render :partial => 'assets/new', :locals => { :object => @sale_ad, :asset_type => "Image" }

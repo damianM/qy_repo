@@ -1,5 +1,4 @@
 class Ad < ActiveRecord::Base
-
   attr_accessor :serial
   
   validates_presence_of :title

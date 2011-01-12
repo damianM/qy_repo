@@ -30,7 +30,7 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
 
   config.gem 'haml',     :version => '3.0.18'
-  #config.gem 'rmagick',  :version => '2.3.1',  :lib => 'RMagick'
+  config.gem 'rmagick',  :version => '2.13.1',  :lib => 'RMagick'
 
   config.gem "authlogic"
   config.gem "rvideo"

@@ -53,3 +53,7 @@ form.user_edit label {
   font-weight: bold;
   font-size: 8pt;
 }
+
+form.admin {}
+  form.admin input, form.admin select {
+    display: block; }

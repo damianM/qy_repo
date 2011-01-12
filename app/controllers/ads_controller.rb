@@ -49,5 +49,10 @@ class AdsController < ApplicationController
     end
   end
 
+  def destroy
+    @ad = Ad.find(params[:id])
+    @ad.destroy
+    flash[:notice] = "Ogłoszenie zostało usuniete."
+  end
   
 end
