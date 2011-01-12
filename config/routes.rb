@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 ActionController::Routing::Routes.draw do |map|
+
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -105,6 +107,7 @@ ActionController::Routing::Routes.draw do |map|
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
 
+  map.resources :what_news
   map.resources :sale_ads
   map.resources :buy_ads
   map.resources :workshops, :member => {:show_on_google_map => :get, :make_main => :post}
@@ -140,7 +143,9 @@ ActionController::Routing::Routes.draw do |map|
   #     admin.resources :products
   #   end
 
-  ActionController::Routing::Routes.draw do |map|  
+  ActionController::Routing::Routes.draw do |map|
+  map.resources :what_news
+  
     map.simple_captcha '/simple_captcha/:action', :controller => 'simple_captcha'  
   end
   map.register '/register/:activation_code', :controller => 'activations', :action => 'new'

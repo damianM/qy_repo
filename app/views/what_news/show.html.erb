@@ -1,0 +1,13 @@
+<p>
+  <b>Title:</b>
+  <%=h @what_new.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%=h @what_new.content %>
+</p>
+
+
+<%= link_to 'Edit', edit_what_new_path(@what_new) %> |
+<%= link_to 'Back', what_news_path %>

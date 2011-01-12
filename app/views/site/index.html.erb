@@ -5,7 +5,7 @@
   <%#= render :partial => "site/latest_users", :locals => {:users => @latest_users }%>
   <%#= render :partial => "site/latest_photos", :locals => {:photos => @latest_photos }%> 
 <% else %>
-  <%= render :partial => "site/what_is_new", :locals => {:events => @events} %>
+  <%= render :partial => "site/what_is_new", :locals => {:what_news => @what_news} %>
   <%= render :partial => "site/top_video", :locals => {:video => @top_video } unless @top_video.nil? %>
   <%= render :partial => "site/latest_friends", :locals => {:users => @latest_friends} %> 
   <%= render :partial => "site/latest_friends_videos", :locals => {:videos => @latest_friends_videos }%>

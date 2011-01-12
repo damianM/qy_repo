@@ -12,7 +12,8 @@ class SiteController < ApplicationController
       @latest_friends_videos = current_user.friends.collect{|friend| friend.galleries}.flatten.collect{|gallery| gallery.videos}.flatten.sort{|a,b| a.created_at <=> b.created_at}[0..6]
     end
     
-    @events = Event.find(:all,:limit => 2, :order => "relationdate desc")
+    @what_news = WhatNew.find(:all,:limit => 2, :order => "created_at desc")
+    
     @latest_events = Event.find(:all,:limit => 2, :order => "relationdate desc", :conditions => "relationdate IS NOT NULL")    
   end
 

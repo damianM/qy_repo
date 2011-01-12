@@ -1,0 +1,27 @@
+<div class='partial'>
+  <div class='header admin_content'>
+    <div class='body'>
+      <div id='table_with_pagination'>
+      <table>
+        <tr>
+          <th>Tytuł</th>
+          <th>Treść</th>
+        </tr>
+
+        <% @what_news.each do |what_new| %>
+          <tr>
+            <td><%=h what_new.title %></td>
+            <td><%=h what_new.content %></td>
+            <td><%= link_to 'Edycja', edit_what_news_path(what_new) %></td>
+            <td><%= link_to 'Usuń', what_new, :confirm => 'Are you sure?', :method => :delete %></td>
+          </tr>
+        <% end %>
+      </table>
+
+      <br />
+
+      <%= link_to 'Dodaj', new_what_news_path %>
+      </div>
+    </div>
+  </div>
+</div>
