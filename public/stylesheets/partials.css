@@ -330,6 +330,10 @@
     background-image: url('/images/workshops.jpg');position: relative; top: 2px;height:44px;
 }
 
+.shops{
+    background-image: url('/images/shops.png');position: relative; top: 3px;height:44px;
+}
+
 
 .p_user_find, .p_event_edit, .p_team_appr, .p_event_add, .p_user_var{
     background-image: url('../headers/plain.png');position: relative; top: 3px;height:28px;
