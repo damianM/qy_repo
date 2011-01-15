@@ -1,8 +1,76 @@
 .partial
   .header.ads
   .body
+    %div{:style => 'float: left;'}
+      %br
+      %b Szukaj ogłoszenia
+      %br
+      = select_tag :ad_type, options_for_select(ad_types_for_select)
+      %br
+      %br 
+      %b Kategoria
+      %br
+      = select_tag :category, options_for_select(categories_for_select)
+      %br
+      %br
+      %br
+      %br
+      %span{:style => 'text-decoration: underline;'} wyszukiwanie zaawansowane
+      %br
+      województwo
+      %br
+      = select_tag :state_id, options_for_select(State.all.map{|map| [map.name,map.id]})
+      %br
+      %br
+      cena
+      %br
+      = select_tag :price_range, options_for_select(ad_prices_for_select)
+      PLN
+      %br
+      %br
+      marka
+      %br
+      = select_tag :company, options_for_select(Company.all.map{|company| [company.name,company.id]})
+      %br
+      %br
+      typ
+      %br
+      = text_field_tag :kind
+      %br
+      %br
+      rok
+      %br
+      = select_year Date.today
+      %br
+      %br
+      przebieg
+      %br
+      = select_tag :mileage, options_for_select(ad_mileages_for_select)
+      km
+      %br
+      %br
+      pojemność
+      %br
+      = select_tag :capacity, options_for_select(ad_capacitys_for_select)
+      cm3
+      %br
+      %br
+      rodzaj
+      %br
+      = select_tag :condition, options_for_select(conditions_for_select)
+      %br
+      %br
+      sprzedaje
+      %br
+      = select_tag :seller, options_for_select(sellers_for_select)
+      %br
+      %br
+    %div{:style => 'float: right;padding-top: 30px;'}
+      = link_to image_tag('add_ad.jpg'), new_sale_ad_path
+
+    .clr
     .button_silver_67{:style => "float:right"}
-      = link_to "Więcej", '#'
+      = link_to "Szukaj", '#'
 
     .clr
 
@@ -10,8 +78,24 @@
 .partial
   .header.day_ad
   .body
-
+    - if @day_offer
+      = image_tag(@day_offer.assets.first.public_filename) if !@day_offer.assets.empty?
+      %br
+      = @day_offer.company
+      %br
+      = @day_offer.price
 
 .partial
   .header.special_ads
   .body
+    - @special_ads.each do |special_ad|
+      %div{:style => 'border: solid 1px grey; width: 100%;'}
+        %div{:style => 'float: left;'}
+          = image_tag(special_ad.assets.first.public_filename(:thumb)) if !special_ad.assets.empty?
+        %div{:style => 'float: left;padding-left: 20px;'}
+
+          = special_ad.company
+          %br
+          %br	
+          = special_ad.price
+        .clr  

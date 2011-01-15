@@ -46,7 +46,8 @@ var AjaxUploadHandler = $.inherit({
       AjaxUploadHandler.setFormVisibility();
     }
 
-    FlashMessage.response(response);
+    $('#flash').show();
+    $('#flash').html("<div id='notice'>"+response.message+"</div>");
     return false;
   }
 
@@ -87,12 +88,16 @@ var AjaxUploadHandler = $.inherit({
       $.get('/assets/asset/'+response.asset_id, {}, function(resp) {
         if(resp.success) {
           $('ul#assets').append(resp.content);
-	}
+          $('#flash').show();
+          $('#flash').html("<div id='notice'>"+response.message+"</div>");
+        }       
 	AjaxUploadHandler.setFormVisibility();
       }, 'json');
+    } else {
+      $('#flash').show();
+      $('#flash').html("<div id='error'>"+response.message+"</div>");
     }
 
-    FlashMessage.response(response);
     return false;
   },
 

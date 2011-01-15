@@ -27,6 +27,7 @@ var FlashMessage = $.inherit({
 }, {
   response: function(response) {
     window.flashMessage.show(response.success, response.message);
+
   }
 });
 

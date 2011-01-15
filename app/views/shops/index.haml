@@ -28,7 +28,7 @@
         = image_tag "shadow-small.jpg"
         %br
         %br
-        = image_tag @main_shop.assets.first.public_filename, :style => 'padding-left: 30px;' if @main_shop.assets.first
+        = image_tag @main_shop.assets.first.public_filename(:main), :style => 'padding-left: 30px;' if @main_shop.assets.first
     .clr
     
     %br
