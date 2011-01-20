@@ -20,7 +20,7 @@ class SaleAdsController < ApplicationController
     if @sale_ad.save
       flash[:notice] = "Ogłoszenie zostało dodane."
 
-      redirect_to sale_ads_path
+      redirect_to home_ads_path
     else
       flash[:error]  = "Próba utworzenia ogłoszenia nie powiodła się."
       render :action => 'new', :layout => 'application'
@@ -43,7 +43,7 @@ class SaleAdsController < ApplicationController
 
     if @sale_ad.update_attributes(params[:sale_ad])
       flash[:notice] = "Edycja przebiegła pomyślnie."
-      redirect_to sale_ads_path
+      redirect_to home_ads_path
     else
       flash[:error]  = "Edycja nie powiodła się."
       render :action => 'edit', :layout => 'application'

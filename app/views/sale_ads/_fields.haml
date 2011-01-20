@@ -4,68 +4,68 @@
 %br
 .form_row
   = form.label :seller, 'Sprzedaje'
-  = form.error_message_on :seller
   = form.select :seller, options_for_select(sellers_for_select, form.object.seller), :include_blank => true
+  = form.error_message_on :seller
 %br   
 .form_row
   = form.label :condition, 'Rodzaj'
-  = form.error_message_on :condition
   = form.select :condition, options_for_select(conditions_for_select, form.object.condition), :include_blank => true
+  = form.error_message_on :condition
 %br       
 .form_row
   = form.label :category, 'Typ'
-  = form.error_message_on :category
   = form.select :category, options_for_select(categories_for_select, form.object.category), :include_blank => true
+  = form.error_message_on :category
 %br   
 .form_row
   = form.label :email, 'Email'
-  = form.error_message_on :email
   = form.text_field :email
+  = form.error_message_on :email
 %br   
 .form_row
   = form.label :phone, 'Telefon'
-  = form.error_message_on :phone
   = form.text_field :phone
+  = form.error_message_on :phone
 %br   
 .form_row
   = form.label :title, 'Tytuł'
-  = form.error_message_on :title
   = form.text_field :title
+  = form.error_message_on :title
 %br       
 .form_row
   = form.label :description, 'Opis'
-  = form.error_message_on :description
   = form.text_area :description, :size => '35x14'
+  = form.error_message_on :description
 %br   
 .form_row
   = form.label :company, 'Marka'
-  = form.error_message_on :company
   = form.collection_select :company, Company.all, :name, :name, { :include_blank => true }
+  = form.error_message_on :company
 %br   
 .form_row
   = form.label :kind, 'Typ'
-  = form.error_message_on :kind
   = form.text_field :kind
+  = form.error_message_on :kind
 %br   
 .form_row
   = form.label :capacity, 'Pojemność'
-  = form.error_message_on :capacity
   = form.text_field :capacity
+  = form.error_message_on :capacity
 %br
 .form_row
   = form.label :year, 'Rok'
-  = form.error_message_on :year
   = form.text_field :year
+  = form.error_message_on :year
 %br
 .form_row
   = form.label :mileage, 'Przebieg'
-  = form.error_message_on :mileage
   = form.text_field :mileage
+  = form.error_message_on :mileage
 %br
 .form_row
   = form.label :price, 'Cena'
-  = form.error_message_on :price
   = form.text_field :price
+  = form.error_message_on :price
 %br
 
 .form_row
