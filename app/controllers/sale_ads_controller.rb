@@ -10,6 +10,8 @@ class SaleAdsController < ApplicationController
   def new
     @sale_ad = SaleAd.new
     @sale_ad.serial = SaleAd.generate_serial
+    
+    render :action => 'new', :layout => 'application'
   end
 
   def create
@@ -21,7 +23,7 @@ class SaleAdsController < ApplicationController
       redirect_to sale_ads_path
     else
       flash[:error]  = "Próba utworzenia ogłoszenia nie powiodła się."
-      render :action => 'new'
+      render :action => 'new', :layout => 'application'
     end
   end
   
@@ -32,6 +34,8 @@ class SaleAdsController < ApplicationController
   def edit
     @sale_ad = SaleAd.find(params[:id])
     @sale_ad.serial = SaleAd.generate_serial
+
+    render :action => 'edit', :layout => 'application'
   end
 
   def update
@@ -42,7 +46,7 @@ class SaleAdsController < ApplicationController
       redirect_to sale_ads_path
     else
       flash[:error]  = "Edycja nie powiodła się."
-      render :action => 'edit'
+      render :action => 'edit', :layout => 'application'
     end
   end
 

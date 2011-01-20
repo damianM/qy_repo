@@ -9,7 +9,8 @@ class BuyAdsController < ApplicationController
   
   def new
     @buy_ad = BuyAd.new
-    @buy_ad.serial = BuyAd.generate_serial
+
+    render :action => 'new', :layout => 'application'
   end
 
   def create
@@ -20,7 +21,7 @@ class BuyAdsController < ApplicationController
       redirect_to buy_ads_path
     else
       flash[:error]  = "Próba utworzenia ogłoszenia nie powiodła się."
-      render :action => 'new'
+      render :action => 'new', :layout => 'application'
     end
   end
   
@@ -30,7 +31,8 @@ class BuyAdsController < ApplicationController
   
   def edit
     @buy_ad = BuyAd.find(params[:id])
-    @buy_ad.serial = BuyAd.generate_serial
+
+    render :action => 'edit', :layout => 'application'
   end
 
   def update
@@ -40,7 +42,7 @@ class BuyAdsController < ApplicationController
       redirect_to buy_ads_path
     else
       flash[:error]  = "Edycja nie powiodła się."
-      render :action => 'edit'
+      render :action => 'edit', :layout => 'application'
     end
   end
 

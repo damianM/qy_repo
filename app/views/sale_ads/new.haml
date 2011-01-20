@@ -1,12 +1,16 @@
-- form_for @sale_ad, :html => { :class => 'admin' } do |form|
-  %fieldset
-    %legend Ogłoszenie
+.partial
+  .header.ads
+  .body
+    - form_for @sale_ad do |form|
+      = render :partial => 'fields', :locals => { :form => form }
 
-    = render :partial => 'fields', :locals => { :form => form }
+      .form_row
+        = form.submit "Zapisz", :class => "submit"
+      %span.required_field 
+        * - pole wymagane
 
-    %div
-      = submit_tag 'Zapisz', :class => 'submit'
-      = link_to 'Anuluj', sale_ads_path, :class => 'submit'
+    = render :partial => 'assets/new', :locals => { :object => @sale_ad, :asset_type => "Image" }
 
-%div{:style => 'float:right; margin:30px 10px;'}
-  = render :partial => 'assets/new', :locals => { :object => @sale_ad, :asset_type => "Image" }
+    .clr
+
+

@@ -110,6 +110,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :what_news
   map.resources :sale_ads
   map.resources :buy_ads
+  map.resources :ads
   map.resources :workshops, :member => {:show_on_google_map => :get, :make_main => :post}
   map.resources :shops, :member => {:show_on_google_map => :get}
   map.resources :assets
