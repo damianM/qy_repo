@@ -75,7 +75,7 @@
     margin-top: 2px;
     width: 337px;
     font-size: 7pt;
-    font-family: Arial;
+    font: 11px Tahoma,Verdana,sans-serif;
     text-align: left;
     white-space: nowrap;
 }

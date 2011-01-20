@@ -18,14 +18,16 @@
         <%= f.check_box :remember_me, :class => "remember_me" %>
       </div>
       <div class="form_row">
-        <%= f.submit "Zaloguj!" %>
+        <%= f.submit "Zaloguj!", :class => 'submit' %>
       </div>
+
 
     <% end %>
     <hr style="width:75%;margin-top:15px;"/>
-    Nie masz jeszcze konta? <%= link_to "Zarejestruj się", new_user_path %><br/>
-    Nie pamiętasz hasła? <%= link_to "Kliknij!", ulogin_users_path %>
-    
+    <p style='font-size: 10px;'>
+      Nie masz jeszcze konta? <%= link_to "Zarejestruj się", new_user_path %><br/>
+      Nie pamiętasz hasła? <%= link_to "Kliknij!", ulogin_users_path %>
+    </p>
   </div>
 
 </div>
