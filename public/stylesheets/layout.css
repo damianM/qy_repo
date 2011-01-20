@@ -190,3 +190,10 @@ form span.error , form label.error, form .formError {
 table.gallery_list .gallery {
  width: 220px;
 }
+
+div.ads_search {
+  float: left; }
+  div.ads_search div {
+    margin-bottom:25px; }
+  div.ads_search label {
+    font-weight: bold; }

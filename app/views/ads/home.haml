@@ -1,70 +1,72 @@
 .partial
   .header.ads
   .body
-    %div{:style => 'float: left;'}
-      %br
-      %b Szukaj ogłoszenia
-      %br
-      = select_tag :ad_type, options_for_select(ad_types_for_select)
-      %br
-      %br 
-      %b Kategoria
-      %br
-      = select_tag :category, options_for_select(categories_for_select)
-      %br
-      %br
-      %br
-      %br
-      %span{:style => 'text-decoration: underline;'} wyszukiwanie zaawansowane
-      %br
-      województwo
-      %br
-      = select_tag :state_id, options_for_select(State.all.map{|map| [map.name,map.id]})
-      %br
-      %br
-      cena
-      %br
-      = select_tag :price_range, options_for_select(ad_prices_for_select)
-      PLN
-      %br
-      %br
-      marka
-      %br
-      = select_tag :company, options_for_select(Company.all.map{|company| [company.name,company.id]})
-      %br
-      %br
-      typ
-      %br
-      = text_field_tag :kind
-      %br
-      %br
-      rok
-      %br
-      = select_year Date.today
-      %br
-      %br
-      przebieg
-      %br
-      = select_tag :mileage, options_for_select(ad_mileages_for_select)
-      km
-      %br
-      %br
-      pojemność
-      %br
-      = select_tag :capacity, options_for_select(ad_capacitys_for_select)
-      cm3
-      %br
-      %br
-      rodzaj
-      %br
-      = select_tag :condition, options_for_select(conditions_for_select)
-      %br
-      %br
-      sprzedaje
-      %br
-      = select_tag :seller, options_for_select(sellers_for_select)
-      %br
-      %br
+    %div.ads_search
+      - form_tag '/ads/search' do
+        %fieldset{ :style => 'border:none;'}
+          %div
+            = label_tag :ad_type, 'Szukaj ogłoszenia'
+            %br
+            = select_tag :ad_type, options_for_select(ad_types_for_select)
+
+          %div
+            = label_tag :category, 'Kategoria'
+            %br
+            = select_tag :category, options_for_select(categories_for_select)
+
+          %span{:style => 'text-decoration: underline;'} wyszukiwanie zaawansowane
+          %br
+          %br
+
+          %div
+            = label_tag :state_id, 'Województwo'
+            %br
+            = select_tag :state_id, options_for_select(State.all.map{|map| [map.name, map.id]})
+
+          %div
+            = label_tag :price_range, 'Cena'
+            %br
+            = select_tag :price_range, options_for_select(ad_prices_for_select)
+            PLN
+
+          %div
+            = label_tag :company, 'Marka'
+            %br
+            = select_tag :company, options_for_select(Company.all.map{|company| [company.name, company.name]})
+
+          %div
+            = label_tag :kind, 'Typ'
+            %br
+            = text_field_tag :kind
+
+          %div
+            = label_tag :year, 'Rok'
+            %br
+            = select_year Date.today
+
+          %div
+            = label_tag :mileage_range, 'Przebieg'
+            %br
+            = select_tag :mileage_range, options_for_select(ad_mileages_for_select)
+            km
+
+          %div
+            = label_tag :capacity, 'Pojemność'
+            %br
+            = select_tag :capacity, options_for_select(ad_capacitys_for_select)
+            cm3
+
+          %div
+            = label_tag :condition, 'Rodzaj'
+            %br
+            = select_tag :condition, options_for_select(conditions_for_select)
+
+          %div
+            = label_tag :seller, 'Sprzedaje'
+            %br
+            = select_tag :seller, options_for_select(sellers_for_select)
+
+
     %div{:style => 'float: right;padding-top: 30px;'}
       = link_to image_tag('add_ad.jpg'), new_sale_ad_path
 
