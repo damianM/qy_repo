@@ -12,7 +12,7 @@
           %div
             = label_tag :category, 'Kategoria'
             %br
-            = select_tag :category, options_for_select(categories_for_select)
+            = select_tag :category, '<option value=""></option>' + options_for_select(categories_for_select)
 
           %span{:style => 'text-decoration: underline;'} wyszukiwanie zaawansowane
           %br
@@ -21,18 +21,18 @@
           %div
             = label_tag :state_id, 'Województwo'
             %br
-            = select_tag :state_id, options_for_select(State.all.map{|map| [map.name, map.id]})
+            = select_tag :state_id, '<option value=""></option>' + options_for_select(State.all.map{|map| [map.name, map.id]})
 
           %div
             = label_tag :price_range, 'Cena'
             %br
-            = select_tag :price_range, options_for_select(ad_prices_for_select)
+            = select_tag :price_range, '<option value=""></option>' + options_for_select(ad_prices_for_select)
             PLN
 
           %div
             = label_tag :company, 'Marka'
             %br
-            = select_tag :company, options_for_select(Company.all.map{|company| [company.name, company.name]})
+            = select_tag :company, '<option value=""></option>' + options_for_select(Company.all.map{|company| [company.name, company.name]})
 
           %div
             = label_tag :kind, 'Typ'
@@ -47,35 +47,33 @@
           %div
             = label_tag :mileage_range, 'Przebieg'
             %br
-            = select_tag :mileage_range, options_for_select(ad_mileages_for_select)
+            = select_tag :mileage_range, '<option value=""></option>' + options_for_select(ad_mileages_for_select)
             km
 
           %div
             = label_tag :capacity, 'Pojemność'
             %br
-            = select_tag :capacity, options_for_select(ad_capacitys_for_select)
+            = select_tag :capacity, '<option value=""></option>' + options_for_select(ad_capacitys_for_select)
             cm3
 
           %div
             = label_tag :condition, 'Rodzaj'
             %br
-            = select_tag :condition, options_for_select(conditions_for_select)
+            = select_tag :condition, '<option value=""></option>' + options_for_select(conditions_for_select)
 
           %div
             = label_tag :seller, 'Sprzedaje'
             %br
-            = select_tag :seller, options_for_select(sellers_for_select)
+            = select_tag :seller, '<option value=""></option>' + options_for_select(sellers_for_select)
 
+          .button_silver_67{:style => "float:right"}
+            = submit_tag 'Szukaj'
 
     %div{:style => 'float: right;padding-top: 30px;'}
       = link_to image_tag('add_ad.jpg'), new_sale_ad_path
 
     .clr
-    .button_silver_67{:style => "float:right"}
-      = link_to "Szukaj", '#'
-
-    .clr
-
+    
 
 .partial
   .header.day_ad

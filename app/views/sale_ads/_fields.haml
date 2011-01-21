@@ -38,9 +38,14 @@
   = form.error_message_on :description
 %br   
 .form_row
-  = form.label :company, 'Marka'
-  = form.collection_select :company, Company.all, :name, :name, { :include_blank => true }
-  = form.error_message_on :company
+  = form.label :company_id, 'Marka'
+  = form.collection_select :company_id, Company.all, :id, :name, { :include_blank => true }
+  = form.error_message_on :company_id
+%br   
+.form_row
+  = form.label :state_id, 'Województwo'
+  = form.collection_select :state_id, State.all, :id, :name, { :include_blank => true }
+  = form.error_message_on :state_id
 %br   
 .form_row
   = form.label :kind, 'Typ'
