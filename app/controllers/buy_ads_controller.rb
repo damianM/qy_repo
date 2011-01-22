@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 class BuyAdsController < ApplicationController
+  before_filter :login_required
   
   layout 'admin'
   

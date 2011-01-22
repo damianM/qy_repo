@@ -1,3 +1,44 @@
 .partial
   .header.ads
   .body
+    - @ads.each do |ad|
+      .event
+        .event_header
+          %span
+            %span{ :style => "font-weight:normal;border:none;color:#777;" } Kategoria:
+            = ad.is_a?(SaleAd) ? 'Sprzedam' : 'Kupię'
+
+        .event_body
+          %div
+            %span{ :style => "font-size:10pt;" }= ad.title
+
+          .clr
+
+          .col1_event
+            .event_body_left
+              %br
+              .event_body_info
+                = "Województwo: #{ad.state.name}" if ad.state
+                %br
+                = "Kategoria: #{categories_in_pl(ad.category)}"
+                %br
+                = "Marka: #{ad.company.name}" if ad.company
+                %br
+                = "Stan: #{conditions_in_pl(ad.condition)}"
+                %br
+                = "Rok: #{ad.year}"
+                %br
+                = "Cena: #{ad.price}"
+                %br
+                = "Telefon: #{ad.phone}"
+                %br
+      
+          .col2_event
+            %p.event_description
+              = ntobr (cut ad.description, 200)
+
+          .clr
+
+    .col1
+      .button_gold_100{ :style => "font-size:10pt; font-weight: bold;margin-top:7px;" }
+        = link_to "Szukaj ponownie", home_ads_path

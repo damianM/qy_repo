@@ -16,6 +16,24 @@ module AdsHelper
   def ad_types_for_select
     [['wszystkie','all'],['sprzedam','sale_ad'],['kupie','buy_ad']]
   end
+
+  def conditions_in_pl condition
+    case condition
+      when 'new' then 'nowy'
+      when 'used' then 'używany'
+      when 'damaged' then 'uszkodzony'
+      else 'nie określonio'
+    end
+  end
+
+  def categories_in_pl category
+    case category
+      when 'quad' then 'pojazd'
+      when 'oarts' then 'części'
+      when 'accessories' then 'akcesoria'
+      else 'inne'
+    end
+  end
   
   def ad_prices_for_select
     array = []

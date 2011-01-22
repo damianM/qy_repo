@@ -8,19 +8,19 @@
   = form.error_message_on :seller
 %br
 .form_row
-  = form.label :condition, 'Rodzaj'
+  = form.label :condition, 'Stan'
   = form.select :condition, options_for_select(conditions_for_select, form.object.condition), :include_blank => true
   = form.error_message_on :condition
 %br
 .form_row    
-  = form.label :category, 'Typ'
+  = form.label :category, 'Kategoria'
   = form.select :category, options_for_select(categories_for_select, form.object.category), :include_blank => true
   = form.error_message_on :category
 %br
 .form_row
   = form.label :email, 'Email'
-  = form.error_message_on :email
   = form.text_field :email
+  = form.error_message_on :email
 %br
 .form_row
   = form.label :phone, 'Telefon'
