@@ -50,7 +50,7 @@ div.message div.login{
 }
 div.message div.login a{
     color: black;
-    font-size:10pt;
+    font-size:9pt;
     font-weight:bold;
 }
 div.message div.title {
@@ -63,11 +63,12 @@ div.message div.title a{
     margin-top: 5px;
     text-align:left;
     padding-left:10px;
-    font-size:9pt;
+    font-size:8pt;
 }
 div.message div.msg_delete {
     display:block;
     float:right;
+    padding-top: 6px;
 }
 div.message div.msg_delete a{
     display: block;
@@ -106,3 +107,11 @@ div.msg_body{
 div.unread {
     background-color:#cca;
 }
+
+span.back_link_message a {
+color: #999999;
+padding-right: 80px;}
+
+span.remove_message a {
+color: #999999;
+padding-right: 80px;}

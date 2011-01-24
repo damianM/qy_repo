@@ -2,29 +2,14 @@
   .header.p_user_var Znalezione filmy
   .body
     - unless  @videos.blank?
-      - @videos.each do |video|
-        .event
-          .event_body
-            .col1_dif
-              .event_body_left
-                %br
-                .event_body_info
-                  = "Dodał: #{video.gallery.galleriable.is_a?(User) ? video.gallery.galleriable.login : video.gallery.galleriable.user.login}"
-                  %br
-                  = "Dnia: #{video.created_at.strftime("%d.%m.%Y, %H:%M")}"
-                  %br
-                  = "Ocena: #{Rate.average(:value, :conditions => ['rateatable_id = ? AND rateatable_type = ?', video.id, 'Video']) || '0'}"
-                  %br
-                  = "Ilość wyświetleń: #{video.counter}"
-                  %br
-                  = link_to "Zobacz", video_path(video), {:target => "_parent"}
-                  %br
-
-            .col2_dif
-              %p.event_description
-                = truncate(video.description, 200, '...')
-
-            .clr
-
+      %table.gallery
+        - @videos.in_groups_of(3).each do |triple|
+          %tr
+            - triple.each do |video|
+              %td
+                .photo_m
+                  - unless video.nil?
+                    = link_to((video.thumbnail ? (image_tag(video.thumbnail.public_filename)) : ("Miniaturka niedostępna")), video_path(video))
+                    = render :partial => "galleries/asset", :object => video
     - else
       Niestety, nie znaleziono filmów...

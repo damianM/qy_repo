@@ -23,13 +23,15 @@
 
 
 
-    <div class="message_other">Wiadomość <%=@message.sender==curuser ? "wysłana" : "otrzymana"%>: <%=lt @message.created_at%></div>
+    <div class="message_other" style='text-align: center; color: #999999; font-size: 8pt;'>Wiadomość <%=@message.sender==curuser ? "wysłana" : "otrzymana"%>: <%=lt @message.created_at%></div>
     <div style="margin-top:20px;">
       <div class="button_link2 col1" style="text-align:left;">
-        <%= link_ "Usuń", "messages", "del", @message.id if @message.sender!=@user%>
-        <%= link_ "Powrót do #{@message.sender==curuser ? "wysłanych" : "otrzymanych"}", "messages", "#{@message.sender==curuser ? "sent" : "received"}"%>
-      </div>
-      <div class="button_link_msg col2">
+        <span class='remove_message'>
+          <%= link_ "Usuń", "messages", "del", @message.id if @message.sender!=@user%>
+        </span>
+        <span class='back_link_message'>
+          <%= link_ "Powrót do #{@message.sender==curuser ? "wysłanych" : "otrzymanych"}", "messages", "#{@message.sender==curuser ? "sent" : "received"}"%>
+        </span>
         <%= link_ "Odpowiedz", "messages", "reply", @message.id if @message.sender!=@user%>
       </div>
       <div class="clr">

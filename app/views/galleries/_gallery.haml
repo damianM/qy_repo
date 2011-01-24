@@ -1,12 +1,12 @@
 .gallery
-  .lcol_user= link_to image_tag(gallery.thumbnail ? gallery.thumbnail.public_filename : '../gallery.png'), eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_gallery_path(@galleriable, gallery)")
+  .lcol_user{:style => 'min-height: 110px;'}= link_to image_tag(gallery.thumbnail ? gallery.thumbnail.public_filename : '../gallery.png'), eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_gallery_path(@galleriable, gallery)")
 
-  .rcol_user
-    .about_links
+  .rcol_user{:style => "color: #999999;"}
+    .about_links{:style => 'width: 110px;'}
       .name= link_to gallery.name, eval("#{@galleriable.is_a?(User) ? 'user' : 'event'}_gallery_path(@galleriable, gallery)")
       .photos
-        Zdjęć:
-        %div= gallery.photos.nil? ? 0 : gallery.photos.length
+        = "Zdjęć: "
+        = gallery.photos.nil? ? 0 : gallery.photos.length
       .movies
         Filmów:
         %d= gallery.videos.nil? ? 0 : gallery.videos.length

@@ -131,4 +131,8 @@ class User < ActiveRecord::Base
     "#{id}-#{login.to_url_format}"
   end
 
+  def active_teams
+    teamusers.collect{|teamuser| teamuser.team if teamuser.status='member' or status='owner'}.compact
+  end
+
 end

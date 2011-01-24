@@ -42,11 +42,11 @@
 .rcol_user{
     float:right;
     display:block;
-    width:225px;
+    width:156px;
 }
 
 div.about_links > div{
-    font-size: 9pt;
+    font-size: 8pt;
     border-bottom: 1px dotted #aaa;
     height: 25px;
     height: 100%;
@@ -70,6 +70,7 @@ div.about_head{
 div.about_head .photo { 
 	float:left;
 	width: 110px;
+	padding-top: 6px;
 }
 div.about_head .user-info {
 	float:left;
@@ -139,4 +140,13 @@ div.user_links a{
 .g-about > div {
 	font-size:9pt;
 	font-weight:bold;
+}
+
+.request_friendship_in_profile_page a{
+color: #131a6b;
+font-weight: bold;}
+
+span.label{
+  font-size: 9pt;
+  color: #999999;
 }

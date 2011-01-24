@@ -73,6 +73,7 @@ body{
     float:left;
     display: block;
     margin-left: 10px;
+    margin-top: -4px;
 }
 
 .clr{
@@ -188,7 +189,7 @@ form span.error , form label.error, form .formError {
 }
 
 table.gallery_list .gallery {
- width: 220px;
+ width: 156px;
 }
 
 div.ads_search {
