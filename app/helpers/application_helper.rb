@@ -150,6 +150,21 @@ module ApplicationHelper
   def yes_no_for_select
     [['tak',true],['nie',false]]
   end
+
+  def rate_for_star rating
+    return '0' if rating == '0'
+    rating_difference = rating - rating.to_i.floor
+
+    if rating_difference.zero?
+      return rating.to_i
+    elsif rating_difference > 0 and rating_difference < 0.25
+      return rating.to_i.floor
+    elsif rating_difference > 0.25 and rating_difference < 0.75
+      return rating.to_i.floor + 0.5
+    elsif rating_difference > 0.75
+      return rating.to_i.floor + 1
+    end      
+  end
   
 end
 

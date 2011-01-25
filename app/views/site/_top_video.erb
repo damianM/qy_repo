@@ -8,7 +8,7 @@
     <div class="grey_text" style="font-size:7.5pt;margin-bottom:8px;">
       <div style="float:left;padding-left:75px;color: #999999;">
         Średnia ocena: 
-        <%= image_tag "star_#{@top_video.rate.to_i.floor}.gif" -%>
+        <%= image_tag "star_#{rate_for_star(rated_object.rate)}.gif" -%>
       </div>
       <div style="float:right;padding-right:80px;color: #999999;">Ilość wyświetleń: <%= @top_video.counter %> razy</div>
       <div style="clear:both"></div>
