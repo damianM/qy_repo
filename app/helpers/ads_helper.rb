@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 module AdsHelper
 
-  def conditions_for_select
+  def statuses_for_select
     [['nowy','new'],['używany','used'],['uszkodzony','damaged'],['nie określono','not_specified']]
   end
 
@@ -17,8 +17,8 @@ module AdsHelper
     [['wszystkie','all'],['sprzedam','sale_ad'],['kupie','buy_ad']]
   end
 
-  def conditions_in_pl condition
-    case condition
+  def statuses_in_pl status
+    case status
       when 'new' then 'nowy'
       when 'used' then 'używany'
       when 'damaged' then 'uszkodzony'
@@ -29,7 +29,7 @@ module AdsHelper
   def categories_in_pl category
     case category
       when 'quad' then 'pojazd'
-      when 'oarts' then 'części'
+      when 'parts' then 'części'
       when 'accessories' then 'akcesoria'
       else 'inne'
     end

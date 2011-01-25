@@ -30,9 +30,9 @@
             PLN
 
           %div
-            = label_tag :company, 'Marka'
+            = label_tag :company_id, 'Marka'
             %br
-            = select_tag :company, '<option value=""></option>' + options_for_select(Company.all.map{|company| [company.name, company.name]})
+            = select_tag :company_id, '<option value=""></option>' + options_for_select(Company.all.map{|company| [company.name, company.id]})
 
           %div
             = label_tag :kind, 'Typ'
@@ -42,7 +42,7 @@
           %div
             = label_tag :year, 'Rok'
             %br
-            = select_year Date.today
+            = select_year Date.today, :start_year => 2011, :end_year => 1992, :include_blank => true
 
           %div
             = label_tag :mileage_range, 'Przebieg'
@@ -57,9 +57,9 @@
             cm3
 
           %div
-            = label_tag :condition, 'Stan'
+            = label_tag :status, 'Stan'
             %br
-            = select_tag :condition, '<option value=""></option>' + options_for_select(conditions_for_select)
+            = select_tag :status, '<option value=""></option>' + options_for_select(statuses_for_select)
 
           %div
             = label_tag :seller, 'Sprzedaje'

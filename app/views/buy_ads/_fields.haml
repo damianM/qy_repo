@@ -8,9 +8,9 @@
   = form.error_message_on :seller
 %br
 .form_row
-  = form.label :condition, 'Stan'
-  = form.select :condition, options_for_select(conditions_for_select, form.object.condition), :include_blank => true
-  = form.error_message_on :condition
+  = form.label :status, 'Stan'
+  = form.select :status, options_for_select(statuses_for_select, form.object.status), :include_blank => true
+  = form.error_message_on :status
 %br
 .form_row    
   = form.label :category, 'Kategoria'
