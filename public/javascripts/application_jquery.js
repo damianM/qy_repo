@@ -79,12 +79,12 @@ jQuery(document).ready(function() {
 
 function startProcedures(){
   if (screen.width==1024){
-    $('#page').style.width='1000px';
-    $('#main').style.marginLeft='25px';
-    $('#menu').style.left='25px';
-    $('#logo').style.marginLeft='500px';
-    $('#footer').style.marginLeft='25px';
-    $('#page').style.backgroundPosition= '-200px 0px';
+    $('#page').width('1000px');
+    $('#main').css('margin-left','25px');
+    $('#menu').css('left','25px');
+    $('#logo').css('margin-left','500px');
+    $('#footer').css('margin-left','25px');
+    $('#page').css('background-position','-200px 0px');
   }   
   return false;
 }

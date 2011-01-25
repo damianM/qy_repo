@@ -6,15 +6,17 @@
     <% form_for @user_session, :url => {:action => "create"} do |f| %>
 
       <div class="form_row">
-        <%= f.label :login %><br />
+        <b><%= f.label :login %></b>
         <%= f.text_field :login %>
       </div>
+      <br/>
       <div class="form_row">
-        <%= f.label :password, "Hasło" %><br />
+        <b><%= f.label :password, "Hasło" %></b>
         <%= f.password_field :password %>
       </div>
+      <br/>
       <div class="form_row">
-        <%= f.label :remember_me, "Zapamiętaj mnie" %>
+        <b><%= f.label :remember_me, "Zapamiętaj mnie" %></b>
         <%= f.check_box :remember_me, :class => "remember_me" %>
       </div>
       <div class="form_row">

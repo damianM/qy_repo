@@ -5,14 +5,14 @@
     <% form_for(:user) do |f| %>
 
       <div class="form_row">
-        <%= f.label :email, "Email" %><br />
+        <b><%= f.label :email, "Wpisz  swój adres e-mail" %></b>
         <%= f.text_field :email %>
       </div>
       
       <div class="form_row">
-        <%= f.submit "Zresetuj hasło!" %>
+        <%= f.submit "Zresetuj!", :class => 'submit' %>
       </div>
-
+      <br/>
     <% end %>
     <hr style="width:75%;margin-top:15px;"/>
     Jeśli w ciągu 24h nie dotarł do Ciebie email z nowym hasłem spróbuj zresetować hasło raz jeszcze lub skontaktuj się z nami.

@@ -5,7 +5,7 @@
       %p Brak galerii
     - else
       %table.gallery_list
-        - @galleries.in_groups_of(2).each do |pair|
+        - @galleries.in_groups_of(3).each do |pair|
           %tr
             - pair.each do |gallery|
               %td

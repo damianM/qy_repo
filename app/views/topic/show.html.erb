@@ -2,8 +2,8 @@
   <div class="header p_topic">Temat: <%=cut @topic.name,20 %> </div>
   <div class="body">
     <div class="topic_topic">
-      <%=@topic.name%>
-    </div>
+
+    </div> 
     <% for post in @topic.posts %>
       <div class="post" style="position:relative">
 
@@ -30,7 +30,7 @@
         </div>
 
 
-        <div class="post_body">
+        <div class="post_body" style='color: #999999;font-size: 9pt;'>
           <%=h post.content %>
         </div>
 
