@@ -2,7 +2,8 @@
   .header.p_mygalleries
   .body
     - if user.galleries.length > 0
-      - user.galleries[0..3].each do |gallery|
+      - galleries = user.galleries.find(:all, :order => 'id DESC', :limit => 3)
+      - galleries.each do |gallery|
         .gallery-user
           .g-photo
             = link_to image_tag(gallery.thumbnail ? gallery.thumbnail.public_filename : '../gallery.png'), user_gallery_path(user, gallery)
