@@ -10,7 +10,7 @@ module AdsHelper
   end
 
   def categories_for_select
-    [['pojazd','quad'],['części','parts'],['akcesoria','accessories']]
+    [['pojazd','quad'],['części i akcesoria','parts']]
   end
 
   def ad_types_for_select
@@ -30,7 +30,6 @@ module AdsHelper
     case category
       when 'quad' then 'pojazd'
       when 'parts' then 'części'
-      when 'accessories' then 'akcesoria'
       else 'inne'
     end
   end
