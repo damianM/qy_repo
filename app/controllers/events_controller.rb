@@ -92,7 +92,7 @@ class EventsController < ApplicationController
   end
 
   def list
-    @user = params[:id] ? User.find(params[:id]) : curuser
+    @user = (params[:id] and !params[:id].to_i.zero?) ? User.find(params[:id]) : curuser
     @events = @user.events
   end
 
