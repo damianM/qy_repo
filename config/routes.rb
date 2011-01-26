@@ -12,7 +12,8 @@ ActionController::Routing::Routes.draw do |map|
   map.user 'profil/:id', :controller => 'users', :action => 'show'
   map.new_user 'zarejestruj-sie', :controller => 'users', :action => 'new'
   map.ulogin_users 'nie-pamietasz-hasla', :controller => 'users', :action => 'ulogin'
-  map.edit_user 'edytuj-profil/:id', :controller => 'users', :action => 'edit'
+  map.edit_user 'edytuj-profil/:id', :controller => 'users', :action => 'edit', :method => :get
+  map.update_user 'aktualizuj-profil/:id', :controller => 'users', :action => 'update', :method => :put
   map.myteams_user 'moje-grupy/:id', :controller => 'users', :action => 'myteams'
   map.find_users 'znajdz-quadomanika', :controller => 'users', :action => 'find'
  
