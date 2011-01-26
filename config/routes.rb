@@ -84,6 +84,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # ads
   map.home_ads 'ogloszenia', :controller => 'ads', :action => 'home'
+  map.my_ads 'moje-ogloszenia', :controller => 'ads', :action => 'search'
 
   # relationship 
   map.relationship_req 'zapros-do-znajomych/:id', :controller => 'relationship', :action => 'req'

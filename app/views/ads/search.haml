@@ -2,7 +2,8 @@
   .header.ads
   .body
     - if @ads.blank?
-      %p Brak ogłoszeń spełniających kryteria wyszukiwania.
+      %p= request.post? ? "Brak ogłoszeń spełniających kryteria wyszukiwania." : "Nie posiadasz jeszcze żadych ogłoszeń."
+          
     - else
       - @ads.each do |ad|
         .event
@@ -44,4 +45,4 @@
 
     .col1
       .button_gold_100{ :style => "font-size:10pt; font-weight: bold;margin-top:7px;" }
-        = link_to "Szukaj ponownie", home_ads_path
+        = link_to "Wyszukaj", home_ads_path

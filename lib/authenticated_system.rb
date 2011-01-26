@@ -23,6 +23,10 @@ module AuthenticatedSystem
     logged_in? || access_denied
   end
 
+  def admin?
+   logged_in? && current_user.is_admin?
+  end
+
   def access_denied
     respond_to do |format|
       format.html do

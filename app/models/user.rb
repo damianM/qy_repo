@@ -23,6 +23,9 @@ class User < ActiveRecord::Base
   has_many :queries
   has_many :events
 
+  has_many :buy_ads, :dependent => :destroy
+  has_many :sale_ads, :dependent => :destroy
+
   has_many :rates
 
   has_one :quad, :dependent => :destroy

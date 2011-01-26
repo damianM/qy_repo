@@ -1,9 +1,13 @@
-- form_for @buy_ad, :html => { :class => 'admin' } do |form|
-  %fieldset
-    %legend Ogłoszenie
+.partial
+  .header.ads
+  .body
 
-    = render :partial => 'fields', :locals => { :form => form }
+    - form_for @buy_ad, :html => { :class => 'admin' } do |form|
+      %fieldset
+        %legend Ogłoszenie
 
-    %div
-      = submit_tag 'Zapisz', :class => 'submit'
-      = link_to 'Anuluj', buy_ads_path, :class => 'submit'
+        = render :partial => 'fields', :locals => { :form => form }
+
+        %div
+          = submit_tag 'Zapisz', :class => 'submit'
+          = link_to 'Anuluj', buy_ads_path, :class => 'submit'
