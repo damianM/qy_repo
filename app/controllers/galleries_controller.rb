@@ -66,8 +66,8 @@ class GalleriesController < ApplicationController
   def show
     store_location
 
-    @galleriable = params[:user_id].nil? ? Event.find(params[:event_id]) : User.find(params[:user_id])
-    @gallery = @galleriable.galleries.find(params[:id], :include => [ :photos, :videos ])
+    @galleriable = params[:user_id].blank? ? Event.find(params[:event_id]) : User.find(params[:user_id])
+    @gallery = @galleriable.galleries.find(params[:id].to_i, :include => [ :photos, :videos ])
   end
 
 end

@@ -121,7 +121,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :messages, :collection => {:newr => :get, :received => :get, :sent => :get}
 
   map.resources :events, :collection => {:list => :get} do |event|
-    event.resources :galleries
+    event.resources :galleries do |event|
+      event.resources :photos, :member => { :main => :get, :vote => :post }, :collection => { :list => :get }
+    end
   end
 
   map.resources :photos, :member => { :main => :get, :vote => :post }, :collection => { :list => :get }
@@ -129,7 +131,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :teams, :collection => { :list => :get, :find_form => :get, :find => :post, :admin_list => :get }
   map.resources :users, :member => { :friends_index => :get, :friends => :get, :pending => :get, :requested => :get, :myteams => :get}, :collection => {:find => :get } do |user|
-    user.resources :galleries
+    user.resources :galleries do |gallery|
+      gallery.resources :photos, :member => { :main => :get, :vote => :post }, :collection => { :list => :get }
+    end
   end
 
   map.resources :galleries

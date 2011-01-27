@@ -38,8 +38,9 @@ class PhotosController < ApplicationController
 
     @photo = Photo.find(params[:id])
     @gallery = @photo.gallery
+    @galleriable = @gallery.galleriable
 
-    @photo.increase_display_counter if @gallery.galleriable != current_user
+    @photo.increase_display_counter if @galleriable != current_user
 
     params[:per_page] ||= 1
 

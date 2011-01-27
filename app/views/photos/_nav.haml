@@ -8,4 +8,4 @@
   - unless @photo.nil?
     &raquo;
     - label = "zdjęcie" + ( @photo.description != "" ? " #{truncate(@photo.description, 40, '..')}" : "" )
-    = link_to label, photo_path(@photo), :class => "nav_photo"				  
+    = link_to label, "#", :class => "nav_photo"				  

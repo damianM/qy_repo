@@ -1,5 +1,5 @@
 <div class="lcol_user">
-  <%= link_ (gallery.thumb ? image_tag(gallery.thumb.gsub(/\./,"t.")) : "123"), "gallery", "index", gallery.id %>
+  <%= link_to (gallery.thumb ? image_tag(gallery.thumb.gsub(/\./,"t.")) : "123"), eval("#{gallery.galleriable.is_a?(User) ? 'user' : 'event'}_gallery_path(gallery.galleriable, gallery)") %>
 </div>
 <div class="rcol_user">
   <div class="about_links">

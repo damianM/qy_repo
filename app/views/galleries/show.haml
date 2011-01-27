@@ -12,7 +12,10 @@
               %td
                 .photo_m
                   - unless photo.blank?
-                    = link_to image_tag(photo.public_filename(:thumb)), photo_path(photo) if photo
+                    - if @galleriable.is_a?(User)
+                      = link_to image_tag(photo.public_filename(:thumb)), user_gallery_photo_path(@galleriable, @gallery, photo)
+                    - else
+                      = link_to image_tag(photo.public_filename(:thumb)), event_gallery_photo_path(@galleriable, @gallery, photo)
                     = render :partial => "asset", :object => photo
                  
     - unless @gallery.videos.blank?
