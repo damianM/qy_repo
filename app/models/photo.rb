@@ -32,7 +32,7 @@ class Photo < ActiveRecord::Base
   end
   
   def rights?(usr)
-    gallery.rights?(usr)
+    gallery ? gallery.rights?(usr): false
   end
 
   def rate

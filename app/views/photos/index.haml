@@ -10,6 +10,6 @@
           - triple.each do |photo|
             %td
               .photo_m
-                - unless photo.nil?
+                - unless photo.blank?
                   = link_to image_tag(photo.public_filename(:thumb)), photo_path(photo)
                   = render :partial => "galleries/asset", :object => photo
