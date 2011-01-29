@@ -53,6 +53,23 @@ class SaleAdsController < ApplicationController
     flash[:notice] = "Ogłoszenie zostało usunięte."
     redirect_to sale_ads_path
   end
+
+  def set_day_offer
+    @sale_ad = SaleAd.find(params[:id])
+
+    SaleAd.update_all({:day_offer => 0})
+    @sale_ad.update_attribute(:day_offer,1)
+    
+    render :json => {:success => true, :sale_ad_id => @sale_ad.id}
+  end
+
+  def set_special_offer
+    @sale_ad = SaleAd.find(params[:id])
+
+    @sale_ad.update_attribute(:special,1)
+    
+    render :json => {:success => true, :sale_ad_id => @sale_ad.id}
+  end
   
   protected
 

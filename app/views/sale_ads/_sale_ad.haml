@@ -3,6 +3,12 @@
   %td= sale_ad.description
   %td= sale_ad.email
   %td= sale_ad.phone
+  %td
+    - if current_user.is_admin?
+      = check_box_tag "sale_ad_day_offer_#{sale_ad.id}", sale_ad.id, sale_ad.day_offer, :class => 'sale_ad_day_offer'
+  %td
+    - if current_user.is_admin?
+      = check_box_tag "sale_ad_special_#{sale_ad.id}", sale_ad.id, sale_ad.special, :class => 'sale_ad_special_offer'
   %td= link_to 'Edycja', edit_sale_ad_path(sale_ad)
   %td= link_to 'Usuń', sale_ad_path(sale_ad), :method => :delete, :cofirm => 'Czy napewno chcesz usunąć?'
   

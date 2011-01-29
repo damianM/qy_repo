@@ -2,10 +2,14 @@
 
 %table{:class => 'buy_ad tablesorter'}
   %thead
-    %tr.tableHead2
-      %th Tytuł
-      %th Opis
-      %th Email
-      %th Telefon
+    %tr
+      %th{:style => 'text-align:left;'} Tytuł
+      %th{:style => 'text-align:left;'} Opis
+      %th{:style => 'text-align:left;'} Email
+      %th{:style => 'text-align:left;'} Telefon
+      %th{:style => 'text-align:left;'} Oferta dnia
+      %th{:style => 'text-align:left;'} Specjalna
+      %th
+      %th
   %tbody
     = render :partial => 'sale_ad', :collection => @sale_ads
