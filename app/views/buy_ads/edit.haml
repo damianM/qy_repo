@@ -1,13 +1,12 @@
 .partial
   .header.ads
   .body
+    - form_for @buy_ad do |form|
+      = render :partial => 'fields', :locals => { :form => form }
 
-    - form_for @buy_ad, :html => { :class => 'admin' } do |form|
-      %fieldset
-        %legend Ogłoszenie
+      .form_row
+        = form.submit "Zapisz", :class => "submit"
+      %span.required_field 
+        * - pole wymagane
 
-        = render :partial => 'fields', :locals => { :form => form }
-
-        %div
-          = submit_tag 'Zapisz', :class => 'submit'
-          = link_to 'Anuluj', buy_ads_path, :class => 'submit'
+    .clr

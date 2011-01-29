@@ -81,7 +81,7 @@
     - if @day_offer
       = image_tag(@day_offer.assets.first.public_filename) if !@day_offer.assets.empty?
       %br
-      = @day_offer.company
+      = @day_offer.company.name if @day_offer.company
       %br
       = @day_offer.price
 
@@ -94,7 +94,7 @@
           = image_tag(special_ad.assets.first.public_filename(:thumb)) if !special_ad.assets.empty?
         %div{:style => 'float: left;padding-left: 20px;'}
 
-          = special_ad.company
+          = special_ad.company.name if special_ad.company
           %br
           %br	
           = special_ad.price
