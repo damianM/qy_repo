@@ -9,9 +9,9 @@
         .event
           - if current_user && ad.user_id == current_user.id
             .event_edit
-              = link_to (image_tag "/edit.png"), eval("edit_#{ad.class.to_s.underscore}_path(ad)"), {:title => "Edytuj"}
+              = link_to((image_tag "/edit.png"), eval("edit_#{ad.class.to_s.underscore}_path(ad)"), {:title => "Edytuj"})
             .event_delete
-              = link_to (image_tag "/delete.png"), eval("#{ad.class.to_s.underscore}_path(ad)"), {:method => :delete, :title => "Usuń", :confirm => "Czy na pewno chcesz usunąć to ogłoszenie?"}
+              = link_to((image_tag "/delete.png"), eval("#{ad.class.to_s.underscore}_path(ad)"), {:method => :delete, :title => "Usuń", :confirm => "Czy na pewno chcesz usunąć to ogłoszenie?"})
           .event_header
             %span
               %span{ :style => "font-weight:normal;border:none;color:#777;" } Kategoria:
