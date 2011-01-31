@@ -7,39 +7,36 @@
     - else
       - @ads.each do |ad|
         .event
+          - if current_user && ad.user_id == current_user.id
+            .event_edit
+              = link_to((image_tag "/edit.png"), eval("edit_#{ad.class.to_s.underscore}_path(ad)"), {:title => "Edytuj"})
+            .event_delete
+              = link_to((image_tag "/delete.png"), eval("#{ad.class.to_s.underscore}_path(ad)"), {:method => :delete, :title => "Usuń", :confirm => "Czy na pewno chcesz usunąć to ogłoszenie?"})
           .event_header
             %span
               %span{ :style => "font-weight:normal;border:none;color:#777;" } Kategoria:
               = ad.is_a?(SaleAd) ? 'Sprzedam' : 'Kupię'
 
-          .event_body
-            %div
-              %span{ :style => "font-size:10pt;" }= link_to ad.title, ad_path(ad)
-
-            .clr
-
+          .event_body{:style => 'margin:20px 0;'}
             .col1_event
               .event_body_left
-                %br
+                %p
+                  = image_tag ad.assets.first.public_filename(:thumb)  if ad.assets.first
+
+                .clr
+
                 .event_body_info
-                  = "Województwo: #{ad.state.name}" if ad.state
-                  %br
-                  = "Kategoria: #{categories_in_pl(ad.category)}"
-                  %br
-                  = "Marka: #{ad.company.name}" if ad.company
-                  %br
-                  = "Stan: #{statuses_in_pl(ad.status)}"
-                  %br
                   = "Rok: #{ad.year}"
                   %br
                   = "Cena: #{ad.price}"
                   %br
-                  = "Telefon: #{ad.phone}"
-                  %br
       
             .col2_event
-              %p.event_description
-                = image_tag ad.assets.first.public_filename(:thumb)  if ad.assets.first
+              %div
+                %span{ :style => "font-size:10pt;padding-left:15px;white-space:none;" }= link_to ad.title, ad_path(ad)
+	      
+              .clr
+
               %p.event_description
                 = ntobr (cut ad.description, 100)
 

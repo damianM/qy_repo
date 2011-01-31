@@ -47,7 +47,7 @@ class BuyAdsController < ApplicationController
   def destroy
     @buy_ad.destroy
     flash[:notice] = "Ogłoszenie zostało usunięte"
-    redirect_to buy_ads_path
+    redirect_back_or_default(buy_ads_path)
   end
 
   protected

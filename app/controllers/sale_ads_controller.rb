@@ -51,7 +51,7 @@ class SaleAdsController < ApplicationController
   def destroy
     @sale_ad.destroy
     flash[:notice] = "Ogłoszenie zostało usunięte."
-    redirect_to sale_ads_path
+    redirect_back_or_default(sale_ads_path)
   end
 
   def set_day_offer
