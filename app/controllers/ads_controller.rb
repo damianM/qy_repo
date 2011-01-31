@@ -9,6 +9,8 @@ class AdsController < ApplicationController
   end
   
   def search
+    store_location
+
     if request.post?
       conditions =  "id != '' "
       conditions += " and category = '#{params[:category]}'" unless params[:category].blank? 
