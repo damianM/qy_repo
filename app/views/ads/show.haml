@@ -1,0 +1,51 @@
+.partial
+  .header.ads
+  .body{:style => 'background-color:#fff;'}
+
+    %div{:style => 'margin-left:30px;'}
+      %h2
+        = @ad.title
+
+      = image_tag 'shadow.jpg'
+      %br
+   
+      #table
+        %table{:style=>'color:gray;font-size:13px;'}
+          %tbody
+            %tr       
+              %td
+                = "Województwo: #{@ad.state ? @ad.state.name : ''}"
+                %br
+                = "Kategoria: #{categories_in_pl(@ad.category)}"
+                %br
+                = "Marka: #{@ad.company ? @ad.company.name : ''}"
+                %br
+                = "Stan: #{statuses_in_pl(@ad.status)}"
+              %td
+                = "Rok: #{@ad.year}"
+                %br
+                = "Cena: #{@ad.price}"
+                %br
+                = "Telefon: #{@ad.phone}"
+
+      = image_tag 'shadow.jpg'
+      %br
+
+    %div{:style => 'background-color:#fffdca;padding:5px;'}
+      = @ad.description
+
+    %br
+
+    = will_paginate @photos
+
+    %br
+
+    - @photos.each do |photo|
+      = image_tag @photos[0].public_filename(:main), { :style => "margin:4px 0px 4px 0px;" }
+      %br
+
+
+    %div{:style => 'margin-top:25px;'}
+      %p{:style => 'text-align:center;margin:0px;'}
+        = link_to 'powrót do listy ogłoszeń', ads_path, {:style => 'color:gray'	}
+      = image_tag 'shadow.jpg', { :style => 'border:none;padding:0;'}

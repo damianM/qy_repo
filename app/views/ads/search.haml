@@ -14,7 +14,7 @@
 
           .event_body
             %div
-              %span{ :style => "font-size:10pt;" }= ad.title
+              %span{ :style => "font-size:10pt;" }= link_to ad.title, ad_path(ad)
 
             .clr
 

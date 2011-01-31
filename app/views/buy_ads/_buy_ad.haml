@@ -1,6 +1,6 @@
 %tr{:id => "buy_ad_#{buy_ad.id}", :class=> 'buy_ad'}
   %td= buy_ad.title
-  %td= ntobr (cut buy_ad.description, 100)
+  %td= ntobr (cut buy_ad.description, 50)
   %td= buy_ad.email
   %td= buy_ad.phone
   %td= link_to 'Edycja', edit_buy_ad_path(buy_ad)
