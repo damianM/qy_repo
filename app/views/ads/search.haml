@@ -39,7 +39,9 @@
       
             .col2_event
               %p.event_description
-                = ntobr (cut ad.description, 200)
+                = image_tag ad.assets.first.public_filename(:thumb)  if ad.assets.first
+              %p.event_description
+                = ntobr (cut ad.description, 100)
 
             .clr
 
