@@ -14,7 +14,7 @@
               = link_to((image_tag "/delete.png"), eval("#{ad.class.to_s.underscore}_path(ad)"), {:method => :delete, :title => "Usuń", :confirm => "Czy na pewno chcesz usunąć to ogłoszenie?"})
           .event_header
             %span
-              %span{ :style => "font-weight:normal;border:none;color:#777;white-space:none;" } Kategoria:
+              %span{ :style => "font-weight:normal;border:none;color:#777;" } Kategoria:
               = ad.is_a?(SaleAd) ? 'Sprzedam' : 'Kupię'
 
           .event_body{:style => 'margin:20px 0;'}
@@ -33,7 +33,7 @@
       
             .col2_event
               %div
-                %span{ :style => "font-size:10pt;padding-left:15px;" }= link_to ad.title, ad_path(ad)
+                %span{ :style => "font-size:10pt;padding-left:15px;white-space:none;" }= link_to ad.title, ad_path(ad)
 	      
               .clr
 
