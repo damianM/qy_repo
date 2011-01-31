@@ -14,7 +14,7 @@ module AdsHelper
   end
 
   def ad_types_for_select
-    [['wszystkie','all'],['sprzedam','sale_ad'],['kupie','buy_ad']]
+    [['wszystkie','all'],['sprzedam','sale_ad'],['kupię','buy_ad']]
   end
 
   def statuses_in_pl status

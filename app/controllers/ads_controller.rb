@@ -41,7 +41,7 @@ class AdsController < ApplicationController
       case params[:ad_type]
       when 'sale_ad'
         @ads = SaleAd.find(:all, :conditions => conditions)
-      when 'buy_add'
+      when 'buy_ad'
         @ads = SaleAd.find(:all, :conditions => conditions)
       else
         @ads = SaleAd.find(:all, :conditions => conditions) + BuyAd.find(:all, :conditions => conditions)
