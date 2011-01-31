@@ -10,7 +10,7 @@ class Ad < ActiveRecord::Base
   
   class << self
     def acceptable_assets_quantity
-      3
+      8
     end
 
     def generate_serial
