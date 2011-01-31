@@ -48,4 +48,13 @@ class AdsController < ApplicationController
   else
     @ads = admin? ? ( BuyAd.all + SaleAd.all ) : ( current_user.buy_ads + current_user.sale_ads )
   end
+
+  def show
+    @ad = Ad.find(params[:id])
+
+    params[:per_page] ||= 1
+    @photos = @ad.assets.paginate(:page => params[:page], :per_page => params[:per_page])
+
+  end
+
 end

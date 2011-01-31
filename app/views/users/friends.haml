@@ -9,4 +9,4 @@
           %tr
             - quarter.each do |user|
               %td
-                = render :partial => "/userinfo", :locals => {:user => user, :protect=> false, :special => "joined"}  if user
+                = render :partial => "/userinfo", :locals => {:user => user, :protect=> false, :special => "friend"}  if user
