@@ -14,7 +14,7 @@
               = link_to (image_tag "/delete.png"), eval("#{ad.class.to_s.underscore}_path(ad)"), {:method => :delete, :title => "Usuń", :confirm => "Czy na pewno chcesz usunąć to ogłoszenie?"}
           .event_header
             %span
-              %span{ :style => "font-weight:normal;border:none;color:#777;" } Kategoria:
+              %span{ :style => "font-weight:normal;border:none;color:#777;white-space:none;" } Kategoria:
               = ad.is_a?(SaleAd) ? 'Sprzedam' : 'Kupię'
 
           .event_body{:style => 'margin:20px 0;'}
@@ -26,19 +26,9 @@
                 .clr
 
                 .event_body_info
-                  = "Województwo: #{ad.state.name}" if ad.state
-                  %br
-                  = "Kategoria: #{categories_in_pl(ad.category)}"
-                  %br
-                  = "Marka: #{ad.company.name}" if ad.company
-                  %br
-                  = "Stan: #{statuses_in_pl(ad.status)}"
-                  %br
                   = "Rok: #{ad.year}"
                   %br
                   = "Cena: #{ad.price}"
-                  %br
-                  = "Telefon: #{ad.phone}"
                   %br
       
             .col2_event
