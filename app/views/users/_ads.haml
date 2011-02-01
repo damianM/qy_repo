@@ -1,11 +1,16 @@
 .partial
   .header.p_mynotice
   .body
-    - ads = user.buy_ads + user.sale_ads
+    - ads = Ad.find(:all, :conditions => ['user_id = ?', user.id], :order => 'id DESC', :limit => 4)
 
-    - if ads.length > 0
-      - for ad in ads[0..4]
-        = link_to ad.title, my_ads_path
+    - if ads.length > 0 
+      - ads.each do |ad|
+        .gallery-user
+          .g-photo{:style => 'min-height:93px'}
+            = link_to image_tag(ad.assets.first.public_filename(:thumb)), ad_path(ad) if ad.assets.first
+          .g-about
+            %div= link_to ad.title, ad_path(ad)
+
         %br
 
       .clr
