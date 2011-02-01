@@ -46,9 +46,9 @@ class AdsController < ApplicationController
       else
         @ads = SaleAd.find(:all, :conditions => conditions) + BuyAd.find(:all, :conditions => conditions)
       end
+    else
+      @ads = admin? ? ( BuyAd.all + SaleAd.all ) : ( current_user.buy_ads + current_user.sale_ads )
     end
-  else
-    @ads = admin? ? ( BuyAd.all + SaleAd.all ) : ( current_user.buy_ads + current_user.sale_ads )
   end
 
   def show
