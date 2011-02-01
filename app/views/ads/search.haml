@@ -25,11 +25,10 @@
 
                 .clr
 
-                .event_body_info
+                .event_body_info{:style => 'padding-left: 26px;'}
                   = "Rok: #{ad.year}"
                   %br
-                  = "Cena: #{ad.price}"
-                  %br
+ 
       
             .col2_event
               %div
@@ -40,7 +39,12 @@
               %p.event_description
                 = ntobr (cut ad.description, 100)
 
+              %p{:style => 'float: right; padding-right: 38px;padding-top:18px;font-weight: bold;'}
+                = "Cena: #{ad.price}"
+
             .clr
+
+
 
     .col1
       .button_gold_100{ :style => "font-size:10pt; font-weight: bold;margin-top:7px;" }
