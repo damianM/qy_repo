@@ -27,7 +27,7 @@
         %div
           = link_to "Moje grupy", myteams_user_path(@user)
         %div
-          = link_to "Moje ogłoszenia", '#'
+          = link_to "Moje ogłoszenia", my_ads_path
         - unless @user.friend?(curuser) or current_user.pending?(@user) or @user == curuser
           .request_friendship_in_profile_page
             = link_ "Zaproś do znajomych", "relationship", "req", @user.id
