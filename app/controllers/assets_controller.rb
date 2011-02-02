@@ -23,7 +23,6 @@ class AssetsController < ApplicationController
         :message => 'Załącznik został dodany.'
       }, :content_type => 'text/plain'
     else
-      raise @asset.errors.inspect
       render :json => {
         :success => false,
         :message => 'Próba uploadu zalącznika nie powiodła się.'
