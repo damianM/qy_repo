@@ -79,23 +79,29 @@
   .header.day_ad
   .body
     - if @day_offer
-      = image_tag(@day_offer.assets.first.public_filename) if !@day_offer.assets.empty?
-      %br
-      = @day_offer.company.name if @day_offer.company
-      %br
-      = @day_offer.price
+      %div{:style => 'padding: 10px;'}
+        = image_tag(@day_offer.assets.first.public_filename) if !@day_offer.assets.empty?
+        %br
+        = @day_offer.company.name if @day_offer.company
+        %br
+        %b Cena:
+        = @day_offer.price
 
 .partial
   .header.special_ads
   .body
     - @special_ads.each do |special_ad|
       %div{:style => 'border: solid 1px grey; width: 100%;'}
-        %div{:style => 'float: left;'}
+        %div{:style => 'float: left;padding: 12px;'}
           = image_tag(special_ad.assets.first.public_filename(:thumb)) if !special_ad.assets.empty?
-        %div{:style => 'float: left;padding-left: 20px;'}
+        %div{:style => 'float: left;padding: 20px;'}
 
           = special_ad.company.name if special_ad.company
           %br
           %br	
+          %b Cena:       
           = special_ad.price
         .clr  
+      .clr
+      %br  
+  

@@ -7,8 +7,12 @@ class Asset < ActiveRecord::Base
 
   attr_accessible :serial
 
+
+
   def reset_serial
     update_attribute(:serial, nil)
   end
+
+
 
 end
