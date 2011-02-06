@@ -1,0 +1,12 @@
+.partial.partial_right
+  .header.l_users
+  .body{:style => 'background-image:none;width:92%;'}
+    - if users.length > 0
+      %table.p_movies
+        - users.in_groups_of(4).each do |group|
+          %tr
+            - group.each do |user|
+              %td
+                = render :partial => "friend", :object => user if user
+    - else
+      Nie masz jeszcze znajomych

@@ -1,4 +1,4 @@
-<%= link_to image_tag(friend.photo ? friend.photo.public_filename : "/80_anon.png", :class=>"about_photo"), user_path(friend) %>
+<%= link_to image_tag(friend.photo ? friend.photo.public_filename(:thumb) : "/80_anon.png", :class=>"about_photo"), user_path(friend) %>
 
 
   <div class="userinfo_icons">
