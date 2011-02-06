@@ -1,7 +1,7 @@
 .partial
   .header.p_l_videos
   .body
-    %table.p_movies
+    %table{:style => 'width:100%;'}
       - Video.latest.in_groups_of(4).each do |group|
         %tr
           - group.each do |video|

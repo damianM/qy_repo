@@ -2,7 +2,7 @@
   .header.p_latest_friends_photos
   .body
     - if photos.length > 0
-      %table.p_movies
+      %table{:style => 'width:100%;'}
         - photos.in_groups_of(4).each do |group|
           %tr
             - group.each do |photo|
