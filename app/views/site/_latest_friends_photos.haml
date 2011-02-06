@@ -1,0 +1,17 @@
+.partial.latest_items
+  .header.p_latest_friends_photos
+  .body
+    - if photos.length > 0
+      %table.p_movies
+        - photos.in_groups_of(4).each do |group|
+          %tr
+            - group.each do |photo|
+              %td
+                - if photo
+                  .latest_item
+                    %div
+                      = link_to image_tag(photo.public_filename(:thumb)), photo_path(photo)
+                    %div
+                      = link_to photo.gallery.galleriable.login, user_path(photo.gallery.galleriable)
+    - else
+      Nikt z Twoich znajomych nie dodał jeszcze zdjęcia

@@ -1,0 +1,17 @@
+.partial.latest_items
+  .header.v_latest_friends_videos
+  .body
+    - if videos.length > 0
+      %table.p_movies
+        - videos.in_groups_of(4).each do |group|
+          %tr
+            - group.each do |video|
+              %td
+                - if video
+                  .latest_item
+                    %div
+                      = link_to((video.thumbnail ? (image_tag(video.thumbnail.public_filename)) : ("Miniaturka niedostępna")), video_path(video))
+                    %div
+                      = link_to video.gallery.galleriable.login, user_path(video.gallery.galleriable)
+    - else
+      Nikt z Twoich znajomych nie dodał jeszcze filmu
