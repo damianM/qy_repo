@@ -2,7 +2,7 @@
   .header.l_users
   .body{:style => 'background-image:none;width:92%;'}
     - if users.length > 0
-      %table.p_movies
+      %table
         - users.in_groups_of(4).each do |group|
           %tr
             - group.each do |user|
