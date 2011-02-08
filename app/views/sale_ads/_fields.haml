@@ -1,41 +1,11 @@
 .form_row
-  = form.label :type, 'Typ ogłoszenia: '
+  = form.label :type, 'Rodzaj ogłoszenia'
   = select_tag :ad_type, options_for_select([['sprzedam','sale_ad'],['kupie','buy_ad']])
 %br
-.form_row
-  = form.label :seller, 'Sprzedaje'
-  = form.select :seller, options_for_select(sellers_for_select, form.object.seller), :include_blank => true
-  = form.error_message_on :seller
-%br   
-.form_row
-  = form.label :status, 'Stan'
-  = form.select :status, options_for_select(statuses_for_select, form.object.status), :include_blank => true
-  = form.error_message_on :status
-%br       
 .form_row
   = form.label :category, 'Kategoria'
   = form.select :category, options_for_select(categories_for_select, form.object.category), :include_blank => true
   = form.error_message_on :category
-%br   
-.form_row
-  = form.label :email, 'Email'
-  = form.text_field :email
-  = form.error_message_on :email
-%br   
-.form_row
-  = form.label :phone, 'Telefon'
-  = form.text_field :phone
-  = form.error_message_on :phone
-%br   
-.form_row
-  = form.label :title, 'Tytuł'
-  = form.text_field :title
-  = form.error_message_on :title
-%br       
-.form_row
-  = form.label :description, 'Opis'
-  = form.text_area :description, :size => '35x12'
-  = form.error_message_on :description
 %br   
 .form_row
   = form.label :company_id, 'Marka'
@@ -43,22 +13,12 @@
   = form.error_message_on :company_id
 %br   
 .form_row
-  = form.label :state_id, 'Województwo'
-  = form.collection_select :state_id, State.all, :id, :name, { :include_blank => true }
-  = form.error_message_on :state_id
-%br   
-.form_row
   = form.label :kind, 'Typ'
   = form.text_field :kind
   = form.error_message_on :kind
-%br   
-.form_row
-  = form.label :capacity, 'Pojemność'
-  = form.text_field :capacity
-  = form.error_message_on :capacity
 %br
 .form_row
-  = form.label :year, 'Rok'
+  = form.label :year, 'Rok produkcji'
   = form.text_field :year
   = form.error_message_on :year
 %br
@@ -66,12 +26,53 @@
   = form.label :mileage, 'Przebieg'
   = form.text_field :mileage
   = form.error_message_on :mileage
+%br   
+.form_row
+  = form.label :capacity, 'Pojemność'
+  = form.text_field :capacity
+  = form.error_message_on :capacity
+%br   
+.form_row
+  = form.label :status, 'Stan'
+  = form.select :status, options_for_select(statuses_for_select, form.object.status), :include_blank => true
+  = form.error_message_on :status
 %br
+.form_row
+  = form.label :seller, 'Sprzedaje'
+  = form.select :seller, options_for_select(sellers_for_select, form.object.seller), :include_blank => true
+  = form.error_message_on :seller
+%br   
 .form_row
   = form.label :price, 'Cena'
   = form.text_field :price
   = form.error_message_on :price
 %br
+.form_row
+  = form.label :title, 'Tytuł'
+  = form.text_field :title
+  = form.error_message_on :title
+%br   
+.form_row
+  = form.label :description, 'Opis'
+  = form.text_area :description, :size => '35x12'
+  = form.error_message_on :description
+%br
+.form_row
+  = form.label :state_id, 'Województwo'
+  = form.collection_select :state_id, State.all, :id, :name, { :include_blank => true }
+  = form.error_message_on :state_id
+%br
+.form_row
+  = form.label :phone, 'Telefon'
+  = form.text_field :phone
+  = form.error_message_on :phone
+%br       
+.form_row
+  = form.label :email, 'Email'
+  = form.text_field :email
+  = form.error_message_on :email
+%br   
+
 
 .form_row
   = form.hidden_field :serial

@@ -13,7 +13,7 @@
             .event_delete
               = link_to((image_tag "/delete.png"), eval("#{ad.class.to_s.underscore}_path(ad)"), {:method => :delete, :title => "Usuń", :confirm => "Czy na pewno chcesz usunąć to ogłoszenie?"})
           .event_header
-            %span
+            %span{:style => 'font-size: 8pt;'}
               %span{ :style => "font-weight:normal;border:none;color:#777;" } Kategoria:
               = ad.is_a?(SaleAd) ? 'Sprzedam' : 'Kupię'
 
@@ -39,13 +39,17 @@
               %p.event_description
                 = ntobr (cut ad.description, 100)
 
-              %p{:style => 'float: right; padding-right: 38px;padding-top:18px;font-weight: bold;'}
+              %p{:style => 'float: right; padding-right: 38px;padding-top:18px;font-weight: bold;font-size:10pt;'}
                 = "Cena: #{ad.price}"
 
             .clr
 
 
 
-    .col1
+    .col1{:style => 'float: left;'}
       .button_gold_100{ :style => "font-size:10pt; font-weight: bold;margin-top:7px;" }
         = link_to "Wyszukaj", home_ads_path
+    .col1{:style => 'float: right;'}
+      .button_gold_100{ :style => "font-size:10pt; font-weight: bold;margin-top:7px;" }
+        = link_to "Dodaj ogłoszenie", new_sale_ad_path
+    .clr
